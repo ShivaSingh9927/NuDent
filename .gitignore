@@ -1,0 +1,43 @@
+# Virtual Environments
+nudent/
+nudent2/
+venv/
+.venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Large Data & Meshes
+*.stl
+*.STL
+*.obj
+*.ply
+*.glb
+*.zip
+*.rar
+*.7z
+*.pdf
+*.scanInfo
+*.npy
+*.ndent
+
+# Project specific
+outputs/
+cache/
+scratch/
+stl/
+3d-tooth-crown/
+9pf15mfcqqdc-TeethPack/
+Anatomic_Crown/
+Full_Denture_Set_-_Upper_and_Lower_Anatomy_(STL)/
+ImageToStl.com_myCrown_011/
+M.O.D Rectangular/
+Tooth_Library/
+free-exocad-tooth-library-high-esthetic-anatomy20260118-1-8byzt4/
+
+# External
+samesh/

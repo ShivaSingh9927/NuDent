@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"import ast; ast.parse\\(open\\('app/stages/margin.py'\\).read\\(\\)\\); ast.parse\\(open\\('app/segmentation.py'\\).read\\(\\)\\); ast.parse\\(open\\('app/state.py'\\).read\\(\\)\\); ast.parse\\(open\\('app/main_window.py'\\).read\\(\\)\\); print\\('OK'\\)\")",
+      "Bash(python -c \"import ast; ast.parse\\(open\\('app/stages/margin.py'\\).read\\(\\)\\); print\\('OK'\\)\")",
+      "Bash(python -c \"import ast; ast.parse\\(open\\('app/stages/shell.py'\\).read\\(\\)\\); print\\('OK'\\)\")",
+      "Bash(python -c \"import ast; ast.parse\\(open\\('app/stages/shell.py'\\).read\\(\\)\\); ast.parse\\(open\\('app/stages/trim.py'\\).read\\(\\)\\); print\\('OK'\\)\")",
+      "Bash(python -c \"import ast; ast.parse\\(open\\('app/main_window.py'\\).read\\(\\)\\); print\\('OK'\\)\")",
+      "Bash(python -c \"import ast; ast.parse\\(open\\('app/stages/trim.py'\\).read\\(\\)\\); print\\('OK'\\)\")"
+    ]
+  }
+}
