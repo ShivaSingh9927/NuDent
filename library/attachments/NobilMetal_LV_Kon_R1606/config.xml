@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<AttachmentLibrary>
+<SupplierName>Nobil Metal SpA</SupplierName>
+  <UserMessage>More info: http://www.nobilmetal.com/</UserMessage>
+  <SupplierLogo>SupplierLogo.NobilMetal</SupplierLogo>
+  <AllowScaling>0</AllowScaling>
+  <AttachmentFile>
+    <Filename>KN-852-W-2-2gradi.sdfa</Filename>
+    <Signature>5b57496bd59af11cb2a0e48e88d81825b716efa5</Signature>
+	<SupplyName>KN-852-W-2-2gradi</SupplyName>
+    <SupplyDescription>NobilMetal_Attachments.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>KN-852-W-2.sdfa</Filename>
+    <Signature>24aea1102c049511bfabf8c3e82da98a87d05d9d</Signature>
+	<SupplyName>KN-852-W-2</SupplyName>
+    <SupplyDescription>NobilMetal_Attachments.Description</SupplyDescription>
+  </AttachmentFile>
+</AttachmentLibrary>

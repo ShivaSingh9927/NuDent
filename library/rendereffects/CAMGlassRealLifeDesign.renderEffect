@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<RenderEffectSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" RenderEffectName="CAM_LayeredEnamel">
+  <ColorParameter Name="material_color2" Value="#FFF8F3E8" />
+  <ColorParameter Name="material_color" Value="#FFE7D099" />
+  <DoubleParameter Name="sharpness" Value="1" />
+  <DoubleParameter Name="specular_exponent" Value="16" />
+  <DoubleParameter Name="specular" Value="0.125" />
+  <DoubleParameter Name="light_factor" Value="0.9" />
+  <IntParameter Name="mode" Value="2" />
+  <IntParameter Name="smoothing_iterations" Value="4" />
+  <Vec3Parameter Name="density_exponents" x="0.45" y="0.5" z="0.55" />
+</RenderEffectSettings>

@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<AttachmentLibrary>
+  <AttachmentFile>
+    <Filename>134111300.sdfa</Filename>
+    <Signature>8486231f484eb8514f39ddd873b5782f7593691f</Signature>
+    <AllowScaling>0</AllowScaling>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>134111300_for milling.sdfa</Filename>
+    <Signature>47c4a86692b094da51517a4e22624283436d3cf6</Signature>
+	<AllowScaling>0</AllowScaling>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>134111300_SLM.sdfa</Filename>
+    <Signature>8a6e5e04da12f2d64a37968bc2e850e2d4c5d4c9</Signature>
+	<AllowScaling>0</AllowScaling>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>134141300_for milling.sdfa</Filename>
+    <Signature>365a138b556c90cc9de7a76b9380749abdc1bdaa</Signature>
+	<AllowScaling>0</AllowScaling>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>134141300_SLM.sdfa</Filename>
+    <Signature>b6ed82c92a7fdb3cc3d8c0e85965fc13d5501ff4</Signature>
+	<AllowScaling>0</AllowScaling>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>134151300_for milling.sdfa</Filename>
+    <Signature>342172720c13d3d89c87f5e87413fe350f167696</Signature>
+	<AllowScaling>0</AllowScaling>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>69977E_for milling.sdfa</Filename>
+    <Signature>558baffdfcf9b9345be9731651d697699b74b970</Signature>
+	<AllowScaling>0</AllowScaling>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>SD-M3_single.sdfa</Filename>
+	<AllowScaling>0</AllowScaling>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>SD-TeleGrip.sdfa</Filename>
+	<AllowScaling>0</AllowScaling>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>sd-m3-90.sdfa</Filename>
+	<AllowScaling>0</AllowScaling>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>sd-m3-90 v7.sdfa</Filename>
+	<AllowScaling>0</AllowScaling>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>SD-TeleGrip_Stanze.sdfa</Filename>
+	<AllowScaling>0</AllowScaling>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>sd-m3-90-100ym.sdfa</Filename>
+	<AllowScaling>0</AllowScaling>
+  </AttachmentFile>
+</AttachmentLibrary>

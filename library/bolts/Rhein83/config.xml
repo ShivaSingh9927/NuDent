@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<AttachmentLibrary>
+	<AllowScaling>0</AllowScaling>
+	<SupplierName>RHEIN 83 Srl</SupplierName>
+	<UserMessage>More info: http://www.rhein83.com/</UserMessage>
+	<AttachmentFile>
+		<Filename>OT Cap Micro Sleeve Spacer ref.239SSM.sdfa</Filename>
+		<Signature>6967212e67c90f1be263c34d5998cfa06e5b552c</Signature>
+		<SupplyName>OT Cap Micro - Sleeve Spacer ref.239SSM</SupplyName>
+		<SupplyDescription>OT Cap Micro - Sleeve Spacer.Description</SupplyDescription>
+	</AttachmentFile>
+	<AttachmentFile>
+		<Filename>OT Cap Normo Sleeve Spacer ref.239SSN.sdfa</Filename>
+		<Signature>a4af8b1192c5d8aec621a9401958f93c04c20a12</Signature>
+		<SupplyName>OT Cap Normo - Sleeve Spacer ref.239SSN</SupplyName>
+		<SupplyDescription>OT Cap Normal - Sleeve Spacer.Description</SupplyDescription>
+	</AttachmentFile>
+	<AttachmentFile>
+		<Filename>OT Equator Sleeve Spacer ref.339SSE.sdfa</Filename>
+		<Signature>67bafae2c5a4a68ac89ddb3a8c22f2893652cc64</Signature>
+		<SupplyName>OT Equator - Sleeve Spacer ref.339SSE</SupplyName>
+		<SupplyDescription>OT Equator - Sleeve Spacer.Description</SupplyDescription>
+	</AttachmentFile>
+</AttachmentLibrary>

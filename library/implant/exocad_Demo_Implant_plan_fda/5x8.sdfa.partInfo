@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryPartInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Part>
+    <PartInfo>
+      <Manufacturer>exocad GmbH</Manufacturer>
+      <ManufacturerID>EXO</ManufacturerID>
+      <PartNumber>exoImplant5008</PartNumber>
+      <PartName>exoImplant, Ø 5.0 mm, 8 mm</PartName>
+      <PartComment>Material: Pure Darmstadtium; Surface: pure gold plated
+For demonstration usage only!</PartComment>
+      <Url>https://exocad.com/our-products/exoplan</Url>
+    </PartInfo>
+  </Part>
+  <AllowedInfoSignatures>
+    <InfoSignature>NDv4X5ezXdnYMTWlQR+u6gesHczye2wEs0PxRmqymnqRKUjXZwOpEs/OQj6APTVzFAVyLs+89ibqn1sjAzAOizKHgE75x9MxHQL5/GrRV4kXodiv8sxK3BxK/UkDkTdsaGmZTZD439L01QCckPDXHhbqZs7tYbKO2jRFK6bZIbvB2IckADpVxa//XqwRV2FDRfw45uEdUolIyC41DP94KBek4L3BDBK9vvzn3VqFokxgrENwXXPcFANsHK3Y1GVjD8ztLGlybOT1vI2e9w8bybM3nK0gkgiCw4UMBxPRFFY54e41vbBU3uGj2AR21tEoeF+A5iI3I8w8PEyY7+BDfR+4FyfA5/LFXdPqWw5Ah9bq6NJOrATwUu1v5MSejZVaUMqLGHS8Jlo/ymAxIKbCurB6T5HnWWuFieAxcjS6jIu3FIr0JyMenvHvXRumToy9sf/Mf+M70G2eYhiW4L6jfC1+K+PqN86J0/QiQyKQWNprMWHTL/ZJcVJy7qV6YHmO+PwMlFnM15QVKhvkdL79B2tO39Ns1M90H/VuGnyCO7W3hFMVxAQpySR5mL6ea9ufwLnKrY6VWBSQ/E0/hepVe5qGeqKpWFFa6p6p2smsDabXdgt3BWtqNxEIOmqkjOxAuKDLTbt+x49zTwrz/iOo8AQab0vuPg+KU2yPAsNLoUk=</InfoSignature>
+    <InfoSignature>qbr1rIHb13PX4lLBKqzTPMVb/KLwXZabrWllJZXJ883tUDQ7UTBA7XNYIoV7zOnyAnvsyQ/K2fTEQJkx1WbU5vnJkKOM6+T/XZ31jrYHN9IkVOP8Y12X+SrbOg+gxZImPaNNT7XBlipcuavH5i1Ntx4qVzD3nr5OigUVbci86Ostuzn2JwJRxSt2f8ZGppvdwEy38cqKxyZ1WFStFEvyKqywld7aN+L61CP2cBKcUWF9Kycp6OfOJj7Vj3PPs0GNOTs46B7jJ5h7WpIVykuqJJOtVc6GxwdGH8yz9QVLfMBH1aaRggmKeA0GOOjNuLKYXqPBI3dvng/lRsuPWEzCqETSV7DKh55cRpqOTMENJl+5swmNfbjhOTPQn8UnTVuru9CIq0ai/Te8hTdl/tF+RQpHqZc8700cxHXEjJz23RaNH9UusNOX68PTGcud6ACunN+SXflCnO1RtBVPxIlrVOdM1HceW+angGAmH1bWe7KemHTvByossF/2oF+Q4f0rW/7vXNC1aM8vZx6x+o53tOn5BsvF6hHvU3JnE+xSpVCYCkgs7YwSb0Zy9xfeZYU6GaKIys5B8UusSPBrNiKbzwVqAqgmErCwEHy54IT/mqA0WEiAoILHhhMp0IFIFTGo60SSXxfYmtOEp+RBFJ3bBY4WyIxtYuxHsKc4IhXtaxg=</InfoSignature>
+    <InfoSignature>ZHa5u40f5MV5PV7ux0QXJ8kkwJ1PqLVjW4eLHuQAfuX7xaULqyqjfc3tHlhwXL64goyzUqxU7tjGSAYYLH13YlO4Cc8aNBaEXLgY31qUxiZdrhPc6L6K+Ox9UFxWsB+bTLddQin+KGt2iUfCnM8WaoYmU/LcCJc2AUUXu2oWau+JZXDZQMF0s3IGqeb7Ws8HOYErlW7ykaM+03h2RuTmCS90ltnlCP5cg5pyWIpqOB2ilLH0WjlBsePG2Lzq1aQz7U1TY2KvSHsgp30wEJ1CCVsP5t0bi3ufyWoARQaxz3+hcW606yfUC2MJn4LVyHFWIviRGFN7V7eJ7zZpXGOuAg==</InfoSignature>
+  </AllowedInfoSignatures>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" /><DigestValue>ooszk5zT26trLzfYS0jBdgevLDyNBpQi0FMvTrkX+yE=</DigestValue></Reference></SignedInfo><SignatureValue>gTzL68QMYtGyICxDZ6+T9rK0zQ9Nmn6zRxnAzHPzSwIvBOtbGbvXhVy1viOw+3f8XnddX4LoA6N9Ko5eNLGOA4yt9kVAoc9WBwtWSKZFKjfGmJVNqHkjGefcqaWCdsk2V6hduNwIJOUHDI9iqxjzDoHJ/PApu/NqmtSlFOYIswyxXaEJ1AypQe76xyhWoXPOWyUjSY8zykgE9mahYagjYyC7g2nUkDOw12HTUH+oI5Qe9VQpC9YLU94oelwTituAE6wdQuT9/v0Endu1P8U1mhCdYeTEnXmpVB3N82D+7ebPCXxMiVTCzaIHxW51ege9jBvwYDpOtiBqmj24GMvrjQ==</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>q9fy79jL32netw1tIJaAphnPSorI1Y0VczEorc/b38N0d+Dt5HpfpK+riLZGPRv5N6RvhEmETf+C0wopSOZUq1ryp30B4PQLMDQ9quSV9jhkalINqvSph0z4asCCXEEn+nO62Pk7zItY1zDO3vOlfd7QOxdN3TmMYnB0cwEgHkDXy/f9USXKroknRWoZTnqsimqNKMKkUll1O5KdLj6yDRQmyHqVzUqXJwGVLld9zO1T4AffeUi7bxqnB0BrkruQ5tAHoTJiW0L1dPIu+phiRqTe5OVdtEhMRbO4lpsykdl83/R2iRtH8KZA1kzDVxH8wxSTkyUK1BNoMtU9aLc8FQ==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue></KeyInfo></Signature></LibraryPartInfo>

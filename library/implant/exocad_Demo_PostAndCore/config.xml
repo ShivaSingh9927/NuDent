@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with exoImplantEditor CAD [Engine build 8094] [<64-Bit>]  -->
+<ImplantLibraryEntry xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <RegistrationClickCenter>
+    <x>2</x>
+    <y>0</y>
+    <z>6</z>
+  </RegistrationClickCenter>
+  <AxisAsymmetric>
+    <x>1</x>
+    <y>0</y>
+    <z>0</z>
+  </AxisAsymmetric>
+  <MarkerFilename>post_and_core_scanbody_marker.STL</MarkerFilename>
+  <SupportFilename>post_and_core_scanbody.sdfa</SupportFilename>
+  <DisplayInformation>exocad - Demo Post and Core</DisplayInformation>
+  <Keyword>exocad_Demo_PostAndCore</Keyword>
+  <LibraryType>PostAndCore</LibraryType>
+  <Supplier>exocad GmbH</Supplier>
+  <SupplierLink>http://www.exocad.com</SupplierLink>
+  <LegalInformation>This library is for demonstration only.</LegalInformation>
+  <WarrantyInformation>DISCLAIMER OF WARRANTY
+
+
+THIS DATA IS PROVIDED "AS IS" AND WITHOUT WARRANTIES AS TO PERFORMANCE, ACCURACY, OR MERCHANTABILITY. THE SELLER'S SALESPERSONS MAY HAVE MADE STATEMENTS ABOUT THIS DATA. ANY SUCH STATEMENTS DO NOT CONSTITUTE WARRANTIES AND SHALL NOT BE RELIED ON BY USER IN DECIDING WHETHER TO USE THIS DATA.
+
+THIS DATA IS PROVIDED WITHOUT ANY EXPRESSED OR IMPLIED WARRANTIES WHATSOEVER. BECAUSE OF THE DIVERSITY OF CONDITIONS AND HARDWARE UNDER WHICH THIS DATA MAY BE USED, NO WARRANTY OF FITNESS FOR A PARTICULAR PURPOSE IS OFFERED. THE USER IS ADVISED TO TEST THE DATA THOROUGHLY BEFORE RELYING ON IT. THE USER MUST ASSUME THE ENTIRE RISK OF USING THIS DATA AND ACCEPTS IT "WITH ALL ITS FAULTS". THE USER MUST ASSUME THE ENTIRE RISK OF USING THE PROGRAM.
+</WarrantyInformation>
+  <AxisOcclusal>
+    <x>0</x>
+    <y>0</y>
+    <z>1</z>
+  </AxisOcclusal>
+  <PreviewV4IconFilename>preview.png</PreviewV4IconFilename>
+  <SupplierV4IconFilename>EXO_exocad.png</SupplierV4IconFilename>
+  <TypeConfig>
+    <ImplantTypeConfig>
+      <DisplayInformation>Scanbody</DisplayInformation>
+      <Keyword>Scanbody</Keyword>
+    </ImplantTypeConfig>
+  </TypeConfig>
+  <SignatureDate>2023-12-06T11:24:39.9236660Z</SignatureDate>
+  <InfoSignatureV2>GJHuQWjbMrk9x5wVP2NY1ZFs4ZEcFxanyzoZsxWd3uPvWnqsGFOlIDejM2t77yEJwfI+5uy8kXObFkrs6c3pq9xI6cYkTDn/DEK7aYMhLT+FR1Mlshv0ddTDrosRSGuPZHsiBtcRwuR0hs1qx1vmfPMgaoWlkuMvcaxXHiNbou2IZTe+z6ZHaQjqYO1D7LdD7FhHlGtqe8KAu0aGCN0c/0dfyPkqbz0Hs0ekq2r8pH3KX4OltMJ2rNl0xT79QfhiMQIvfPVp13Vojvlz+r2bKvnnBw616ijqA2FvIYm1Ub5xv1y6cynTTkPpNXSCtvKYutnlurraYZFB8arx/mxUFQ==</InfoSignatureV2>
+  <InfoSignatureV3>pUJXPcCRcSklFEktLmi9KrO8R8HzszF9vT/ngBTRYqCpaQSQgRK+LpDVe15tvXke1E7XBNXW6WotFDwGbGUkx8jFl19c/trcl2pBzzSQRHQXKyyS/Op7/CTGtCGZbrkjcddTzbtN/jFRz8CQpGA84OhUJj5046eHHMQtdPX5CgKYDc2YbmhSkeolALAcE7gEz8SaH8+dNJQkUq2fvFzZeBzd9BZxwnMHBuxaQS/Bs2pDVG+WBIoSrat+ewnZ28L75gl/Vy/1VSJvq/juIT8ftsePQyxi2z6T1NyehkUmXMufuC43XO8IpLM15Aa06regM6QZdjfGgLlzqaGTFxQRgg==</InfoSignatureV3>
+  <InfoSignatureV4>Kf4v+OHmbO7y+7T6exYJmDfYCTqIR3qksNVnBjW4WMJNsXX8edY9Inqs/JA8BxDT4mfOyWjDOwr2mVNdgkKEUmqlZIUoX5DV7rOMe4zjCoAgEzcyjw9ctJI7o4EZH6HUFACgvT2GR1yzSTzD496Z3O1AyvPHAdywr+XWbUXsZF4UY/d4VEP/O1YmKgt5nTf3YRgQAfmko6v6pB3ZO/Si3H4+umJQPXB2BTF2rfDRW4V2qX0Fi7+CpB4jF68sKhHK6jbqsRQphC+jIywZWSErFUCVRfOeL576Rd5hl2YGo0X71WZILX0N0mirdKFAo5nw9yzQge824kgAPLGRspTzm+g2wWxkMf5/1OKeUlvH4hmPX9C38oyEyUmQ4cXASGPrsn71za5ihp1aRp+K2mn4qFOp6y0sRf1JGBqVVo6AnIGUa4JP1QlIrJRt5vBZnv5JjPddXbz49xB2G5y1IeABG+wK7H5T1mujplSGjQEVP5HNUEL7aSxK1+u9fz6I9OIE7kbhMcaBwrI29ZRK3myY60rNVllnrOya7jKdTHaJvl1lZcvrNdq1aaE+z7zKUJ9AW4gcNbG/dmv4cQS79J7ny8NGFF7TUlBqlY3GctYpDprT0iuYopm0cLfdzyCJyj6Oc3cRsVKnmN3hEm+qNYXUZhNtv5bMJo8+vm1hkZJukG4=</InfoSignatureV4>
+  <FileSignatures>
+    <!--  NOTE! Signature is provided ONLY for specific mesh properties -->
+    <!--  NOT for accuracy or suitability to a particular task.         -->
+    <!--  A valid signature from the software vendor does NOT imply any -->
+    <!--  warranties or statements regarding the data's correctness!    -->
+    <FileSignature>
+      <Filename>post_and_core_scanbody_marker.STL</Filename>
+      <Signature>EupRd4OHPTy8moa1Ta0Yyf14bm6AmmZFviXlcPKciWTUoYMG8OYuv0QFKnDUtZDYGIO3wrpYUQ5UFjkFHEj2hg==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>post_and_core_scanbody.sdfa</Filename>
+      <Signature>13jOciwEjM7E66biINyo9spaJ9drp2m/3Br9PsnkQwiuIM7ilg3l84fexInXc1oSPhJsLBBZHaCU2WMVVpmuGA==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>preview.png</Filename>
+      <Signature>FlNK1A3fzaWq10nKaO721CuI0mX1f2wVPl9SEkzJk0nImHq3sQ5juaGXgA1HBFtucJqC2x+g/Y//mtOo/WWJyQ==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>EXO_exocad.png</Filename>
+      <Signature>lL7Yxp6O4n0EVekJTDLd3t3QHBMnJ9UNBypl8qMKbouYj/9rd4PVQgCkuY05O8jHkkwllKhb9oNXmVi93hMm6g==</Signature>
+    </FileSignature>
+  </FileSignatures>
+</ImplantLibraryEntry>

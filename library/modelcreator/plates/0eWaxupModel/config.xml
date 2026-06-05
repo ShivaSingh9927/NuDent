@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://exocad.com/model/type">
+	<Supplier>exocad GmbH</Supplier>
+	<DisplayInformation>Digital waxup model</DisplayInformation>
+	<Parameter Id="modelheight" Min="10" Max="60" Default="40" Decimals="2" Unit="mm">ModelAlignmentProcessorControl.ModelHeight</Parameter>
+	<ModelType Class="Plateless" DieStyle="None" GingivaStyle="None" ImplantSupport="false" WaxupModel="true">
+		<DisplayInformation>Digital waxup model</DisplayInformation>
+		<PreviewImageFileName>0gWaxupModel.png</PreviewImageFileName>
+		<MinRequiredPrepPlateDist>8</MinRequiredPrepPlateDist>
+		<BottomPlaneUpperJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</BottomPlaneUpperJaw>
+		<BottomPlaneLowerJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</BottomPlaneLowerJaw>
+		<ConstructionParameter>
+			<Type>ModelShaftGapHorizontal</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelShaftGapVertical</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelDitchWidth</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelDitchDepthAvg</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelDitchHeightAvg</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelBottomPinGrooveWidth</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelBottomPinGrooveDepth</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelMillingHeadDiameter</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+	</ModelType>
+</LibraryEntry>

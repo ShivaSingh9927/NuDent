@@ -1,0 +1,1657 @@
+<?xml version='1.0' encoding='ASCII'?>
+<PrinterPreset xmlns="http://exocad.com/library/production">
+	<MaterialParameterPresets>
+		<!--dental model material presets-->
+		<MaterialPreset>
+			<Name>Dental Model V2 normal 0&#181;m</Name>
+			<ConstructionParameters>
+				<Param>ModelWallThickness</Param>
+				<!--if all values 0 then solid model-->
+				<!--default values    
+				<Value>2.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>5.0</MaxValue>
+				-->
+				<Value>2.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>5.0</MaxValue>
+			</ConstructionParameters>
+			<!-- Start of removable die defintion-->
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontal</Param>
+				<!--gap for removable dies-->
+				<!--default values    
+				<Value>0.1</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>1.0</MaxValue>
+				-->
+				<Value>0</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapVertical</Param>
+				<!--typically left 0 may cause misocclusion-->
+				<!--default values    
+				<Value>0</Value>
+				<MinValue>-1.0</MinValue>
+				<MaxValue>1.0</MaxValue>
+				-->
+				<Value>0.00</Value>
+				<MinValue>-0.1</MinValue>
+				<MaxValue>0.1</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicDifference</Param>
+				<!--OPTIONAL: Is the maximal value that can be added to the previous one.
+				If you write a negative value you get a gap smaller then <ModelShaftGapHorizontal>-->
+				<!--default values    
+				<Value>0.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>0.0</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicRangeStart</Param>
+				<!--OPTIONAL: For dies with a diameter smaller than <ModelShaftGapHorizontalDynamicRangeStart> the gap is <ModelShaftGapHorizontal>-->
+				<!--default values    
+				<Value>0.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>0.0</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicRangeEnd</Param>
+				<!--OPTIONAL: For dies with a diameter larger than <ModelShaftGapHorizontalDynamicRangeEnd> the gap amounts to 
+				<ModelShaftGapHorizontal> plus <ModelShaftGapHorizontalDynamicDifference>
+				For dies inbetween the gap is <ModelShaftGapHorizontal> plus a proportion of <ModelShaftGapHorizontalDynamicDifference>-->
+				<!--default values    
+				<Value>10.0</Value>
+				<MinValue>10.0</MinValue>
+				<MaxValue>10.0</MaxValue>
+				-->
+				<Value>10.0</Value>
+			</ConstructionParameters>			
+			<!-- End of removable die defintion-->
+			<ConstructionParameters>
+				<Param>ModelImplantLabAnalogOffsetHorizontal</Param>
+				<!--similar to model shaft gap just for lab analogs-->
+				<!--default values    
+				<Value>0.05</Value>
+				<MinValue>-0.2</MinValue>
+				<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0.08</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantLabAnalogOffsetVertical</Param>
+				<!--typically left 0 may cause misocclusion-->
+				<!--default values    
+				<Value>0</Value>
+				<MinValue>-0.2</MinValue>
+				<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskGapWidth</Param>
+				<!--gap between model and gingiva mask-->
+				<!--default values    
+					<Value>0.1</Value>
+					<MinValue>0.0</MinValue>
+					<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0.1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskMinThickness</Param>
+				<!--gingiva mask min thickness. not applied for flat gingiva-->
+				<!--default values    
+					<Value>1</Value>
+					<MinValue>0.5</MinValue>
+					<MaxValue>2</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskImplantSupportWidth</Param>
+				<!--support width around lab analogs in gingiva mask-->
+				<!--default values    
+				<Value>1</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>2</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelMinimumThicknessAroundPins</Param>
+				<!--thickness around pins similar to wall thickness-->
+				<!--default values    
+				<Value>1</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>10</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelWallMorphologicalClosureDiameter</Param>
+				<!--smoothing option for inner part of hollow models-->
+				<!--default values    
+				<Value>2</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>5</MaxValue>
+				-->
+				<Value>2</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelWallBottomSill</Param>
+				<!--small sill for better stability of the model-->
+				<!--default values    
+				<Value>1.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>3.0</MaxValue>
+				-->
+				<Value>1.0</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantSupportWidth</Param>
+				<!--support cylinder around lab analogs, set to 0 to deactivate-->
+				<!--default values
+				<Value>1.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>2.0</MaxValue>
+				-->
+				<Value>1.0</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantSupportGingivaMaskDepth</Param>
+				<!--support depth around lab analogs in gingiva mask-->
+				<!--default values    
+				<Value>1.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>3.0</MaxValue>
+				-->
+                <Value>1.0</Value>
+			</ConstructionParameters>
+			<!--End of standard parameters-->
+		</MaterialPreset>
+		<MaterialPreset>
+			<Name>Dental Model V2 loose 10&#181;m</Name>
+			<ConstructionParameters>
+				<Param>ModelWallThickness</Param>
+				<!--if all values 0 then solid model-->
+				<!--default values    
+				<Value>2.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>5.0</MaxValue>
+				-->
+				<Value>2.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>5.0</MaxValue>
+			</ConstructionParameters>
+			<!-- Start of removable die defintion-->
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontal</Param>
+				<!--gap for removable dies-->
+				<!--default values    
+				<Value>0.1</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>1.0</MaxValue>
+				-->
+				<Value>0.01</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapVertical</Param>
+				<!--typically left 0 may cause misocclusion-->
+				<!--default values    
+				<Value>0</Value>
+				<MinValue>-1.0</MinValue>
+				<MaxValue>1.0</MaxValue>
+				-->
+				<Value>0.00</Value>
+				<MinValue>-0.1</MinValue>
+				<MaxValue>0.1</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicDifference</Param>
+				<!--OPTIONAL: Is the maximal value that can be added to the previous one.
+				If you write a negative value you get a gap smaller then <ModelShaftGapHorizontal>-->
+				<!--default values    
+				<Value>0.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>0.0</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicRangeStart</Param>
+				<!--OPTIONAL: For dies with a diameter smaller than <ModelShaftGapHorizontalDynamicRangeStart> the gap is <ModelShaftGapHorizontal>-->
+				<!--default values    
+				<Value>0.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>0.0</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicRangeEnd</Param>
+				<!--OPTIONAL: For dies with a diameter larger than <ModelShaftGapHorizontalDynamicRangeEnd> the gap amounts to 
+				<ModelShaftGapHorizontal> plus <ModelShaftGapHorizontalDynamicDifference>
+				For dies inbetween the gap is <ModelShaftGapHorizontal> plus a proportion of <ModelShaftGapHorizontalDynamicDifference>-->
+				<!--default values    
+				<Value>10.0</Value>
+				<MinValue>10.0</MinValue>
+				<MaxValue>10.0</MaxValue>
+				-->
+				<Value>10.0</Value>
+			</ConstructionParameters>			
+			<!-- End of removable die defintion-->
+			<ConstructionParameters>
+				<Param>ModelImplantLabAnalogOffsetHorizontal</Param>
+				<!--similar to model shaft gap just for lab analogs-->
+				<!--default values    
+				<Value>0.05</Value>
+				<MinValue>-0.2</MinValue>
+				<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0.08</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantLabAnalogOffsetVertical</Param>
+				<!--typically left 0 may cause misocclusion-->
+				<!--default values    
+				<Value>0</Value>
+				<MinValue>-0.2</MinValue>
+				<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskGapWidth</Param>
+				<!--gap between model and gingiva mask-->
+				<!--default values    
+					<Value>0.1</Value>
+					<MinValue>0.0</MinValue>
+					<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0.1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskMinThickness</Param>
+				<!--gingiva mask min thickness. not applied for flat gingiva-->
+				<!--default values    
+					<Value>1</Value>
+					<MinValue>0.5</MinValue>
+					<MaxValue>2</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskImplantSupportWidth</Param>
+				<!--support width around lab analogs in gingiva mask-->
+				<!--default values    
+				<Value>1</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>2</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelMinimumThicknessAroundPins</Param>
+				<!--thickness around pins similar to wall thickness-->
+				<!--default values    
+				<Value>1</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>10</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelWallMorphologicalClosureDiameter</Param>
+				<!--smoothing option for inner part of hollow models-->
+				<!--default values    
+				<Value>2</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>5</MaxValue>
+				-->
+				<Value>2</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelWallBottomSill</Param>
+				<!--small sill for better stability of the model-->
+				<!--default values    
+				<Value>1.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>3.0</MaxValue>
+				-->
+				<Value>1.0</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantSupportWidth</Param>
+				<!--support cylinder around lab analogs, set to 0 to deactivate-->
+				<!--default values
+				<Value>1.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>2.0</MaxValue>
+				-->
+				<Value>1.0</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantSupportGingivaMaskDepth</Param>
+				<!--support depth around lab analogs in gingiva mask-->
+				<!--default values    
+				<Value>1.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>3.0</MaxValue>
+				-->
+                <Value>1.0</Value>
+			</ConstructionParameters>
+			<!--End of standard parameters-->
+		</MaterialPreset>
+		<MaterialPreset>
+			<Name>Dental Model V2 loose 10&#181;m</Name>
+			<ConstructionParameters>
+				<Param>ModelWallThickness</Param>
+				<!--if all values 0 then solid model-->
+				<!--default values    
+				<Value>2.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>5.0</MaxValue>
+				-->
+				<Value>2.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>5.0</MaxValue>
+			</ConstructionParameters>
+			<!-- Start of removable die defintion-->
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontal</Param>
+				<!--gap for removable dies-->
+				<!--default values    
+				<Value>0.1</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>1.0</MaxValue>
+				-->
+				<Value>0.01</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapVertical</Param>
+				<!--typically left 0 may cause misocclusion-->
+				<!--default values    
+				<Value>0</Value>
+				<MinValue>-1.0</MinValue>
+				<MaxValue>1.0</MaxValue>
+				-->
+				<Value>0.00</Value>
+				<MinValue>-0.1</MinValue>
+				<MaxValue>0.1</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicDifference</Param>
+				<!--OPTIONAL: Is the maximal value that can be added to the previous one.
+				If you write a negative value you get a gap smaller then <ModelShaftGapHorizontal>-->
+				<!--default values    
+				<Value>0.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>0.0</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicRangeStart</Param>
+				<!--OPTIONAL: For dies with a diameter smaller than <ModelShaftGapHorizontalDynamicRangeStart> the gap is <ModelShaftGapHorizontal>-->
+				<!--default values    
+				<Value>0.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>0.0</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicRangeEnd</Param>
+				<!--OPTIONAL: For dies with a diameter larger than <ModelShaftGapHorizontalDynamicRangeEnd> the gap amounts to 
+				<ModelShaftGapHorizontal> plus <ModelShaftGapHorizontalDynamicDifference>
+				For dies inbetween the gap is <ModelShaftGapHorizontal> plus a proportion of <ModelShaftGapHorizontalDynamicDifference>-->
+				<!--default values    
+				<Value>10.0</Value>
+				<MinValue>10.0</MinValue>
+				<MaxValue>10.0</MaxValue>
+				-->
+				<Value>10.0</Value>
+			</ConstructionParameters>			
+			<!-- End of removable die defintion-->
+			<ConstructionParameters>
+				<Param>ModelImplantLabAnalogOffsetHorizontal</Param>
+				<!--similar to model shaft gap just for lab analogs-->
+				<!--default values    
+				<Value>0.05</Value>
+				<MinValue>-0.2</MinValue>
+				<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0.08</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantLabAnalogOffsetVertical</Param>
+				<!--typically left 0 may cause misocclusion-->
+				<!--default values    
+				<Value>0</Value>
+				<MinValue>-0.2</MinValue>
+				<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskGapWidth</Param>
+				<!--gap between model and gingiva mask-->
+				<!--default values    
+					<Value>0.1</Value>
+					<MinValue>0.0</MinValue>
+					<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0.1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskMinThickness</Param>
+				<!--gingiva mask min thickness. not applied for flat gingiva-->
+				<!--default values    
+					<Value>1</Value>
+					<MinValue>0.5</MinValue>
+					<MaxValue>2</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskImplantSupportWidth</Param>
+				<!--support width around lab analogs in gingiva mask-->
+				<!--default values    
+				<Value>1</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>2</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelMinimumThicknessAroundPins</Param>
+				<!--thickness around pins similar to wall thickness-->
+				<!--default values    
+				<Value>1</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>10</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelWallMorphologicalClosureDiameter</Param>
+				<!--smoothing option for inner part of hollow models-->
+				<!--default values    
+				<Value>2</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>5</MaxValue>
+				-->
+				<Value>2</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelWallBottomSill</Param>
+				<!--small sill for better stability of the model-->
+				<!--default values    
+				<Value>1.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>3.0</MaxValue>
+				-->
+				<Value>1.0</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantSupportWidth</Param>
+				<!--support cylinder around lab analogs, set to 0 to deactivate-->
+				<!--default values
+				<Value>1.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>2.0</MaxValue>
+				-->
+				<Value>1.0</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantSupportGingivaMaskDepth</Param>
+				<!--support depth around lab analogs in gingiva mask-->
+				<!--default values    
+				<Value>1.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>3.0</MaxValue>
+				-->
+                <Value>1.0</Value>
+			</ConstructionParameters>
+			<!--End of standard parameters-->
+		</MaterialPreset>
+		<MaterialPreset>
+			<Name>Dental Model V2 extra loose 20&#181;m</Name>
+			<ConstructionParameters>
+				<Param>ModelWallThickness</Param>
+				<!--if all values 0 then solid model-->
+				<!--default values    
+				<Value>2.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>5.0</MaxValue>
+				-->
+				<Value>2.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>5.0</MaxValue>
+			</ConstructionParameters>
+			<!-- Start of removable die defintion-->
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontal</Param>
+				<!--gap for removable dies-->
+				<!--default values    
+				<Value>0.1</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>1.0</MaxValue>
+				-->
+				<Value>0.02</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapVertical</Param>
+				<!--typically left 0 may cause misocclusion-->
+				<!--default values    
+				<Value>0</Value>
+				<MinValue>-1.0</MinValue>
+				<MaxValue>1.0</MaxValue>
+				-->
+				<Value>0.00</Value>
+				<MinValue>-0.1</MinValue>
+				<MaxValue>0.1</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicDifference</Param>
+				<!--OPTIONAL: Is the maximal value that can be added to the previous one.
+				If you write a negative value you get a gap smaller then <ModelShaftGapHorizontal>-->
+				<!--default values    
+				<Value>0.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>0.0</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicRangeStart</Param>
+				<!--OPTIONAL: For dies with a diameter smaller than <ModelShaftGapHorizontalDynamicRangeStart> the gap is <ModelShaftGapHorizontal>-->
+				<!--default values    
+				<Value>0.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>0.0</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicRangeEnd</Param>
+				<!--OPTIONAL: For dies with a diameter larger than <ModelShaftGapHorizontalDynamicRangeEnd> the gap amounts to 
+				<ModelShaftGapHorizontal> plus <ModelShaftGapHorizontalDynamicDifference>
+				For dies inbetween the gap is <ModelShaftGapHorizontal> plus a proportion of <ModelShaftGapHorizontalDynamicDifference>-->
+				<!--default values    
+				<Value>10.0</Value>
+				<MinValue>10.0</MinValue>
+				<MaxValue>10.0</MaxValue>
+				-->
+				<Value>10.0</Value>
+			</ConstructionParameters>			
+			<!-- End of removable die defintion-->
+			<ConstructionParameters>
+				<Param>ModelImplantLabAnalogOffsetHorizontal</Param>
+				<!--similar to model shaft gap just for lab analogs-->
+				<!--default values    
+				<Value>0.05</Value>
+				<MinValue>-0.2</MinValue>
+				<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0.08</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantLabAnalogOffsetVertical</Param>
+				<!--typically left 0 may cause misocclusion-->
+				<!--default values    
+				<Value>0</Value>
+				<MinValue>-0.2</MinValue>
+				<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskGapWidth</Param>
+				<!--gap between model and gingiva mask-->
+				<!--default values    
+					<Value>0.1</Value>
+					<MinValue>0.0</MinValue>
+					<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0.1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskMinThickness</Param>
+				<!--gingiva mask min thickness. not applied for flat gingiva-->
+				<!--default values    
+					<Value>1</Value>
+					<MinValue>0.5</MinValue>
+					<MaxValue>2</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskImplantSupportWidth</Param>
+				<!--support width around lab analogs in gingiva mask-->
+				<!--default values    
+				<Value>1</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>2</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelMinimumThicknessAroundPins</Param>
+				<!--thickness around pins similar to wall thickness-->
+				<!--default values    
+				<Value>1</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>10</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelWallMorphologicalClosureDiameter</Param>
+				<!--smoothing option for inner part of hollow models-->
+				<!--default values    
+				<Value>2</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>5</MaxValue>
+				-->
+				<Value>2</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelWallBottomSill</Param>
+				<!--small sill for better stability of the model-->
+				<!--default values    
+				<Value>1.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>3.0</MaxValue>
+				-->
+				<Value>1.0</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantSupportWidth</Param>
+				<!--support cylinder around lab analogs, set to 0 to deactivate-->
+				<!--default values
+				<Value>1.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>2.0</MaxValue>
+				-->
+				<Value>1.0</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantSupportGingivaMaskDepth</Param>
+				<!--support depth around lab analogs in gingiva mask-->
+				<!--default values    
+				<Value>1.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>3.0</MaxValue>
+				-->
+                <Value>1.0</Value>
+			</ConstructionParameters>
+			<!--End of standard parameters-->
+		</MaterialPreset>
+		<MaterialPreset>
+			<Name>Dental Model V2 tight -10&#181;m</Name>
+			<ConstructionParameters>
+				<Param>ModelWallThickness</Param>
+				<!--if all values 0 then solid model-->
+				<!--default values    
+				<Value>2.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>5.0</MaxValue>
+				-->
+				<Value>2.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>5.0</MaxValue>
+			</ConstructionParameters>
+			<!-- Start of removable die defintion-->
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontal</Param>
+				<!--gap for removable dies-->
+				<!--default values    
+				<Value>0.1</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>1.0</MaxValue>
+				-->
+				<Value>0</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapVertical</Param>
+				<!--typically left 0 may cause misocclusion-->
+				<!--default values    
+				<Value>0</Value>
+				<MinValue>-1.0</MinValue>
+				<MaxValue>1.0</MaxValue>
+				-->
+				<Value>0.00</Value>
+				<MinValue>-0.1</MinValue>
+				<MaxValue>0.1</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicDifference</Param>
+				<!--OPTIONAL: Is the maximal value that can be added to the previous one.
+				If you write a negative value you get a gap smaller then <ModelShaftGapHorizontal>-->
+				<!--default values    
+				<Value>0.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>0.0</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicRangeStart</Param>
+				<!--OPTIONAL: For dies with a diameter smaller than <ModelShaftGapHorizontalDynamicRangeStart> the gap is <ModelShaftGapHorizontal>-->
+				<!--default values    
+				<Value>0.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>0.0</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicRangeEnd</Param>
+				<!--OPTIONAL: For dies with a diameter larger than <ModelShaftGapHorizontalDynamicRangeEnd> the gap amounts to 
+				<ModelShaftGapHorizontal> plus <ModelShaftGapHorizontalDynamicDifference>
+				For dies inbetween the gap is <ModelShaftGapHorizontal> plus a proportion of <ModelShaftGapHorizontalDynamicDifference>-->
+				<!--default values    
+				<Value>10.0</Value>
+				<MinValue>10.0</MinValue>
+				<MaxValue>10.0</MaxValue>
+				-->
+				<Value>10.0</Value>
+			</ConstructionParameters>			
+			<!-- End of removable die defintion-->
+			<ConstructionParameters>
+				<Param>ModelImplantLabAnalogOffsetHorizontal</Param>
+				<!--similar to model shaft gap just for lab analogs-->
+				<!--default values    
+				<Value>0.05</Value>
+				<MinValue>-0.2</MinValue>
+				<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0.08</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantLabAnalogOffsetVertical</Param>
+				<!--typically left 0 may cause misocclusion-->
+				<!--default values    
+				<Value>0</Value>
+				<MinValue>-0.2</MinValue>
+				<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskGapWidth</Param>
+				<!--gap between model and gingiva mask-->
+				<!--default values    
+					<Value>0.1</Value>
+					<MinValue>0.0</MinValue>
+					<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0.1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskMinThickness</Param>
+				<!--gingiva mask min thickness. not applied for flat gingiva-->
+				<!--default values    
+					<Value>1</Value>
+					<MinValue>0.5</MinValue>
+					<MaxValue>2</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskImplantSupportWidth</Param>
+				<!--support width around lab analogs in gingiva mask-->
+				<!--default values    
+				<Value>1</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>2</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelMinimumThicknessAroundPins</Param>
+				<!--thickness around pins similar to wall thickness-->
+				<!--default values    
+				<Value>1</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>10</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelWallMorphologicalClosureDiameter</Param>
+				<!--smoothing option for inner part of hollow models-->
+				<!--default values    
+				<Value>2</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>5</MaxValue>
+				-->
+				<Value>2</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelWallBottomSill</Param>
+				<!--small sill for better stability of the model-->
+				<!--default values    
+				<Value>1.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>3.0</MaxValue>
+				-->
+				<Value>1.0</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantSupportWidth</Param>
+				<!--support cylinder around lab analogs, set to 0 to deactivate-->
+				<!--default values
+				<Value>1.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>2.0</MaxValue>
+				-->
+				<Value>1.0</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantSupportGingivaMaskDepth</Param>
+				<!--support depth around lab analogs in gingiva mask-->
+				<!--default values    
+				<Value>1.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>3.0</MaxValue>
+				-->
+                <Value>1.0</Value>
+			</ConstructionParameters>
+			<!--End of standard parameters-->
+		</MaterialPreset>
+		<MaterialPreset>
+			<Name>Dental Model V2 extra tight -20&#181;m</Name>
+			<ConstructionParameters>
+				<Param>ModelWallThickness</Param>
+				<!--if all values 0 then solid model-->
+				<!--default values    
+				<Value>2.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>5.0</MaxValue>
+				-->
+				<Value>2.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>5.0</MaxValue>
+			</ConstructionParameters>
+			<!-- Start of removable die defintion-->
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontal</Param>
+				<!--gap for removable dies-->
+				<!--default values    
+				<Value>0.1</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>1.0</MaxValue>
+				-->
+				<Value>0</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapVertical</Param>
+				<!--typically left 0 may cause misocclusion-->
+				<!--default values    
+				<Value>0</Value>
+				<MinValue>-1.0</MinValue>
+				<MaxValue>1.0</MaxValue>
+				-->
+				<Value>0.00</Value>
+				<MinValue>-0.1</MinValue>
+				<MaxValue>0.1</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicDifference</Param>
+				<!--OPTIONAL: Is the maximal value that can be added to the previous one.
+				If you write a negative value you get a gap smaller then <ModelShaftGapHorizontal>-->
+				<!--default values    
+				<Value>0.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>0.0</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicRangeStart</Param>
+				<!--OPTIONAL: For dies with a diameter smaller than <ModelShaftGapHorizontalDynamicRangeStart> the gap is <ModelShaftGapHorizontal>-->
+				<!--default values    
+				<Value>0.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>0.0</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicRangeEnd</Param>
+				<!--OPTIONAL: For dies with a diameter larger than <ModelShaftGapHorizontalDynamicRangeEnd> the gap amounts to 
+				<ModelShaftGapHorizontal> plus <ModelShaftGapHorizontalDynamicDifference>
+				For dies inbetween the gap is <ModelShaftGapHorizontal> plus a proportion of <ModelShaftGapHorizontalDynamicDifference>-->
+				<!--default values    
+				<Value>10.0</Value>
+				<MinValue>10.0</MinValue>
+				<MaxValue>10.0</MaxValue>
+				-->
+				<Value>10.0</Value>
+			</ConstructionParameters>			
+			<!-- End of removable die defintion-->
+			<ConstructionParameters>
+				<Param>ModelImplantLabAnalogOffsetHorizontal</Param>
+				<!--similar to model shaft gap just for lab analogs-->
+				<!--default values    
+				<Value>0.05</Value>
+				<MinValue>-0.2</MinValue>
+				<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0.08</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantLabAnalogOffsetVertical</Param>
+				<!--typically left 0 may cause misocclusion-->
+				<!--default values    
+				<Value>0</Value>
+				<MinValue>-0.2</MinValue>
+				<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskGapWidth</Param>
+				<!--gap between model and gingiva mask-->
+				<!--default values    
+					<Value>0.1</Value>
+					<MinValue>0.0</MinValue>
+					<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0.1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskMinThickness</Param>
+				<!--gingiva mask min thickness. not applied for flat gingiva-->
+				<!--default values    
+					<Value>1</Value>
+					<MinValue>0.5</MinValue>
+					<MaxValue>2</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskImplantSupportWidth</Param>
+				<!--support width around lab analogs in gingiva mask-->
+				<!--default values    
+				<Value>1</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>2</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelMinimumThicknessAroundPins</Param>
+				<!--thickness around pins similar to wall thickness-->
+				<!--default values    
+				<Value>1</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>10</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelWallMorphologicalClosureDiameter</Param>
+				<!--smoothing option for inner part of hollow models-->
+				<!--default values    
+				<Value>2</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>5</MaxValue>
+				-->
+				<Value>2</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelWallBottomSill</Param>
+				<!--small sill for better stability of the model-->
+				<!--default values    
+				<Value>1.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>3.0</MaxValue>
+				-->
+				<Value>1.0</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantSupportWidth</Param>
+				<!--support cylinder around lab analogs, set to 0 to deactivate-->
+				<!--default values
+				<Value>1.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>2.0</MaxValue>
+				-->
+				<Value>1.0</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantSupportGingivaMaskDepth</Param>
+				<!--support depth around lab analogs in gingiva mask-->
+				<!--default values    
+				<Value>1.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>3.0</MaxValue>
+				-->
+                <Value>1.0</Value>
+			</ConstructionParameters>
+			<!--End of standard parameters-->
+		</MaterialPreset>
+		<MaterialPreset>
+			<Name>Dental Model V3 medium 20&#181;m</Name>
+			<ConstructionParameters>
+				<Param>ModelWallThickness</Param>
+				<!--if all values 0 then solid model-->
+				<!--default values    
+				<Value>2.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>5.0</MaxValue>
+				-->
+				<Value>2.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>5.0</MaxValue>
+			</ConstructionParameters>
+			<!-- Start of removable die defintion-->
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontal</Param>
+				<!--gap for removable dies-->
+				<!--default values    
+				<Value>0.1</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>1.0</MaxValue>
+				-->
+				<Value>0.02</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapVertical</Param>
+				<!--typically left 0 may cause misocclusion-->
+				<!--default values    
+				<Value>0</Value>
+				<MinValue>-1.0</MinValue>
+				<MaxValue>1.0</MaxValue>
+				-->
+				<Value>0.00</Value>
+				<MinValue>-0.1</MinValue>
+				<MaxValue>0.1</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicDifference</Param>
+				<!--OPTIONAL: Is the maximal value that can be added to the previous one.
+				If you write a negative value you get a gap smaller then <ModelShaftGapHorizontal>-->
+				<!--default values    
+				<Value>0.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>0.0</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicRangeStart</Param>
+				<!--OPTIONAL: For dies with a diameter smaller than <ModelShaftGapHorizontalDynamicRangeStart> the gap is <ModelShaftGapHorizontal>-->
+				<!--default values    
+				<Value>0.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>0.0</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicRangeEnd</Param>
+				<!--OPTIONAL: For dies with a diameter larger than <ModelShaftGapHorizontalDynamicRangeEnd> the gap amounts to 
+				<ModelShaftGapHorizontal> plus <ModelShaftGapHorizontalDynamicDifference>
+				For dies inbetween the gap is <ModelShaftGapHorizontal> plus a proportion of <ModelShaftGapHorizontalDynamicDifference>-->
+				<!--default values    
+				<Value>10.0</Value>
+				<MinValue>10.0</MinValue>
+				<MaxValue>10.0</MaxValue>
+				-->
+				<Value>10.0</Value>
+			</ConstructionParameters>			
+			<!-- End of removable die defintion-->
+			<ConstructionParameters>
+				<Param>ModelImplantLabAnalogOffsetHorizontal</Param>
+				<!--similar to model shaft gap just for lab analogs-->
+				<!--default values    
+				<Value>0.05</Value>
+				<MinValue>-0.2</MinValue>
+				<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0.08</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantLabAnalogOffsetVertical</Param>
+				<!--typically left 0 may cause misocclusion-->
+				<!--default values    
+				<Value>0</Value>
+				<MinValue>-0.2</MinValue>
+				<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskGapWidth</Param>
+				<!--gap between model and gingiva mask-->
+				<!--default values    
+					<Value>0.1</Value>
+					<MinValue>0.0</MinValue>
+					<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0.1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskMinThickness</Param>
+				<!--gingiva mask min thickness. not applied for flat gingiva-->
+				<!--default values    
+					<Value>1</Value>
+					<MinValue>0.5</MinValue>
+					<MaxValue>2</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskImplantSupportWidth</Param>
+				<!--support width around lab analogs in gingiva mask-->
+				<!--default values    
+				<Value>1</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>2</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelMinimumThicknessAroundPins</Param>
+				<!--thickness around pins similar to wall thickness-->
+				<!--default values    
+				<Value>1</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>10</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelWallMorphologicalClosureDiameter</Param>
+				<!--smoothing option for inner part of hollow models-->
+				<!--default values    
+				<Value>2</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>5</MaxValue>
+				-->
+				<Value>2</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelWallBottomSill</Param>
+				<!--small sill for better stability of the model-->
+				<!--default values    
+				<Value>1.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>3.0</MaxValue>
+				-->
+				<Value>1.0</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantSupportWidth</Param>
+				<!--support cylinder around lab analogs, set to 0 to deactivate-->
+				<!--default values
+				<Value>1.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>2.0</MaxValue>
+				-->
+				<Value>1.0</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantSupportGingivaMaskDepth</Param>
+				<!--support depth around lab analogs in gingiva mask-->
+				<!--default values    
+				<Value>1.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>3.0</MaxValue>
+				-->
+                <Value>1.0</Value>
+			</ConstructionParameters>
+			<!--End of standard parameters-->
+		</MaterialPreset>
+		<MaterialPreset>
+			<Name>Dental Model V3 loose 30&#181;m</Name>
+			<ConstructionParameters>
+				<Param>ModelWallThickness</Param>
+				<!--if all values 0 then solid model-->
+				<!--default values    
+				<Value>2.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>5.0</MaxValue>
+				-->
+				<Value>2.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>5.0</MaxValue>
+			</ConstructionParameters>
+			<!-- Start of removable die defintion-->
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontal</Param>
+				<!--gap for removable dies-->
+				<!--default values    
+				<Value>0.1</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>1.0</MaxValue>
+				-->
+				<Value>0.03</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapVertical</Param>
+				<!--typically left 0 may cause misocclusion-->
+				<!--default values    
+				<Value>0</Value>
+				<MinValue>-1.0</MinValue>
+				<MaxValue>1.0</MaxValue>
+				-->
+				<Value>0.00</Value>
+				<MinValue>-0.1</MinValue>
+				<MaxValue>0.1</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicDifference</Param>
+				<!--OPTIONAL: Is the maximal value that can be added to the previous one.
+				If you write a negative value you get a gap smaller then <ModelShaftGapHorizontal>-->
+				<!--default values    
+				<Value>0.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>0.0</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicRangeStart</Param>
+				<!--OPTIONAL: For dies with a diameter smaller than <ModelShaftGapHorizontalDynamicRangeStart> the gap is <ModelShaftGapHorizontal>-->
+				<!--default values    
+				<Value>0.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>0.0</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicRangeEnd</Param>
+				<!--OPTIONAL: For dies with a diameter larger than <ModelShaftGapHorizontalDynamicRangeEnd> the gap amounts to 
+				<ModelShaftGapHorizontal> plus <ModelShaftGapHorizontalDynamicDifference>
+				For dies inbetween the gap is <ModelShaftGapHorizontal> plus a proportion of <ModelShaftGapHorizontalDynamicDifference>-->
+				<!--default values    
+				<Value>10.0</Value>
+				<MinValue>10.0</MinValue>
+				<MaxValue>10.0</MaxValue>
+				-->
+				<Value>10.0</Value>
+			</ConstructionParameters>			
+			<!-- End of removable die defintion-->
+			<ConstructionParameters>
+				<Param>ModelImplantLabAnalogOffsetHorizontal</Param>
+				<!--similar to model shaft gap just for lab analogs-->
+				<!--default values    
+				<Value>0.05</Value>
+				<MinValue>-0.2</MinValue>
+				<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0.08</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantLabAnalogOffsetVertical</Param>
+				<!--typically left 0 may cause misocclusion-->
+				<!--default values    
+				<Value>0</Value>
+				<MinValue>-0.2</MinValue>
+				<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskGapWidth</Param>
+				<!--gap between model and gingiva mask-->
+				<!--default values    
+					<Value>0.1</Value>
+					<MinValue>0.0</MinValue>
+					<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0.1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskMinThickness</Param>
+				<!--gingiva mask min thickness. not applied for flat gingiva-->
+				<!--default values    
+					<Value>1</Value>
+					<MinValue>0.5</MinValue>
+					<MaxValue>2</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskImplantSupportWidth</Param>
+				<!--support width around lab analogs in gingiva mask-->
+				<!--default values    
+				<Value>1</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>2</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelMinimumThicknessAroundPins</Param>
+				<!--thickness around pins similar to wall thickness-->
+				<!--default values    
+				<Value>1</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>10</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelWallMorphologicalClosureDiameter</Param>
+				<!--smoothing option for inner part of hollow models-->
+				<!--default values    
+				<Value>2</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>5</MaxValue>
+				-->
+				<Value>2</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelWallBottomSill</Param>
+				<!--small sill for better stability of the model-->
+				<!--default values    
+				<Value>1.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>3.0</MaxValue>
+				-->
+				<Value>1.0</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantSupportWidth</Param>
+				<!--support cylinder around lab analogs, set to 0 to deactivate-->
+				<!--default values
+				<Value>1.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>2.0</MaxValue>
+				-->
+				<Value>1.0</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantSupportGingivaMaskDepth</Param>
+				<!--support depth around lab analogs in gingiva mask-->
+				<!--default values    
+				<Value>1.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>3.0</MaxValue>
+				-->
+                <Value>1.0</Value>
+			</ConstructionParameters>
+			<!--End of standard parameters-->
+		</MaterialPreset>
+		<MaterialPreset>
+			<Name>Dental Model V3 tight 10&#181;m</Name>
+			<ConstructionParameters>
+				<Param>ModelWallThickness</Param>
+				<!--if all values 0 then solid model-->
+				<!--default values    
+				<Value>2.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>5.0</MaxValue>
+				-->
+				<Value>2.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>5.0</MaxValue>
+			</ConstructionParameters>
+			<!-- Start of removable die defintion-->
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontal</Param>
+				<!--gap for removable dies-->
+				<!--default values    
+				<Value>0.1</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>1.0</MaxValue>
+				-->
+				<Value>0.01</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapVertical</Param>
+				<!--typically left 0 may cause misocclusion-->
+				<!--default values    
+				<Value>0</Value>
+				<MinValue>-1.0</MinValue>
+				<MaxValue>1.0</MaxValue>
+				-->
+				<Value>0.00</Value>
+				<MinValue>-0.1</MinValue>
+				<MaxValue>0.1</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicDifference</Param>
+				<!--OPTIONAL: Is the maximal value that can be added to the previous one.
+				If you write a negative value you get a gap smaller then <ModelShaftGapHorizontal>-->
+				<!--default values    
+				<Value>0.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>0.0</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicRangeStart</Param>
+				<!--OPTIONAL: For dies with a diameter smaller than <ModelShaftGapHorizontalDynamicRangeStart> the gap is <ModelShaftGapHorizontal>-->
+				<!--default values    
+				<Value>0.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>0.0</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicRangeEnd</Param>
+				<!--OPTIONAL: For dies with a diameter larger than <ModelShaftGapHorizontalDynamicRangeEnd> the gap amounts to 
+				<ModelShaftGapHorizontal> plus <ModelShaftGapHorizontalDynamicDifference>
+				For dies inbetween the gap is <ModelShaftGapHorizontal> plus a proportion of <ModelShaftGapHorizontalDynamicDifference>-->
+				<!--default values    
+				<Value>10.0</Value>
+				<MinValue>10.0</MinValue>
+				<MaxValue>10.0</MaxValue>
+				-->
+				<Value>10.0</Value>
+			</ConstructionParameters>			
+			<!-- End of removable die defintion-->
+			<ConstructionParameters>
+				<Param>ModelImplantLabAnalogOffsetHorizontal</Param>
+				<!--similar to model shaft gap just for lab analogs-->
+				<!--default values    
+				<Value>0.05</Value>
+				<MinValue>-0.2</MinValue>
+				<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0.08</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantLabAnalogOffsetVertical</Param>
+				<!--typically left 0 may cause misocclusion-->
+				<!--default values    
+				<Value>0</Value>
+				<MinValue>-0.2</MinValue>
+				<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>0</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskGapWidth</Param>
+				<!--gap between model and gingiva mask-->
+				<!--default values    
+					<Value>0.1</Value>
+					<MinValue>0.0</MinValue>
+					<MaxValue>0.2</MaxValue>
+				-->
+				<Value>0.1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskMinThickness</Param>
+				<!--gingiva mask min thickness. not applied for flat gingiva-->
+				<!--default values    
+					<Value>1</Value>
+					<MinValue>0.5</MinValue>
+					<MaxValue>2</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskImplantSupportWidth</Param>
+				<!--support width around lab analogs in gingiva mask-->
+				<!--default values    
+				<Value>1</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>2</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelMinimumThicknessAroundPins</Param>
+				<!--thickness around pins similar to wall thickness-->
+				<!--default values    
+				<Value>1</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>10</MaxValue>
+				-->
+				<Value>1</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelWallMorphologicalClosureDiameter</Param>
+				<!--smoothing option for inner part of hollow models-->
+				<!--default values    
+				<Value>2</Value>
+				<MinValue>0</MinValue>
+				<MaxValue>5</MaxValue>
+				-->
+				<Value>2</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelWallBottomSill</Param>
+				<!--small sill for better stability of the model-->
+				<!--default values    
+				<Value>1.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>3.0</MaxValue>
+				-->
+				<Value>1.0</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantSupportWidth</Param>
+				<!--support cylinder around lab analogs, set to 0 to deactivate-->
+				<!--default values
+				<Value>1.0</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>2.0</MaxValue>
+				-->
+				<Value>1.0</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantSupportGingivaMaskDepth</Param>
+				<!--support depth around lab analogs in gingiva mask-->
+				<!--default values    
+				<Value>1.0</Value>
+				<MinValue>0.5</MinValue>
+				<MaxValue>3.0</MaxValue>
+				-->
+                <Value>1.0</Value>
+			</ConstructionParameters>
+			<!--End of standard parameters-->
+		</MaterialPreset>
+        <!--surgical guide material presets-->
+		<MaterialPreset>
+			<Name>Surgical Guide Resin</Name>
+			<ConstructionParameters>
+				<Param>SurgicalGuideSleeveSupportGeometryOffsetRadial</Param>
+				<!--gap for surgical guide sleeve fitting-->
+				<!--default values    
+				<Value>0.0</Value>
+				<MinValue>-0.15</MinValue>
+				<MaxValue>0.15</MaxValue>
+				-->
+				<!--in mm-->
+				<Value>0.03</Value>
+				<!--please insert value within the default value range-->
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>FixationSupportGeometryOffsetRadial</Param>
+				<!--gap for fixation pin fitting-->
+				<!--default values    
+				<Value>0.0</Value>
+				<MinValue>-0.15</MinValue>
+				<MaxValue>0.15</MaxValue>
+				-->
+				<!--in mm-->
+				<Value>0.03</Value>
+				<!--please insert value within the default value range-->
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>SurgicalGuideBottomBlockOutOffset</Param>
+				<!--offset for block out of surgical guide-->
+				<!--default values    
+				<Value>0.03</Value>
+				<MinValue>0.0</MinValue>
+				<MaxValue>1.0</MaxValue>
+				-->
+				<!--in mm-->
+				<Value>0.03</Value>
+				<!--please insert value within the default value range-->
+			</ConstructionParameters>
+		</MaterialPreset>
+	</MaterialParameterPresets>
+</PrinterPreset>

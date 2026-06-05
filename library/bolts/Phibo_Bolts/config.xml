@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<AttachmentLibrary>
+	<AllowScaling>0</AllowScaling>
+	<SupplierName>Phibo</SupplierName>
+	<UserMessage>More info: http://www.phibo.com</UserMessage>
+	
+	<AttachmentFile>
+		<Filename>A7 - LOCATOR M2.0x0.4_EXOCAD.sdfa</Filename>
+		<Signature>509a8e71ab04762617a3719896070d2a8136d375</Signature>
+		<SupplyName>A7 - LOCATOR M2.0x0.4_EXOCAD</SupplyName>
+		<SupplyDescription>A7 - LOCATOR M2.0x0.4_EXOCAD.Description</SupplyDescription>
+	</AttachmentFile>
+	<AttachmentFile>
+		<Filename>A9 - BOLA BREDENT_1.7 (BARRAS)_EXOCAD.sdfa</Filename>
+		<Signature>141308a5470748beca94fbb4ac4538fe21fcc60b</Signature>
+		<SupplyName>A9 - BOLA BREDENT_1.7 (BARRAS)_EXOCAD</SupplyName>
+		<SupplyDescription>A9 - BOLA BREDENT_1.7 (BARRAS)_EXOCAD.Description</SupplyDescription>
+	</AttachmentFile>
+	<AttachmentFile>
+		<Filename>A10 - BOLA BREDENT_2.2 (BARRAS)_EXOCAD.sdfa</Filename>
+		<Signature>7f495f1fc659f19e0a645749612d53e4d97e6f8c</Signature>
+		<SupplyName>A10 - BOLA BREDENT_2.2 (BARRAS)_EXOCAD</SupplyName>
+		<SupplyDescription>A10 - BOLA BREDENT_2.2 (BARRAS)_EXOCAD.Description</SupplyDescription>
+	</AttachmentFile>
+	
+</AttachmentLibrary>

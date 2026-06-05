@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns="http://exocad.com/model/attachment">
+	<Supplier>exocad GmbH</Supplier>
+	<DisplayInformation>3D Print - Cutout for part removal from buildplate</DisplayInformation>
+	<AttachmentPreviewFileName>preview.png</AttachmentPreviewFileName>
+	<SupplierLogoFileName>logo.png</SupplierLogoFileName>
+	<AttachmentDescription>
+	
+Cutout geometry for substraction from upper or lower jaw model, can be used for a better removal of 3D printed models from the 3D printer build plate and to avoid the vacuum effect with hollow models.
+
+- Scalable in X/Y direction. 
+- Free positioning along model height on outer curve.
+
+</AttachmentDescription>	
+	<Placement Move="XY" Rotate="Z">
+		<Translation Axis="XY" Ref="_clickpoint"/>
+		<Constraint Type="NoTranslationZ"/>
+		<Constraint Type="OnPerimeter"/>
+	</Placement>
+	<ControlPoint Id="center" Type="ProjectPerimeter">
+		<Alignment RelativeToBottom="true"/>
+		<Location/>
+	</ControlPoint>	
+	<Parameter Id="Cutout" Scope="Single" Decimals="0" Min="4" Max="40" Default="8" Unit="mm">Depth of cutout</Parameter>
+	<Parameter Id="WidthCutout" Scope="Single" Decimals="0" Min="2" Max="20" Default="8" Unit="mm">Width of cutout</Parameter>	
+	<Component IfJaw="Any" Method="Subtractive" Id="anyaid">
+		<Profile Mirror="true">
+			<Point>
+				<x>0</x>
+				<z>2</z>
+			</Point>
+			<Point>
+				<x>4</x>
+				<z>2</z>
+			</Point>
+			<Point>
+				<x>4</x>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>0</x>
+				<z>0</z>
+			</Point>			
+			<Front Cap="Flat" Extrude="4"/>
+			<Back Cap="Flat" Extrude="4"/>
+		</Profile>
+		<Scaling Axis="Y">
+			<ParameterRef Coefficient="0.125">Cutout</ParameterRef>
+			<Const>0.125</Const>
+		</Scaling>
+		<Scaling Axis="X">
+			<ParameterRef Coefficient="0.125">WidthCutout</ParameterRef>
+			<Const>0.125</Const>
+		</Scaling>		
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#453B6A</mat:Color>
+			<mat:Opacity>0.5</mat:Opacity>
+		</mat:Material>
+		<Alignment Jaw="Any" RelativeToBottom="true"  AutoFlip="true"/>
+		<Orientation Axis="Y" AroundAxis="Z" Ref="center" />
+	</Component>
+</LibraryEntry>

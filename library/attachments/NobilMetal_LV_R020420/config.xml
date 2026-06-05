@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<AttachmentLibrary>
+  <AllowScaling>0</AllowScaling>
+  <SupplierName>Nobil Metal SpA</SupplierName>
+  <UserMessage>More info: http://www.nobilmetal.com/</UserMessage>
+  <AttachmentFile>
+    <Filename>LV SAG-2.25.sdfa</Filename>
+    <Signature>082c4e86aaa693e63ab8f286266ff0956d32ea8c</Signature>
+    <SupplyName>LV SAG - 2.25</SupplyName>
+    <SupplyDescription>NobilMetal_Attachments.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>SFE-50.sdfa</Filename>
+    <Signature>58715daab93a3a8a88a734c8ca4204b6dceae706</Signature>
+    <SupplyName>SFE-50</SupplyName>
+    <SupplyDescription>NobilMetal_Attachments.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>SP-TI45-A.sdfa</Filename>
+    <Signature>aeb829f2ea4ca29d8207b3d4c7f1dc925b692121</Signature>
+    <SupplyName>SP-TI45-A</SupplyName>
+    <SupplyDescription>NobilMetal_Attachments.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>SP-TI45-B.sdfa</Filename>
+    <Signature>30052f6d208af4facd930ffa16e63beefa84eebe</Signature>
+    <SupplyName>SP-TI45-B</SupplyName>
+    <SupplyDescription>NobilMetal_Attachments.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>SP-TI60.sdfa</Filename>
+    <Signature>5ab4b94282548e6f97a9d1f56fcbe644f913ae17</Signature>
+    <SupplyName>SP-TI60</SupplyName>
+    <SupplyDescription>NobilMetal_Attachments.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>VR-3.5.sdfa</Filename>
+    <Signature>bdf86d767b2821f45140d511851afa662f0d0630</Signature>
+    <SupplyName>VR-3.5</SupplyName>
+    <SupplyDescription>NobilMetal_Attachments.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>VR-4.0.sdfa</Filename>
+    <Signature>896a64469cd630218b7597ac449bd0f64f060f96</Signature>
+    <SupplyName>VR-4.0</SupplyName>
+    <SupplyDescription>NobilMetal_Attachments.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>VR-4.5.sdfa</Filename>
+    <Signature>558faf5ffaa92ded42cf5aedf88698bbf72618e1</Signature>
+    <SupplyName>VR-4.5</SupplyName>
+    <SupplyDescription>NobilMetal_Attachments.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>VR-5.0.sdfa</Filename>
+    <Signature>4b25745497cf3aa2d82c2642202c0949240c608c</Signature>
+    <SupplyName>VR-5.0</SupplyName>
+    <SupplyDescription>NobilMetal_Attachments.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>VR-5.5.sdfa</Filename>
+    <Signature>9c7a87e7784cbb7a82c2844a41bec5a7faadf8c9</Signature>
+    <SupplyName>VR-5.5</SupplyName>
+    <SupplyDescription>NobilMetal_Attachments.Description</SupplyDescription>
+  </AttachmentFile>
+</AttachmentLibrary>

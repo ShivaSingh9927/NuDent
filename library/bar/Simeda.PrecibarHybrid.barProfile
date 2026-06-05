@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BarProfileFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile FixLeft="true" FixRight="true" FixTop="true" FixBottom="true" xsi:type="BarProfilePlugin">
+    <DisplayName>Si Preci Hybrid</DisplayName>
+    <PluginName>BarProfile.Simeda#HybridPrecibar</PluginName>
+    <Parameters>
+		<BarProfileParameter Name="Bottom-Step-Width" Visible="true" Configurable="true" Min="0.5" Max="5" Decimals="2" Value="0.5" />
+		<BarProfileParameter Name="Bottom-Step-Height" Visible="true" Configurable="true" Min="0.5" Max="5" Decimals="2" Value="1.54" />		
+    </Parameters>
+  </Profile>
+</BarProfileFile>

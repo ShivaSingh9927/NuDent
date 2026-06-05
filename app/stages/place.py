@@ -1,7 +1,6 @@
 """Stage 2 — place a crown preset over the margin and transform it into position."""
 import os
 import numpy as np
-import pyvista as pv
 from PyQt5.QtWidgets import (
     QVBoxLayout, QHBoxLayout, QGridLayout, QPushButton, QLabel, QSpinBox,
 )
@@ -9,12 +8,13 @@ from PyQt5.QtWidgets import (
 from ..config import STAGES
 from ..ui import section_label
 from ..teeth import resolve as resolve_fdi
+from ..mesh_io import read_mesh
 from .base import Stage
 
 
 class PlaceStage(Stage):
     name = "Place"
-    description = STAGES[1][1]
+    description = STAGES[2][1]
 
     def __init__(self, app, library_dir):
         super().__init__(app)
@@ -209,6 +209,14 @@ class PlaceStage(Stage):
         self.current_index = (self.current_index + 1) % len(self.available_teeth)
         self.load_tooth(self.current_index)
 
+    def set_fdi(self, fdi):
+        """Programmatically pre-fill the FDI spinbox and trigger an anatomy
+        load — used by the case-folder importer after parsing scanInfo."""
+        if not (11 <= int(fdi) <= 48):
+            return
+        self.fdi_spin.setValue(int(fdi))
+        self._on_fdi_pick()
+
     def _on_fdi_pick(self):
         """Look the FDI number up in app/teeth.py, load the matching library
         file, mirror if it's a right-quadrant tooth (library is left-side)."""
@@ -242,7 +250,7 @@ class PlaceStage(Stage):
 
         fn = self.available_teeth[index]
         path = os.path.join(self.library_dir, fn)
-        crown = pv.read(path)
+        crown = read_mesh(path)
 
         if mirror:
             # Sagittal flip — assumes library STLs are authored in dental

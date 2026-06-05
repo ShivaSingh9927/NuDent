@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<RenderEffectSettings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" RenderEffectName="Simple">
+  <ColorParameter Name="color_diffuse" Value="#00343434" />
+  <ColorParameter Name="color_sss" Value="#FF8E7F6D" />
+  <DoubleParameter Name="ambient" Value="0" />
+  <DoubleParameter Name="specular" Value="0.1" />
+  <DoubleParameter Name="ambient_occlusion" Value="0" />
+  <DoubleParameter Name="specular_exponent" Value="0.18" />
+  <IntParameter Name="bottom_as_backside" Value="1" />
+</RenderEffectSettings>

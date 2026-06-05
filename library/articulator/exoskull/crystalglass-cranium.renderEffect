@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RenderEffectSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" RenderEffectName="Glass">
+  <ColorParameter Name="material_color" Value="#FFFFFFFF" />
+  <DoubleParameter Name="alpha_exponent" Value="0.01" />
+  <DoubleParameter Name="alpha_low" Value="0" />
+  <DoubleParameter Name="fresnel" Value="0.22" />
+  <DoubleParameter Name="alpha_range" Value="0.8" />
+  <DoubleParameter Name="fresnel_exponent" Value="0.04" />
+  <DoubleParameter Name="specular" Value="1" />
+  <DoubleParameter Name="beta_range" Value="0.75" />
+  <DoubleParameter Name="specular_exponent" Value="1" />
+  <DoubleParameter Name="beta_low" Value="0.2" />
+  <DoubleParameter Name="light_exponent" Value="0.02" />
+  <DoubleParameter Name="beta_exponent" Value="0.05" />
+  <DoubleParameter Name="opacity" Value="0.6" />
+</RenderEffectSettings>

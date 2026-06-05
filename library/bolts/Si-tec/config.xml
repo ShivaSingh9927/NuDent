@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<AttachmentLibrary>
+ <AllowScaling>0</AllowScaling>
+  <AttachmentFile>
+    <Filename>TK-SOFT.sdfa</Filename>
+    <Signature>a801a1eab298d75dcdfc13f3c9840e45975111db</Signature>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>TK-SOFT_MINI.sdfa</Filename>
+    <Signature>8c8fa4bd9ee99baf0835c4cdcf5cb43bf8b797e2</Signature>
+  </AttachmentFile>
+  <UserMessage>Si-tec GmbH  http://www.si-tec.de/</UserMessage>
+</AttachmentLibrary>

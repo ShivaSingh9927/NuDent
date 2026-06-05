@@ -1,0 +1,420 @@
+<?xml version="1.0"?>
+<ArticulatorSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<AnteriorPosteriorDistance>126.5</AnteriorPosteriorDistance><!-- Y distance of incisal needle, incisal table -->
+	<IntercondylarDistance>110</IntercondylarDistance><!-- X distance of condyle meshes -->
+	<HeightUpperArticulatorPart>81.95</HeightUpperArticulatorPart><!-- Z distance upper aticulator parts -->
+	<HeightFrontPlate>0</HeightFrontPlate>
+	<HeightIncisalNeedle>0</HeightIncisalNeedle>
+	<ArticulatorPosition><!-- general position of articulator -->
+		<x>30.0</x>
+		<y>-80.0</y>
+		<z>-21.95</z>
+	</ArticulatorPosition>	
+	<ArticulationPlaneLegRight><!-- occusal orientation plane right leg -->
+		<x>-80.0</x>
+		<y>0</y>
+		<z>41</z>
+	</ArticulationPlaneLegRight>
+	<ArticulationPlaneLegLeft><!-- occusal orientation plane left leg -->
+		<x>80.0</x>
+		<y>0</y>
+		<z>41</z>
+	</ArticulationPlaneLegLeft>
+	<ArticulationPlaneIncisalNeedle><!-- occusal orientation plane leg towards needle -->
+		<x>0.0</x>
+		<y>3</y>
+		<z>41</z>
+	</ArticulationPlaneIncisalNeedle>
+	<ArticulationPlaneVisualization>
+		<TextureFileName>exocad_Texture_Plane.png</TextureFileName>
+		<Material>
+			<!--optional; same as ColorDefinition in defaultcolors.xml; except for opacity ignored if TextureFileName is defined -->
+			<Color>#0000FF</Color>
+			<Opacity>0.5</Opacity>
+			<!--opacity settings-->
+		</Material>
+		<StippleTransparency>false</StippleTransparency>
+		<!-- optional, default = false -->
+	</ArticulationPlaneVisualization>
+	<!-- false means activated/true means deactivated -->
+	<ArticulatorOnlyShowDecorationMeshes>true</ArticulatorOnlyShowDecorationMeshes><!-- show/hide support meshes for articulators -->
+	<ArticulationPlaneIncisalNeedleMarkerLengthY>38</ArticulationPlaneIncisalNeedleMarkerLengthY><!-- needed for automatically position scan in articulator, Y offset from needle -->
+	<CollapseBennettAngle>false</CollapseBennettAngle><!-- bennett angle adjustments on/off -->
+	<CollapseHeightIncisalNeedleOffset>false</CollapseHeightIncisalNeedleOffset><!-- opening of bite adjustments on/off -->
+	<CollapseTiltCondylarGuide>false</CollapseTiltCondylarGuide><!-- condylar angle adjustments on/off -->
+	<CollapseRotationAxis>true</CollapseRotationAxis><!-- ??? on/off -->
+	<CollapseRotationFrontplateY>true</CollapseRotationFrontplateY><!-- rotation frontplate Y on/off -->
+	<CollapseRotationFrontplateZ>true</CollapseRotationFrontplateZ><!-- rotation frontplate Z on/off -->
+	<CollapseTiltFrontplate>true</CollapseTiltFrontplate><!-- frontplate adjustments on/off -->
+	<CollapseImmediateSideshift>false</CollapseImmediateSideshift><!-- immediate sideshift adjustments on/off -->	
+	<FrontplateAdjustable>false</FrontplateAdjustable><!-- frontplate adjustments on/off -->
+    <IncisalNeedleRotation>false</IncisalNeedleRotation><!-- incisal needle movement in rotation instead of linear movement on/off -->	
+	<ShowArticulatorMeshes>true</ShowArticulatorMeshes><!-- show articulator during "rearticulate models virtually"   on/off -->	
+	<CollapseBennettInsert>false</CollapseBennettInsert>	
+	<ExecuteRetrusionWithZeroBennettAngle>true</ExecuteRetrusionWithZeroBennettAngle>
+	<BennettAngleLeftParam>
+		<Type>BennettAngleLeft</Type>
+		<Value>10</Value>
+		<MinValue>0</MinValue>
+		<MaxValue>30</MaxValue>
+	</BennettAngleLeftParam>
+	<BennettAngleRightParam>
+		<Type>BennettAngleRight</Type>
+		<Value>10</Value>
+		<MinValue>0</MinValue>
+		<MaxValue>30</MaxValue>
+	</BennettAngleRightParam>
+	<TiltCondylarGuideLeftParam>
+		<Type>TiltCondylarGuideLeft</Type>
+		<Value>35</Value>
+		<MinValue>-20</MinValue>
+		<MaxValue>60</MaxValue>
+	</TiltCondylarGuideLeftParam>
+	<TiltCondylarGuideRightParam>
+		<Type>TiltCondylarGuideRight</Type>
+		<Value>35</Value>
+		<MinValue>-20</MinValue>
+		<MaxValue>60</MaxValue>
+	</TiltCondylarGuideRightParam>
+	<HeightIncisalNeedleOffsetParam>
+		<Type>HeightIncisalNeedleOffset</Type>
+		<Value>0</Value>
+		<MinValue>-10</MinValue>
+		<MaxValue>5</MaxValue>
+	</HeightIncisalNeedleOffsetParam>
+	<ProtrusionParam>
+		<Type>Protrusion</Type>
+		<Value>6</Value>
+		<MinValue>0</MinValue>
+		<MaxValue>6</MaxValue>
+	</ProtrusionParam>
+	<RetrusionParam>
+		<Type>Retrusion</Type>
+		<Value>2</Value>
+		<MinValue>0</MinValue>
+		<MaxValue>2</MaxValue>
+	</RetrusionParam>
+	<LaterotrusionRightParam>
+		<Type>LaterotrusionRight</Type>
+		<Value>2</Value>
+		<MinValue>0</MinValue>
+		<MaxValue>5</MaxValue>
+	</LaterotrusionRightParam>
+	<LaterotrusionLeftParam>
+		<Type>LaterotrusionLeft</Type>
+		<Value>2</Value>
+		<MinValue>0</MinValue>
+		<MaxValue>5</MaxValue>
+	</LaterotrusionLeftParam>
+	<ImmediateSideshiftRightParam>
+		<Type>ImmediateSideshiftRight</Type>
+		<Value>0</Value>
+		<MinValue>0</MinValue>
+		<MaxValue>1.5</MaxValue>
+	</ImmediateSideshiftRightParam>
+	<ImmediateSideshiftLeftParam>
+		<Type>ImmediateSideshiftLeft</Type>
+		<Value>0</Value>
+		<MinValue>0</MinValue>
+		<MaxValue>1.5</MaxValue>
+	</ImmediateSideshiftLeftParam>
+	<RotationFrontplateYLeftParam>
+		<Type>RotationFrontplateYLeft</Type>
+		<Value>0</Value>
+		<MinValue>0</MinValue>
+		<MaxValue>0</MaxValue>
+	</RotationFrontplateYLeftParam>
+	<RotationFrontplateYRightParam>
+		<Type>RotationFrontplateYRight</Type>
+		<Value>0</Value>
+		<MinValue>0</MinValue>
+		<MaxValue>0</MaxValue>
+	</RotationFrontplateYRightParam>
+	<TiltFrontplateParam>
+		<Type>TiltFrontplate</Type>
+		<Value>0</Value>
+		<MinValue>0</MinValue>
+		<MaxValue>0</MaxValue>
+	</TiltFrontplateParam>
+	<CurrentBennettInsertColorLeft>BennettInsertMetal</CurrentBennettInsertColorLeft>
+	<CurrentBennettInsertColorRight>BennettInsertMetal</CurrentBennettInsertColorRight>	
+	<ShowArticulatorMeshes>true</ShowArticulatorMeshes>
+	<ArticulatorMainParts>
+		<Incisalneedle>
+			<Filename>needle.sdfa</Filename>
+		</Incisalneedle>
+		<Frontplate>
+			<Filename>table.sdfa</Filename>
+		</Frontplate>
+		<BennettInserts>
+			<ArticulatorMesh>
+				<Id>BennettInsertMetal</Id>
+				<Filename>bennettinsert_left_metal_contour.sdfa</Filename>
+				<RenderEffectFile>silver</RenderEffectFile>
+				<Side>Left</Side>
+			</ArticulatorMesh>
+			<ArticulatorMesh>
+				<Id>BennettInsertMetal</Id>
+				<Filename>bennettinsert_right_metal_contour.sdfa</Filename>
+				<RenderEffectFile>silver</RenderEffectFile>
+				<Side>Right</Side>
+			</ArticulatorMesh>
+		</BennettInserts>
+	</ArticulatorMainParts>
+	<ArticulatorDecorations>
+		<DecorationMeshes>
+			<!-- Incisal Needle Decorations -->
+			<ArticulatorDecorationMesh>
+				<Type>IncisalNeedleDecorations</Type>
+				<Filename>needle_scale.sdfa</Filename>
+				<RenderEffectFile>plastic_black</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<ArticulatorDecorationMesh>
+				<Type>IncisalNeedleDecorations</Type>
+				<Filename>needle_decoration.sdfa</Filename>
+				<RenderEffectFile>silver</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<ArticulatorDecorationMesh>
+				<Type>UpperPartDecorations</Type>
+				<Filename>needle_decoration1.sdfa</Filename>
+				<RenderEffectFile>silver</RenderEffectFile>
+			</ArticulatorDecorationMesh>			
+			<!-- Condyle Decorations -->
+			<!-- right -->			
+			<ArticulatorDecorationMesh>
+				<Type>CondyleRightDecorations</Type>
+				<Filename>right_metal.sdfa</Filename>
+				<RenderEffectFile>silver</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<ArticulatorDecorationMesh>
+				<Type>CondyleRightDecorations</Type>
+				<Filename>right_scale.sdfa</Filename>
+				<RenderEffectFile>plastic_black</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<ArticulatorDecorationMesh>
+				<Type>CondyleRightDecorations</Type>
+				<Filename>right_blue.sdfa</Filename>
+				<ColorAmbient>#3d5ccc</ColorAmbient>
+				<ColorDiffuse>#3d5ccc</ColorDiffuse>
+				<ColorSpecular>#000000</ColorSpecular>
+				<ColorEmissive>#000000</ColorEmissive>
+				<ColorShininess>0</ColorShininess>
+				<RenderEffectFile>metal_blue</RenderEffectFile>
+			</ArticulatorDecorationMesh>			
+			<!-- left -->				
+			<ArticulatorDecorationMesh>
+				<Type>CondyleLeftDecorations</Type>
+				<Filename>left_metal.sdfa</Filename>
+				<RenderEffectFile>silver</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<ArticulatorDecorationMesh>
+				<Type>CondyleLeftDecorations</Type>
+				<Filename>left_scale.sdfa</Filename>
+				<RenderEffectFile>plastic_black</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<ArticulatorDecorationMesh>
+				<Type>CondyleLeftDecorations</Type>
+				<Filename>left_blue.sdfa</Filename>
+				<ColorAmbient>#3d5ccc</ColorAmbient>
+				<ColorDiffuse>#3d5ccc</ColorDiffuse>
+				<ColorSpecular>#000000</ColorSpecular>
+				<ColorEmissive>#000000</ColorEmissive>
+				<ColorShininess>0</ColorShininess>
+				<RenderEffectFile>metal_blue</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<!-- Bennett Decorations -->
+			<!-- right -->				
+			<ArticulatorDecorationMesh>
+				<Type>CondylarguideRightDecorations</Type>
+				<Filename>right_bennett_blue.sdfa</Filename>
+				<ColorAmbient>#3d5ccc</ColorAmbient>
+				<ColorDiffuse>#3d5ccc</ColorDiffuse>
+				<ColorSpecular>#000000</ColorSpecular>
+				<ColorEmissive>#000000</ColorEmissive>
+				<ColorShininess>0</ColorShininess>
+				<RenderEffectFile>metal_blue</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<ArticulatorDecorationMesh>
+				<Type>BennettInsertRightDecorations</Type>
+				<Id>BennettInsertMetal</Id>
+				<Filename>right_bennett_metal.sdfa</Filename>
+				<RenderEffectFile>silver</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<ArticulatorDecorationMesh>
+				<Type>CondylarguideRightDecorations</Type>
+				<Filename>right_bennett_metal_screw.sdfa</Filename>
+				<RenderEffectFile>silver</RenderEffectFile>
+			</ArticulatorDecorationMesh>			
+			<ArticulatorDecorationMesh>
+				<Type>CondylarguideRightDecorations</Type>
+				<Filename>right_bennett_scale.sdfa</Filename>
+				<RenderEffectFile>plastic_white</RenderEffectFile>
+			</ArticulatorDecorationMesh>			
+			<!-- left -->				
+			<ArticulatorDecorationMesh>
+				<Type>CondylarguideLeftDecorations</Type>
+				<Filename>left_bennett_blue.sdfa</Filename>
+				<ColorAmbient>#3d5ccc</ColorAmbient>
+				<ColorDiffuse>#3d5ccc</ColorDiffuse>
+				<ColorSpecular>#000000</ColorSpecular>
+				<ColorEmissive>#000000</ColorEmissive>
+				<ColorShininess>0</ColorShininess>
+				<RenderEffectFile>metal_blue</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<ArticulatorDecorationMesh>
+				<Type>BennettInsertLeftDecorations</Type>
+				<Id>BennettInsertMetal</Id>
+				<Filename>left_bennett_metal.sdfa</Filename>
+				<RenderEffectFile>silver</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<ArticulatorDecorationMesh>
+				<Type>CondylarguideLeftDecorations</Type>
+				<Filename>left_bennett_metal_screw.sdfa</Filename>
+				<RenderEffectFile>silver</RenderEffectFile>
+			</ArticulatorDecorationMesh>			
+			<ArticulatorDecorationMesh>
+				<Type>CondylarguideLeftDecorations</Type>
+				<Filename>left_bennett_scale.sdfa</Filename>
+				<RenderEffectFile>plastic_white</RenderEffectFile>
+			</ArticulatorDecorationMesh>				
+			<!-- Sideshift Decorations -->
+			<!-- right -->
+			<ArticulatorDecorationMesh>
+				<Type>SideshiftRightDecorations</Type>
+				<Filename>right_sideshift_metal.sdfa</Filename>
+				<RenderEffectFile>silver</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<ArticulatorDecorationMesh>
+				<Type>SideshiftRightDecorations</Type>
+				<Filename>right_sideshift_scale.sdfa</Filename>
+				<RenderEffectFile>plastic_black</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<!-- left -->			
+			<ArticulatorDecorationMesh>
+				<Type>SideshiftLeftDecorations</Type>
+				<Filename>left_sideshift_metal.sdfa</Filename>
+				<RenderEffectFile>silver</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<ArticulatorDecorationMesh>
+				<Type>SideshiftLeftDecorations</Type>
+				<Filename>left_sideshift_scale.sdfa</Filename>
+				<RenderEffectFile>plastic_black</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<!-- Retrusion Block Decorations -->
+			<!-- right -->			
+			<ArticulatorDecorationMesh>
+				<Type>RetrusionBlockRightDecorations</Type>
+				<Filename>right_insert_metal.sdfa</Filename>
+				<RenderEffectFile>silver</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<ArticulatorDecorationMesh>
+				<Type>RetrusionBlockRightDecorations</Type>
+				<Filename>right_insert_scale.sdfa</Filename>
+				<RenderEffectFile>plastic_black</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<!-- left -->
+			<ArticulatorDecorationMesh>
+				<Type>RetrusionBlockLeftDecorations</Type>
+				<Filename>left_insert_metal.sdfa</Filename>
+				<RenderEffectFile>silver</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<ArticulatorDecorationMesh>
+				<Type>RetrusionBlockLeftDecorations</Type>
+				<Filename>left_insert_scale.sdfa</Filename>
+				<RenderEffectFile>plastic_black</RenderEffectFile>
+			</ArticulatorDecorationMesh>			
+			<!-- Upper Part Decorations -->
+			<ArticulatorDecorationMesh>
+				<Type>UpperPartDecorations</Type>
+				<Filename>upper_parts_blue.sdfa</Filename>
+				<ColorAmbient>#3d5ccc</ColorAmbient>
+				<ColorDiffuse>#3d5ccc</ColorDiffuse>
+				<ColorSpecular>#000000</ColorSpecular>
+				<ColorEmissive>#000000</ColorEmissive>
+				<ColorShininess>0</ColorShininess>
+				<RenderEffectFile>metal_blue</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<ArticulatorDecorationMesh>
+				<Type>UpperPartDecorations</Type>
+				<Filename>upper_parts_decorations.sdfa</Filename>
+				<RenderEffectFile>plastic_white</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<ArticulatorDecorationMesh>
+				<Type>UpperPartDecorations</Type>
+				<Filename>upper_parts_decorations1.sdfa</Filename>
+				<RenderEffectFile>plastic_white</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<ArticulatorDecorationMesh>
+				<Type>UpperPartDecorations</Type>
+				<Filename>upper_parts_metal.sdfa</Filename>
+				<RenderEffectFile>silver</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<ArticulatorDecorationMesh>
+				<Type>UpperPartDecorations</Type>
+				<Filename>upper_parts_metal1.sdfa</Filename>
+				<RenderEffectFile>silver</RenderEffectFile>
+			</ArticulatorDecorationMesh>			
+			<ArticulatorDecorationMesh>
+				<Type>UpperPartDecorations</Type>
+				<Filename>upper_parts_plastic.sdfa</Filename>
+				<RenderEffectFile>plastic_black</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<ArticulatorDecorationMesh>
+				<Type>UpperPartDecorations</Type>
+				<Filename>upper_parts_plastic1.sdfa</Filename>
+				<RenderEffectFile>plastic_black</RenderEffectFile>
+			</ArticulatorDecorationMesh>			
+			<!-- Lower Part Decorations -->
+			<ArticulatorDecorationMesh>
+				<Type>LowerPartDecorations</Type>
+				<Filename>lower_parts_axis.sdfa</Filename>
+				<RenderEffectFile>silver</RenderEffectFile>
+			</ArticulatorDecorationMesh>			
+			<ArticulatorDecorationMesh>
+				<Type>LowerPartDecorations</Type>
+				<Filename>lower_parts_blue.sdfa</Filename>
+				<ColorAmbient>#3d5ccc</ColorAmbient>
+				<ColorDiffuse>#3d5ccc</ColorDiffuse>
+				<ColorSpecular>#000000</ColorSpecular>
+				<ColorEmissive>#000000</ColorEmissive>
+				<ColorShininess>0</ColorShininess>
+				<RenderEffectFile>metal_blue</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<ArticulatorDecorationMesh>
+				<Type>LowerPartDecorations</Type>
+				<Filename>lower_parts_blue1.sdfa</Filename>
+				<ColorAmbient>#3d5ccc</ColorAmbient>
+				<ColorDiffuse>#3d5ccc</ColorDiffuse>
+				<ColorSpecular>#000000</ColorSpecular>
+				<ColorEmissive>#000000</ColorEmissive>
+				<ColorShininess>0</ColorShininess>
+				<RenderEffectFile>metal_blue</RenderEffectFile>
+			</ArticulatorDecorationMesh>			
+			<ArticulatorDecorationMesh>
+				<Type>LowerPartDecorations</Type>
+				<Filename>lower_parts_metal.sdfa</Filename>
+				<RenderEffectFile>silver</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<ArticulatorDecorationMesh>
+				<Type>LowerPartDecorations</Type>
+				<Filename>lower_parts_plastic.sdfa</Filename>
+				<RenderEffectFile>plastic_black</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<ArticulatorDecorationMesh>
+				<Type>LowerPartDecorations</Type>
+				<Filename>lower_parts_scale.sdfa</Filename>
+				<RenderEffectFile>plastic_white</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<ArticulatorDecorationMesh>
+				<Type>LowerPartDecorations</Type>
+				<Filename>lower_parts_screw.sdfa</Filename>
+				<RenderEffectFile>silver</RenderEffectFile>
+			</ArticulatorDecorationMesh>
+			<ArticulatorDecorationMesh>
+				<Type>LowerPartDecorations</Type>
+				<Filename>lower_parts_deco.sdfa</Filename>
+				<RenderEffectFile>plastic_white</RenderEffectFile>
+			</ArticulatorDecorationMesh>			
+		</DecorationMeshes>
+	</ArticulatorDecorations>
+</ArticulatorSettings>

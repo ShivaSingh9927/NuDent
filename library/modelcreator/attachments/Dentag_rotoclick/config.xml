@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns="http://exocad.com/model/attachment">
+	<Supplier>Dentag</Supplier>
+	<DisplayInformation>Dentag - rotoclick.®</DisplayInformation>
+	<AttachmentPreviewFileName>preview.png</AttachmentPreviewFileName>
+	<SupplierLogoFileName>logo.png</SupplierLogoFileName>
+	<AttachmentDescription>
+	
+The rotoclick model system was specially developed for 3D printing in order to allow a thought-out way of use for 3D printed models.
+Thanks to the special pairing system between the model and the plate, it is easy to attach any model while keeping access to model dims or implant analogues.
+Once the attachment is connected to the model you can simply use the rotoclick counterplate and enjoy all the advantages of the rotational mechanism.
+ 
+- Free positioning along model height in X/Y, rotatable along Z.
+
+</AttachmentDescription>	
+	<Placement Move="XY" Rotate="Z">
+		<Translation Axis="XY" Ref="_clickpoint" DirRef="_clickpoint">
+			<Const>0.0</Const>
+		</Translation>
+	</Placement>
+	<Component IfJaw="Any" Method="Additive" Id="anyfroto">
+		<MeshFile FileName="rotoclick.sdfa" Retriangulate="false">
+			<Translation Axis="Z">
+				<Const>-8.74</Const>
+			</Translation>
+		</MeshFile>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#C0C0C0</mat:Color>
+		</mat:Material>
+		<Alignment Jaw="Any" RelativeToBottom="true"/>
+	</Component>
+	<IntersectionTestOverride Result="Test">
+		<ComponentRef>anyfroto</ComponentRef>
+		<BaseRef>Upper</BaseRef>
+		<BaseRef>Lower</BaseRef>		
+	</IntersectionTestOverride>
+	<GroupAll>true</GroupAll>
+</LibraryEntry>

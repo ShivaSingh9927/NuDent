@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns="http://exocad.com/model/attachment">
+	<Supplier>exocad GmbH</Supplier>
+	<DisplayInformation>Articulator slot for glueing (Full arch)</DisplayInformation>
+	<AttachmentPreviewFileName>preview.png</AttachmentPreviewFileName>
+	<SupplierLogoFileName>logo.png</SupplierLogoFileName>
+	<AttachmentDescription>
+	
+Geometry for addition to upper or lower jaw model.
+  
+- Free positioning in X/Y, rotatable along Z.
+
+	</AttachmentDescription>
+	<Placement Jaw="Any" Move="XY" Rotate="Z" GroupAll="false">
+		<Translation Axis="XY" Ref="_clickpoint" DirRef="_clickpoint">
+			<Const>0.0</Const>
+		</Translation>
+	</Placement>
+	<Component IfJaw="Upper" Method="Additive">
+		<MeshFile FileName="ExtendedArticulatorSlot_Glue.off"/>
+		<Translation Axis="Z">
+			<Const>6.6</Const>
+		</Translation>
+		<Rotation Axis="Z">
+			<Const>180</Const>
+		</Rotation>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#C0C0C0</mat:Color>
+		</mat:Material>
+		<Alignment Jaw="Upper" RelativeToBottom="true"/>
+	</Component>
+	<Component IfJaw="Lower" Method="Additive">
+		<MeshFile FileName="ExtendedArticulatorSlot_Glue.off"/>
+		<Translation Axis="Z">
+			<Const>6.6</Const>
+		</Translation>
+		<Rotation Axis="Z">
+			<Const>180</Const>
+		</Rotation>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#C0C0C0</mat:Color>
+		</mat:Material>
+		<Alignment Jaw="Lower" RelativeToBottom="true"/>
+	</Component>	
+	<GroupAll>true</GroupAll>
+</LibraryEntry>

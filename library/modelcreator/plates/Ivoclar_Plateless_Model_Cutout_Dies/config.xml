@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://exocad.com/model/type" DefaultModelType="eqcod">
+	<Supplier>exocad GmbH for Ivoclar</Supplier>
+	<DisplayInformation Lang="german">Ivoclar Plateless Model (Cutout Dies)</DisplayInformation>
+	<DisplayInformation>Ivoclar Plateless Model (Cutout Dies)</DisplayInformation>
+	<Parameter Id="modelheight" Min="10" Max="80" Default="40" Decimals="2" Unit="mm">ModelAlignmentProcessorControl.ModelHeight</Parameter>
+	<ModelType Class="Plateless" GingivaStyle="Flat" Id="eqcod">
+		<DisplayInformation>Pressure equalization channel on dies</DisplayInformation>
+		<PreviewImageFileName>Ivoclar_Plateless_Model_Cutout_Dies_eqcod.png</PreviewImageFileName>
+		<MinRequiredPrepPlateDist>8</MinRequiredPrepPlateDist>
+		<BottomPlaneUpperJaw SizeX="100" SizeY="100">
+			<Translate>
+				<z>20</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</BottomPlaneUpperJaw>
+		<BottomPlaneLowerJaw SizeX="100" SizeY="100">
+			<Translate>
+				<z>20</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</BottomPlaneLowerJaw>
+		<!-- Plate Parameters -->
+		<ConstructionParameter>
+			<Type>ModelPinHeight</Type>
+			<Value>2</Value>
+			<MinValue>-0.1</MinValue>
+			<MaxValue>5.0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelPreparationMarginExtrusion</Type>
+			<Value>0.5</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>1.0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelSeatingAreaWidth</Type>
+			<Value>0.5</Value>
+			<MinValue>0.5</MinValue>
+			<MaxValue>5.0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelDieShaftTaperAngle</Type>
+			<Value>2</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>10</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelDieShaftTaperHeightLimit</Type>
+			<Value>10</Value>
+			<MinValue>1</MinValue>
+			<MaxValue>20</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelConcavity</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>1</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelTiltedDieIsSkewed</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>1</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelOmitDiePin</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>1</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskMinThickness</Type>
+			<Value>0.5</Value>
+			<MinValue>0.5</MinValue>
+			<MaxValue>2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskGapWidth</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0.2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskImplantTopOffset</Type>
+			<Value>0</Value>
+			<MinValue>-5</MinValue>
+			<MaxValue>1</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskRetentionBallSeparation</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>1</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskRetentionBallDiameter</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>1</MaxValue>
+		</ConstructionParameter>
+		<Attachment Ref="Ivoclar_Pressure_Equalization_Channel_Attachment" Rel="Die" Jaw="Any"/>
+	</ModelType>
+	<ModelType Class="Plateless" GingivaStyle="Flat" Id="eqcola">
+		<DisplayInformation>Pressure equalization channel on lab analogs</DisplayInformation>
+		<PreviewImageFileName>Ivoclar_Plateless_Model_Cutout_Dies_eqcola.png</PreviewImageFileName>
+		<MinRequiredPrepPlateDist>8</MinRequiredPrepPlateDist>
+		<BottomPlaneUpperJaw SizeX="100" SizeY="100">
+			<Translate>
+				<z>20</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</BottomPlaneUpperJaw>
+		<BottomPlaneLowerJaw SizeX="100" SizeY="100">
+			<Translate>
+				<z>20</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</BottomPlaneLowerJaw>
+		<!-- Plate Parameters -->
+		<ConstructionParameter>
+			<Type>ModelPinHeight</Type>
+			<Value>2</Value>
+			<MinValue>-0.1</MinValue>
+			<MaxValue>5.0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelPreparationMarginExtrusion</Type>
+			<Value>0.5</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>1.0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelSeatingAreaWidth</Type>
+			<Value>0.5</Value>
+			<MinValue>0.5</MinValue>
+			<MaxValue>5.0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelDieShaftTaperAngle</Type>
+			<Value>2</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>10</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelDieShaftTaperHeightLimit</Type>
+			<Value>10</Value>
+			<MinValue>1</MinValue>
+			<MaxValue>20</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelConcavity</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>1</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelTiltedDieIsSkewed</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>1</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelOmitDiePin</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>1</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskMinThickness</Type>
+			<Value>0.5</Value>
+			<MinValue>0.5</MinValue>
+			<MaxValue>2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskGapWidth</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0.2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskImplantTopOffset</Type>
+			<Value>0</Value>
+			<MinValue>-5</MinValue>
+			<MaxValue>1</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskRetentionBallSeparation</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>1</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskRetentionBallDiameter</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>1</MaxValue>
+		</ConstructionParameter>
+		<Attachment Ref="Ivoclar_Pressure_Equalization_Channel_Attachment" Rel="Implant" Jaw="Any"/>
+	</ModelType>
+</LibraryEntry>

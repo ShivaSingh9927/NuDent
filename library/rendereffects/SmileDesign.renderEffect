@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<RenderEffectSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" RenderEffectName="SmileDesignTooth">
+  <DoubleParameter Name="mat_emission_chroma_b" Value="-0.091" />
+  <DoubleParameter Name="mat_specular_exponent" Value="128" />
+  <DoubleParameter Name="mat_diffuse_chroma_b" Value="0" />
+  <DoubleParameter Name="mat_specular" Value="0.200000002980232" />
+  <DoubleParameter Name="mat_emission_chroma_a" Value="0.337" />
+  <DoubleParameter Name="mat_thin_luma" Value="0.438" />
+  <DoubleParameter Name="mat_ambient_luma" Value="0.45" />
+  <DoubleParameter Name="mat_diffuse_luma" Value="0.373" />
+  <DoubleParameter Name="shade" Value="0.5" />
+  <DoubleParameter Name="mat_diffuse_chroma_a" Value="-0.197" />
+  <DoubleParameter Name="mat_thin_chroma_a" Value="-0.45" />
+  <DoubleParameter Name="ao_beta" Value="1" />
+  <DoubleParameter Name="mat_ambient_chroma_a" Value="-0.018" />
+  <DoubleParameter Name="mat_ambient_chroma_b" Value="0" />
+  <DoubleParameter Name="mat_emission_luma" Value="0.25" />
+  <DoubleParameter Name="ao_alpha" Value="1.5" />
+  <DoubleParameter Name="mat_thin_chroma_b" Value="0.25" />
+  <DoubleParameter Name="tint_gamma" Value="2" />
+  <IntParameter Name="smoothing_iterations" Value="16" />
+</RenderEffectSettings>

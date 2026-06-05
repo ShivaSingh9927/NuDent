@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<BarProfileFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile xsi:type="BarProfilePlugin" FixLeft="true" FixRight="true" FixTop="true" FixBottom="true">
+    <DisplayName>Monderndental</DisplayName>
+    <PluginName>BarProfile.Moderndental#Moderndental</PluginName>
+    <Parameters>
+      <BarProfileParameter Name="Angle" Visible="true" Configurable="true" Min="0" Max="25.86" Decimals="2" Value="5" />
+      <BarProfileParameter Name="Buccal height" Visible="true" Configurable="true" Min="1" Max="10" Decimals="2" Value="5" />
+      <BarProfileParameter Name="Chamfer radius" Visible="true" Configurable="true" Min="0" Max="3" Decimals="2" Value="0.6" />
+      <BarProfileParameter Name="Lower radius" Visible="true" Configurable="true" Min="3" Max="20" Decimals="2" Value="5.38" />
+      <BarProfileParameter Name="Top radius" Visible="true" Configurable="true" Min="0.2" Max="3" Decimals="2" Value="1" />
+      <BarProfileParameter Name="Bottom width" Visible="true" Configurable="true" Min="1.2" Max="3" Decimals="4" Value="2.3082" />
+    </Parameters>
+  </Profile>
+</BarProfileFile>

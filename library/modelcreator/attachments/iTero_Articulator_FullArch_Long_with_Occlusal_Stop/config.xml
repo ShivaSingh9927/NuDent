@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns="http://exocad.com/model/attachment">
+	<Supplier>exocad GmbH</Supplier>
+	<DisplayInformation>iTero® Articulator FullArch Long with Occlusal Stop</DisplayInformation>
+	<AttachmentPreviewFileName>preview.png</AttachmentPreviewFileName>
+	<SupplierLogoFileName>logo.png</SupplierLogoFileName>
+	<AttachmentDescription>
+	
+Attachment for connection between iTero® articulator and 3D printed model. Automatically connects to model curve. 
+
+- Free positioning along model in X/Y
+- Rotatable along Z.
+- With occlusal stop. 
+
+	</AttachmentDescription>
+	<Placement Move="XY" Rotate="Z">
+		<Translation Axis="XY" Ref="_clickpoint" DirRef="_clickpoint">
+			<Const>0.0</Const>
+		</Translation>
+		<Translation Axis="Y">
+			<Const>-30</Const>
+		</Translation>
+	</Placement>
+	<Parameter Id="BulgeHeight" Scope="All" Decimals="1" Min="1" Max="4" Default="1">Bulge height</Parameter>
+	<Parameter Id="LedgeHeight" Scope="All" Decimals="1" Min="2" Max="10" Default="3">Ledge height</Parameter>
+	<Parameter Id="Diameter" Scope="All" Decimals="1" Min="3" Max="7.9" Default="6.9">Ledge Diameter</Parameter>
+	<ControlPoint Id="cp-upper-right" UniqueId="iterofulloccsupperright">
+		<Location>
+			<z>1</z>
+		</Location>
+		<Alignment Jaw="Upper" RelativeToBottom="true"/>
+		<Translation Axis="X">
+			<Const>4.5</Const>
+		</Translation>
+	</ControlPoint>
+	<ControlPoint Id="cp-upper-right-center" UniqueId="iterofulloccsupperrightcenter" Type="ProjectXY">
+		<Location>
+			<z>1</z>
+		</Location>
+		<Alignment Jaw="Upper" RelativeToBottom="true"/>
+		<Translation Axis="X">
+			<Const>4.5</Const>
+		</Translation>
+	</ControlPoint>
+	<Component ForceJaw="Upper" Id="beam-upper-right" UniqueId="iterofulloccsbeamupperright">
+		<Profile Mirror="true">
+			<Point>
+				<x>0</x>
+				<z>1</z>
+			</Point>
+			<Point>
+				<x>1</x>
+				<z>1</z>
+			</Point>
+			<Point>
+				<x>1</x>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>0</x>
+				<z>0</z>
+			</Point>
+			<Front ExtendTo="cp-upper-right-center" FailCap="Round"/>
+			<Back Cap="Round"/>
+			<Scaling Axis="X">
+				<ParameterRef Coefficient="0.5">Diameter</ParameterRef>
+				<Const>0.5</Const>
+			</Scaling>
+			<Scaling Axis="Z">
+				<ParameterRef>LedgeHeight</ParameterRef>
+			</Scaling>
+			<Alignment Jaw="Upper" RelativeToBottom="true"/>
+			<Orientation Axis="Y" Pivot="cp-upper-right" Towards="cp-upper-right-center"/>
+			<Translation Axis="X">
+				<Const>4.5</Const>
+			</Translation>
+			<Translation Axis="Y">
+				<Const>6</Const>
+			</Translation>
+			<Translation Axis="Z">
+				<Const>-0.1</Const>
+			</Translation>
+		</Profile>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#4B4374</mat:Color>
+			<mat:Opacity>0.5</mat:Opacity>
+		</mat:Material>
+	</Component>
+	<ControlPoint Id="cp-lower-right" UniqueId="iterofulloccscplowerright">
+		<Location>
+			<z>1</z>
+		</Location>
+		<Alignment Jaw="Lower" RelativeToBottom="true"/>
+		<Translation Axis="X">
+			<Const>4.5</Const>
+		</Translation>
+	</ControlPoint>
+	<ControlPoint Id="cp-lower-right-center" UniqueId="iterofulloccscplowerrightcenter" Type="ProjectXY">
+		<Location>
+			<z>1</z>
+		</Location>
+		<Alignment Jaw="Lower" RelativeToBottom="true"/>
+		<Translation Axis="X">
+			<Const>4.5</Const>
+		</Translation>
+	</ControlPoint>
+	<Component ForceJaw="Lower" Id="beam-lower-right" UniqueId="iterofulloccsbeamlowerright">
+		<Profile Mirror="true">
+			<Point>
+				<x>0</x>
+				<z>1</z>
+			</Point>
+			<Point>
+				<x>1</x>
+				<z>1</z>
+			</Point>
+			<Point>
+				<x>1</x>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>0</x>
+				<z>0</z>
+			</Point>
+			<Front ExtendTo="cp-lower-right-center" FailCap="Round"/>
+			<Back Cap="Round"/>
+			<Scaling Axis="X">
+				<ParameterRef Coefficient="0.5">Diameter</ParameterRef>
+				<Const>0.5</Const>
+			</Scaling>
+			<Scaling Axis="Z">
+				<ParameterRef>LedgeHeight</ParameterRef>
+			</Scaling>
+			<Alignment Jaw="Lower" RelativeToBottom="true"/>
+			<Orientation Axis="Y" Pivot="cp-lower-right" Towards="cp-lower-right-center"/>
+			<Translation Axis="X">
+				<Const>4.5</Const>
+			</Translation>
+			<Translation Axis="Y">
+				<Const>6</Const>
+			</Translation>
+			<Translation Axis="Z">
+				<Const>0.1</Const>
+			</Translation>
+		</Profile>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#4B4374</mat:Color>
+			<mat:Opacity>0.5</mat:Opacity>
+		</mat:Material>
+	</Component>
+	<ControlPoint Id="cp-upper-left" UniqueId="iterofulloccscpupperleft">
+		<Location>
+			<z>1</z>
+		</Location>
+		<Alignment Jaw="Upper" RelativeToBottom="true"/>
+		<Translation Axis="X">
+			<Const>-4.5</Const>
+		</Translation>
+	</ControlPoint>
+	<ControlPoint Id="cp-upper-left-center" UniqueId="iterofulloccscpupperleftcenter" Type="ProjectXY">
+		<Location>
+			<z>1</z>
+		</Location>
+		<Alignment Jaw="Upper" RelativeToBottom="true"/>
+		<Translation Axis="X">
+			<Const>-4.5</Const>
+		</Translation>
+	</ControlPoint>
+	<Component ForceJaw="Upper" Id="beam-upper-left" UniqueId="iterofulloccsbeamupperleft">
+		<Profile Mirror="true">
+			<Point>
+				<x>0</x>
+				<z>1</z>
+			</Point>
+			<Point>
+				<x>1</x>
+				<z>1</z>
+			</Point>
+			<Point>
+				<x>1</x>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>0</x>
+				<z>0</z>
+			</Point>
+			<Front ExtendTo="cp-upper-left-center" FailCap="Round"/>
+			<Back Cap="Round"/>
+			<Scaling Axis="X">
+				<ParameterRef Coefficient="0.5">Diameter</ParameterRef>
+				<Const>0.5</Const>
+			</Scaling>
+			<Scaling Axis="Z">
+				<ParameterRef>LedgeHeight</ParameterRef>
+			</Scaling>
+			<Alignment Jaw="Upper" RelativeToBottom="true"/>
+			<Orientation Axis="Y" Pivot="cp-upper-left" Towards="cp-upper-left-center"/>
+			<Translation Axis="X">
+				<Const>-4.5</Const>
+			</Translation>
+			<Translation Axis="Y">
+				<Const>6</Const>
+			</Translation>
+			<Translation Axis="Z">
+				<Const>-0.1</Const>
+			</Translation>
+		</Profile>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#4B4374</mat:Color>
+			<mat:Opacity>0.5</mat:Opacity>
+		</mat:Material>
+	</Component>
+	<ControlPoint Id="cp-lower-left" UniqueId="iterofulloccscplowerleft">
+		<Location>
+			<z>1</z>
+		</Location>
+		<Alignment Jaw="Lower" RelativeToBottom="true"/>
+		<Translation Axis="X">
+			<Const>-4.5</Const>
+		</Translation>
+	</ControlPoint>
+	<ControlPoint Id="cp-lower-left-center" UniqueId="iterofulloccscplowerleftcenter" Type="ProjectXY">
+		<Location>
+			<z>1</z>
+		</Location>
+		<Alignment Jaw="Lower" RelativeToBottom="true"/>
+		<Translation Axis="X">
+			<Const>-4.5</Const>
+		</Translation>
+	</ControlPoint>
+	<Component ForceJaw="Lower" Id="beam-lower-left" UniqueId="iterofulloccsbeamlowerleft">
+		<Profile Mirror="true">
+			<Point>
+				<x>0</x>
+				<z>1</z>
+			</Point>
+			<Point>
+				<x>1</x>
+				<z>1</z>
+			</Point>
+			<Point>
+				<x>1</x>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>0</x>
+				<z>0</z>
+			</Point>
+			<Front ExtendTo="cp-lower-left-center" FailCap="Round"/>
+			<Back Cap="Round"/>
+			<Scaling Axis="X">
+				<ParameterRef Coefficient="0.5">Diameter</ParameterRef>
+				<Const>0.5</Const>
+			</Scaling>
+			<Scaling Axis="Z">
+				<ParameterRef>LedgeHeight</ParameterRef>
+			</Scaling>
+			<Alignment Jaw="Lower" RelativeToBottom="true"/>
+			<Orientation Axis="Y" Pivot="cp-lower-left" Towards="cp-lower-left-center"/>
+			<Translation Axis="X">
+				<Const>-4.5</Const>
+			</Translation>
+			<Translation Axis="Y">
+				<Const>6</Const>
+			</Translation>
+			<Translation Axis="Z">
+				<Const>0.1</Const>
+			</Translation>
+		</Profile>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#4B4374</mat:Color>
+			<mat:Opacity>0.5</mat:Opacity>
+		</mat:Material>
+	</Component>
+	<Component ForceJaw="Upper" Id="arti-upper" UniqueId="iterofulloccsartiupper" Method="Additive">
+		<MeshFile FileName="iTero_full_arch_upper.eoff">
+			<Select Label="CUSP_1">
+				<Scaling Axis="Z">
+					<ParameterRef>BulgeHeight</ParameterRef>
+				</Scaling>
+			</Select>
+			<Select Label="CUSP_2">
+				<Scaling Axis="Z">
+					<ParameterRef Coefficient="0.0355">@modelheight</ParameterRef>
+				</Scaling>
+			</Select>
+			<Select>
+				<Translation Axis="Z">
+					<ParameterRef Coefficient="0.5">@modelheight</ParameterRef>
+					<Const>0</Const>
+				</Translation>
+			</Select>
+			<Alignment Jaw="Upper" RelativeToBottom="true"/>
+		</MeshFile>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#4B4374</mat:Color>
+			<mat:Opacity>0.5</mat:Opacity>
+		</mat:Material>
+	</Component>
+	<Component ForceJaw="Lower" Id="arti-lower" UniqueId="iterofulloccsartilower" Method="Additive">
+		<MeshFile FileName="iTero_full_arch_lower.eoff">
+			<Select Label="CUSP_1">
+				<Scaling Axis="Z">
+					<ParameterRef>BulgeHeight</ParameterRef>
+				</Scaling>
+			</Select>
+			<Select Label="CUSP_2">
+				<Scaling Axis="Z">
+					<ParameterRef Coefficient="0.0355">@modelheight</ParameterRef>
+				</Scaling>
+			</Select>
+			<Select>
+				<Translation Axis="Z">
+					<ParameterRef Coefficient="0.5">@modelheight</ParameterRef>
+					<Const>0</Const>
+				</Translation>
+			</Select>
+			<Alignment Jaw="Lower" RelativeToBottom="true"/>
+		</MeshFile>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#4B4374</mat:Color>
+			<mat:Opacity>0.5</mat:Opacity>
+		</mat:Material>
+	</Component>
+	<IntersectionTestOverride Result="Always">
+		<ComponentRef>beam-lower-left</ComponentRef>
+		<ComponentRef>beam-lower-right</ComponentRef>
+		<BaseRef>Lower</BaseRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Always">
+		<ComponentRef>beam-upper-left</ComponentRef>
+		<ComponentRef>beam-upper-right</ComponentRef>
+		<BaseRef>Upper</BaseRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Always">
+		<ComponentRef>beam-lower-left</ComponentRef>
+		<ComponentRef>beam-lower-right</ComponentRef>
+		<ComponentRef>arti-lower</ComponentRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Always">
+		<ComponentRef>beam-upper-left</ComponentRef>
+		<ComponentRef>beam-upper-right</ComponentRef>
+		<ComponentRef>arti-upper</ComponentRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Never">
+		<ComponentRef>arti-upper</ComponentRef>
+		<ComponentRef>arti-lower</ComponentRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Deny">
+		<ComponentRef>arti-lower</ComponentRef>
+		<BaseRef>Any</BaseRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Deny">
+		<ComponentRef>arti-upper</ComponentRef>
+		<BaseRef>Any</BaseRef>
+	</IntersectionTestOverride>
+</LibraryEntry>

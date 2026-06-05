@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns="http://exocad.com/model/attachment">
+	<Supplier>exocad GmbH - for Demonstration only</Supplier>
+	<DisplayInformation>Support Pin (legacy compatibility)</DisplayInformation>
+	<AttachmentPreviewFileName>preview.png</AttachmentPreviewFileName>
+	<SupplierLogoFileName>logo.png</SupplierLogoFileName>
+	<AttachmentDescription>
+	
+Pin geometry for addition to upper and lower jaw model, can be used for correctly aligning models towards each other. 
+
+- Scalable diameter. 
+- Free positioning along model height in X/Y.
+
+	</AttachmentDescription>
+	<Placement Move="XY" Rotate="None">
+		<Translation Axis="XY" Ref="_clickpoint" DirRef="_clickpoint">
+			<Const>1.0</Const>
+		</Translation>
+	</Placement>
+	<Parameter Id="Diameter" ConstructionParam="ModelSupportPinDiameter" Scope="All" Decimals="1">Diameter</Parameter>
+	<Parameter Id="BulgeHeight" ConstructionParam="ModelSupportPinBulgeHeight" Scope="All" Decimals="1">Bulge height</Parameter>
+	<Parameter Id="LedgeHeight" ConstructionParam="ModelSupportPinLedgeHeight" Scope="All" Decimals="1">Ledge height</Parameter>
+	<ControlPoint Id="cp-upper-center" Color="#ffffff">
+		<Location>
+			<z>1</z>
+		</Location>
+		<Alignment Jaw="Upper" RelativeToBottom="true"/>
+	</ControlPoint>
+	<ControlPoint Id="cp-upper" Type="ProjectXY" Color="#ff0000" Radius="0.5">
+		<Location>
+			<z>1</z>
+		</Location>
+		<Alignment Jaw="Upper" RelativeToBottom="true"/>
+	</ControlPoint>
+	<ControlPoint Id="cp-lower-center" Color="#ffffff">
+		<Location>
+			<z>1</z>
+		</Location>
+		<Alignment Jaw="Lower" RelativeToBottom="true"/>
+	</ControlPoint>
+	<ControlPoint Id="cp-lower" Type="ProjectXY" Color="#00ff00" Radius="0.5">
+		<Location>
+			<z>1</z>
+		</Location>
+		<Alignment Jaw="Lower" RelativeToBottom="true"/>
+	</ControlPoint>
+	<Component ForceJaw="Upper" Id="beam-upper">
+		<Profile Mirror="true">
+			<Point>
+				<x>0</x>
+				<z>1</z>
+			</Point>
+			<Point>
+				<x>1</x>
+				<z>1</z>
+			</Point>
+			<Point>
+				<x>1</x>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>0</x>
+				<z>0</z>
+			</Point>
+			<Front ExtendTo="cp-upper" FailCap="Round"/>
+			<Back Cap="Round"/>
+			<Scaling Axis="X">
+				<ParameterRef Coefficient="0.5">Diameter</ParameterRef>
+				<Const>0.5</Const>
+			</Scaling>
+			<Scaling Axis="Z">
+				<ParameterRef>LedgeHeight</ParameterRef>
+			</Scaling>
+			<Alignment Jaw="Upper" RelativeToBottom="true"/>
+			<Orientation Axis="Y" Pivot="cp-upper-center" Towards="cp-upper"/>
+		</Profile>
+	</Component>
+	<Component ForceJaw="Upper" Id="cyl-upper">
+		<MeshFile FileName="pinhead.eoff">
+			<Select>
+				<Scaling Axis="XY">
+					<ParameterRef Coefficient="0.5">Diameter</ParameterRef>
+				</Scaling>
+			</Select>
+			<Select Label="TEMPORARY_PROCESS_FLAG">
+				<Scaling Axis="Z">
+					<ParameterRef>BulgeHeight</ParameterRef>
+				</Scaling>
+			</Select>
+			<Select>
+				<Translation Axis="Z">
+					<ParameterRef>LedgeHeight</ParameterRef>
+					<Const>1</Const>
+				</Translation>
+			</Select>
+			<Select Label="TEMPORARY_PROCESS_FLAG2" Invert="true">
+				<Translation Axis="Z">
+					<ParameterRef Coefficient="0.5">@modelheight</ParameterRef>
+					<ParameterRef Coefficient="-1">LedgeHeight</ParameterRef>
+					<Const>-1</Const>
+				</Translation>
+			</Select>
+			<Alignment Jaw="Upper" RelativeToBottom="true"/>
+		</MeshFile>
+	</Component>
+	<Component ForceJaw="Lower" Id="beam-lower">
+		<Profile Mirror="true">
+			<Point>
+				<x>0</x>
+				<z>1</z>
+			</Point>
+			<Point>
+				<x>1</x>
+				<z>1</z>
+			</Point>
+			<Point>
+				<x>1</x>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>0</x>
+				<z>0</z>
+			</Point>
+			<Front ExtendTo="cp-lower" FailCap="Round"/>
+			<Back Cap="Round"/>
+			<Scaling Axis="X">
+				<ParameterRef Coefficient="0.5">Diameter</ParameterRef>
+				<Const>0.5</Const>
+			</Scaling>
+			<Scaling Axis="Z">
+				<ParameterRef>LedgeHeight</ParameterRef>
+			</Scaling>
+			<Alignment Jaw="Lower" RelativeToBottom="true"/>
+			<Orientation Axis="Y" Pivot="cp-lower-center" Towards="cp-lower"/>
+		</Profile>
+	</Component>
+	<Component ForceJaw="Lower" Id="cyl-lower">
+		<MeshFile FileName="pinhead.eoff">
+			<Select>
+				<Scaling Axis="XY">
+					<ParameterRef Coefficient="0.5">Diameter</ParameterRef>
+				</Scaling>
+			</Select>
+			<Select Label="TEMPORARY_PROCESS_FLAG">
+				<Scaling Axis="Z">
+					<ParameterRef Coefficient="-1">BulgeHeight</ParameterRef>
+				</Scaling>
+			</Select>
+			<Select>
+				<Translation Axis="Z">
+					<ParameterRef>LedgeHeight</ParameterRef>
+					<Const>1</Const>
+				</Translation>
+			</Select>
+			<Select Label="TEMPORARY_PROCESS_FLAG2" Invert="true">
+				<Translation Axis="Z">
+					<ParameterRef Coefficient="0.5">@modelheight</ParameterRef>
+					<ParameterRef Coefficient="-1">LedgeHeight</ParameterRef>
+					<Const>-1</Const>
+				</Translation>
+			</Select>
+			<Alignment Jaw="Lower" RelativeToBottom="true"/>
+		</MeshFile>
+	</Component>
+	<IntersectionTestOverride Result="Never" Base="Any">
+		<ComponentRef>beam-upper</ComponentRef>
+		<ComponentRef>cyl-upper</ComponentRef>
+		<ComponentRef>beam-lower</ComponentRef>
+		<ComponentRef>cyl-lower</ComponentRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Always">
+		<ComponentRef>beam-upper</ComponentRef>
+		<ComponentRef>cyl-upper</ComponentRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Always" Base="Upper">
+		<ComponentRef>beam-upper</ComponentRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Always">
+		<ComponentRef>beam-lower</ComponentRef>
+		<ComponentRef>cyl-lower</ComponentRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Always" Base="Lower">
+		<ComponentRef>cyl-lower</ComponentRef>
+	</IntersectionTestOverride>
+</LibraryEntry>

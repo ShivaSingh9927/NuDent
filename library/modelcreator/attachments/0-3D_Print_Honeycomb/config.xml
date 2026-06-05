@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns="http://exocad.com/model/attachment">
+	<Supplier>exocad GmbH</Supplier>
+	<DisplayInformation>3D Print - Support structure for hollow models (honeycomb)</DisplayInformation>
+	<AttachmentPreviewFileName>preview.png</AttachmentPreviewFileName>
+	<SupplierLogoFileName>logo.png</SupplierLogoFileName>
+	<AttachmentDescription>
+	
+Structure for filling cavities to stabilize hollow models. 
+
+- Scalable in X/Y direction. 
+- Free positioning along model height in X/Y, rotatable along Z.
+	
+	</AttachmentDescription>	
+	<Placement Jaw="Any" Move="XY" Rotate="Z">
+	</Placement>
+	<Parameter Scope="Single" Default="100" Min="50" Max="150" Unit="%" Decimals="0">Scale</Parameter>
+	<Component ForceJaw="Upper" Id="upperhc" Method="AdditiveInsideCavities" UniqueId="uj_honeycomb">
+		<MeshFile FileName="uj_honeycomb.eoff">
+			<Translation Axis="Z">
+				<Const>0</Const>
+			</Translation>
+			<Select Label="CUSP_1">
+				<Scaling Axis="Z">
+					<ParameterRef Coefficient="0.1">@modelheight</ParameterRef>
+					<Const>0</Const>
+				</Scaling>
+			</Select>
+			<Select Label="CUSP_1">
+				<Scaling Axis="XY">
+					<ParameterRef Coefficient="0.01">Scale</ParameterRef>
+					<Const>0</Const>
+				</Scaling>
+			</Select>
+		</MeshFile>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#453B6A</mat:Color>
+			<mat:Opacity>1</mat:Opacity>
+		</mat:Material>
+		<Alignment Jaw="Upper" RelativeToBottom="true" AutoFlip="true"/>
+	</Component>
+	<Component ForceJaw="Lower" Id="lowerhc" Method="AdditiveInsideCavities" UniqueId="lj_honeycomb">
+		<MeshFile FileName="lj_honeycomb.eoff">
+			<Translation Axis="Z">
+				<Const>0</Const>
+			</Translation>
+			<Select Label="CUSP_1">
+				<Scaling Axis="Z">
+					<ParameterRef Coefficient="0.1">@modelheight</ParameterRef>
+					<Const>0</Const>
+				</Scaling>
+			</Select>
+			<Select Label="CUSP_1">
+				<Scaling Axis="XY">
+					<ParameterRef Coefficient="0.01">Scale</ParameterRef>
+					<Const>0</Const>
+				</Scaling>
+			</Select>
+		</MeshFile>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#453B6A</mat:Color>
+			<mat:Opacity>1</mat:Opacity>
+		</mat:Material>
+		<Alignment Jaw="Lower" RelativeToBottom="true" AutoFlip="true"/>
+	</Component>
+	<IntersectionTestOverride Result="Never">
+		<ComponentRef>upperhc</ComponentRef>
+		<ComponentRef>lowerhc</ComponentRef>
+		<BaseRef>Any</BaseRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Require">
+		<ComponentRef>upperhc</ComponentRef>
+		<BaseRef>Upper</BaseRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Require">
+		<ComponentRef>lowerhc</ComponentRef>
+		<BaseRef>Lower</BaseRef>
+	</IntersectionTestOverride>
+</LibraryEntry>

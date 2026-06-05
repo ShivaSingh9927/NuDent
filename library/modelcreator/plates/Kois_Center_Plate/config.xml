@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://exocad.com/model/type" DefaultModelType="koisoccplane">
+	<Supplier>exocad GmbH for Kois Center</Supplier>
+	<DisplayInformation>Kois Center - Model Alignment</DisplayInformation>
+	<ModelType Class="Quick" SeparableDies="false" Id="koisoccplane" ModelIsInArticulatorCoordinateSystem="true">
+		<DisplayInformation>occlusal plane Kois setting</DisplayInformation>
+		<PreviewImageFileName>Kois_Center_koisoccplane.png</PreviewImageFileName>
+		<MinRequiredPrepPlateDist>4</MinRequiredPrepPlateDist>
+		<MeshResource PartType="GenericVisualization" Jaw="Any" Persistent="true" StippleTransparency="false">
+			<FileName>Kois.sdfa</FileName>
+			<Translate>
+				<x>30</x>
+				<y>-80.0</y>
+				<z>-40.08</z>
+			</Translate>
+			<Translate>
+				<z>100.08</z>
+			</Translate>
+			<Material xmlns="http://exocad.com/config/color">
+				<Color>#A6956A</Color>
+			</Material>
+		</MeshResource>			
+		<BottomPlaneUpperJaw SizeX="100" SizeY="100" Visible="true">
+<!--Object Translation-->		
+			<Translate>
+				<z>-49.93292</z>
+				<y>74.83714</y>
+			</Translate>
+<!--Articulator Translation-->			
+			<Translate>
+				<x>30</x>
+				<y>-80.0</y>
+				<z>-40.08</z>
+			</Translate>
+<!--Articulator Translation-->			
+			<Translate>
+				<z>100.08</z>
+			</Translate>
+<!--Individual Model Height-->			
+			<Translate>
+				<z>22</z>
+			</Translate>			
+		</BottomPlaneUpperJaw>
+		<OcclusalPlane SizeX="100" SizeY="100" Visible="false">
+			<Translate>
+				<z>-49.88521</z>
+				<y>74.83714</y>
+			</Translate>
+			<Translate>
+				<x>30</x>
+				<y>-80.0</y>
+				<z>-40.08</z>
+			</Translate>
+			<Translate>
+				<z>100.08</z>
+			</Translate>
+		</OcclusalPlane>
+		<BottomPlaneLowerJaw SizeX="100" SizeY="100" Visible="true">
+			<Translate>
+				<z>-49.93292</z>
+				<y>74.83714</y>
+			</Translate>
+			<Translate>
+				<x>30</x>
+				<y>-80.0</y>
+				<z>-40.08</z>
+			</Translate>
+			<Translate>
+				<z>100.08</z>
+			</Translate>
+			<Translate>
+				<z>-16</z>
+			</Translate>			
+		</BottomPlaneLowerJaw>
+		<!-- Plate Parameters  -->
+		<ConstructionParameter>
+			<Type>ModelWallThickness</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelOmitDiePin</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportGingivaMaskDepth</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportHeightOffset</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelRatio</Type>
+			<Value>50</Value>
+			<MinValue>50</MinValue>
+			<MaxValue>50</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelAngle</Type>
+			<Value>45</Value>
+			<MinValue>45</MinValue>
+			<MaxValue>45</MaxValue>
+		</ConstructionParameter>
+		<Attachment Ref="Kois_Center_Transfer_Adapter" Rel="Global" Jaw="Any"/>
+	</ModelType>
+</LibraryEntry>

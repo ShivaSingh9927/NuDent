@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<PrinterPreset xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://exocad.com/library/production">
+  <MaterialParameterPresets>
+    <MaterialPreset>
+      <Name>Default</Name>
+      <ConstructionParameters>
+        <Param>FixationSupportGeometryOffsetRadial</Param>
+      </ConstructionParameters>
+      <ConstructionParameters>
+        <Param>SurgicalGuideBottomBlockOutOffset</Param>
+      </ConstructionParameters>
+	  <ConstructionParameters>
+        <Param>SurgicalGuideSleeveSupportGeometryOffsetRadial</Param>
+      </ConstructionParameters>
+    </MaterialPreset>
+  </MaterialParameterPresets>
+</PrinterPreset>

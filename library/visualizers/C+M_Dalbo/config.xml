@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<AttachmentLibrary>
+  <SupplierName>Cendres+Métaux</SupplierName>
+  <AttachmentFile>
+    <Filename>DalboClassicBasic055698.sdfa</Filename>
+    <Signature>40357b204b6c3e1f4ff6d0afbee2b6466a7c521e</Signature>
+    <SupplyName>Dalbo®</SupplyName>
+    <SupplyDescription>Visualizers.CM.Dalbo.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>DalboClassicElliptic055887.sdfa</Filename>
+    <Signature>3a958125c6bde1cb9aee7e3ae75d0381c93165d6</Signature>
+    <SupplyName>Dalbo®</SupplyName>
+    <SupplyDescription>Visualizers.CM.Dalbo.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>DalboPlusBasic055752.sdfa</Filename>
+    <Signature>b178bb517cf448a1bcc11f6ac5ab44cba29dd812</Signature>
+    <SupplyName>Dalbo®</SupplyName>
+    <SupplyDescription>Visualizers.CM.Dalbo.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>DalboPlusElliptic055890.sdfa</Filename>
+    <Signature>27aa651b5fc01a55c562bf1776a5429fc8611ad9</Signature>
+    <SupplyName>Dalbo®</SupplyName>
+    <SupplyDescription>Visualizers.CM.Dalbo.Description</SupplyDescription>
+  </AttachmentFile>
+</AttachmentLibrary>

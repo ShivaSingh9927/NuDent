@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<AttachmentLibrary>
+  <SupplierName>BREDENT GmbH &amp; Co.KG</SupplierName>
+  <SupplierLogo>SupplierLogo.BREDENT</SupplierLogo>
+	<AllowScaling>0</AllowScaling>
+  <AttachmentFile>
+  	    <SupplyName>LV1 Retention</SupplyName>
+        <SupplyDescription>LV1 Retention.Description</SupplyDescription>
+    <Filename>LV1 Retention.sdfa</Filename>
+    <Signature>56850e3db3386cb3d61b8210d1983e121e6b6952</Signature>
+			<DockPoint>
+			<x>0.0</x><y>0.0</y><z>0.0</z>
+		</DockPoint>
+  </AttachmentFile>
+  <AttachmentFile>
+  		<SupplyName>Vario-Kugel-Snap oc 1.7mm</SupplyName>
+        <SupplyDescription>Vario-Kugel-Snap oc 1.7mm.Description</SupplyDescription>
+    <Filename>Vario-Kugel-Snap oc 1.7mm.sdfa</Filename>
+    <Signature>7411b4e0465f7401f3b32264c0c6378b564eea88</Signature>
+			<DockPoint>
+			<x>0.0</x><y>0.0</y><z>0.0</z>
+		</DockPoint>
+  </AttachmentFile>
+  <AttachmentFile>
+  		<SupplyName>Vario-Kugel-Snap oc 2.2mm</SupplyName>
+        <SupplyDescription>Vario-Kugel-Snap oc 2.2mm.Description</SupplyDescription>
+    <Filename>Vario-Kugel-Snap oc 2.2mm.sdfa</Filename>
+    <Signature>a731918842300a7f26913571e4e1bfd1d00db0a8</Signature>
+			<DockPoint>
+			<x>0.0</x><y>0.0</y><z>0.0</z>
+		</DockPoint>
+  </AttachmentFile>
+  <AttachmentFile>
+  		<SupplyName>Vario-Kugel-Snap sg 1.7mm</SupplyName>
+        <SupplyDescription>Vario-Kugel-Snap sg 1.7mm.Description</SupplyDescription>
+    <Filename>Vario-Kugel-Snap sg 1.7mm.sdfa</Filename>
+    <Signature>79d3726fb0b8c9ee9609823a0e231d78c6c6bb52</Signature>
+			<DockPoint>
+			<x>0.0</x><y>0.0</y><z>0.0</z>
+		</DockPoint>
+  </AttachmentFile>
+  <AttachmentFile>
+  		<SupplyName>Vario-Kugel-Snap sg 2.2mm</SupplyName>
+        <SupplyDescription>Vario-Kugel-Snap sg 2.2mm.Description</SupplyDescription>
+    <Filename>Vario-Kugel-Snap sg 2.2mm.sdfa</Filename>
+    <Signature>c4af56891d35f0714fd3019a97f8d9018ed3a952</Signature>
+			<DockPoint>
+			<x>0.0</x><y>0.0</y><z>0.0</z>
+		</DockPoint>
+  </AttachmentFile>
+  <AttachmentFile>
+  		<SupplyName>Vario-Kugel-Snap threat sleeve 1.7mm</SupplyName>
+        <SupplyDescription>Vario-Kugel-Snap threat sleeve 1.7mm.Description</SupplyDescription>
+    <Filename>Vario-Kugel-Snap threat sleeve 1.7mm.sdfa</Filename>
+    <Signature>163098d0d295ecf993322fa40178b57c4b7a2ee8</Signature>
+			<DockPoint>
+			<x>0.0</x><y>0.0</y><z>0.0</z>
+		</DockPoint>
+  </AttachmentFile>
+  <AttachmentFile>
+        <SupplyName>Vario-Kugel-Snap threat sleeve 2.2mm</SupplyName>
+        <SupplyDescription>Vario-Kugel-Snap threat sleeve 2.2mm.Description</SupplyDescription>
+    <Filename>Vario-Kugel-Snap threat sleeve 2.2mm.sdfa</Filename>
+    <Signature>2ce4686c06aa358de3d25ed75db0ecac538bfbd9</Signature>
+			<DockPoint>
+			<x>0.0</x><y>0.0</y><z>0.0</z>
+		</DockPoint>
+  </AttachmentFile>
+  <AttachmentFile>
+  		<SupplyName>Vario-Soft 3 mini sv</SupplyName>
+        <SupplyDescription>Vario-Soft 3 mini sv.Description</SupplyDescription>
+    <Filename>Vario-Soft 3 mini sv.sdfa</Filename>
+    <Signature>25803c38569f55c36126a767b22d3e338170b9e8</Signature>
+			<DockPoint>
+			<x>0.0</x><y>0.0</y><z>0.0</z>
+		</DockPoint>
+  </AttachmentFile>
+  <AttachmentFile>
+  		<SupplyName>Vario-Soft 3 mini</SupplyName>
+        <SupplyDescription>Vario-Soft 3 mini.Description</SupplyDescription>
+    <Filename>Vario-Soft 3 mini.sdfa</Filename>
+    <Signature>4db2629db4068c2452acff01a1e367115a70bca4</Signature>
+			<DockPoint>
+			<x>0.0</x><y>0.0</y><z>0.0</z>
+		</DockPoint>
+  </AttachmentFile>
+  <AttachmentFile>
+  		<SupplyName>Vario-Soft 3 sv</SupplyName>
+        <SupplyDescription>Vario-Soft 3 sv.Description</SupplyDescription>
+    <Filename>Vario-Soft 3 sv.sdfa</Filename>
+    <Signature>aa9c18bca7568361528f74594ff8a5b4030e1467</Signature>
+			<DockPoint>
+			<x>0.0</x><y>0.0</y><z>0.0</z>
+		</DockPoint>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>Vario-Soft 3.sdfa</Filename>
+			<SupplyName>Vario-Soft 3</SupplyName>
+        <SupplyDescription>Vario-Soft 3.Description</SupplyDescription>
+    <Signature>5056c84499d2c182651031e89b70bc24b1d41c24</Signature>
+			<DockPoint>
+			<x>0.0</x><y>0.0</y><z>0.0</z>
+		</DockPoint>
+  </AttachmentFile>
+  <AttachmentFile>
+  		<SupplyName>Vario-Soft-Steg attachment</SupplyName>
+        <SupplyDescription>Vario-Soft-Steg attachment.Description</SupplyDescription>
+    <Filename>Vario-Soft-Steg attachment.sdfa</Filename>
+    <Signature>79456d8b0a6f1f80313aa493d104fd996a003076</Signature>
+			<DockPoint>
+			<x>0.0</x><y>0.0</y><z>0.0</z>
+		</DockPoint>
+  </AttachmentFile>
+  <AttachmentFile>
+  		<SupplyName>Vario-Soft-Steg bar attachment</SupplyName>
+        <SupplyDescription>Vario-Soft-Steg bar attachment.Description</SupplyDescription>
+    <Filename>Vario-Soft-Steg bar attachment.sdfa</Filename>
+    <Signature>74becc5c7f74afefcc0b11681441eb4350eeeb73</Signature>
+			<DockPoint>
+			<x>0.0</x><y>0.0</y><z>0.0</z>
+		</DockPoint>
+  </AttachmentFile>
+  	<UserMessage>More info: http://www.bredent.com</UserMessage>
+</AttachmentLibrary>

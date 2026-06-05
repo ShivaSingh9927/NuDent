@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryPartInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Part>
+    <PartInfo>
+      <Manufacturer>exocad GmbH</Manufacturer>
+      <PartNumber>0815/2023</PartNumber>
+      <PartName>Post and Core Demo Scanmarker</PartName>
+      <PartComment>For demonstration usage only!</PartComment>
+      <Url>http://www.exocad.com</Url>
+    </PartInfo>
+  </Part>
+  <AllowedInfoSignatures>
+    <InfoSignature>Kf4v+OHmbO7y+7T6exYJmDfYCTqIR3qksNVnBjW4WMJNsXX8edY9Inqs/JA8BxDT4mfOyWjDOwr2mVNdgkKEUmqlZIUoX5DV7rOMe4zjCoAgEzcyjw9ctJI7o4EZH6HUFACgvT2GR1yzSTzD496Z3O1AyvPHAdywr+XWbUXsZF4UY/d4VEP/O1YmKgt5nTf3YRgQAfmko6v6pB3ZO/Si3H4+umJQPXB2BTF2rfDRW4V2qX0Fi7+CpB4jF68sKhHK6jbqsRQphC+jIywZWSErFUCVRfOeL576Rd5hl2YGo0X71WZILX0N0mirdKFAo5nw9yzQge824kgAPLGRspTzm+g2wWxkMf5/1OKeUlvH4hmPX9C38oyEyUmQ4cXASGPrsn71za5ihp1aRp+K2mn4qFOp6y0sRf1JGBqVVo6AnIGUa4JP1QlIrJRt5vBZnv5JjPddXbz49xB2G5y1IeABG+wK7H5T1mujplSGjQEVP5HNUEL7aSxK1+u9fz6I9OIE7kbhMcaBwrI29ZRK3myY60rNVllnrOya7jKdTHaJvl1lZcvrNdq1aaE+z7zKUJ9AW4gcNbG/dmv4cQS79J7ny8NGFF7TUlBqlY3GctYpDprT0iuYopm0cLfdzyCJyj6Oc3cRsVKnmN3hEm+qNYXUZhNtv5bMJo8+vm1hkZJukG4=</InfoSignature>
+    <InfoSignature>pUJXPcCRcSklFEktLmi9KrO8R8HzszF9vT/ngBTRYqCpaQSQgRK+LpDVe15tvXke1E7XBNXW6WotFDwGbGUkx8jFl19c/trcl2pBzzSQRHQXKyyS/Op7/CTGtCGZbrkjcddTzbtN/jFRz8CQpGA84OhUJj5046eHHMQtdPX5CgKYDc2YbmhSkeolALAcE7gEz8SaH8+dNJQkUq2fvFzZeBzd9BZxwnMHBuxaQS/Bs2pDVG+WBIoSrat+ewnZ28L75gl/Vy/1VSJvq/juIT8ftsePQyxi2z6T1NyehkUmXMufuC43XO8IpLM15Aa06regM6QZdjfGgLlzqaGTFxQRgg==</InfoSignature>
+    <InfoSignature>GJHuQWjbMrk9x5wVP2NY1ZFs4ZEcFxanyzoZsxWd3uPvWnqsGFOlIDejM2t77yEJwfI+5uy8kXObFkrs6c3pq9xI6cYkTDn/DEK7aYMhLT+FR1Mlshv0ddTDrosRSGuPZHsiBtcRwuR0hs1qx1vmfPMgaoWlkuMvcaxXHiNbou2IZTe+z6ZHaQjqYO1D7LdD7FhHlGtqe8KAu0aGCN0c/0dfyPkqbz0Hs0ekq2r8pH3KX4OltMJ2rNl0xT79QfhiMQIvfPVp13Vojvlz+r2bKvnnBw616ijqA2FvIYm1Ub5xv1y6cynTTkPpNXSCtvKYutnlurraYZFB8arx/mxUFQ==</InfoSignature>
+  </AllowedInfoSignatures>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" /><DigestValue>jFSFE+7guUUhpqYJqGvxhqG56o0qddG4q+MCYF6lLSM=</DigestValue></Reference></SignedInfo><SignatureValue>ccThS9hv6/lxuLpqx1o3NmDEIKvMgCeTIEnvXmvRcMnWXx6nENZ5yHzWAxOK3su60rCURRiMGbE97ipkz/O441+gKie8JFYT/5psAycT222oCOlt1EXI47WKzsdSGlEbzl015qzTt5HiJsPgcell2pztOYr1ZKMTfseEvkLUCYIAzwDPo6hmyzUpu9b5PJuRw5DpWKofRZrwzfBPX+aXGcCbNutsRG2WXpWQnu2bP2KgXdh/smkjts9UeuStkcyygcUC47AHHVMt8no3fLLuqCn9rjPEwXx2agfKiZqCSriYEi4Qi06Kq+2Vd2VEVHvWhEN5oVWapM104o4WhgaplQ==</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>q9fy79jL32netw1tIJaAphnPSorI1Y0VczEorc/b38N0d+Dt5HpfpK+riLZGPRv5N6RvhEmETf+C0wopSOZUq1ryp30B4PQLMDQ9quSV9jhkalINqvSph0z4asCCXEEn+nO62Pk7zItY1zDO3vOlfd7QOxdN3TmMYnB0cwEgHkDXy/f9USXKroknRWoZTnqsimqNKMKkUll1O5KdLj6yDRQmyHqVzUqXJwGVLld9zO1T4AffeUi7bxqnB0BrkruQ5tAHoTJiW0L1dPIu+phiRqTe5OVdtEhMRbO4lpsykdl83/R2iRtH8KZA1kzDVxH8wxSTkyUK1BNoMtU9aLc8FQ==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue></KeyInfo></Signature></LibraryPartInfo>

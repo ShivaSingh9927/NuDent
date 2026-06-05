@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns="http://exocad.com/model/attachment">
+	<Supplier>exocad GmbH</Supplier>
+	<DisplayInformation>Support Pin without ledge</DisplayInformation>
+	<AttachmentPreviewFileName>preview.png</AttachmentPreviewFileName>
+	<SupplierLogoFileName>logo.png</SupplierLogoFileName>
+	<AttachmentDescription>
+	
+Pin geometry for addition to upper and lower jaw model, can be used for correctly aligning models towards each other. 
+
+- Scalable diameter. 
+- Free positioning along model in X/Y.
+
+	</AttachmentDescription>	
+	<Placement Move="XYZ" Rotate="None">
+		<Translation Axis="XY" Ref="_clickpoint" DirRef="_clickpoint">
+			<Const>0.0</Const>
+		</Translation>
+	</Placement>
+	<Parameter Id="Diameter" Scope="All" Decimals="1" Min="2" Max="10" Default="5">Diameter</Parameter>
+	<Parameter Id="BulgeHeight" Scope="All" Decimals="1" Min="0.1" Max="10" Default="2">Bulge height</Parameter>
+	<Parameter Id="CylinderHeightUpper" Scope="All" Decimals="1" Min="1" Max="20" Default="10">Upper cylinder height</Parameter>
+	<Parameter Id="CylinderHeightLower" Scope="All" Decimals="1" Min="1" Max="20" Default="10">Lower cylinder height</Parameter>
+	<Component ForceJaw="Upper" Id="cyl-upper" Method="AdditiveOmittingCavities">
+		<MeshFile FileName="cylinder1.eoff">
+			<Select>
+				<Rotate Axis="Z">
+					<Const>180</Const>
+				</Rotate>
+				<Scaling Axis="XY">
+					<ParameterRef Coefficient="0.1">Diameter</ParameterRef>
+				</Scaling>
+			</Select>
+			<Select Label="CUSP_2" >
+				<Scaling Axis="Z">
+					<ParameterRef>BulgeHeight</ParameterRef>
+				</Scaling>
+			</Select>
+			<Select Label="CUSP_1">
+				<Scaling Axis="Z">
+					<ParameterRef>CylinderHeightUpper</ParameterRef>
+				</Scaling>
+			</Select>
+		</MeshFile>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#4B4374</mat:Color>
+			<mat:Opacity>0.5</mat:Opacity>
+		</mat:Material>
+	</Component>
+	<Component ForceJaw="Lower" Id="cyl-lower" Method="AdditiveOmittingCavities">
+		<MeshFile FileName="cylinder2.eoff">
+			<Select>
+				<Rotate Axis="Z">
+					<Const>180</Const>
+				</Rotate>
+				<Scaling Axis="XY">
+					<ParameterRef Coefficient="0.1">Diameter</ParameterRef>
+				</Scaling>
+			</Select>
+			<Select Label="CUSP_2" >
+				<Scaling Axis="Z">
+					<ParameterRef>BulgeHeight</ParameterRef>
+				</Scaling>
+			</Select>
+			<Select Label="CUSP_1">
+				<Scaling Axis="Z">
+					<ParameterRef>CylinderHeightLower</ParameterRef>
+				</Scaling>
+			</Select>
+		</MeshFile>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#4B4374</mat:Color>
+			<mat:Opacity>0.5</mat:Opacity>
+		</mat:Material>
+	</Component>
+	<IntersectionTestOverride Result="Never">
+		<ComponentRef>cyl-upper</ComponentRef>
+		<ComponentRef>cyl-lower</ComponentRef>
+	</IntersectionTestOverride>
+</LibraryEntry>

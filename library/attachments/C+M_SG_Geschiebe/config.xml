@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<AttachmentLibrary>
+  <SupplierName>Cendres+Métaux</SupplierName>
+  <AttachmentFile>
+    <Filename>SG Male part.sdfa</Filename>
+    <Signature>9e7281dc37251651a72bff1a38305f5065c04478</Signature>
+    <DockPoint>
+      <x>-2</x>
+      <y>0</y>
+      <z>0</z>
+    </DockPoint>
+    <SupplyName>Slide Attachment SG®</SupplyName>
+    <SupplyDescription>Attachment.CM.Slide Attachment SG.Description</SupplyDescription>
+  </AttachmentFile>
+</AttachmentLibrary>

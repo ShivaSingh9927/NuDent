@@ -1,25 +1,76 @@
 """Top-level window: stage rail, swappable left panel, central 3D viewer, details panel."""
 import os
-import pyvista as pv
 import vtk
 from pyvistaqt import QtInteractor
 from PyQt5.QtCore import Qt, QTimer
-from PyQt5.QtGui import QKeySequence
+from PyQt5.QtGui import QKeySequence, QIcon, QPixmap
 from PyQt5.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLabel,
     QFrame, QStackedWidget, QFileDialog, QShortcut, QMessageBox, QAction,
-    QApplication,
+    QApplication, QInputDialog, QProgressDialog, QCheckBox,
 )
 
 from .config import LIBRARY_DIR, LIGHT_QSS, STAGES
 from .state import AppState
-from .ui import section_label
+from .ui import section_label, LayerRow
+from .mesh_io import read_mesh, FILE_DIALOG_FILTER
+from .scaninfo import find_scaninfo, parse_scaninfo, prep_arch
 from .project import save_project, load_project, PROJECT_EXT, PROJECT_FILTER
 from .settings import record_recent, forget, get_recent, get_last_project
 from .segmentation import isolate_tooth
 from .stages import (
-    MarginStage, PlaceStage, ShellStage, TrimStage, RefineStage,
+    MarginStage, CementGapStage, PlaceStage, ShellStage, TrimStage, RefineStage,
 )
+
+
+def _arch_from_path(path):
+    """Infer 'Upper' / 'Lower' from a jaw mesh filename, or None."""
+    if not path:
+        return None
+    base = os.path.basename(path).lower()
+    if "upperjaw" in base:
+        return "Upper"
+    if "lowerjaw" in base:
+        return "Lower"
+    return None
+
+
+def _find_arch_mesh(folder, arch_token):
+    """Return the path to a `*-{arch_token}.{stl,obj,ply}` mesh in `folder`.
+
+    `arch_token` is 'upperjaw' or 'lowerjaw'. Files containing '-situ' are
+    skipped (those are pre-op reference scans, not the working geometry).
+    Returns None if no match is found.
+    """
+    if not os.path.isdir(folder):
+        return None
+    for name in os.listdir(folder):
+        lower = name.lower()
+        if arch_token not in lower:
+            continue
+        if "-situ" in lower:
+            continue
+        if not lower.endswith((".stl", ".obj", ".ply")):
+            continue
+        return os.path.join(folder, name)
+    return None
+
+
+def _sibling_opposing_path(path):
+    """Given a path like '*-upperjaw.stl', return the matching '*-lowerjaw.stl'
+    in the same directory if it exists, and vice-versa. Returns None if no
+    sibling can be inferred or found."""
+    folder = os.path.dirname(path)
+    base = os.path.basename(path)
+    lower = base.lower()
+    if "upperjaw" in lower:
+        sibling_name = base[:lower.index("upperjaw")] + "lowerjaw" + base[lower.index("upperjaw") + len("upperjaw"):]
+    elif "lowerjaw" in lower:
+        sibling_name = base[:lower.index("lowerjaw")] + "upperjaw" + base[lower.index("lowerjaw") + len("lowerjaw"):]
+    else:
+        return None
+    candidate = os.path.join(folder, sibling_name)
+    return candidate if os.path.exists(candidate) else None
 
 
 class MainWindow(QMainWindow):
@@ -28,9 +79,17 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("NuDent CAD")
         self.resize(1400, 900)
         self.setStyleSheet(LIGHT_QSS)
+        # Window/taskbar icon
+        _logo = "/home/shiva/Documents/NuDent/Nudent_logo-removebg-preview.png"
+        if os.path.exists(_logo):
+            self.setWindowIcon(QIcon(_logo))
 
         self.state = AppState()
         self.jaw_actor = None
+        self.opposing_actor = None
+        self._realistic_colors = False
+        self._case_folder = None        # set when opened via "Open Case..."
+        self._case_fdi = None           # FDI chosen for this case (single-prep or user-picked)
         self.current_stage_idx = 0
         self.current_project_path = None
         self._dirty = False
@@ -41,20 +100,46 @@ class MainWindow(QMainWindow):
         # Header
         header = QFrame()
         header.setObjectName("header")
-        header.setFixedHeight(50)
+        header.setFixedHeight(56)
         h = QHBoxLayout(header)
         h.setContentsMargins(16, 0, 16, 0)
-        title = QLabel("NuDent CAD")
-        title.setObjectName("appTitle")
+        # Header logo: image if the file exists, otherwise the original text.
+        _logo_path = "/home/shiva/Documents/NuDent/Nudent_logo-removebg-preview.png"
+        if os.path.exists(_logo_path):
+            title = QLabel()
+            pm = QPixmap(_logo_path)
+            if not pm.isNull():
+                pm = pm.scaledToHeight(40, Qt.SmoothTransformation)
+                title.setPixmap(pm)
+            title.setToolTip("NuDent CAD")
+        else:
+            title = QLabel("NuDent CAD")
+            title.setObjectName("appTitle")
         h.addWidget(title)
         h.addStretch()
-        self.file_label = QLabel("No file loaded")
-        self.file_label.setObjectName("fileName")
-        h.addWidget(self.file_label)
+
+        # Two-line case identity (title + subtitle), centered between brand and button.
+        case_box = QWidget()
+        case_v = QVBoxLayout(case_box)
+        case_v.setContentsMargins(0, 0, 0, 0)
+        case_v.setSpacing(0)
+        self.case_title = QLabel("No case loaded")
+        self.case_title.setObjectName("caseTitle")
+        self.case_title.setAlignment(Qt.AlignCenter)
+        self.case_subtitle = QLabel("Open a case folder or import an STL to begin")
+        self.case_subtitle.setObjectName("caseSubtitle")
+        self.case_subtitle.setAlignment(Qt.AlignCenter)
+        case_v.addWidget(self.case_title)
+        case_v.addWidget(self.case_subtitle)
+        h.addWidget(case_box)
+        # Keep `file_label` as a hidden alias so legacy code paths still work.
+        self.file_label = self.case_title
+
         h.addStretch()
-        btn_open = QPushButton("Open STL...")
+        btn_open = QPushButton("Open Case...")
         btn_open.setObjectName("primary")
-        btn_open.clicked.connect(self.open_file)
+        btn_open.setToolTip("Open a scan folder containing upper/lower jaw meshes and scanInfo")
+        btn_open.clicked.connect(self._open_case_folder_dialog)
         h.addWidget(btn_open)
 
         # Left rail: stage selector
@@ -86,6 +171,11 @@ class MainWindow(QMainWindow):
         self.stages.append(margin)
         self.left_panel.addWidget(margin)
 
+        cement = CementGapStage(self)
+        cement.completion_changed.connect(self._on_completion_changed)
+        self.stages.append(cement)
+        self.left_panel.addWidget(cement)
+
         place = PlaceStage(self, LIBRARY_DIR)
         place.completion_changed.connect(self._on_completion_changed)
         self.stages.append(place)
@@ -106,9 +196,10 @@ class MainWindow(QMainWindow):
         self.stages.append(refine)
         self.left_panel.addWidget(refine)
 
-        # Center: 3D viewer
+        # Center: 3D viewer — subtle vertical gradient (cool top, warm bottom)
+        # reads as a "studio" backdrop and makes the white prep mesh pop.
         self.plotter = QtInteractor(self)
-        self.plotter.set_background('white')
+        self.plotter.set_background('#b8c7d9', top='#eef3f9')
         # Small XYZ orientation gizmo in the top-right corner so the user can
         # always tell which way is patient +X / +Y / +Z while orbiting.
         try:
@@ -133,15 +224,35 @@ class MainWindow(QMainWindow):
         rl = QVBoxLayout(right)
         rl.setContentsMargins(16, 16, 16, 16)
         rl.setSpacing(6)
-        rl.addWidget(section_label("VIEW"))
-        self.btn_hide_jaw = QPushButton("Hide Jaw")
-        self.btn_hide_jaw.setCheckable(True)
-        self.btn_hide_jaw.setStyleSheet(
-            "QPushButton:checked { background-color: #0071e3; color: white; border-color: #0071e3; }"
+        rl.addWidget(section_label("LAYERS"))
+        self.layer_prep = LayerRow("Prep Jaw", default_opacity=1.0)
+        self.layer_prep.visibility_changed.connect(self._on_prep_visibility)
+        self.layer_prep.opacity_changed.connect(self._on_prep_opacity)
+        self.layer_prep.setLayerEnabled(False)
+        rl.addWidget(self.layer_prep)
+
+        self.layer_opposing = LayerRow("Opposing Jaw", default_opacity=0.35)
+        self.layer_opposing.visibility_changed.connect(self._on_opposing_visibility)
+        self.layer_opposing.opacity_changed.connect(self._on_opposing_opacity)
+        self.layer_opposing.setLayerEnabled(False)
+        rl.addWidget(self.layer_opposing)
+
+        self.btn_load_opposing = QPushButton("Load Opposing STL...")
+        self.btn_load_opposing.setEnabled(False)
+        self.btn_load_opposing.clicked.connect(self._pick_opposing_file)
+        rl.addWidget(self.btn_load_opposing)
+
+        # Realistic per-vertex RGB rendering (OBJ scans only — most STL/PLY
+        # files have no vertex colors so the checkbox stays disabled).
+        self.chk_realistic = QCheckBox("Realistic colors")
+        self.chk_realistic.setToolTip(
+            "Render the prep + opposing jaws with their scanned per-vertex "
+            "colors instead of flat white/blue. Available when the source "
+            "file is an OBJ with embedded RGB."
         )
-        self.btn_hide_jaw.setEnabled(False)
-        self.btn_hide_jaw.clicked.connect(self._toggle_jaw_visibility)
-        rl.addWidget(self.btn_hide_jaw)
+        self.chk_realistic.setEnabled(False)
+        self.chk_realistic.toggled.connect(self._on_realistic_toggled)
+        rl.addWidget(self.chk_realistic)
 
         rl.addWidget(section_label("DETAILS"))
         self.details_label = QLabel("Open an STL to begin.")
@@ -212,7 +323,7 @@ class MainWindow(QMainWindow):
         if not self._confirm_discard_if_dirty("Open a new prep STL?"):
             return
         path, _ = QFileDialog.getOpenFileName(
-            self, "Open prep tooth", "", "Mesh (*.stl *.obj *.ply)"
+            self, "Open prep tooth", "", FILE_DIALOG_FILTER
         )
         if not path:
             return
@@ -232,6 +343,10 @@ class MainWindow(QMainWindow):
             try: self.plotter.remove_actor(self.jaw_actor)
             except Exception: pass
             self.jaw_actor = None
+        if self.opposing_actor is not None:
+            try: self.plotter.remove_actor(self.opposing_actor)
+            except Exception: pass
+            self.opposing_actor = None
 
         # Reset shared state, then let each stage clean up its own actors
         self._reset_state()
@@ -240,20 +355,168 @@ class MainWindow(QMainWindow):
 
         # Load
         self.state.jaw_path = path
-        self.state.jaw_mesh = pv.read(path)
-        self.jaw_actor = self.plotter.add_mesh(
-            self.state.jaw_mesh, color="white", opacity=1.0, pickable=True
-        )
+        self.state.jaw_mesh = read_mesh(path)
+        self._add_jaw_actor(opacity=1.0, visible=True)
+
+        # Auto-detect sibling opposing-jaw STL in the same folder. The dataset
+        # convention is *-upperjaw.stl / *-lowerjaw.stl, so flip those tokens.
+        sibling = _sibling_opposing_path(path)
+        if sibling is not None:
+            try:
+                self._load_opposing(sibling)
+            except Exception as e:
+                self.set_status(f"Couldn't load opposing jaw: {e}")
+
         self.plotter.reset_camera()
-        self.file_label.setText(os.path.basename(path))
+        # Single-file open (not via "Open Case...") clears any prior case context
+        # so the header doesn't keep showing stale folder/FDI info.
+        if self._case_folder is None or os.path.dirname(path) != self._case_folder:
+            self._case_folder = None
+            self._case_fdi = None
+        self._refresh_case_header()
         self._update_details()
-        self._reset_jaw_toggle()
+        self._sync_layer_panel()
 
         self.current_project_path = None
         self._dirty = True  # imported a mesh, not saved to a project yet
         self._refresh_gating()
         self.go_to_stage(0)
         self._update_window_title()
+
+    # ----- Case-folder import (auto-load both jaws + scanInfo) -----
+
+    def _open_case_folder_dialog(self):
+        if not self._confirm_discard_if_dirty("Open a case folder?"):
+            return
+        folder = QFileDialog.getExistingDirectory(self, "Open case folder")
+        if not folder:
+            return
+        try:
+            self._load_case_folder(folder)
+        except Exception as e:
+            QMessageBox.critical(self, "Failed to load case", str(e))
+
+    def _load_case_folder(self, folder):
+        """Auto-load a scan folder: upper jaw, lower jaw, and scanInfo.
+
+        Decides which arch is the prep from scanInfo's ReconstructionType. If
+        multiple prep teeth are listed, ask the user which one to design.
+        """
+        self.set_status(f"Scanning folder: {os.path.basename(folder)}...")
+        QApplication.processEvents()
+        upper = _find_arch_mesh(folder, "upperjaw")
+        lower = _find_arch_mesh(folder, "lowerjaw")
+        if upper is None and lower is None:
+            QMessageBox.warning(
+                self, "No meshes found",
+                f"No *-upperjaw or *-lowerjaw mesh files found in:\n{folder}",
+            )
+            return
+
+        # Parse scanInfo (optional — we degrade gracefully if it's missing).
+        scaninfo_path = find_scaninfo(folder)
+        chosen_fdi = None
+        arch = None
+        if scaninfo_path is not None:
+            try:
+                info = parse_scaninfo(scaninfo_path)
+            except Exception as e:
+                self.set_status(f"scanInfo parse failed ({e}); falling back to manual.")
+                info = {"preps": [], "antagonists": [], "healthy": [], "all": []}
+
+            prep_fdis = [f for f, _ in info["preps"]]
+            arch = prep_arch(prep_fdis)
+
+            if len(prep_fdis) == 1:
+                chosen_fdi = prep_fdis[0]
+            elif len(prep_fdis) > 1:
+                # Multi-prep case (e.g. anterior bridge) — ask which to design.
+                items = [f"{f}  ({t})" for f, t in info["preps"]]
+                pick, ok = QInputDialog.getItem(
+                    self, "Multiple preps found",
+                    f"This case has {len(prep_fdis)} prep teeth. Which one are you designing?",
+                    items, 0, False,
+                )
+                if not ok:
+                    return
+                chosen_fdi = int(pick.split()[0])
+
+        # Decide prep vs opposing arch.
+        if arch == "upper":
+            prep_path, opposing_path = upper, lower
+        elif arch == "lower":
+            prep_path, opposing_path = lower, upper
+        else:
+            # No scanInfo or ambiguous — fall back to whichever exists, or ask.
+            if upper and not lower:
+                prep_path, opposing_path = upper, None
+            elif lower and not upper:
+                prep_path, opposing_path = lower, None
+            else:
+                # Both exist but we can't tell — ask.
+                pick, ok = QInputDialog.getItem(
+                    self, "Which arch is the prep?",
+                    "scanInfo didn't identify the prep arch. Pick the arch you're designing on:",
+                    ["Upper", "Lower"], 0, False,
+                )
+                if not ok:
+                    return
+                if pick == "Upper":
+                    prep_path, opposing_path = upper, lower
+                else:
+                    prep_path, opposing_path = lower, upper
+
+        # Record case context BEFORE _load_jaw runs (which would otherwise
+        # clear it because it can't tell the path comes from a case folder).
+        self._case_folder = folder
+        self._case_fdi = chosen_fdi
+
+        # Hand off to the existing single-file loader, then attach the opposing.
+        # Large OBJ scans (30+ MB, 400k+ verts) can take several seconds —
+        # show a modal busy dialog so the user knows the app isn't hung.
+        progress = QProgressDialog(
+            f"Loading prep jaw\n{os.path.basename(prep_path)}",
+            None,  # no cancel button — interrupting mid-read leaves bad state
+            0, 0,  # range (0, 0) = indeterminate "busy" spinner
+            self,
+        )
+        progress.setWindowTitle("Loading case")
+        progress.setWindowModality(Qt.ApplicationModal)
+        progress.setMinimumDuration(0)
+        progress.setAutoClose(False)
+        progress.show()
+        QApplication.processEvents()
+        try:
+            self._load_jaw(prep_path)
+            if opposing_path is not None:
+                progress.setLabelText(
+                    f"Loading opposing jaw\n{os.path.basename(opposing_path)}"
+                )
+                QApplication.processEvents()
+                try:
+                    self._load_opposing(opposing_path)
+                except Exception as e:
+                    self.set_status(f"Couldn't load opposing jaw: {e}")
+        finally:
+            progress.close()
+
+        # Pre-fill the FDI in Place stage so the user lands on the right tooth.
+        if chosen_fdi is not None:
+            from .stages import PlaceStage
+            for s in self.stages:
+                if isinstance(s, PlaceStage):
+                    s.fdi_spin.setValue(chosen_fdi)
+                    s._last_fdi = chosen_fdi
+                    break
+            self.set_status(
+                f"Case loaded — prep FDI {chosen_fdi} pre-filled. "
+                f"Complete Margin first; Place stage will auto-load the anatomy."
+            )
+        else:
+            self.set_status(f"Case loaded from {os.path.basename(folder)}.")
+
+        # Refresh header now that all case context is set.
+        self._refresh_case_header()
 
     def go_to_stage(self, idx):
         if not self._can_enter_stage(idx):
@@ -336,6 +599,11 @@ class MainWindow(QMainWindow):
         act_open.triggered.connect(self._open_project_dialog)
         file_menu.addAction(act_open)
 
+        act_open_folder = QAction("Open &Case Folder...", self)
+        act_open_folder.setShortcut(QKeySequence("Ctrl+Shift+O"))
+        act_open_folder.triggered.connect(self._open_case_folder_dialog)
+        file_menu.addAction(act_open_folder)
+
         self.recent_menu = file_menu.addMenu("Recent &Projects")
         self._refresh_recent_menu()
 
@@ -376,11 +644,16 @@ class MainWindow(QMainWindow):
         act_reset.triggered.connect(lambda: (self.plotter.reset_camera(), self.plotter.render()))
         view_menu.addAction(act_reset)
 
-        self.act_hide_jaw = QAction("&Hide Jaw", self)
+        self.act_hide_jaw = QAction("&Hide Prep Jaw", self)
         self.act_hide_jaw.setCheckable(True)
         self.act_hide_jaw.setShortcut(QKeySequence("Ctrl+J"))
         self.act_hide_jaw.triggered.connect(self._on_hide_jaw_menu)
         view_menu.addAction(self.act_hide_jaw)
+
+        self.act_hide_opposing = QAction("Hide &Opposing Jaw", self)
+        self.act_hide_opposing.setCheckable(True)
+        self.act_hide_opposing.triggered.connect(self._on_hide_opposing_menu)
+        view_menu.addAction(self.act_hide_opposing)
 
         self.act_isolate = QAction("&Isolate Prep Tooth (click)", self)
         self.act_isolate.setCheckable(True)
@@ -431,14 +704,20 @@ class MainWindow(QMainWindow):
             try: self.plotter.remove_actor(self.jaw_actor)
             except Exception: pass
             self.jaw_actor = None
+        if self.opposing_actor is not None:
+            try: self.plotter.remove_actor(self.opposing_actor)
+            except Exception: pass
+            self.opposing_actor = None
         self._reset_state()
         for stage in self.stages:
             stage.restore({})
         self.current_project_path = None
         self._dirty = False
-        self.file_label.setText("No file loaded")
+        self._case_folder = None
+        self._case_fdi = None
+        self._refresh_case_header()
         self.details_label.setText("Open an STL to begin.")
-        self._reset_jaw_toggle()
+        self._sync_layer_panel()
         self._refresh_gating()
         self.go_to_stage(0)
         self._update_window_title()
@@ -477,19 +756,23 @@ class MainWindow(QMainWindow):
             try: self.plotter.remove_actor(self.jaw_actor)
             except Exception: pass
             self.jaw_actor = None
+        if self.opposing_actor is not None:
+            try: self.plotter.remove_actor(self.opposing_actor)
+            except Exception: pass
+            self.opposing_actor = None
         # Each stage clears its own actors during restore()
         if self.state.jaw_mesh is not None:
-            self.jaw_actor = self.plotter.add_mesh(
-                self.state.jaw_mesh, color="white", opacity=1.0, pickable=True
-            )
+            self._add_jaw_actor(opacity=1.0, visible=True)
+            if self.state.opposing_jaw_mesh is not None:
+                self._add_opposing_actor(opacity=0.35, visible=True)
             self.plotter.reset_camera()
-            self.file_label.setText(self.state.jaw_path or "(no jaw filename)")
+            self._refresh_case_header()
             self._update_details()
-            self._reset_jaw_toggle()
+            self._sync_layer_panel()
         else:
-            self.file_label.setText("No file loaded")
+            self._refresh_case_header()
             self.details_label.setText("Open an STL to begin.")
-            self._reset_jaw_toggle()
+            self._sync_layer_panel()
 
         # Restore each stage
         stages_data = meta.get("stages", {})
@@ -583,37 +866,208 @@ class MainWindow(QMainWindow):
                           "NuDent CAD\n\nDental crown design pipeline.\n"
                           "5-stage workflow: Margin → Place → Shell → Trim → Refine.")
 
-    # ----- Hide Jaw toggle -----
+    # ----- Header (case identity) -----
 
-    def _toggle_jaw_visibility(self):
-        """Right-panel button — apply current checked state to the jaw actor."""
-        self._apply_jaw_visibility()
-        # Keep the menu item in sync with the button.
-        if hasattr(self, "act_hide_jaw"):
-            self.act_hide_jaw.setChecked(self.btn_hide_jaw.isChecked())
+    def _refresh_case_header(self):
+        """Recompute the two-line case label from current state.
 
-    def _on_hide_jaw_menu(self, checked):
-        """View-menu action — mirror to the right-panel button + apply."""
-        self.btn_hide_jaw.setChecked(bool(checked))
-        self._apply_jaw_visibility()
-
-    def _apply_jaw_visibility(self):
-        if self.jaw_actor is None:
+        Title:    case ID (folder name) or jaw filename
+        Subtitle: arch + FDI (when known), or hints / fallback details.
+        """
+        if self.state.jaw_mesh is None:
+            self.case_title.setText("No case loaded")
+            self.case_subtitle.setText("Open a case folder or import an STL to begin")
             return
-        visible = not self.btn_hide_jaw.isChecked()
-        self.jaw_actor.SetVisibility(visible)
-        self.btn_hide_jaw.setText("Show Jaw" if not visible else "Hide Jaw")
+
+        # Title: prefer the case folder name, else the prep filename.
+        if self._case_folder:
+            title = os.path.basename(self._case_folder)
+        elif self.state.jaw_path:
+            title = os.path.basename(self.state.jaw_path)
+        else:
+            title = "(unsaved)"
+        self.case_title.setText(title)
+
+        # Subtitle: arch + FDI when we know them, else opposing-jaw indicator.
+        parts = []
+        arch = _arch_from_path(self.state.jaw_path)
+        if arch:
+            parts.append(arch)
+        if self._case_fdi is not None:
+            parts.append(f"FDI {self._case_fdi}")
+        if self.state.opposing_jaw_mesh is not None:
+            parts.append("antagonist loaded")
+        self.case_subtitle.setText(" · ".join(parts) if parts else "Prep mesh loaded")
+
+    # ----- Layers panel -----
+
+    def _add_jaw_actor(self, opacity=1.0, visible=True):
+        """(Re)create the prep-jaw actor honouring the current realistic-colors mode."""
+        if self.state.jaw_mesh is None:
+            return
+        if self.jaw_actor is not None:
+            try: self.plotter.remove_actor(self.jaw_actor)
+            except Exception: pass
+        if self._realistic_colors and "RGB" in self.state.jaw_mesh.point_data:
+            self.jaw_actor = self.plotter.add_mesh(
+                self.state.jaw_mesh, scalars="RGB", rgb=True,
+                opacity=opacity, pickable=True,
+            )
+        else:
+            self.jaw_actor = self.plotter.add_mesh(
+                self.state.jaw_mesh, color="white",
+                opacity=opacity, pickable=True,
+            )
+        self.jaw_actor.SetVisibility(bool(visible))
+
+    def _add_opposing_actor(self, opacity=0.35, visible=True):
+        """(Re)create the opposing-jaw actor honouring the current realistic-colors mode."""
+        if self.state.opposing_jaw_mesh is None:
+            return
+        if self.opposing_actor is not None:
+            try: self.plotter.remove_actor(self.opposing_actor)
+            except Exception: pass
+        if self._realistic_colors and "RGB" in self.state.opposing_jaw_mesh.point_data:
+            self.opposing_actor = self.plotter.add_mesh(
+                self.state.opposing_jaw_mesh, scalars="RGB", rgb=True,
+                opacity=opacity, pickable=False,
+            )
+        else:
+            self.opposing_actor = self.plotter.add_mesh(
+                self.state.opposing_jaw_mesh, color=(0.55, 0.7, 0.95),
+                opacity=opacity, pickable=False,
+            )
+        self.opposing_actor.SetVisibility(bool(visible))
+
+    def _on_realistic_toggled(self, on):
+        self._realistic_colors = bool(on)
+        # Preserve the user's current opacity/visibility on each layer.
+        prep_op = self.jaw_actor.GetProperty().GetOpacity() if self.jaw_actor else 1.0
+        prep_vis = bool(self.jaw_actor.GetVisibility()) if self.jaw_actor else True
+        opp_op = self.opposing_actor.GetProperty().GetOpacity() if self.opposing_actor else 0.35
+        opp_vis = bool(self.opposing_actor.GetVisibility()) if self.opposing_actor else True
+        self._add_jaw_actor(opacity=prep_op, visible=prep_vis)
+        self._add_opposing_actor(opacity=opp_op, visible=opp_vis)
+        # Tell the active stage to refresh its own actors — stages with
+        # their own prep-mesh actors (Cement, Margin focus view) honour
+        # this flag too, but only by rebuilding when asked.
+        stage = self.stages[self.current_stage_idx]
+        if hasattr(stage, "_redraw"):
+            try: stage._redraw()
+            except Exception: pass
         self.plotter.render()
 
-    def _reset_jaw_toggle(self):
-        """Sync the toggle to the current jaw state — enabled iff a jaw is loaded,
-        unchecked (jaw visible) on every load/new/open."""
-        has_jaw = self.jaw_actor is not None
-        self.btn_hide_jaw.setEnabled(has_jaw)
-        self.btn_hide_jaw.setChecked(False)
-        self.btn_hide_jaw.setText("Hide Jaw")
+    def _on_prep_visibility(self, visible):
+        if self.jaw_actor is not None:
+            self.jaw_actor.SetVisibility(bool(visible))
+            self.plotter.render()
+        if hasattr(self, "act_hide_jaw"):
+            self.act_hide_jaw.setChecked(not visible)
+
+    def _on_prep_opacity(self, opacity):
+        if self.jaw_actor is not None:
+            self.jaw_actor.GetProperty().SetOpacity(float(opacity))
+            self.plotter.render()
+
+    def _on_opposing_visibility(self, visible):
+        if self.opposing_actor is not None:
+            self.opposing_actor.SetVisibility(bool(visible))
+            self.plotter.render()
+        if hasattr(self, "act_hide_opposing"):
+            self.act_hide_opposing.setChecked(not visible)
+
+    def _on_opposing_opacity(self, opacity):
+        if self.opposing_actor is not None:
+            self.opposing_actor.GetProperty().SetOpacity(float(opacity))
+            self.plotter.render()
+
+    def _on_hide_jaw_menu(self, checked):
+        self.layer_prep.setVisible_(not bool(checked))
+        if self.jaw_actor is not None:
+            self.jaw_actor.SetVisibility(not bool(checked))
+            self.plotter.render()
+
+    def _on_hide_opposing_menu(self, checked):
+        self.layer_opposing.setVisible_(not bool(checked))
+        if self.opposing_actor is not None:
+            self.opposing_actor.SetVisibility(not bool(checked))
+            self.plotter.render()
+
+    def _sync_layer_panel(self):
+        """Sync layer rows + menu to current actor state. Called after load/open/new."""
+        has_prep = self.jaw_actor is not None
+        self.layer_prep.setLayerEnabled(has_prep)
+        self.layer_prep.setVisible_(True)
+        self.layer_prep.setOpacity(1.0)
+        if has_prep:
+            self.jaw_actor.SetVisibility(True)
+            self.jaw_actor.GetProperty().SetOpacity(1.0)
         if hasattr(self, "act_hide_jaw"):
             self.act_hide_jaw.setChecked(False)
+
+        has_opp = self.opposing_actor is not None
+        self.layer_opposing.setLayerEnabled(has_opp)
+        self.layer_opposing.setVisible_(has_opp)
+        self.layer_opposing.setOpacity(0.35)
+        if has_opp:
+            self.opposing_actor.SetVisibility(True)
+            self.opposing_actor.GetProperty().SetOpacity(0.35)
+        if hasattr(self, "act_hide_opposing"):
+            self.act_hide_opposing.setChecked(False)
+
+        self.btn_load_opposing.setEnabled(has_prep)
+        self.btn_load_opposing.setText(
+            "Replace Opposing STL..." if has_opp else "Load Opposing STL..."
+        )
+
+        # Realistic-colors checkbox: enabled iff at least one loaded mesh has
+        # per-vertex RGB (i.e. came from an exocad-style OBJ).
+        has_rgb = (
+            (self.state.jaw_mesh is not None and "RGB" in self.state.jaw_mesh.point_data) or
+            (self.state.opposing_jaw_mesh is not None and "RGB" in self.state.opposing_jaw_mesh.point_data)
+        )
+        self.chk_realistic.blockSignals(True)
+        self.chk_realistic.setEnabled(has_rgb)
+        if not has_rgb:
+            self.chk_realistic.setChecked(False)
+            self._realistic_colors = False
+        else:
+            self.chk_realistic.setChecked(self._realistic_colors)
+        self.chk_realistic.blockSignals(False)
+
+    # ----- Opposing jaw load -----
+
+    def _load_opposing(self, path):
+        """Load an opposing-arch STL. Assumes it shares the prep's coordinate frame
+        (true for scans where upper and lower come from the same session)."""
+        if self.opposing_actor is not None:
+            try: self.plotter.remove_actor(self.opposing_actor)
+            except Exception: pass
+            self.opposing_actor = None
+        mesh = read_mesh(path)
+        self.state.opposing_jaw_path = path
+        self.state.opposing_jaw_mesh = mesh
+        self._add_opposing_actor(opacity=0.35, visible=True)
+        self._sync_layer_panel()
+        self.plotter.render()
+        self.set_status(f"Loaded opposing jaw: {os.path.basename(path)}")
+
+    def _pick_opposing_file(self):
+        if self.state.jaw_mesh is None:
+            return
+        start_dir = (
+            os.path.dirname(self.state.jaw_path) if self.state.jaw_path else ""
+        )
+        path, _ = QFileDialog.getOpenFileName(
+            self, "Open opposing-jaw STL", start_dir, FILE_DIALOG_FILTER
+        )
+        if not path:
+            return
+        try:
+            self._load_opposing(path)
+            self._mark_dirty()
+        except Exception as e:
+            QMessageBox.critical(self, "Failed to load", str(e))
 
     # ----- Slice View (clip plane to expose obscured surfaces) -----
 
@@ -820,6 +1274,8 @@ class MainWindow(QMainWindow):
     def _reset_state(self):
         self.state.jaw_path = None
         self.state.jaw_mesh = None
+        self.state.opposing_jaw_path = None
+        self.state.opposing_jaw_mesh = None
         self.state.prep_mesh = None
         self.state.margin_points = []
         self.state.margin_loop_closed = False

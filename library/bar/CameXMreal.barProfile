@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<BarProfileFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile xsi:type="BarProfilePlugin" FixLeft="true" FixRight="true" FixTop="true" FixBottom="true">
+    <DisplayName>CameX M-real</DisplayName>
+    <PluginName>BarProfile.CameX_M-real#CameXMreal</PluginName>
+    <Parameters>
+      <BarProfileParameter Name="Bottom" Visible="true" Configurable="true" Min="0" Max="2" Decimals="2" Value="0" />
+      <BarProfileParameter Name="Top" Visible="true" Configurable="true" Min="0" Max="2" Decimals="2" Value="0" />
+    </Parameters>
+  </Profile>
+</BarProfileFile>

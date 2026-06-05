@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<RenderEffectSettings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" RenderEffectName="Gingiva">
+  <ColorParameter Name="color_convex" Value="#FFFFAFBD" />
+  <ColorParameter Name="color_concave" Value="#FFDA7A6F" />
+  <ColorParameter Name="color_diffuse" Value="#FF40FFE2" />
+  <ColorParameter Name="color_sss" Value="#FFB00C12" />
+  <DoubleParameter Name="ambient" Value="0.3" />
+  <DoubleParameter Name="fresnel" Value="0.32" />
+  <DoubleParameter Name="fresnel_exponent" Value="0.06" />
+  <DoubleParameter Name="specular" Value="0.37" />
+  <DoubleParameter Name="ambient_occlusion" Value="0.3" />
+  <DoubleParameter Name="specular_exponent" Value="0.22" />
+  <DoubleParameter Name="clip_distance" Value="96.5155754100059" />
+  <IntParameter Name="mouthShadingEnabled" Value="0" />
+  <Vec3Parameter Name="clipping_plane" x="0.99580603837966919" y="-0.090185128152370453" z="0.015397180803120136" />
+</RenderEffectSettings>

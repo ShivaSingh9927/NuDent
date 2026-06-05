@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://exocad.com/model/type">
+  <Supplier>Zfx GmbH</Supplier>
+  <DisplayInformation>Zfx™ - Digital-intraModel System plate</DisplayInformation>
+  <Parameter Id="modelheight" Min="36" Max="80" Default="40" Decimals="2" Unit="mm">ModelAlignmentProcessorControl.ModelHeight</Parameter>
+  <ModelType Class="Plated" PinsAreOptional="false" UseExactPinMesh="true">
+    <DisplayInformation>Zfx™ - Digital-intraModel System plate</DisplayInformation>
+	<PreviewImageFileName>zfx_Digital_intraModel_System.png</PreviewImageFileName>
+    <MinRequiredPrepPlateDist>0.2</MinRequiredPrepPlateDist>
+    <BottomPlaneUpperJaw SizeX="100" SizeY="100" Visible="false">
+      <Translate>
+        <y>2.8109</y>
+      </Translate>
+      <Translate ParameterRef="modelheight">
+        <y>-0.0703</y>
+        <z>0.5</z>
+      </Translate>
+    </BottomPlaneUpperJaw>
+    <BottomPlaneLowerJaw SizeX="100" SizeY="100" Visible="false">
+      <Translate>
+        <y>-2.8109</y>
+      </Translate>
+      <Translate ParameterRef="modelheight">
+        <y>0.0703</y>
+        <z>-0.5</z>
+      </Translate>
+    </BottomPlaneLowerJaw>
+    <OcclusalPlane SizeX="100" SizeY="100" Visible="false">
+      <Translate>
+        <y>37.5</y>
+      </Translate>
+    </OcclusalPlane>
+    <MeshResource PartType="ModelBasePlate" Jaw="Lower" FlatShading="true" FlatShadingParameter="1" MouseCollider="Always">
+      <FileName>baseplate.sdfa</FileName>
+      <Translate>
+        <y>-2.8109</y>
+      </Translate>
+      <Translate ParameterRef="modelheight">
+        <y>0.0703</y>
+        <z>-0.5</z>
+      </Translate>
+    </MeshResource>
+    <MeshResource PartType="ModelBasePlate" Jaw="Upper" Flip="Mirror" FlatShading="true" FlatShadingParameter="1" MouseCollider="Always">
+      <FileName>baseplate.sdfa</FileName>
+      <Translate>
+        <y>2.8109</y>
+      </Translate>
+      <Translate ParameterRef="modelheight">
+        <y>-0.0703</y>
+        <z>0.5</z>
+      </Translate>
+    </MeshResource>
+    <MeshResource PartType="ModelBasePlatePins" Jaw="Lower" FlatShading="true" FlatShadingParameter="1" MouseCollider="Always">
+      <FileName>baseplate_pins.sdfa</FileName>
+      <Translate>
+        <y>-2.8109</y>
+      </Translate>
+      <Translate ParameterRef="modelheight">
+        <y>0.0703</y>
+        <z>-0.5</z>
+      </Translate>
+    </MeshResource>
+    <MeshResource PartType="ModelBasePlatePins" Jaw="Upper" Flip="Mirror" FlatShading="true" FlatShadingParameter="1" MouseCollider="Always">
+      <FileName>baseplate_pins.sdfa</FileName>
+      <Translate>
+        <y>2.8109</y>
+      </Translate>
+      <Translate ParameterRef="modelheight">
+        <y>-0.0703</y>
+        <z>0.5</z>
+      </Translate>
+    </MeshResource>
+    <JawCurveUpperJaw>
+      <Point>
+        <x>-28</x>
+        <y>0</y>
+        <z>0</z>
+      </Point>
+      <Point>
+        <x>-28</x>
+        <y>65</y>
+        <z>0</z>
+      </Point>
+      <Point>
+        <x>0</x>
+        <y>75</y>
+        <z>0</z>
+      </Point>
+      <Point>
+        <x>28</x>
+        <y>65</y>
+        <z>0</z>
+      </Point>
+      <Point>
+        <x>28</x>
+        <y>0</y>
+        <z>0</z>
+      </Point>
+      <Translate>
+        <y>2.8109</y>
+      </Translate>
+      <Translate ParameterRef="modelheight">
+        <y>-0.0703</y>
+        <z>0.5</z>
+      </Translate>
+    </JawCurveUpperJaw>
+    <JawCurveLowerJaw>
+      <Point>
+        <x>-28</x>
+        <y>0</y>
+        <z>0</z>
+      </Point>
+      <Point>
+        <x>-28</x>
+        <y>65</y>
+        <z>0</z>
+      </Point>
+      <Point>
+        <x>0</x>
+        <y>75</y>
+        <z>0</z>
+      </Point>
+      <Point>
+        <x>28</x>
+        <y>65</y>
+        <z>0</z>
+      </Point>
+      <Point>
+        <x>28</x>
+        <y>0</y>
+        <z>0</z>
+      </Point>
+      <Translate>
+        <y>-2.8109</y>
+      </Translate>
+      <Translate ParameterRef="modelheight">
+        <y>0.0703</y>
+        <z>-0.5</z>
+      </Translate>
+    </JawCurveLowerJaw>
+    <ConstructionParameter>
+      <Type>ModelCutWidth</Type>
+      <Value>0.3</Value>
+    </ConstructionParameter>
+    <ConstructionParameter>
+      <Type>ModelPlateClearance</Type>
+      <Value>0.02</Value>
+    </ConstructionParameter>
+    <ConstructionParameter>
+      <Type>ModelPedestalHeight</Type>
+      <Value>5.5</Value>
+    </ConstructionParameter>
+    <ConstructionParameter>
+      <Type>ModelMinimumThicknessAroundPins</Type>
+      <Value>0</Value>
+    </ConstructionParameter>
+  </ModelType>
+</LibraryEntry>

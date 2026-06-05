@@ -1,0 +1,30 @@
+﻿<!--
+    <Translation>
+      <Keyword></Keyword>
+      <Text></Text>
+    </Translation>
+-->
+<TranslationContainer>
+  <Translations>
+    <Translation>
+      <Keyword>Bolts.CM.Dalbo.Description</Keyword>
+      <Text>
+        Systême Dalbo®
+
+        Utiliser uniquement les parties d’origines du système Dalbo® qui sont produites par Cendres+Métaux.
+        Lors de commande veuillez contacter votre distributeur régional ou vous référez à  http://www.cmsa.ch/dental
+
+        Dolder® est une marque déposée.
+
+        S'il vous plaît contacter le mode d'emploi http://www.cmsa.ch/fr/Dental/Download-Center/Documents
+        Le fabricant décline toute responsabilité pour les dommages qui résultent de la non-observation du mode d’emploi suivant.
+
+        Cendres+Métaux n’assume aucune responsabilité concernant la qualité de barres fraisées ou toute pièce qui
+        n’est pas d’origine Cendres+Métaux.
+      </Text>
+    </Translation>
+	
+	
+	
+  </Translations>
+</TranslationContainer>

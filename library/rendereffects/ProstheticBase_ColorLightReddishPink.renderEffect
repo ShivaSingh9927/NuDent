@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<RenderEffectSettings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" RenderEffectName="Gingiva">
+  <ColorParameter Name="color_convex" Value="#77FFFFA2" />
+  <ColorParameter Name="color_concave" Value="#B8FFFFFF" />
+  <ColorParameter Name="color_diffuse" Value="#7F287188" />
+  <ColorParameter Name="color_sss" Value="#EDB30000" />
+  <DoubleParameter Name="ambient" Value="0.400000005960464" />
+  <DoubleParameter Name="fresnel" Value="0.300000011920929" />
+  <DoubleParameter Name="fresnel_exponent" Value="0.0599999986588955" />
+  <DoubleParameter Name="specular" Value="0.300000011920929" />
+  <DoubleParameter Name="ambient_occlusion" Value="0.300000011920929" />
+  <DoubleParameter Name="specular_exponent" Value="0.319999992847443" />
+</RenderEffectSettings>

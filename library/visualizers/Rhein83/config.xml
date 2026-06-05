@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<AttachmentLibrary>
+  <AllowScaling>0</AllowScaling>
+  <SupplierName>RHEIN 83 Srl</SupplierName>
+  <UserMessage>More info: http://www.rhein83.com/</UserMessage>
+  <AttachmentFile>
+    <Filename>OT Cap Micro 2mm Thread ref.039SFM2.sdfa</Filename>
+    <Signature>14b1c3ace7d0bfa2a1e327da2d2bb737f76225dc</Signature>
+    <SupplyName>OT Cap Micro - 2mm Thread ref.039SFM2</SupplyName>
+    <SupplyDescription>OT Cap Micro - 2mm Thread.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Cap Micro M2 NoThread.sdfa</Filename>
+    <Signature>a129dcd8c5f699ca39c1186a6c6b631029a7fbe7</Signature>
+    <SupplyName>imes-icore placeholder for Rhein83 Micro</SupplyName>
+    <SupplyDescription>imes-icore placeholder for Rhein83 Micro.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Cap Micro Female ref.040CRM.sdfa</Filename>
+    <Signature>c881e1bf6746d3e64816bbb09688a8f3b7ffdf34</Signature>
+    <SupplyName>OT Cap Micro - Female ref.040CRM</SupplyName>
+    <SupplyDescription>OT Cap Micro - Cap.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Cap Micro Housing ref.041CAM.sdfa</Filename>
+    <Signature>b3fdad145f530401632d0b3bff3e5140201abd78</Signature>
+    <SupplyName>OT Cap Micro - Housing ref.041CAM</SupplyName>
+    <SupplyDescription>OT Cap Micro - Metal Housing.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Cap Normo 2mm Thread ref.039SFN2.sdfa</Filename>
+    <Signature>8a26c6976f9c986905be94942b1ed2986290e67b</Signature>
+    <SupplyName>OT Cap Normo - 2mm Thread ref.039SFN2</SupplyName>
+    <SupplyDescription>OT Cap Normal - 2mm Thread.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Cap Normo M2 NoThread.sdfa</Filename>
+    <Signature>5ef3665d584039b4e3f5f776209342ff8416bcb5</Signature>
+    <SupplyName>imes-icore placeholder for Rhein83 Normo</SupplyName>
+    <SupplyDescription>imes-icore placeholder for Rhein83 Normo.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Cap Normo Female ref.040CRN.sdfa</Filename>
+    <Signature>3184470f6164c05f67825bcfa4d560b5b9a52f36</Signature>
+    <SupplyName>OT Cap Normo - Female ref.040CRN</SupplyName>
+    <SupplyDescription>OT Cap Normal - Cap.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Cap Normo Housing ref.041CAN.sdfa</Filename>
+    <Signature>791fb1736220abd5d5e986d6b7de6138dd1060f8</Signature>
+    <SupplyName>OT Cap Normo - Housing ref.041CAN</SupplyName>
+    <SupplyDescription>OT Cap Normal - Metal Housing.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Equator 2mm Thread ref.039SFE2.sdfa</Filename>
+    <Signature>5e8b4cbd8ee555f70fb711755d88eef3d3672cb2</Signature>
+    <SupplyName>OT Equator - 2mm Thread ref.039SFE2</SupplyName>
+    <SupplyDescription>OT Equator - 2mm Thread-Cap assembled.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Cap Equator M2 NoThread.sdfa</Filename>
+    <Signature>82518bdf41b2d601080cb801636af4ad4cad9fe7</Signature>
+    <SupplyName>imes-icore placeholder for Rhein83 Equator</SupplyName>
+    <SupplyDescription>imes-icore placeholder for Rhein83 Equator.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Equator Female ref.140CET.sdfa</Filename>
+    <Signature>427b7690ecb7306236a69b6a69c7253983b7ce3f</Signature>
+    <SupplyName>OT Equator - Female ref.140CET</SupplyName>
+    <SupplyDescription>OT Equator - Retentive Cap.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Equator Housing ref.141CAE.sdfa</Filename>
+    <Signature>3ead56ba325dfcc952bfa7e5c82292e744a9548e</Signature>
+    <SupplyName>OT Equator - Housing ref.141CAE</SupplyName>
+    <SupplyDescription>OT Equator - Metal Housing.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Strategy Female ref.045CSM.sdfa</Filename>
+    <Signature>9dfa53ead32d9078c2915b361513443c2184f483</Signature>
+    <SupplyName>OT Strategy - Female ref.045CSM</SupplyName>
+    <SupplyDescription>OT Strategy - Cap.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Strategy Housing ref.046CSM.sdfa</Filename>
+    <Signature>d7a66a3900aabcf2e3759eee3e803b1c5ba096a6</Signature>
+    <SupplyName>OT Strategy - Housing ref.046CSM</SupplyName>
+    <SupplyDescription>OT Strategy - Metal Housing.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Vertical Clip ref.072CBV.sdfa</Filename>
+    <Signature>05d416e482755703bebd1d1f200a67ac6ff2ac9a</Signature>
+    <SupplyName>OT Vertical - Clip ref.072CBV</SupplyName>
+    <SupplyDescription>OT Vertical - Clip.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Unilateral Housing ref.156CCU.sdfa</Filename>
+    <Signature>0690e6ea2c2d523626cd574307cf71ef5c34fbea</Signature>
+    <SupplyName>OT Unilateral - Housing ref.156CCU</SupplyName>
+    <SupplyDescription>OT Unilateral - Housing.Description</SupplyDescription>
+  </AttachmentFile>
+</AttachmentLibrary>

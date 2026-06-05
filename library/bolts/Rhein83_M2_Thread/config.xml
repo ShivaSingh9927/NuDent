@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<AttachmentLibrary>
+  <AllowScaling>0</AllowScaling>
+  <SupplierName>RHEIN 83 Srl</SupplierName>
+  <UserMessage>More info: http://www.rhein83.com/</UserMessage>
+  <AttachmentFile>
+    <Filename>OT Cap Micro M2 Assembled.sdfa</Filename>
+    <Signature>37e326445c17e176bf91633985c3ee5085a8d3e0</Signature>
+    <SupplyName>OT Cap Micro - M2 Assembled</SupplyName>
+    <SupplyDescription>OT Cap Micro - 2mm Thread-Cap assembled.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Cap Normo M2 Assembled.sdfa</Filename>
+    <Signature>408ef9473f17700c352760a0bd51e5af109eb24e</Signature>
+    <SupplyName>OT Cap Normo - M2 Assembled</SupplyName>
+    <SupplyDescription>OT Cap Normal - 2mm Thread-Cap assembled.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Equator M2 Assembled.sdfa</Filename>
+    <Signature>09e5ce0287343a6fe0dc6873b3efbd745fce298c</Signature>
+    <SupplyName>OT Equator - M2 Assembled</SupplyName>
+    <SupplyDescription>OT Equator - 2mm Thread-Cap assembled.Description</SupplyDescription>
+  </AttachmentFile>
+</AttachmentLibrary>

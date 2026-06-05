@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProportionGuideLibrary>
+	<ProportionGuide>
+		<TranslatedNamePart>ProportionGuide.GoldenRatio</TranslatedNamePart>
+		<UntranslatedNamePart>(1.168 / 61.8%)</UntranslatedNamePart>
+		<Lines>
+			<Line Distance="11" />
+			<Line Distance="17.8" />
+			<Line Distance="22" />
+		</Lines>
+	</ProportionGuide>
+	
+	<ProportionGuide>
+		<UntranslatedNamePart>100% - 65% - 50%</UntranslatedNamePart>
+		<Lines>
+			<Line Distance="10.23255" />
+			<Line Distance="16.88372" />
+			<Line Distance="22" />
+		</Lines>
+	</ProportionGuide>
+	
+	<ProportionGuide>
+		<UntranslatedNamePart>1.6 - 1 - 0.6</UntranslatedNamePart>
+		<Lines>
+			<Line Distance="11" />
+			<Line Distance="16.88372" />
+			<Line Distance="22" />
+		</Lines>
+	</ProportionGuide>
+	
+	<ProportionGuide>
+		<TranslatedNamePart>ProportionGuide.Female</TranslatedNamePart>
+		<Lines>
+			<Line Distance="8.1"/>
+			<Line Distance="14.2"/>
+			<Line Distance="21.3"/>
+		</Lines>
+	</ProportionGuide>
+	<ProportionGuide>
+		<TranslatedNamePart>ProportionGuide.Male</TranslatedNamePart>
+		<Lines>
+			<Line Distance="8.6" />
+			<Line Distance="15.2" />
+			<Line Distance="22.8" />
+		</Lines>
+	</ProportionGuide>
+
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.60 (62.5%)</UntranslatedNamePart> <Lines><Line Distance="10.91472868"></Line><Line Distance="17.73643411"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.59 (62.89%)</UntranslatedNamePart><Lines><Line Distance="10.86696235"></Line><Line Distance="17.70152986"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.58 (63.29%)</UntranslatedNamePart><Lines><Line Distance="10.818848"></Line><Line Distance="17.66622016"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.57 (63.69%)</UntranslatedNamePart><Lines><Line Distance="10.77038273"></Line><Line Distance="17.63049912"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.56 (64.10%)</UntranslatedNamePart><Lines><Line Distance="10.7215636"></Line><Line Distance="17.59436078"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.55 (64.51%)</UntranslatedNamePart><Lines><Line Distance="10.67238768"></Line><Line Distance="17.55779909"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.54 (64.93%)</UntranslatedNamePart><Lines><Line Distance="10.62285202"></Line><Line Distance="17.52080788"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.53 (65.35%)</UntranslatedNamePart><Lines><Line Distance="10.57295366"></Line><Line Distance="17.48338089"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.52 (65.78%)</UntranslatedNamePart><Lines><Line Distance="10.52268963"></Line><Line Distance="17.44551176"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.51 (66.22%)</UntranslatedNamePart><Lines><Line Distance="10.47205695"></Line><Line Distance="17.407194"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.50 (66.66%)</UntranslatedNamePart><Lines><Line Distance="10.42105263"></Line><Line Distance="17.36842105"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.49 (67.11%)</UntranslatedNamePart><Lines><Line Distance="10.36967368"></Line><Line Distance="17.32918622"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.48 (67.56%)</UntranslatedNamePart><Lines><Line Distance="10.31791709"></Line><Line Distance="17.2894827"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.47 (68.02%)</UntranslatedNamePart><Lines><Line Distance="10.26577987"></Line><Line Distance="17.24930359"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.46 (68.49%)</UntranslatedNamePart><Lines><Line Distance="10.21325899"></Line><Line Distance="17.20864187"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.45 (68.96%)</UntranslatedNamePart><Lines><Line Distance="10.16035146"></Line><Line Distance="17.16749039"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.44 (69.44%)</UntranslatedNamePart><Lines><Line Distance="10.10705424"></Line><Line Distance="17.1258419"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.43 (69.93%)</UntranslatedNamePart><Lines><Line Distance="10.05336432"></Line><Line Distance="17.08368902"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.42 (70.42%)</UntranslatedNamePart><Lines><Line Distance="9.999278694"></Line><Line Distance="17.04102425"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.41 (70.92%)</UntranslatedNamePart><Lines><Line Distance="9.944794343"></Line><Line Distance="16.99783998"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.40 (71.42%)</UntranslatedNamePart><Lines><Line Distance="9.889908257"></Line><Line Distance="16.95412844"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.39 (71.94%)</UntranslatedNamePart><Lines><Line Distance="9.834617431"></Line><Line Distance="16.90988177"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.38 (72.46%)</UntranslatedNamePart><Lines><Line Distance="9.778918868"></Line><Line Distance="16.86509196"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.37 (72.99%)</UntranslatedNamePart><Lines><Line Distance="9.722809579"></Line><Line Distance="16.81975088"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.36 (73.52%)</UntranslatedNamePart><Lines><Line Distance="9.666286583"></Line><Line Distance="16.77385025"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.35 (74.07%)</UntranslatedNamePart><Lines><Line Distance="9.609346914"></Line><Line Distance="16.72738167"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.34 (74.62%)</UntranslatedNamePart><Lines><Line Distance="9.55198762"></Line><Line Distance="16.68033659"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.33 (75.18%)</UntranslatedNamePart><Lines><Line Distance="9.494205763"></Line><Line Distance="16.63270634"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.32 (75.75%)</UntranslatedNamePart><Lines><Line Distance="9.435998425"></Line><Line Distance="16.58448208"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.31 (76.33%)</UntranslatedNamePart><Lines><Line Distance="9.377362708"></Line><Line Distance="16.53565485"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.30 (76.92%)</UntranslatedNamePart><Lines><Line Distance="9.318295739"></Line><Line Distance="16.48621554"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.29 (77.51%)</UntranslatedNamePart><Lines><Line Distance="9.258794669"></Line><Line Distance="16.43615488"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.28 (78.12%)</UntranslatedNamePart><Lines><Line Distance="9.198856676"></Line><Line Distance="16.38546345"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.27 (78.74%)</UntranslatedNamePart><Lines><Line Distance="9.138478972"></Line><Line Distance="16.33413171"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.26 (79.36%)</UntranslatedNamePart><Lines><Line Distance="9.0776588"></Line><Line Distance="16.28214991"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+<ProportionGuide><TranslatedNamePart>ProportionGuide.Modified</TranslatedNamePart><UntranslatedNamePart>1.25 (80%)</UntranslatedNamePart><Lines><Line Distance="9.016393443"></Line><Line Distance="16.2295082"></Line><Line Distance="22"></Line></Lines></ProportionGuide>
+
+</ProportionGuideLibrary>

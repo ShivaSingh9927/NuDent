@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://exocad.com/model/type">
+	<Supplier>Designed by exocad GmbH</Supplier>
+	<DisplayInformation>Red Dental - Dental Pin ART evolution plate</DisplayInformation>
+	<Parameter Id="modelheight" Min="30" Max="80" Default="40" Decimals="2" Unit="mm">ModelAlignmentProcessorControl.ModelHeight</Parameter>
+	<ModelType Class="Plated">
+		<DisplayInformation>Red Dental - Dental Pin ART evolution plate</DisplayInformation>
+		<PreviewImageFileName>Red_Dental_Dental_Pin_ART_evolution.png</PreviewImageFileName>
+		<MinRequiredPrepPlateDist>8</MinRequiredPrepPlateDist>
+		<BottomPlaneUpperJaw SizeX="100" SizeY="100" Visible="false">
+			<Translate>
+				<x>30.05</x>
+				<y>-25</y>
+				<z>14</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</BottomPlaneUpperJaw>
+		<BottomPlaneLowerJaw SizeX="100" SizeY="100" Visible="false">
+			<Translate>
+				<x>30.05</x>
+				<y>-25</y>
+				<z>14</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</BottomPlaneLowerJaw>
+		<OcclusalPlane SizeX="100" SizeY="100" Visible="false">
+			<Translate>
+				<x>30.05</x>
+				<y>-25</y>			
+				<z>14</z>
+			</Translate>
+		</OcclusalPlane>
+		<MeshResource PartType="ModelBasePlate" Jaw="Lower">
+			<FileName>Red-placa.eoff</FileName>
+			<Translate>
+				<x>30.05</x>
+				<y>-25</y>
+				<z>14</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</MeshResource>
+		<MeshResource PartType="ModelBasePlate" Jaw="Upper" Flip="Mirror">
+			<FileName>Red-placa.eoff</FileName>
+			<Translate>
+				<x>30.05</x>
+				<y>-25</y>
+				<z>14</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</MeshResource>
+		<MeshResource PartType="ModelBasePlatePins" Jaw="Lower">
+			<FileName>Red-pines.eoff</FileName>
+			<Translate>
+				<x>30.05</x>
+				<y>-25</y>
+				<z>14</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</MeshResource>
+		<MeshResource PartType="ModelBasePlatePins" Jaw="Upper" Flip="Mirror">
+			<FileName>Red-pines.eoff</FileName>
+			<Translate>
+				<x>30.05</x>
+				<y>-25</y>
+				<z>14</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</MeshResource>
+		<JawCurveUpperJaw>
+			<Point>
+				<x>-25.665876388549805</x>
+				<y>-32.7130012512207</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>-31.091934204101563</x>
+				<y>33.5693244934082</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>0.25788536667823792</x>
+				<y>25.682468414306641</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>32.8763427734375</x>
+				<y>34.107826232910156</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>24.894443511962891</x>
+				<y>-32.381996154785156</y>
+				<z>0</z>
+			</Point>
+			<Translate>
+				<x>30.05</x>
+				<y>-25</y>
+				<z>14</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</JawCurveUpperJaw>
+		<JawCurveLowerJaw>
+			<Point>
+				<x>-25.665876388549805</x>
+				<y>-32.7130012512207</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>-31.091934204101563</x>
+				<y>33.5693244934082</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>0.25788536667823792</x>
+				<y>25.682468414306641</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>32.8763427734375</x>
+				<y>34.107826232910156</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>24.894443511962891</x>
+				<y>-32.381996154785156</y>
+				<z>0</z>
+			</Point>
+			<Translate>
+				<x>30.05</x>
+				<y>-25</y>
+				<z>14</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</JawCurveLowerJaw>
+	</ModelType>
+</LibraryEntry>

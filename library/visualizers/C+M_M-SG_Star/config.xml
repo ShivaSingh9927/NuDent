@@ -1,0 +1,19 @@
+﻿<?xml version="1.0"?>
+<AttachmentLibrary>
+  <SupplierName>Cendres+Métaux</SupplierName>
+  
+    <AttachmentFile>
+     <SupplyName>M-SG® Star 1</SupplyName>
+     <SupplyDescription>Visualizers.CM.M-SG-Star_1_Star_2.Description</SupplyDescription>
+     <Filename>Star1_05000433_Matrize_T_Komplett.sdfa</Filename>
+     <Signature>7ebca41ada089b799a5fa5f32aca13da054fc33e</Signature>
+  </AttachmentFile>
+  
+      <AttachmentFile>
+     <SupplyName>M-SG® Star 2</SupplyName>
+     <SupplyDescription>Visualizers.CM.M-SG-Star_1_Star_2.Description</SupplyDescription>
+     <Filename>Star2_05000414_Matrize_T_Komplett.sdfa</Filename>
+     <Signature>331fa415ebb541930ee08770aa18b2f3f16087fd</Signature>
+  </AttachmentFile>
+  
+</AttachmentLibrary>

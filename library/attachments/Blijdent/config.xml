@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<AttachmentLibrary>
+  <AttachmentFile>
+    <Filename>Conisch handvat.sdfa</Filename>
+    <Signature>120a35dda67549532f5c7cee354b3671bfc90cbf</Signature>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>Lepel handvat kort.sdfa</Filename>
+    <Signature>220b033326bacb565b724b5ff7c4ee76a70b33d5</Signature>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>Lepel handvat lang.sdfa</Filename>
+    <Signature>54345da945404b79e8998c82bcf9f680a7932006</Signature>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>Lepel handvat schuin smal.sdfa</Filename>
+    <Signature>0e0c3f3e21405903e8e60ea3315909c53dd49adc</Signature>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>Lepel handvat schuin.sdfa</Filename>
+    <Signature>c4ee5f88629a7083a4ac8b961162771830ebd8c4</Signature>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>Steun Lepel.sdfa</Filename>
+    <Signature>06c61a174fc539da5d1659bc7bef71465179cc32</Signature>
+  </AttachmentFile>
+</AttachmentLibrary>

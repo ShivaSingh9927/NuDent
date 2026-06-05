@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns="http://exocad.com/model/attachment">
+	<Supplier>exocad GmbH</Supplier>
+	<DisplayInformation>Support Pin (Improved)</DisplayInformation>
+	<AttachmentPreviewFileName>preview.png</AttachmentPreviewFileName>
+	<SupplierLogoFileName>logo.png</SupplierLogoFileName>
+	<AttachmentDescription>
+	
+Pin geometry for addition to upper and lower jaw model, can be used for correctly aligning models towards each other. 
+
+- Scalable diameter. 
+- Free positioning along model height in X/Y.
+
+	</AttachmentDescription>	
+	<Placement Move="XY" Rotate="None">
+		<Translation Axis="XY" Ref="_clickpoint" DirRef="_clickpoint">
+			<Const>8.0</Const>
+		</Translation>
+	</Placement>
+	<Parameter Id="Diameter" ConstructionParam="ModelSupportPinDiameter" Scope="All" Decimals="1">ModelAttachmentProcessorControl.PinDiameter</Parameter>
+	<Parameter Id="BulgeHeight" ConstructionParam="ModelSupportPinBulgeHeight" Scope="All" Decimals="1">ModelAttachmentProcessorControl.PinBulgeHeight</Parameter>
+	<Parameter Id="LedgeHeight" ConstructionParam="ModelSupportPinLedgeHeight" Scope="All" Decimals="1">ModelAttachmentProcessorControl.PinLedgeHeight</Parameter>
+	<Parameter Scope="All" Default="0" Min="-0.2" Max="0" Unit="mm" Decimals="2">Pin Gap</Parameter>
+	
+	<ControlPoint Id="cp-upper-center">
+		<Location>
+			<z>1</z>
+		</Location>
+		<Alignment Jaw="Upper" RelativeToBottom="true"/>
+	</ControlPoint>
+	
+	<ControlPoint Id="cp-upper" Type="ProjectXY">
+		<Location>
+			<z>1</z>
+		</Location>
+		<Alignment Jaw="Upper" RelativeToBottom="true"/>
+	</ControlPoint>
+	
+	<ControlPoint Id="cp-lower-center">
+		<Location>
+			<z>1</z>
+		</Location>
+		<Alignment Jaw="Lower" RelativeToBottom="true"/>
+	</ControlPoint>
+	
+	<ControlPoint Id="cp-lower" Type="ProjectXY">
+		<Location>
+			<z>1</z>
+		</Location>
+		<Alignment Jaw="Lower" RelativeToBottom="true"/>
+	</ControlPoint>
+	
+	<Component ForceJaw="Upper" Id="beam-upper">
+		<Profile Mirror="true">
+			<Point>
+				<x>0</x>
+				<z>1</z>
+			</Point>
+			<Point>
+				<x>1</x>
+				<z>1</z>
+			</Point>
+			<Point>
+				<x>1</x>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>0</x>
+				<z>0</z>
+			</Point>
+			<Front ExtendTo="cp-upper" FailCap="Round"/>
+			<Back Cap="Round"/>
+			<Scaling Axis="X">
+				<ParameterRef Coefficient="0.5">Diameter</ParameterRef>
+				<Const>0.5</Const>
+			</Scaling>
+			<Scaling Axis="Z">
+				<ParameterRef>LedgeHeight</ParameterRef>
+			</Scaling>		
+			<Alignment Jaw="Upper" RelativeToBottom="true"/>
+			<Orientation Axis="Y" Pivot="cp-upper-center" Towards="cp-upper"/>
+		</Profile>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#453B6A</mat:Color>
+		</mat:Material>			
+	</Component>
+	
+	<Component ForceJaw="Upper" Id="cyl-upper">
+		<MeshFile FileName="pinhead.eoff">
+			<Select>
+				<Scaling Axis="XY">
+					<ParameterRef Coefficient="0.1">Diameter</ParameterRef>
+				</Scaling>
+			</Select>
+			<Select Label="CUSP_2">
+				<Scaling Axis="Z">
+					<ParameterRef>BulgeHeight</ParameterRef>
+				</Scaling>
+			</Select>
+			<Select>
+				<Translation Axis="Z">
+					<ParameterRef>LedgeHeight</ParameterRef>
+					<Const>1</Const>
+				</Translation>
+			</Select>
+			<Select Label="CUSP_3">
+				<Translation Axis="Z">
+					<ParameterRef Coefficient="0.166666">Pin Gap</ParameterRef>
+					<Const>0</Const>
+				</Translation>
+			</Select>
+			<Select Label="CUSP_1" Invert="true">
+				<Translation Axis="Z">
+					<ParameterRef Coefficient="0.5">@modelheight</ParameterRef>
+					<ParameterRef Coefficient="-1">LedgeHeight</ParameterRef>
+					<Const>-1</Const>
+				</Translation>
+			</Select>
+		
+			<Alignment Jaw="Upper" RelativeToBottom="true"/>
+		</MeshFile>
+			<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#453B6A</mat:Color>
+		</mat:Material>		
+	</Component>
+	
+	<Component ForceJaw="Lower" Id="beam-lower">
+		<Profile Mirror="true">
+			<Point>
+				<x>0</x>
+				<z>1</z>
+			</Point>
+			<Point>
+				<x>1</x>
+				<z>1</z>
+			</Point>
+			<Point>
+				<x>1</x>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>0</x>
+				<z>0</z>
+			</Point>
+			<Front ExtendTo="cp-lower" FailCap="Round"/>
+			<Back Cap="Round"/>
+			<Scaling Axis="X">
+				<ParameterRef Coefficient="0.5">Diameter</ParameterRef>
+				<Const>0.5</Const>
+			</Scaling>
+			<Scaling Axis="Z">
+				<ParameterRef>LedgeHeight</ParameterRef>
+			</Scaling>
+		
+			<Alignment Jaw="Lower" RelativeToBottom="true"/>
+			<Orientation Axis="Y" Pivot="cp-lower-center" Towards="cp-lower"/>
+		</Profile>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#453B6A</mat:Color>
+		</mat:Material>			
+	</Component>
+	
+	<Component ForceJaw="Lower" Id="cyl-lower">
+		<MeshFile FileName="pinhead.eoff">
+			<Select>
+				<Scaling Axis="XY">
+					<ParameterRef Coefficient="0.1">Diameter</ParameterRef>
+				</Scaling>
+			</Select>
+			<Select Label="CUSP_2">
+				<Scaling Axis="Z">
+					<ParameterRef Coefficient="-1">BulgeHeight</ParameterRef>
+				</Scaling>
+			</Select>
+			<Select>
+				<Translation Axis="Z">
+					<ParameterRef>LedgeHeight</ParameterRef>
+					<Const>1</Const>
+				</Translation>
+			</Select>
+			<Select Label="CUSP_1" Invert="true">
+				<Translation Axis="Z">
+					<ParameterRef Coefficient="0.5">@modelheight</ParameterRef>
+					<ParameterRef Coefficient="-1">LedgeHeight</ParameterRef>
+					<Const>-1</Const>
+				</Translation>
+			</Select>
+			<Select Label="CUSP_3">
+				<Translation Axis="Z" Coefficient="0.166666">
+					<ParameterRef>Pin Gap</ParameterRef>
+					<Const>0</Const>
+				</Translation>
+			</Select>
+			
+			<Alignment Jaw="Lower" RelativeToBottom="true"/>
+		</MeshFile>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#453B6A</mat:Color>
+		</mat:Material>		
+	</Component>
+	
+	<IntersectionTestOverride Result="Never">
+		<ComponentRef>beam-upper</ComponentRef>
+		<ComponentRef>cyl-upper</ComponentRef>
+		<ComponentRef>beam-lower</ComponentRef>
+		<ComponentRef>cyl-lower</ComponentRef>
+		<BaseRef>Any</BaseRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Always">
+		<ComponentRef>beam-upper</ComponentRef>
+		<ComponentRef>cyl-upper</ComponentRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Always">
+		<ComponentRef>beam-upper</ComponentRef>
+		<BaseRef>Upper</BaseRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Always">
+		<ComponentRef>beam-lower</ComponentRef>
+		<ComponentRef>cyl-lower</ComponentRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Always">
+		<ComponentRef>beam-lower</ComponentRef>
+		<BaseRef>Lower</BaseRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Deny">
+		<ComponentRef>cyl-lower</ComponentRef>
+		<BaseRef>Lower</BaseRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Deny">
+		<ComponentRef>beam-lower</ComponentRef>
+		<BaseRef>Upper</BaseRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Deny">
+		<ComponentRef>cyl-upper</ComponentRef>
+		<BaseRef>Upper</BaseRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Deny">
+		<ComponentRef>beam-upper</ComponentRef>
+		<BaseRef>Lower</BaseRef>
+	</IntersectionTestOverride>
+</LibraryEntry>

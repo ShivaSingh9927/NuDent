@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<AttachmentLibrary>
+	<AllowScaling>0</AllowScaling>
+	<SupplierName>Phibo</SupplierName>
+	<UserMessage>More info: http://www.phibo.com</UserMessage>
+	<AttachmentFile>
+		<Filename>A1 - VERTICAL_30º_1.7_EXOCAD.sdfa</Filename>
+		<Signature>dfa50972611183126398e861c102b3a803b6e843</Signature>
+		<SupplyName>A1 - VERTICAL_30º_1.7_EXOCAD</SupplyName>
+		<SupplyDescription>A1 - VERTICAL_30º_1.7_EXOCAD.Description</SupplyDescription>
+	</AttachmentFile>
+	<AttachmentFile>
+		<Filename>A2 - VERTICAL_60º_1.7_EXOCAD.sdfa</Filename>
+		<Signature>a8401a8dec00d3f9b009a93cdd83852d13fd01af</Signature>
+		<SupplyName>A2 - VERTICAL_60º_1.7_EXOCAD</SupplyName>
+		<SupplyDescription>A2 - VERTICAL_60º_1.7_EXOCAD.Description</SupplyDescription>
+	</AttachmentFile>
+	<AttachmentFile>
+		<Filename>A3 - VERTICAL_30º_2.2_EXOCAD.sdfa</Filename>
+		<Signature>e35e0de284e22449ec8928e64181d04ea66cb508</Signature>
+		<SupplyName>A3 - VERTICAL_30º_2.2_EXOCAD</SupplyName>
+		<SupplyDescription>A3 - VERTICAL_30º_2.2_EXOCAD.Description</SupplyDescription>
+	</AttachmentFile>
+	<AttachmentFile>
+		<Filename>A4 - VERTICAL_60º_2.2_EXOCAD.sdfa</Filename>
+		<Signature>51567cd17a31aba4f5b56dade8daa6eb8d0c67be</Signature>
+		<SupplyName>A4 - VERTICAL_60º_2.2_EXOCAD</SupplyName>
+		<SupplyDescription>A4 - VERTICAL_60º_2.2_EXOCAD.Description</SupplyDescription>
+	</AttachmentFile>
+	<AttachmentFile>
+		<Filename>A5 - BOLA ROACH_1.7_EXOCAD.sdfa</Filename>
+		<Signature>cc300670ee542f40d82e17fcf4a068f7f6b0a8e1</Signature>
+		<SupplyName>A5 - BOLA ROACH_1.7_EXOCAD</SupplyName>
+		<SupplyDescription>A5 - BOLA ROACH_1.7_EXOCAD.Description</SupplyDescription>
+	</AttachmentFile>
+	<AttachmentFile>
+		<Filename>A6 - BOLA ROACH_2.2_EXOCAD.sdfa</Filename>
+		<Signature>eca87b51c71b570adc7a45c4e02365df8ee98f4a</Signature>
+		<SupplyName>A6 - BOLA ROACH_2.2_EXOCAD</SupplyName>
+		<SupplyDescription>A6 - BOLA ROACH_2.2_EXOCAD.Description</SupplyDescription>
+	</AttachmentFile>
+	
+	<AttachmentFile>
+		<Filename>A13 - BOLA_1.7 CO-CR_EXOCAD.sdfa</Filename>
+		<Signature>0bd6fc22d6208af9a663ff9dca4c4db477b07263</Signature>
+		<SupplyName>A13 - BOLA_1.7 CO-CR_EXOCAD</SupplyName>
+		<SupplyDescription>A13 - BOLA_1.7 CO-CR_EXOCAD.Description</SupplyDescription>
+	</AttachmentFile>
+	<AttachmentFile>
+		<Filename>A14 - BOLA_2.2 CO-CR_EXOCAD.sdfa</Filename>
+		<Signature>644d951db4e2a0ed566d029092a2ca1f17e5ffba</Signature>
+		<SupplyName>A14 - BOLA_2.2 CO-CR_EXOCAD</SupplyName>
+		<SupplyDescription>A14 - BOLA_2.2 CO-CR_EXOCAD</SupplyDescription>
+	</AttachmentFile>
+</AttachmentLibrary>

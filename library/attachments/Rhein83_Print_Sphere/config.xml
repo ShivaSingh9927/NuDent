@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<AttachmentLibrary>
+  <AllowScaling>0</AllowScaling>
+  <SupplierName>RHEIN 83 Srl</SupplierName>
+  <UserMessage>More info: http://www.rhein83.com/</UserMessage>
+  <AttachmentFile>
+    <Filename>OT Cap Micro Male toll_0.1.sdfa</Filename>
+    <Signature>4a7adb2a48f700081fb1acb90f281935c507029d</Signature>
+    <SupplyName>OT Cap - Micro Male Tolerance 0,1</SupplyName>
+    <SupplyDescription>OT Cap - Print.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Cap Micro Male toll_0.06.sdfa</Filename>
+    <Signature>e14fd98e0764f741648df2c459fa925a17bcae8f</Signature>
+    <SupplyName>OT Cap - Micro Male Tolerance 0,06</SupplyName>
+    <SupplyDescription>OT Cap - Print.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Cap Micro Male toll_0.03.sdfa</Filename>
+    <Signature>ed4aa7132fc7d9505899dba66d6a3741d0f59676</Signature>
+    <SupplyName>OT Cap - Micro Male Tolerance 0,03</SupplyName>
+    <SupplyDescription>OT Cap - Print.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Cap Normo Male toll_0.1.sdfa</Filename>
+    <Signature>a35ca3e3b47e6e47af26e76c0afdde4ed57917c0</Signature>
+    <SupplyName>OT Cap - Normo Male Tolerance 0,1</SupplyName>
+    <SupplyDescription>OT Cap - Print.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Cap Normo Male toll_0.06.sdfa</Filename>
+    <Signature>ce0fda2753f25cd83b6219d72c67d41802bec398</Signature>
+    <SupplyName>OT Cap - Normo Male Tolerance 0,06</SupplyName>
+    <SupplyDescription>OT Cap - Print.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Cap Normo Male toll_0.03.sdfa</Filename>
+    <Signature>37113a9b1a41badbc14600e82b00ea32413bade7</Signature>
+    <SupplyName>OT Cap - Normo Male Tolerance 0,03</SupplyName>
+    <SupplyDescription>OT Cap - Print.Description</SupplyDescription>
+  </AttachmentFile>
+</AttachmentLibrary>

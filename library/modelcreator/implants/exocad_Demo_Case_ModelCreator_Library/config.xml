@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<ModelLabAnalogEntries>
+	<Supplier>exocad GmbH</Supplier>
+	<DisplayInformation>exocad Demo-Case ModelCreator Library</DisplayInformation>
+	<LabAnalogs>
+		<ModelLabAnalogEntry>
+			<SubtypeInfo>For Custom Abutment Demo Case</SubtypeInfo>
+			<RotationalSymmetry>6</RotationalSymmetry>
+			<CompatibleImplants>
+				<string>exocad_Demo_Case_Implant_Library_fda : CustomAbutment</string>
+			</CompatibleImplants>
+			<ModelLabAnalogFile>14002.sdfa</ModelLabAnalogFile>
+			<RetentionMeshType>
+				<ModelLabAnalogRetentionFile>14002_PELL2.sdfa</ModelLabAnalogRetentionFile>
+			</RetentionMeshType>
+			<OffsetMethod>RadialOffset</OffsetMethod>
+			<OffsetMaximum>0.5</OffsetMaximum>
+			<OffsetMinimum>0</OffsetMinimum>
+			<OffsetProvided>0.05</OffsetProvided>
+		</ModelLabAnalogEntry>
+		<ModelLabAnalogEntry>
+			<SubtypeInfo>For Bar with Pre-Op Demo Case</SubtypeInfo>
+			<RotationalSymmetry>0</RotationalSymmetry>
+			<CompatibleImplants>
+				<string>exocad_Demo_Case_Implant_Library_fda : BarwithPreOp</string>
+			</CompatibleImplants>
+			<ModelLabAnalogFile>14007.sdfa</ModelLabAnalogFile>
+			<RetentionMeshType>
+				<ModelLabAnalogRetentionFile>14007_PELL2.sdfa</ModelLabAnalogRetentionFile>
+			</RetentionMeshType>
+			<OffsetMethod>RadialOffset</OffsetMethod>
+			<OffsetMaximum>0.5</OffsetMaximum>
+			<OffsetMinimum>0</OffsetMinimum>
+			<OffsetProvided>0.05</OffsetProvided>
+		</ModelLabAnalogEntry>
+		<ModelLabAnalogEntry>
+			<SubtypeInfo>For Model Creator with Lab Analogs Demo Case</SubtypeInfo>
+			<RotationalSymmetry>6</RotationalSymmetry>
+			<CompatibleImplants>
+				<string>exocad_Demo_Case_Implant_Library_fda : ModelCreatorwithLabAnalogs</string>
+			</CompatibleImplants>
+			<ModelLabAnalogFile>K5.DIM4.100.sdfa</ModelLabAnalogFile>
+			<RetentionMeshType>
+				<ModelLabAnalogRetentionFile>1pcs_DIM-Base_K4.1.sdfa</ModelLabAnalogRetentionFile>
+			</RetentionMeshType>
+			<OffsetMethod>RadialOffset</OffsetMethod>
+			<OffsetMaximum>0.5</OffsetMaximum>
+			<OffsetMinimum>0</OffsetMinimum>
+			<OffsetProvided>0.05</OffsetProvided>
+		</ModelLabAnalogEntry>
+		<ModelLabAnalogEntry>
+			<SubtypeInfo>For Screw-Retained Crown Demo Case</SubtypeInfo>
+			<RotationalSymmetry>6</RotationalSymmetry>
+			<CompatibleImplants>
+				<string>exocad_Demo_Case_Implant_Library_fda : ScrewRetainedCrown</string>
+			</CompatibleImplants>
+			<ModelLabAnalogFile>exoImplant_40_dummy_cylinder.sdfa</ModelLabAnalogFile>
+			<RetentionMeshType>
+				<ModelLabAnalogRetentionFile>exoImplant_40_dummy_cylinder_MCshell.sdfa</ModelLabAnalogRetentionFile>
+			</RetentionMeshType>
+			<OffsetMethod>RadialOffset</OffsetMethod>
+			<OffsetMaximum>0.5</OffsetMaximum>
+			<OffsetMinimum>0</OffsetMinimum>
+			<OffsetProvided>0.05</OffsetProvided>
+		</ModelLabAnalogEntry>
+		<ModelLabAnalogEntry>
+			<SubtypeInfo>For Screw-Retained Crown for ChairsideCAD Demo Case</SubtypeInfo>
+			<RotationalSymmetry>3</RotationalSymmetry>
+			<CompatibleImplants>
+				<string>exocad_Demo_Case_Implant_Library_fda : ScrewRetainedCrownforChairsideCAD</string>
+			</CompatibleImplants>
+			<ModelLabAnalogFile>E5.DIM3.500.sdfa</ModelLabAnalogFile>
+			<RetentionMeshType>
+				<ModelLabAnalogRetentionFile>DIM-Base_E3.5.sdfa</ModelLabAnalogRetentionFile>
+			</RetentionMeshType>
+			<OffsetMethod>RadialOffset</OffsetMethod>
+			<OffsetMaximum>0.5</OffsetMaximum>
+			<OffsetMinimum>0</OffsetMinimum>
+			<OffsetProvided>0.05</OffsetProvided>
+		</ModelLabAnalogEntry>
+		<ModelLabAnalogEntry>
+			<SubtypeInfo>For Switch Implant Connection Demo Case</SubtypeInfo>
+			<RotationalSymmetry>12</RotationalSymmetry>
+			<CompatibleImplants>
+				<string>exocad_Demo_Case_Implant_Library_fda : SwitchImplantConnection</string>
+			</CompatibleImplants>
+			<ModelLabAnalogFile>exoImplant_40_dummy_cylinder.sdfa</ModelLabAnalogFile>
+			<RetentionMeshType>
+				<ModelLabAnalogRetentionFile>exoImplant_40_dummy_cylinder_MCshell.sdfa</ModelLabAnalogRetentionFile>
+			</RetentionMeshType>
+			<OffsetMethod>RadialOffset</OffsetMethod>
+			<OffsetMaximum>0.5</OffsetMaximum>
+			<OffsetMinimum>0</OffsetMinimum>
+			<OffsetProvided>0.05</OffsetProvided>
+		</ModelLabAnalogEntry>
+		<ModelLabAnalogEntry>
+			<SubtypeInfo>Ti-Base with custom angulated screw channel</SubtypeInfo>
+			<RotationalSymmetry>12</RotationalSymmetry>
+			<CompatibleImplants>
+				<string>exocad_Demo_Case_Implant_Library_fda : Ti-Basewithcustomangulatedscrewchannel</string>
+			</CompatibleImplants>
+			<ModelLabAnalogFile>exoImplant_40_dummy_cylinder.sdfa</ModelLabAnalogFile>
+			<RetentionMeshType>
+				<ModelLabAnalogRetentionFile>exoImplant_40_dummy_cylinder_MCshell.sdfa</ModelLabAnalogRetentionFile>
+			</RetentionMeshType>
+			<OffsetMethod>RadialOffset</OffsetMethod>
+			<OffsetMaximum>0.5</OffsetMaximum>
+			<OffsetMinimum>0</OffsetMinimum>
+			<OffsetProvided>0.05</OffsetProvided>
+		</ModelLabAnalogEntry>
+		<ModelLabAnalogEntry>
+			<SubtypeInfo>For Immediate Load Demo Case</SubtypeInfo>
+			<RotationalSymmetry>6</RotationalSymmetry>
+			<CompatibleImplants>
+				<string>exocad_Demo_Case_Implant_Library_fda : ImmediateLoadDirecttoimplant</string>
+				<string>exocad_Demo_Case_Implant_Library_fda : ImmediateLoadTiBase</string>
+			</CompatibleImplants>
+			<ModelLabAnalogFile>exoImplant_40_dummy_cylinder.sdfa</ModelLabAnalogFile>
+			<RetentionMeshType>
+				<ModelLabAnalogRetentionFile>exoImplant_40_dummy_cylinder_MCshell.sdfa</ModelLabAnalogRetentionFile>
+			</RetentionMeshType>
+			<OffsetMethod>RadialOffset</OffsetMethod>
+			<OffsetMaximum>0.5</OffsetMaximum>
+			<OffsetMinimum>0</OffsetMinimum>
+			<OffsetProvided>0.05</OffsetProvided>
+		</ModelLabAnalogEntry>
+		<ModelLabAnalogEntry>
+			<SubtypeInfo>For Ball Type Attachment Load Demo Case</SubtypeInfo>
+			<RotationalSymmetry>12</RotationalSymmetry>
+			<CompatibleImplants>
+				<string>exocad_Demo_BallTypeAttachment_stock_fda : 40mm : StraightSnap-On</string>
+			</CompatibleImplants>
+			<ModelLabAnalogFile>BallTypeLocatorStyle_Analog.sdfa</ModelLabAnalogFile>
+			<RetentionMeshType>
+				<ModelLabAnalogRetentionFile>BallTypeLocatorStyle_Analog_Retention_simple.sdfa</ModelLabAnalogRetentionFile>
+			</RetentionMeshType>
+			<OffsetMethod>RadialOffset</OffsetMethod>
+			<OffsetMaximum>0.5</OffsetMaximum>
+			<OffsetMinimum>0</OffsetMinimum>
+			<OffsetProvided>0.05</OffsetProvided>
+		</ModelLabAnalogEntry>
+		<ModelLabAnalogEntry>
+			<SubtypeInfo>For Angled Ball Type Attachment Load Demo Case</SubtypeInfo>
+			<RotationalSymmetry>12</RotationalSymmetry>
+			<CompatibleImplants>
+				<string>exocad_Demo_BallTypeAttachment_stock_fda : 40mm : AngledSnap-On</string>
+			</CompatibleImplants>
+			<ModelLabAnalogFile>BallTypeLocatorStyleAngulated_Analog.sdfa</ModelLabAnalogFile>
+			<RetentionMeshType>
+				<ModelLabAnalogRetentionFile>BallTypeLocatorStyle_Analog_Retention_simple.sdfa</ModelLabAnalogRetentionFile>
+			</RetentionMeshType>
+			<OffsetMethod>RadialOffset</OffsetMethod>
+			<OffsetMaximum>0.5</OffsetMaximum>
+			<OffsetMinimum>0</OffsetMinimum>
+			<OffsetProvided>0.05</OffsetProvided>
+		</ModelLabAnalogEntry>
+	</LabAnalogs>
+</ModelLabAnalogEntries>

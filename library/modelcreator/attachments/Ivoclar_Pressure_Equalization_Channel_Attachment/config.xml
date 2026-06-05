@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns="http://exocad.com/model/attachment">
+	<Supplier>exocad GmbH</Supplier>
+	<DisplayInformation>Ivoclar - Pressure equalization channel</DisplayInformation>
+	<AttachmentPreviewFileName>preview.png</AttachmentPreviewFileName>
+	<SupplierLogoFileName>logo.png</SupplierLogoFileName>
+	<AttachmentDescription>
+	
+Geometry for substraction from upper or lower jaw model.
+ 
+- Free positioning in X/Y along jaw curve.
+- Length adjustable
+
+	</AttachmentDescription>	
+	<Placement Move="XY" Rotate="None">
+		<Translation Axis="XY" Ref="_clickpoint"/>
+		<Constraint Type="NoTranslationZ"/>
+		<Constraint Type="OnPerimeter"/>
+	</Placement>
+	<Parameter Scope="Single" Default="100" Min="30" Max="200" Unit="%" Decimals="0">Length</Parameter>
+	<ControlPoint Id="center" Type="ProjectPerimeter">
+		<Alignment RelativeToBottom="true"/>
+		<Location/>
+	</ControlPoint>
+	<Component IfJaw="Any" Method="Subtractive">
+		<Profile Mirror="false">
+			<Point><x>0</x><z>0</z></Point>
+			<Point><x>-4.21</x><z>0</z></Point>
+			<Point><x>-3.60</x><z>1.4</z></Point>
+			<Point><x>-0.60</x><z>1.4</z></Point>
+			<Point><x>0</x><z>0</z></Point>
+			<Front Cap="Flat" Extrude="4"/>
+			<Back Cap="Flat" Extrude="4"/>
+		</Profile>
+		<Translation Axis="X">
+			<Const>2.75</Const>
+		</Translation>
+		<Translation Axis="Z">
+			<Const>-0.005</Const>
+		</Translation>	
+		<Scaling Axis="Y">
+			<ParameterRef Coefficient="0.01">Length</ParameterRef>
+		</Scaling>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#453B6A</mat:Color>
+			<mat:Opacity>0.5</mat:Opacity>
+		</mat:Material>
+		<Alignment Jaw="Any" RelativeToBottom="true"/>
+		<Orientation Axis="Y" AroundAxis="Z" Ref="center" />
+	</Component>
+</LibraryEntry>

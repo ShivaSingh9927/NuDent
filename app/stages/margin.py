@@ -46,6 +46,25 @@ class MarginStage(Stage):
         # state.margin_points.
         self._user_clicks = []
         self._smart_trace = False
+        # AI margin detection: collect 1..N seed clicks, then run margin_snake
+        # over their union. More seeds force the BFS through ridge regions
+        # where curvature is too weak to bridge automatically.
+        self._ai_mode = False
+        self._ai_seeds = []
+        self._ai_seed_actors = []
+        # Per-point edit mode: each margin point becomes a sphere widget the
+        # user can drag. Drags are live-snapped to the highest-curvature
+        # vertex nearby so handles can't leave the prep's ridge.
+        self._edit_mode = False
+        self._edit_widgets = []
+        # Per-run cache: built on the first seed, reused for every subsequent
+        # seed so each extra click only re-runs the cheap BFS + smoothing.
+        # Tuple: (sub_trimesh, score, axis, roll_path).
+        self._ai_cache = None
+        # Stack of (user_clicks, margin_points, margin_loop_closed) snapshots
+        # taken before a destructive batch op (currently: AI margin run) so
+        # Ctrl+Z / Z can revert the whole op atomically.
+        self._undo_snapshots = []
 
         # Two-actor focus view: full-opacity prep + dimmed non-pickable context.
         # Built on the first margin click and torn down on stage exit.
@@ -67,6 +86,32 @@ class MarginStage(Stage):
         layout = QVBoxLayout(self)
         layout.setContentsMargins(12, 12, 12, 12)
         layout.setSpacing(6)
+
+        # --- AI MARGIN DETECTION ---
+        layout.addWidget(section_label("AI MARGIN DETECTION"))
+        ai_hint = QLabel(
+            "Click the button, place one or more seed points along the "
+            "margin, then click the button again to run. More seeds help in "
+            "weak-curvature regions. Ctrl+Z to undo."
+        )
+        ai_hint.setStyleSheet("color: #6e6e73; font-size: 11px; padding: 4px 0;")
+        ai_hint.setWordWrap(True)
+        layout.addWidget(ai_hint)
+        self.btn_ai = QPushButton("AI Margin Detection")
+        self.btn_ai.setCheckable(True)
+        self.btn_ai.setStyleSheet(
+            "QPushButton:checked { background-color: #34c759; color: white; border-color: #34c759; }"
+        )
+        self.btn_ai.clicked.connect(self._toggle_ai_mode)
+        layout.addWidget(self.btn_ai)
+
+        self.btn_edit = QPushButton("Edit Margin Points")
+        self.btn_edit.setCheckable(True)
+        self.btn_edit.setStyleSheet(
+            "QPushButton:checked { background-color: #ff9500; color: white; border-color: #ff9500; }"
+        )
+        self.btn_edit.clicked.connect(self._toggle_edit_mode)
+        layout.addWidget(self.btn_edit)
 
         # --- SMART TRACE ---
         layout.addWidget(section_label("SMART TRACE"))
@@ -145,12 +190,30 @@ class MarginStage(Stage):
             self.app.plotter.disable_picking()
         except Exception:
             pass
+        if self._edit_mode:
+            try: self.app.plotter.clear_sphere_widgets()
+            except Exception: pass
+            self._edit_widgets = []
+            self._edit_mode = False
+            self.btn_edit.setChecked(False)
+            self.btn_edit.setText("Edit Margin Points")
         self._exit_focus_view()
 
     # --- Pick + tools ---
 
     def _on_pick(self, point):
-        if point is None or self.app.state.margin_loop_closed:
+        if point is None:
+            return
+        if self._ai_mode:
+            self._ai_seeds.append(np.asarray(point))
+            self._redraw_ai_seeds()
+            self._run_ai_detection(list(self._ai_seeds))
+            self.btn_ai.setText(
+                f"AI Margin Detection ({len(self._ai_seeds)} seed"
+                f"{'s' if len(self._ai_seeds) != 1 else ''})"
+            )
+            return
+        if self.app.state.margin_loop_closed:
             return
         # First margin click also seeds prep isolation. If segmentation
         # succeeds, subsequent picks land on the isolated prep actor only
@@ -160,6 +223,11 @@ class MarginStage(Stage):
             self._try_isolate_prep(point)
             if self.app.state.prep_mesh is not None:
                 self._enter_focus_view()
+        if not self._user_clicks:
+            # First click of every new margin session is the cap-side seed —
+            # always refresh it (not just when None) so re-marking the margin
+            # gives the Cement stage a current reference point.
+            self.app.state.cap_seed_point = np.asarray(point, dtype=float).copy()
         self._user_clicks.append(np.asarray(point))
         self._rebuild_dense_margin()
         self._redraw_visualization()
@@ -290,6 +358,34 @@ class MarginStage(Stage):
                             "Stage 'Place' is now available.")
 
     def undo(self):
+        # Snapshot stack takes priority — each AI seed click pushes a snapshot,
+        # so Ctrl+Z steps back one seed at a time. If AI mode is active and
+        # there's a matching seed, drop it too so the visible seed dots stay
+        # in sync with the loop.
+        if self._undo_snapshots:
+            was_closed = self.app.state.margin_loop_closed
+            clicks, pts, closed = self._undo_snapshots.pop()
+            self._user_clicks = [np.asarray(c) for c in clicks]
+            self.app.state.margin_points = [np.asarray(p) for p in pts]
+            self.app.state.margin_loop_closed = bool(closed)
+            if self._ai_mode and self._ai_seeds:
+                self._ai_seeds.pop()
+                self._redraw_ai_seeds()
+                n = len(self._ai_seeds)
+                self.btn_ai.setText(
+                    "AI Margin Detection (active)" if n == 0
+                    else f"AI Margin Detection ({n} seed{'s' if n != 1 else ''})"
+                )
+                # If we just popped the last seed, the cache is stale — the
+                # next click should treat itself as the first seed again.
+                if n == 0:
+                    self._ai_cache = None
+            self._refresh_list()
+            self._redraw_visualization()
+            self._update_buttons()
+            if was_closed != self.app.state.margin_loop_closed:
+                self.completion_changed.emit()
+            return
         if self.app.state.margin_loop_closed:
             # Undo just the closing action, keep all clicks
             self.app.state.margin_loop_closed = False
@@ -310,6 +406,19 @@ class MarginStage(Stage):
         self._user_clicks = []
         self.app.state.margin_points = []
         self.app.state.margin_loop_closed = False
+        self.app.state.cap_seed_point = None
+        self._undo_snapshots.clear()
+        self._clear_ai_seeds()
+        self._ai_mode = False
+        self.btn_ai.setChecked(False)
+        self.btn_ai.setText("AI Margin Detection")
+        if self._edit_mode:
+            try: self.app.plotter.clear_sphere_widgets()
+            except Exception: pass
+            self._edit_widgets = []
+            self._edit_mode = False
+            self.btn_edit.setChecked(False)
+            self.btn_edit.setText("Edit Margin Points")
         # Drop the prep isolation so the next click re-seeds from the full jaw —
         # gives the user an escape hatch if the first click landed wrong.
         self._exit_focus_view()
@@ -380,6 +489,337 @@ class MarginStage(Stage):
             self.app.set_status("Smart Trace on — sparse clicks auto-follow the ridge.")
         else:
             self.app.set_status(self.description)
+
+    # --- AI margin detection (margin_snake pipeline) ---
+
+    def _toggle_ai_mode(self):
+        """Toggle AI seed-collection mode. Each click while active runs the
+        pipeline immediately and updates the margin loop live. Toggling off
+        leaves the most recent loop committed; Ctrl+Z reverts the whole run."""
+        if not self._ai_mode:
+            if self.app.state.jaw_mesh is None:
+                QMessageBox.information(self, "No mesh", "Open a prep STL first.")
+                self.btn_ai.setChecked(False)
+                return
+            if self.app.state.margin_loop_closed:
+                QMessageBox.information(
+                    self, "Loop closed",
+                    "Margin loop is already closed. Clear it before running AI detection."
+                )
+                self.btn_ai.setChecked(False)
+                return
+            self._ai_mode = True
+            self._ai_seeds = []
+            self._ai_cache = None
+            self.btn_ai.setChecked(True)
+            self.btn_ai.setText("AI Margin Detection (active)")
+            self.app.set_status(
+                "AI Margin Detection: each click adds a seed and updates the "
+                "margin live. Click the button again to finish."
+            )
+            return
+        # Exiting AI mode — leave whatever loop is committed.
+        self._ai_mode = False
+        self._ai_cache = None
+        self._clear_ai_seeds()
+        self.btn_ai.setChecked(False)
+        self.btn_ai.setText("AI Margin Detection")
+        self.app.set_status(self.description)
+
+    def _redraw_ai_seeds(self):
+        """Render the currently-collected AI seed clicks as small green spheres."""
+        for a in self._ai_seed_actors:
+            try: self.app.plotter.remove_actor(a)
+            except Exception: pass
+        self._ai_seed_actors.clear()
+        for pt in self._ai_seeds:
+            sphere = pv.Sphere(radius=0.18, center=pt)
+            a = self.app.plotter.add_mesh(
+                sphere, color="#34c759", pickable=False, reset_camera=False
+            )
+            self._ai_seed_actors.append(a)
+        self.app.plotter.render()
+
+    # --- Edit-margin mode (drag handles, snap to ridge) ---
+
+    def _toggle_edit_mode(self):
+        if not self._edit_mode:
+            pts = self.app.state.margin_points
+            if not pts:
+                QMessageBox.information(
+                    self, "No margin", "Detect or trace a margin first."
+                )
+                self.btn_edit.setChecked(False)
+                return
+            try:
+                self._ensure_mesh_data()
+            except Exception as e:
+                QMessageBox.warning(self, "Edit margin",
+                                    f"Could not prepare mesh data: {e}")
+                self.btn_edit.setChecked(False)
+                return
+            # Disable surface picking so drags don't add new clicks.
+            try: self.app.plotter.disable_picking()
+            except Exception: pass
+            centers = np.asarray(pts)
+            # add_sphere_widget with a center array returns a list of widgets
+            # and dispatches the callback as (point, index).
+            self._edit_widgets = self.app.plotter.add_sphere_widget(
+                callback=self._on_handle_moved,
+                center=centers,
+                radius=0.18,
+                color="#ff9500",
+                test_callback=False,
+                indices=list(range(len(centers))),
+            )
+            if not isinstance(self._edit_widgets, (list, tuple)):
+                self._edit_widgets = [self._edit_widgets]
+            self._edit_mode = True
+            self.btn_edit.setChecked(True)
+            self.btn_edit.setText("Done Editing")
+            self.app.set_status(
+                "Drag any orange handle — it snaps onto the curvature ridge."
+            )
+        else:
+            try: self.app.plotter.clear_sphere_widgets()
+            except Exception: pass
+            self._edit_widgets = []
+            self._edit_mode = False
+            self.btn_edit.setChecked(False)
+            self.btn_edit.setText("Edit Margin Points")
+            # Restore surface picking for normal click-to-mark.
+            try:
+                self.app.plotter.enable_surface_point_picking(
+                    callback=self._on_pick,
+                    left_clicking=True,
+                    show_point=False,
+                    show_message=False,
+                )
+            except Exception:
+                pass
+            self.app.set_status(self.description)
+
+    def _on_handle_moved(self, point, index):
+        """Sphere-widget callback — invoked continuously during a drag.
+        Snaps the new position onto the highest-curvature vertex within K
+        neighbours and overrides the widget's center so the handle visibly
+        sticks to the ridge."""
+        try:
+            snapped_vid = self._snap(np.asarray(point), prefer_ridge=True)
+        except Exception:
+            return
+        mesh = self.app.state.prep_mesh or self.app.state.jaw_mesh
+        if mesh is None:
+            return
+        new_pos = np.asarray(mesh.points[snapped_vid], dtype=float)
+        # Override the widget center so the handle visually tracks the ridge.
+        try:
+            self._edit_widgets[index].SetCenter(float(new_pos[0]),
+                                                float(new_pos[1]),
+                                                float(new_pos[2]))
+        except Exception:
+            pass
+        if 0 <= index < len(self.app.state.margin_points):
+            self.app.state.margin_points[index] = new_pos
+            self._redraw_visualization()
+
+    def _clear_ai_seeds(self):
+        self._ai_seeds = []
+        for a in self._ai_seed_actors:
+            try: self.app.plotter.remove_actor(a)
+            except Exception: pass
+        self._ai_seed_actors.clear()
+        self.app.plotter.render()
+
+    def _pv_to_trimesh(self, pv_mesh):
+        """Convert a PyVista PolyData (triangle mesh) to a trimesh.Trimesh."""
+        import trimesh
+        pts = np.asarray(pv_mesh.points)
+        faces = np.asarray(pv_mesh.faces).reshape(-1, 4)[:, 1:]
+        return trimesh.Trimesh(vertices=pts, faces=faces, process=False)
+
+    def _order_ridge_loop(self, mesh, indices, axis, n_bins=120,
+                          smooth_iters=8, smooth_lambda=0.5):
+        """Order the unordered ridge component into a smooth closed loop.
+
+        The component is a thick band (a few vertices wide), so picking the
+        single outermost vertex per angular bin produces a zigzag where adjacent
+        bins jump between the inner and outer edge. Instead we average all
+        vertices in each angular bin to get the band's centerline, then run a
+        small Laplacian smoothing pass with re-projection to the mesh surface
+        so the curve hugs the tooth."""
+        import trimesh
+        if len(indices) == 0:
+            return []
+        pts = mesh.vertices[indices]
+        centroid = pts.mean(axis=0)
+        if abs(axis[0]) < 0.9:
+            u = np.cross(axis, np.array([1.0, 0.0, 0.0]))
+        else:
+            u = np.cross(axis, np.array([0.0, 1.0, 0.0]))
+        u = u / (np.linalg.norm(u) + 1e-9)
+        v = np.cross(axis, u)
+        v = v / (np.linalg.norm(v) + 1e-9)
+        rel = pts - centroid
+        pu = rel @ u
+        pv_ = rel @ v
+        angles = np.arctan2(pv_, pu)
+        bins = (np.floor((angles + np.pi) / (2 * np.pi) * n_bins).astype(int)) % n_bins
+        ordered = []
+        for b in range(n_bins):
+            in_bin = np.where(bins == b)[0]
+            if len(in_bin) == 0:
+                continue
+            # Centerline of the ridge band in this angular slice.
+            ordered.append(pts[in_bin].mean(axis=0))
+        if len(ordered) < 3:
+            return ordered
+
+        # Laplacian smoothing of the closed loop, re-projecting to the surface
+        # each iteration so the curve never lifts off the tooth.
+        loop = np.asarray(ordered)
+        for _ in range(smooth_iters):
+            prev_ = np.roll(loop, 1, axis=0)
+            next_ = np.roll(loop, -1, axis=0)
+            loop = loop + smooth_lambda * ((prev_ + next_) / 2.0 - loop)
+            loop, _, _ = trimesh.proximity.closest_point(mesh, loop)
+        return [np.asarray(p) for p in loop]
+
+    def _run_ai_detection(self, seeds):
+        """Run the margin_snake pipeline using one or more seed clicks.
+
+        Live mode: invoked on every seed click. The first seed pays the full
+        cost (crop, axis, curvature score, rolling-ball anchor) — those are
+        cached. Every subsequent seed only re-runs the cheap BFS + ordering
+        + smoothing, so the loop updates almost instantly as the user clicks.
+        The single undo snapshot is pushed before the *first* run so Ctrl+Z
+        reverts the entire AI session atomically."""
+        if not isinstance(seeds, (list, tuple)) or len(seeds) == 0:
+            return
+        seeds = [np.asarray(s, dtype=float) for s in seeds]
+        primary_seed = seeds[0]
+        is_first_run = self._ai_cache is None
+        # Lazy import: pulls in trimesh + margin_snake only when AI is used.
+        import sys, os as _os
+        repo_root = _os.path.abspath(_os.path.join(_os.path.dirname(__file__), "..", ".."))
+        if repo_root not in sys.path:
+            sys.path.insert(0, repo_root)
+        try:
+            from margin_snake import (
+                crop_to_component, crop_to_sphere, estimate_tooth_axis,
+                compute_margin_score, find_anchor, margin_component,
+            )
+        except Exception as e:
+            QMessageBox.warning(self, "AI margin detection",
+                                f"Could not load margin_snake module: {e}")
+            self._ai_mode = False
+            self.btn_ai.setChecked(False)
+            self.btn_ai.setText("AI Margin Detection")
+            return
+
+        # Snapshot the pre-click state on every seed so Ctrl+Z can step
+        # backward seed-by-seed (the snapshot captures the loop *before*
+        # this seed's contribution).
+        snapshot = (
+            [c.copy() for c in self._user_clicks],
+            [p.copy() for p in self.app.state.margin_points],
+            bool(self.app.state.margin_loop_closed),
+        )
+
+        QApplication.setOverrideCursor(Qt.WaitCursor)
+        self.app.set_status(
+            "AI margin detection running..." if is_first_run
+            else f"Updating margin with {len(seeds)} seeds..."
+        )
+        QApplication.processEvents()
+        try:
+            # AI flow had been skipping prep isolation — that meant
+            # state.prep_mesh stayed None, breaking later stages (e.g. Cement)
+            # that depend on having the isolated prep. Mirror the manual click
+            # flow: isolate on the very first seed, then enter focus view.
+            if is_first_run and self.app.state.prep_mesh is None:
+                self._try_isolate_prep(primary_seed)
+                if self.app.state.prep_mesh is not None:
+                    self._enter_focus_view()
+            if is_first_run:
+                # The first AI seed is the cusp click — a guaranteed cap-side
+                # point. Always refresh so a fresh AI session overwrites any
+                # stale seed left over from a prior margin attempt.
+                self.app.state.cap_seed_point = np.asarray(primary_seed, dtype=float).copy()
+            if is_first_run:
+                # Prefer the isolated prep mesh when available; otherwise run over the full jaw.
+                pv_mesh = self.app.state.prep_mesh or self.app.state.jaw_mesh
+                tm = self._pv_to_trimesh(pv_mesh)
+
+                # Try connected-component crop first (best on segmented dental
+                # scans). If it lands on a tiny stray fragment or there's only
+                # one giant component, fall back to a sphere crop and grow the
+                # radius until we have enough geometry to compute curvature.
+                sub = crop_to_component(tm, primary_seed)
+                if sub is None or len(sub.vertices) < 200:
+                    for r in (9.0, 15.0, 25.0, 40.0):
+                        candidate = crop_to_sphere(tm, primary_seed, r)
+                        if candidate is not None and len(candidate.vertices) >= 200:
+                            sub = candidate
+                            break
+                if sub is None or len(sub.vertices) < 200:
+                    raise RuntimeError(
+                        "Crop too small around the seed click — try clicking "
+                        "closer to the center of the prep tooth."
+                    )
+
+                axis, _ = estimate_tooth_axis(sub, primary_seed)
+                score = compute_margin_score(sub, radius=0.4)
+                _, roll_path = find_anchor(sub, primary_seed, axis, score=score,
+                                           score_threshold=0.5)
+                self._ai_cache = (sub, score, axis, np.asarray(roll_path, dtype=int))
+            sub, score, axis, roll_path = self._ai_cache
+
+            # Snap every user seed onto the cropped mesh and append to the
+            # path that seeds the ridge-component BFS. Extra seeds force
+            # strong-ridge vertices within `attach_radius` of them into the
+            # loop, bridging weak-curvature stretches.
+            tree = cKDTree(np.asarray(sub.vertices))
+            _, seed_idx = tree.query(np.asarray(seeds), k=1)
+            path = list(roll_path) + [int(i) for i in np.atleast_1d(seed_idx)]
+
+            margin_idx = margin_component(sub, score, path,
+                                          score_threshold=0.5,
+                                          walk_threshold=0.25,
+                                          attach_radius=1.0)
+            ordered = self._order_ridge_loop(sub, margin_idx, axis)
+            if len(ordered) < 6:
+                raise RuntimeError(
+                    f"Detected ridge too small ({len(ordered)} points). "
+                    "Try clicking closer to the prep's center."
+                )
+
+            # Commit: store as the dense margin curve, mark loop closed, keep
+            # _user_clicks empty (the AI loop has no per-click sources).
+            self._undo_snapshots.append(snapshot)
+            self._user_clicks = []
+            self.app.state.margin_points = [np.asarray(p) for p in ordered]
+            self.app.state.margin_loop_closed = True
+            self._refresh_list()
+            self._redraw_visualization()
+            self._update_buttons()
+            self.completion_changed.emit()
+            self.app.set_status(
+                f"AI margin detection: {len(ordered)} points "
+                f"from {len(seeds)} seed{'s' if len(seeds) != 1 else ''}. "
+                "Press Ctrl+Z to undo."
+            )
+        except Exception as e:
+            QMessageBox.warning(self, "AI margin detection failed", str(e))
+            self.app.set_status(self.description)
+            # Hard reset on failure so the user can start over cleanly.
+            self._ai_mode = False
+            self._ai_cache = None
+            self._clear_ai_seeds()
+            self.btn_ai.setChecked(False)
+            self.btn_ai.setText("AI Margin Detection")
+        finally:
+            QApplication.restoreOverrideCursor()
 
     def _ensure_mesh_data(self):
         """One-time per-mesh computation: curvature, KDTree, weighted adjacency.
@@ -532,7 +972,7 @@ class MarginStage(Stage):
 
         # User clicks as larger spheres
         for pt in self._user_clicks:
-            sphere = pv.Sphere(radius=0.5, center=pt)
+            sphere = pv.Sphere(radius=0.22, center=pt)
             a = self.app.plotter.add_mesh(sphere, color='red', pickable=False, reset_camera=False)
             self._point_actors.append(a)
 
@@ -545,7 +985,7 @@ class MarginStage(Stage):
             n = len(arr)
             poly = pv.PolyData(arr)
             poly.lines = np.hstack([[n], np.arange(n)])
-            tube = poly.tube(radius=0.15)
+            tube = poly.tube(radius=0.08)
             a = self.app.plotter.add_mesh(tube, color='red', pickable=False, reset_camera=False)
             self._line_actors.append(a)
 

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns="http://exocad.com/model/attachment">
+	<Supplier>exocad GmbH for Kois Center</Supplier>
+	<DisplayInformation>Kois Center - Transfer Adapter</DisplayInformation>
+	<AttachmentPreviewFileName>preview.png</AttachmentPreviewFileName>
+	<SupplierLogoFileName>logo.png</SupplierLogoFileName>
+	<AttachmentDescription>
+	
+Geometry for addition to upper and/or lower jaw model.
+
+	</AttachmentDescription>
+	<Placement GroupAll="true" Jaw="Any" Move="None" Rotate="None"/>
+	<Component ForceJaw="Upper" Id="arti-upper" Method="Additive">
+		<MeshFile FileName="kois_MX_attachment.sdfa">
+			<Translation Axis="X">
+				<Const>30</Const>
+			</Translation>
+			<Translation Axis="Z">
+				<Const>60</Const>
+			</Translation>
+			<Translation Axis="Y">
+				<Const>-80</Const>
+			</Translation>			
+		</MeshFile>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#A6956A</mat:Color>
+			<mat:Opacity>0.5</mat:Opacity>
+		</mat:Material>
+	</Component>
+	<Component ForceJaw="Lower" Id="arti-lower" Method="Additive">
+		<MeshFile FileName="kois_MN_attachment.sdfa">
+			<Translation Axis="X">
+				<Const>30</Const>
+			</Translation>
+			<Translation Axis="Z">
+				<Const>60</Const>
+			</Translation>
+			<Translation Axis="Y">
+				<Const>-80</Const>
+			</Translation>			
+		</MeshFile>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#A6956A</mat:Color>
+			<mat:Opacity>0.5</mat:Opacity>
+		</mat:Material>
+	</Component>
+	<IntersectionTestOverride Result="Test">
+		<ComponentRef>arti-upper</ComponentRef>
+		<BaseRef>Upper</BaseRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Test">
+		<ComponentRef>arti-lower</ComponentRef>
+		<BaseRef>Lower</BaseRef>
+	</IntersectionTestOverride>	
+</LibraryEntry>

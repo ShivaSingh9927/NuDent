@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with exoImplantEditor CAD [Engine build 8776] [<64-Bit>]  -->
+<ImplantLibraryEntry xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <RegistrationClickCenter>
+    <x>2.2519989013671875</x>
+    <y>0.006832614541053772</y>
+    <z>14.132228851318359</z>
+  </RegistrationClickCenter>
+  <AxisAsymmetric>
+    <x>1</x>
+    <y>0</y>
+    <z>0</z>
+  </AxisAsymmetric>
+  <MarkerFilename>50002_Scanbody.stl</MarkerFilename>
+  <DisplayInformation>exocad - Demo Stock Abutment FDA</DisplayInformation>
+  <Keyword>exocad_Demo_Stock_Abutment_stock_fda</Keyword>
+  <SupportOrientation>-1</SupportOrientation>
+  <RegulatoryClearance IsDesignConstraint="true">FDA</RegulatoryClearance>
+  <ImplantConnection>
+    <ID>EXO_EX_P40</ID>
+  </ImplantConnection>
+  <LibraryType>StockAbutment</LibraryType>
+  <Supplier>exocad GmbH</Supplier>
+  <SupplierLink>http://www.exocad.com</SupplierLink>
+  <SupplierVersion>1</SupplierVersion>
+  <LegalInformation>This library is for demonstration only.</LegalInformation>
+  <WarrantyInformation>DISCLAIMER OF WARRANTY
+
+
+THIS DATA IS PROVIDED "AS IS" AND WITHOUT WARRANTIES AS TO PERFORMANCE, ACCURACY, OR MERCHANTABILITY. THE SELLER'S SALESPERSONS MAY HAVE MADE STATEMENTS ABOUT THIS DATA. ANY SUCH STATEMENTS DO NOT CONSTITUTE WARRANTIES AND SHALL NOT BE RELIED ON BY USER IN DECIDING WHETHER TO USE THIS DATA.
+
+THIS DATA IS PROVIDED WITHOUT ANY EXPRESSED OR IMPLIED WARRANTIES WHATSOEVER. BECAUSE OF THE DIVERSITY OF CONDITIONS AND HARDWARE UNDER WHICH THIS DATA MAY BE USED, NO WARRANTY OF FITNESS FOR A PARTICULAR PURPOSE IS OFFERED. THE USER IS ADVISED TO TEST THE DATA THOROUGHLY BEFORE RELYING ON IT. THE USER MUST ASSUME THE ENTIRE RISK OF USING THIS DATA AND ACCEPTS IT "WITH ALL ITS FAULTS". THE USER MUST ASSUME THE ENTIRE RISK OF USING THE PROGRAM.
+</WarrantyInformation>
+  <AxisOcclusal>
+    <x>0</x>
+    <y>0</y>
+    <z>1</z>
+  </AxisOcclusal>
+  <SupplierV4IconFilename>EXO_exocad.png</SupplierV4IconFilename>
+  <TypeConfig>
+    <ImplantTypeConfig>
+      <AxisAsymmetric>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+      </AxisAsymmetric>
+      <MinimumThicknessFilename IsDesignConstraint="true">min_thickness_40.sdfa</MinimumThicknessFilename>
+      <MinimumThicknessFileConstructionParam IsDesignConstraint="true">0.5</MinimumThicknessFileConstructionParam>
+      <DisplayInformation>4 mm</DisplayInformation>
+      <Keyword>4mm</Keyword>
+      <ReferenceHeightOffset>0</ReferenceHeightOffset>
+      <ReferenceRotationOffset>0</ReferenceRotationOffset>
+      <RotationLockCount>12</RotationLockCount>
+      <StockAbutmentFileName>stockabutment_geometry_planning_40.sdfa</StockAbutmentFileName>
+      <StockAbutmentSupportFileName>stockabutment_geometry_support_40.sdfa</StockAbutmentSupportFileName>
+    </ImplantTypeConfig>
+  </TypeConfig>
+  <SignatureDate>2024-08-12T13:57:12.2708063Z</SignatureDate>
+  <InfoSignatureV4>WCQBGPnl8iqbqIfY5Jb0c6X61CnLDUEptkUdTkoxqJyrIkroexsDYPa5s3sXpLaixFKf83GOfVdLnemgIf34DFmg+PMTk/lT9AYicdclDNin84cbqAAnzGTcFNbxfhVqeoMnegO1geefb7DR6VxcojNuhGowhmqvLMfgQ628pOOq/NtDdcxQ1It2+kNDngFoBJwtejKx39GgcIxnqrQGU1wM173QiqRerYRWEEI87lyAe1FMKyLN0KQmz00V8bcrQuRC6aF46FoHuJHGhci8Fz86uy+ab5eZBxRbaLih8X46BM4jpCG/avZ3DWFHcHF4KojPF2VzkVo1Z9En6LPzyVw2pM4u6nl+tQet3Cpe3J4ZfweXPjeW0+qESzbaw8FV4SNfwEwp5fsoSs09JmpXW/3nOeUg/6hkAa/ErIrfYGBBt5kAAIMbDFnGAV63ajcEDM+4nSZK4z2s9+WYVJgw+6HTrsN9GyagDduvWbkpLk/Se0Yxie6Os9d+z79UrvE/GVR05F6FPDmt0ZDz3ximCN04He2gzhnSLA3ugmz94cmRSwRAhN8PhdUtV2b2lOVFsc/y9sQqF6HUrNJFHyVoITCKn1whsMrdQ6MEGVAI8t2GDex8ptaTNn8ua7TC0ALudH7mGnM1bc7CHIAALQacklJpoX2VcfJbfVCUoaCItZQ=</InfoSignatureV4>
+  <InfoSignatureV5>oFpdRPOsD5/kubbY7ZZHoygIS5LxXuNNHwC/Nqd0xfgxa07MfYw1p+uG6+A2RBV5XUpE2RyWk11bf30hUFglC3q7mU+38bz9UNqhFlQpTISLidk1BcJ2DhQuA6G2zfCddTjmxa++G1gjVJZvyJwKm0OboOSf3uuRNpybItMhDGq6Sn5Hpc8UyUyhFIv7ELIYALv/I0U+V293//J2jeJR5TEv+H9f6Svv7OiQVyUL2ul+jpc72bjO4hWOTIhsc7Scw4RiNHY9qguvMFBTkhJYrH2dWGlI3CG1jBwoVccxEj/+p5eD33rIRW3kve0XO2viLfmmXhK1Hw5mDxwbOx/EbrpsEWVgFwQHdRX48I96pMz6JPym1nUMgeKfXP9NAENvzDILvYPKxWrLfJro4b7wBecmN5dFNMw4DviYPk9xlWCcTHfo0C0dh6VuLLYiuZe/fKty3MrDNyGQgS6NKxrdqUEeEvoEOZyqXfyXZpn7oQKKT2pvIksXM/qu0GreknPGic7DlpKxzLP249KTLov+VO9q22ATAtfF4yLAZtDS0Kb0qJ7q8QLh3ggSjPc+DD3F1lpy64d7kvm8o6KH+cK2zOqM8hxqDQlpBiIqM3gwZzgq7Npb3KW6TWPpTUozC4U4Avygxk2PJvI+bs6FuA6q3EJdKyIf757NePamIXb+Lrs=</InfoSignatureV5>
+  <InfoSignatureV6>SCEgudN50MYCRcX6BvEBiwalpDcpI9g01Vdf5aEVjh0E1iBVlqZ9Vtv1lRN1FDOebfViNBUlGqhApLURgAA6ulkBjTI8JZlzHXPvjb/hOu3Y3lO2aSBdfNoWrbewNL41Fo7sKxhByk4FS/ej6YQh6e/AHuWRBAWW0Z1rL5+1gQKtwqVbjFwN12fSYn7s8B+b6ykHfpAK+DfnXw1ToiB4L4jm+JsUFyHcfCAnI3hDtR6H0EWnWPO6OMIrYAlxE7bFpCgC851OK+qH6kDLWUrr+sIfTwqTYP0slm0+7bakirP43SEsuLNcKDaYI+/AVjqv/0W7sslnTdySEfqvxqNlHO407XR2oPCxR9CJTANq8STcgN3a7SFILu0D3b6SPOE48k1g9Ett2gQYk+8CH91o/JpdgCu9+Z+RsAA2f74kcHeoLgdK6IIr900LffPP+LcM//JdB8BPvjy24cByFd0WHbzf2+K8Q22t0EPvJ2DfgTh9bi5f5lD0wbqZwqOUzwPvyPR05GG+vMjlQLBDNSgrtYOD1eEh66kPkZIfZ8zxkeCgJf4GBQQV0EUWilj92/9oaPFW/L2D6LdZQy21/lOa2C3GGDhyat7ojc+094UdM6owu2HNqIRIY8ug53+M2rCMEkqjIEM09b8cYL3VGyWtvMndqfeNvJJRCfH0AyifdrM=</InfoSignatureV6>
+  <FileSignatures>
+    <!--  NOTE! Signature is provided ONLY for specific mesh properties -->
+    <!--  NOT for accuracy or suitability to a particular task.         -->
+    <!--  A valid signature from the software vendor does NOT imply any -->
+    <!--  warranties or statements regarding the data's correctness!    -->
+    <FileSignature>
+      <Filename>50002_Scanbody.stl</Filename>
+      <Signature>+854/f7w21qgRW92zJblgOo0SBi4pS0le3zx8QbU7juMHw3xk074V87V+5kizo0nno2d791VT5UhvcutcSzdow==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>EXO_exocad.png</Filename>
+      <Signature>lL7Yxp6O4n0EVekJTDLd3t3QHBMnJ9UNBypl8qMKbouYj/9rd4PVQgCkuY05O8jHkkwllKhb9oNXmVi93hMm6g==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>min_thickness_40.sdfa</Filename>
+      <Signature>VUFCs+1f22cSKneECtHfph6Rfrf5uO/SqZMInIWBw5f3nZ9zCVmRyY0itUy+XXZ86EuIMi1fdEgrT53q4s/oSQ==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>stockabutment_geometry_planning_40.sdfa</Filename>
+      <Signature>cCQEC0xun6ZS3c082tHOjweCXFJL18YsKW6348vZRIw3z1ors41xKA0slZTRAONKMn+Mh/0FmiYtcQZb8RdRtQ==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>stockabutment_geometry_support_40.sdfa</Filename>
+      <Signature>giC5zh6QP30/ZA71YAmohxbbrTMBUhBqCQekzNgkX4rWA/j/v5WvCo4rXat66AWVFz0hWRU5TozoJrRKlaFoSg==</Signature>
+    </FileSignature>
+  </FileSignatures>
+</ImplantLibraryEntry>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0"?>
+<AttachmentLibrary>
+  <SupplierName>Cendres+Métaux</SupplierName>
+  
+    <AttachmentFile>
+     <SupplyName>Ackermann®</SupplyName>
+     <SupplyDescription>Visualizers.CM.Ackermann_Bar.Description</SupplyDescription>
+     <Filename>200004559_A-Reiter-E.sdfa</Filename>
+     <Signature>aef7ca341e5ae836b1c0d6a172901d3f131eb907</Signature>
+  </AttachmentFile>
+  
+      <AttachmentFile>
+     <SupplyName>Ackermann®</SupplyName>
+     <SupplyDescription>Visualizers.CM.Ackermann_Bar.Description</SupplyDescription>
+     <Filename>200004563_B-Reiter-E.sdfa</Filename>
+     <Signature>875eb082c310c0176b4910535b45ceee1b9a92a8</Signature>
+  </AttachmentFile>
+  
+</AttachmentLibrary>

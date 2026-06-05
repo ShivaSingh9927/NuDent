@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<AttachmentLibrary>
+	<AllowScaling>0</AllowScaling>
+	<SupplierName>RHEIN 83 Srl</SupplierName>
+	<UserMessage>More info: http://www.rhein83.com/</UserMessage>
+	<AttachmentFile>
+		<Filename>OT Bar Male ref.0220BB.sdfa</Filename>
+		<Signature>691e6be372582aab85a9f02ad0e20f4ac5f848be</Signature>
+		<SupplyName>OT Bar - Male ref.0220BB</SupplyName>
+		<SupplyDescription>OT Bar - Castable Bar.Description</SupplyDescription>
+	</AttachmentFile>
+	<AttachmentFile>
+		<Filename>OT Cap Micro Extension Arm ref.151BAM.sdfa</Filename>
+		<Signature>c960260d42e7018b72706e05279ef175c0af6949</Signature>
+		<SupplyName>OT Cap Micro - Extension Arm ref.151BAM</SupplyName>
+		<SupplyDescription>OT Cap Micro - Extension Arm.Description</SupplyDescription>
+	</AttachmentFile>
+	<AttachmentFile>
+		<Filename>Ot Cap Normo Extension Arm ref.151BAN.sdfa</Filename>
+		<Signature>35d514a60fa17929573523e84a889f328635bd77</Signature>
+		<SupplyName>Ot Cap Normo - Extension Arm ref.151BAN</SupplyName>
+		<SupplyDescription>OT Cap Normal - Extension Arm.Description</SupplyDescription>
+	</AttachmentFile>
+	<AttachmentFile>
+		<Filename>OT Strategy Male ref.154PCS.sdfa</Filename>
+		<Signature>bfd82ff9cf50c9d6c97486c5d7576f77b1654b57</Signature>
+		<SupplyName>OT Strategy - Male ref.154PCS</SupplyName>
+		<SupplyDescription>OT Strategy - Male.Description</SupplyDescription>
+	</AttachmentFile>
+	<AttachmentFile>
+		<Filename>OT Strategy STEADY ref.154STY.sdfa</Filename>
+		<Signature>5fd0062a73cf832c6a381c4a9d38da23ae0cff2b</Signature>
+		<SupplyName>OT Strategy - STEADY ref.154STY</SupplyName>
+		<SupplyDescription>OT Strategy - Steady.Description</SupplyDescription>
+	</AttachmentFile>
+	<AttachmentFile>
+		<Filename>OT Tecno Extension Arm ref.193BCA.sdfa</Filename>
+		<Signature>fcb8fbb4672997c330db31bbc1cedb4400941d6c</Signature>
+		<SupplyName>OT Tecno - Extension Arm ref.193BCA</SupplyName>
+		<SupplyDescription>OT Tecno - Extenstion Arm.Description</SupplyDescription>
+	</AttachmentFile>
+	<AttachmentFile>
+		<Filename>OT Vertical Male ref.072MCV.sdfa</Filename>
+		<Signature>0b68fc228ddab514e61a453bbc256f3383dcf7fc</Signature>
+		<SupplyName>OT Vertical - Male ref.072MCV</SupplyName>
+		<SupplyDescription>OT Vertical - Plus Steady Male.Description</SupplyDescription>
+	</AttachmentFile>
+	<AttachmentFile>
+		<Filename>OT Unilateral Male ref.156BCU.sdfa</Filename>
+		<Signature>092892ca2451c61f5bb47e1ad0c791845bafe5a2</Signature>
+		<SupplyName>OT Unilateral - Male ref.156BCU</SupplyName>
+		<SupplyDescription>OT Unilateral - Male.Description</SupplyDescription>
+	</AttachmentFile>
+</AttachmentLibrary>

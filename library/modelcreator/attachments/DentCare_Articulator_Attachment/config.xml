@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns="http://exocad.com/model/attachment">
+	<Supplier>DentCare</Supplier>
+	<DisplayInformation>DentCare - Articulator attachment</DisplayInformation>
+	<AttachmentPreviewFileName>preview.png</AttachmentPreviewFileName>
+	<SupplierLogoFileName>logo.png</SupplierLogoFileName>
+	<AttachmentDescription>
+	
+DentCare articulator adapter for direct attachment to 3D printed model. 
+ 
+- Free positioning along model height in X/Y, rotatable along Z.
+
+</AttachmentDescription>
+	<Placement Move="XY" Rotate="Z">
+		<Translation Axis="XY" Ref="_clickpoint" DirRef="_clickpoint">
+			<Const>0.0</Const>
+		</Translation>
+	</Placement>
+	<Component IfJaw="Any" Method="AdditiveOmittingCavities" Id="anydentcareu">
+		<MeshFile FileName="DentCare_Articulator_Attachment.sdfa" Retriangulate="false">
+			<Rotation Axis="Z">
+				<Const>180</Const>
+			</Rotation>
+		</MeshFile>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#C0C0C0</mat:Color>
+		</mat:Material>
+		<Alignment Jaw="Upper" RelativeToBottom="false"/>
+	</Component>
+	<Component IfJaw="Any" Method="AdditiveOmittingCavities" Id="anydentcarel">
+		<MeshFile FileName="DentCare_Articulator_Attachment.sdfa" Retriangulate="false">
+			<Rotation Axis="Z">
+				<Const>180</Const>
+			</Rotation>
+		</MeshFile>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#C0C0C0</mat:Color>
+		</mat:Material>
+		<Alignment Jaw="Lower" RelativeToBottom="false"/>
+	</Component>
+	<IntersectionTestOverride Result="Test">
+		<ComponentRef>anydentcarel</ComponentRef>
+		<BaseRef>Lower</BaseRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Test">
+		<ComponentRef>anydentcareu</ComponentRef>
+		<BaseRef>Upper</BaseRef>
+	</IntersectionTestOverride>
+	<GroupAll>true</GroupAll>
+</LibraryEntry>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns="http://exocad.com/model/attachment">
+	<Supplier>exocad GmbH</Supplier>
+	<DisplayInformation>3D Print - Chamfer</DisplayInformation>
+	<AttachmentPreviewFileName>preview.png</AttachmentPreviewFileName>
+	<SupplierLogoFileName>logo.png</SupplierLogoFileName>
+	<AttachmentDescription>
+	
+Chamfer geometry for substraction from upper or lower jaw model, for a better removal of 3d printed models from the 3D printer build plate.
+ 
+- Scalable in X/Y/Z direction. 
+- Free positioning along model height in X/Y, rotatable along Z.
+
+</AttachmentDescription>
+	<Placement Move="XY" Rotate="Z">
+		<Translation Axis="XY" Ref="_clickpoint" DirRef="_clickpoint">
+			<Const>0.0</Const>
+		</Translation>
+	</Placement>
+	<Parameter Scope="All" Default="100" Min="30" Max="200" Unit="%" Decimals="0">Length X</Parameter>
+	<Parameter Scope="All" Default="100" Min="100" Max="800" Unit="%" Decimals="0">Depth Y</Parameter>
+	<Parameter Scope="All" Default="100" Min="20" Max="300" Unit="%" Decimals="0">Height Z</Parameter>
+	<Component IfJaw="Upper" Method="Subtractive" Id="upper" UniqueId="chamfer-upper">
+		<Profile Mirror="false">
+			<Point>
+				<y>0</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<y>-6</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<y>-6</y>
+				<z>5</z>
+			</Point>
+			<Front Cap="Flat" Extrude="25"/>
+			<Back Cap="Flat" Extrude="25"/>
+		</Profile>
+		<Scaling Axis="X">
+			<ParameterRef Coefficient="0.01">Length X</ParameterRef>
+		</Scaling>
+		<Scaling Axis="Y">
+			<ParameterRef Coefficient="0.01">Depth Y</ParameterRef>
+		</Scaling>
+		<Scaling Axis="Z">
+			<ParameterRef Coefficient="0.01">Height Z</ParameterRef>
+		</Scaling>
+		<Translation Axis="Z">
+			<Const>-0.1</Const>
+		</Translation>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#453B6A</mat:Color>
+			<mat:Opacity>0.5</mat:Opacity>
+		</mat:Material>
+		<Alignment Jaw="Upper" RelativeToBottom="true"/>
+	</Component>
+	<Component IfJaw="Lower" Method="Subtractive" Id="lower" UniqueId="chamfer-lower">
+		<Profile Mirror="false">
+			<Point>
+				<y>0</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<y>-6</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<y>-6</y>
+				<z>5</z>
+			</Point>
+			<Front Cap="Flat" Extrude="25"/>
+			<Back Cap="Flat" Extrude="25"/>
+		</Profile>
+		<Scaling Axis="X">
+			<ParameterRef Coefficient="0.01">Length X</ParameterRef>
+		</Scaling>
+		<Scaling Axis="Y">
+			<ParameterRef Coefficient="0.01">Depth Y</ParameterRef>
+		</Scaling>
+		<Scaling Axis="Z">
+			<ParameterRef Coefficient="0.01">Height Z</ParameterRef>
+		</Scaling>
+		<Translation Axis="Z">
+			<Const>-0.1</Const>
+		</Translation>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#453B6A</mat:Color>
+			<mat:Opacity>0.5</mat:Opacity>
+		</mat:Material>
+		<Alignment Jaw="Lower" RelativeToBottom="true"/>
+	</Component>
+</LibraryEntry>

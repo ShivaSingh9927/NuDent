@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<AttachmentLibrary>
+  <AllowScaling>0</AllowScaling>
+  <SupplierName>Nobil Metal SpA</SupplierName>
+  <UserMessage>More info: http://www.nobilmetal.com/</UserMessage>
+  <AttachmentFile>
+    <Filename>SAG-2.25_with_duplication_tool-M2.sdfa</Filename>
+    <Signature>dcee46b722edcd4c15c73849c823fb9f8348e70f</Signature>
+    <SupplyName>SAG-2.25 with duplication tool-M2</SupplyName>
+    <SupplyDescription>NobilMetal_Attachments.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>SAG-2.25_with_metal_housing-M2.sdfa</Filename>
+    <Signature>7a1927441fcb8b85d57323e7f6e8f76ffc4438bc</Signature>
+    <SupplyName>SAG-2.25 with Metal Housing-M2</SupplyName>
+    <SupplyDescription>NobilMetal_Attachments.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>SFE-2.25_with_duplication_tool-M2.sdfa</Filename>
+    <Signature>a74781cc20bfe7f1228ebd7be29fc781986188d1</Signature>
+    <SupplyName>SFE-2.25 with duplication tool-M2</SupplyName>
+    <SupplyDescription>NobilMetal_Attachments.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>SFE -2.25_with_metal_housing-M2.sdfa</Filename>
+    <Signature>66c5ab6b263108c08b76ebf31716f14aa530b1fc</Signature>
+    <SupplyName>SFE -2.25 with Metal housing-M2</SupplyName>
+    <SupplyDescription>NobilMetal_Attachments.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>SFE50_with_duplication_tool-M2.sdfa</Filename>
+    <Signature>29f2c16795cdf9979f82c50988f2179857a38e43</Signature>
+    <SupplyName>SFE50 with duplication tool-M2</SupplyName>
+    <SupplyDescription>NobilMetal_Attachments.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>SFE50_with_metal_housing-M2.sdfa</Filename>
+    <Signature>0ad1d519064df31afeeb0f99d00c5593c03e5540</Signature>
+    <SupplyName>SFE50 with Metal Housing-M2</SupplyName>
+    <SupplyDescription>NobilMetal_Attachments.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>SFE50_for_bonding_Metal_Housing.sdfa</Filename>
+    <Signature>270f0e0ad96fbd9ade2e301b5b3aad3d017e30e0</Signature>
+    <SupplyName>SFE50 for bonding_Metal Housing</SupplyName>
+    <SupplyDescription>NobilMetal_Attachments.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>SFE50_for_bonding_Shape_Maker.sdfa</Filename>
+    <Signature>69ba29bb45043a68268641cd0c1b0d0fb2ded7f9</Signature>
+    <SupplyName>SFE50 for bonding_Shape Maker</SupplyName>
+    <SupplyDescription>NobilMetal_Attachments.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>SP2-TI00_gluing_seat_with_metal_housing.sdfa</Filename>
+    <Signature>0ba26f9171d27ee2fd120ccec37fdc10de437c55</Signature>
+    <SupplyName>SP2-TI00-gluing seat with metal housing</SupplyName>
+    <SupplyDescription>NobilMetal_Attachments.Description</SupplyDescription>
+  </AttachmentFile>
+</AttachmentLibrary>

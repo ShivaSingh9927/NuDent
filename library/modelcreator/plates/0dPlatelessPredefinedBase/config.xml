@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://exocad.com/model/type" DefaultModelType="medium">
+	<Supplier>exocad GmbH</Supplier>
+	<DisplayInformation>Plateless model (predefined base)</DisplayInformation>
+	<Parameter Id="modelheight" Min="36" Max="80" Default="40" Decimals="2" Unit="mm">ModelAlignmentProcessorControl.ModelHeight</Parameter>
+	<ModelType Class="Plateless" Id="large">
+		<DisplayInformation>large</DisplayInformation>
+		<PreviewImageFileName>0fPlatelessPredefinedBase_large.png</PreviewImageFileName>
+		<MinRequiredPrepPlateDist>0</MinRequiredPrepPlateDist>
+		<BottomPlaneUpperJaw SizeX="100" SizeY="100" Visible="false">
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</BottomPlaneUpperJaw>
+		<BottomPlaneLowerJaw SizeX="100" SizeY="100" Visible="false">
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</BottomPlaneLowerJaw>
+		<OcclusalPlane SizeX="100" SizeY="100" Visible="false">
+			<Translate>
+				<x>0</x>
+				<y>30</y>				
+				<z>0</z>
+			</Translate>
+		</OcclusalPlane>
+		<MeshResource PartType="ModelBaseShape" Jaw="Upper" Flip="Mirror" StippleTransparency="true">
+			<FileName>L.sdfa</FileName>
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+			<Material xmlns="http://exocad.com/config/color">
+				<Color>#FF8080</Color>
+			</Material>
+		</MeshResource>
+		<MeshResource PartType="ModelBaseShape" Jaw="Lower" StippleTransparency="true">
+			<FileName>L.sdfa</FileName>
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+			<Material xmlns="http://exocad.com/config/color">
+				<Color>#FF8080</Color>
+			</Material>
+		</MeshResource>
+		<JawCurveUpperJaw>
+			<Point>
+				<x>-32.353897094726563</x>
+				<y>-6.2109813690185547</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>-25.430709838867188</x>
+				<y>47.314346313476563</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>0.93795013427734375</x>
+				<y>67.055068969726563</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>24.533210754394531</x>
+				<y>47.828163146972656</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>29.993442535400391</x>
+				<y>-7.50578498840332</y>
+				<z>0</z>
+			</Point>
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</JawCurveUpperJaw>
+		<JawCurveLowerJaw>
+			<Point>
+				<x>-32.353897094726563</x>
+				<y>-6.2109813690185547</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>-25.430709838867188</x>
+				<y>47.314346313476563</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>0.93795013427734375</x>
+				<y>67.055068969726563</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>24.533210754394531</x>
+				<y>47.828163146972656</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>29.993442535400391</x>
+				<y>-7.50578498840332</y>
+				<z>0</z>
+			</Point>
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</JawCurveLowerJaw>
+		<!-- Plateless Parameters -->
+		<ConstructionParameter>
+			<Type>ModelCutWidth</Type>
+			<Value>0.51</Value>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelPlateClearance</Type>
+			<Value>0.12</Value>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelPedestalHeightPlateless</Type>
+			<Value>5</Value>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelWallThickness</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>4</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Plateless Parameters -->
+		<!-- Protect Lab Analog  -->
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetHorizontal</Type>
+			<Value>0.05</Value>
+			<MinValue>-0.2</MinValue>
+			<MaxValue>0.2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetVertical</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportGingivaMaskDepth</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportHeightOffset</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelRatio</Type>
+			<Value>50</Value>
+			<MinValue>50</MinValue>
+			<MaxValue>50</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelAngle</Type>
+			<Value>45</Value>
+			<MinValue>45</MinValue>
+			<MaxValue>45</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Protect Lab Analog  -->
+	</ModelType>
+	<ModelType Class="Plateless" Id="medium">
+		<DisplayInformation>medium</DisplayInformation>
+		<PreviewImageFileName>0fPlatelessPredefinedBase_medium.png</PreviewImageFileName>
+		<MinRequiredPrepPlateDist>0</MinRequiredPrepPlateDist>
+		<BottomPlaneUpperJaw SizeX="100" SizeY="100" Visible="false">
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</BottomPlaneUpperJaw>
+		<BottomPlaneLowerJaw SizeX="100" SizeY="100" Visible="false">
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</BottomPlaneLowerJaw>
+		<OcclusalPlane SizeX="100" SizeY="100" Visible="false">
+			<Translate>
+				<x>0</x>
+				<y>30</y>				
+				<z>0</z>
+			</Translate>
+		</OcclusalPlane>
+		<MeshResource PartType="ModelBaseShape" Jaw="Upper" Flip="Mirror" StippleTransparency="true">
+			<FileName>M.sdfa</FileName>
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+			<Material xmlns="http://exocad.com/config/color">
+				<Color>#FF8080</Color>
+			</Material>
+		</MeshResource>
+		<MeshResource PartType="ModelBaseShape" Jaw="Lower" StippleTransparency="true">
+			<FileName>M.sdfa</FileName>
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+			<Material xmlns="http://exocad.com/config/color">
+				<Color>#FF8080</Color>
+			</Material>
+		</MeshResource>
+		<JawCurveUpperJaw>
+			<Point>
+				<x>-29.893341064453125</x>
+				<y>-4.6969451904296875</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>-22.556713104248047</x>
+				<y>44.343490600585938</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>-0.42496013641357422</x>
+				<y>58.48822021484375</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>23.095264434814453</x>
+				<y>44.288177490234375</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>29.827337265014648</x>
+				<y>-4.3532485961914063</y>
+				<z>0</z>
+			</Point>
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</JawCurveUpperJaw>
+		<JawCurveLowerJaw>
+			<Point>
+				<x>-29.893341064453125</x>
+				<y>-4.6969451904296875</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>-22.556713104248047</x>
+				<y>44.343490600585938</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>-0.42496013641357422</x>
+				<y>58.48822021484375</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>23.095264434814453</x>
+				<y>44.288177490234375</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>29.827337265014648</x>
+				<y>-4.3532485961914063</y>
+				<z>0</z>
+			</Point>
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</JawCurveLowerJaw>
+		<!-- Plateless Parameters -->
+		<ConstructionParameter>
+			<Type>ModelCutWidth</Type>
+			<Value>0.51</Value>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelPlateClearance</Type>
+			<Value>0.12</Value>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelPedestalHeightPlateless</Type>
+			<Value>5</Value>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelWallThickness</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>4</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Plateless Parameters -->
+		<!-- Protect Lab Analog  -->
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetHorizontal</Type>
+			<Value>0.05</Value>
+			<MinValue>-0.2</MinValue>
+			<MaxValue>0.2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetVertical</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportGingivaMaskDepth</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportHeightOffset</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelRatio</Type>
+			<Value>50</Value>
+			<MinValue>50</MinValue>
+			<MaxValue>50</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelAngle</Type>
+			<Value>45</Value>
+			<MinValue>45</MinValue>
+			<MaxValue>45</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Protect Lab Analog  -->
+	</ModelType>
+	<ModelType Class="Plateless" Id="small">
+		<DisplayInformation>small</DisplayInformation>
+		<PreviewImageFileName>0fPlatelessPredefinedBase_small.png</PreviewImageFileName>
+		<MinRequiredPrepPlateDist>0</MinRequiredPrepPlateDist>
+		<BottomPlaneUpperJaw SizeX="100" SizeY="100" Visible="false">
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</BottomPlaneUpperJaw>
+		<BottomPlaneLowerJaw SizeX="100" SizeY="100" Visible="false">
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</BottomPlaneLowerJaw>
+		<OcclusalPlane SizeX="100" SizeY="100" Visible="false">
+			<Translate>
+				<x>0</x>
+				<y>30</y>				
+				<z>0</z>
+			</Translate>
+		</OcclusalPlane>
+		<MeshResource PartType="ModelBaseShape" Jaw="Upper" Flip="Mirror" StippleTransparency="true">
+			<FileName>S.sdfa</FileName>
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+			<Material xmlns="http://exocad.com/config/color">
+				<Color>#FF8080</Color>
+			</Material>
+		</MeshResource>
+		<MeshResource PartType="ModelBaseShape" Jaw="Lower" StippleTransparency="true">
+			<FileName>S.sdfa</FileName>
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+			<Material xmlns="http://exocad.com/config/color">
+				<Color>#FF8080</Color>
+			</Material>
+		</MeshResource>
+		<JawCurveUpperJaw>
+			<Point>
+				<x>-26.224922180175781</x>
+				<y>-1.9952850341796875</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>-20.248939514160156</x>
+				<y>41.862228393554688</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>-1.0366687774658203</x>
+				<y>52.7794189453125</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>20.435428619384766</x>
+				<y>41.891983032226563</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>25.801151275634766</x>
+				<y>-2.423614501953125</y>
+				<z>0</z>
+			</Point>
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</JawCurveUpperJaw>
+		<JawCurveLowerJaw>
+			<Point>
+				<x>-26.224922180175781</x>
+				<y>-1.9952850341796875</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>-20.248939514160156</x>
+				<y>41.862228393554688</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>-1.0366687774658203</x>
+				<y>52.7794189453125</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>20.435428619384766</x>
+				<y>41.891983032226563</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>25.801151275634766</x>
+				<y>-2.423614501953125</y>
+				<z>0</z>
+			</Point>
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</JawCurveLowerJaw>
+		<!-- Plateless Parameters -->
+		<ConstructionParameter>
+			<Type>ModelCutWidth</Type>
+			<Value>0.51</Value>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelPlateClearance</Type>
+			<Value>0.12</Value>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelPedestalHeightPlateless</Type>
+			<Value>5</Value>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelWallThickness</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>4</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Plateless Parameters -->
+		<!-- Protect Lab Analog  -->
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetHorizontal</Type>
+			<Value>0.05</Value>
+			<MinValue>-0.2</MinValue>
+			<MaxValue>0.2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetVertical</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportGingivaMaskDepth</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportHeightOffset</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelRatio</Type>
+			<Value>50</Value>
+			<MinValue>50</MinValue>
+			<MaxValue>50</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelAngle</Type>
+			<Value>45</Value>
+			<MinValue>45</MinValue>
+			<MaxValue>45</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Protect Lab Analog  -->
+	</ModelType>
+</LibraryEntry>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<RenderEffectSettings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" RenderEffectName="TSD_Lite">
+  <ColorParameter Name="color_diffuse" Value="#FF2B354C" />
+  <ColorParameter Name="color_enamel" Value="#FFC3C3CA" />
+  <ColorParameter Name="color_sss" Value="#FFC7B483" />
+  <DoubleParameter Name="fresnel_factor" Value="0.25" />
+  <IntParameter Name="bottom_as_backside" Value="0" />
+  <Vec4Parameter Name="tsd_blur_strength" x="0.0099999997764825821" y="0.0099999997764825821" z="0.0099999997764825821" w="0.004999999888241291" />
+</RenderEffectSettings>

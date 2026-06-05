@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<AttachmentLibrary>
+<SupplierName>Cendres+Métaux</SupplierName>
+  <SupplierLogo>SupplierLogo.CM</SupplierLogo>
+  <AttachmentFile>
+  <SupplyName>Dalbo®</SupplyName>
+     <SupplyDescription>Attachment.CM.Dalbo.Description</SupplyDescription>
+    <Filename>Dalbo-Hole.sdfa</Filename>
+    <Signature>e5c78ee9b4fc9d6995b95eb5b5f0bda09b29fd25</Signature>
+  </AttachmentFile>
+</AttachmentLibrary>

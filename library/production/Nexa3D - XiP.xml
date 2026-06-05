@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='ASCII'?>
+<PrinterPreset xmlns="http://exocad.com/library/production">
+	<MaterialParameterPresets>
+		<MaterialPreset>
+			<Name>xDENT341-Beige_Solid 50&#181;m</Name>
+			<ConstructionParameters>
+				<Param>ModelWallThickness</Param>
+				<!--if all values 0 then solid model-->
+				<Value>0.000</Value>
+				<MinValue>0.000</MinValue>
+				<MaxValue>0.000</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontal</Param>
+				<!--gap for removable dies-->
+				<Value>0.020</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapVertical</Param>
+				<!--typically left 0 may cause misocclusion-->
+				<Value>0.000</Value>
+				<MinValue>-0.100</MinValue>
+				<MaxValue>0.100</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicDifference</Param>
+				<!--OPTIONAL: Is the maximal value that can be added to the previous one. If you write a negative value you get a gap smaller then <ModelShaftGapHorizontal>.-->
+				<Value>0.000</Value>
+				<MinValue>0.000</MinValue>
+				<MaxValue>0.000</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicRangeStart</Param>
+				<!--OPTIONAL: For dies with a diameter smaller than <ModelShaftGapHorizontalDynamicRangeStart> the gap is <ModelShaftGapHorizontal>-->
+				<Value>0.000</Value>
+				<MinValue>0.000</MinValue>
+				<MaxValue>0.000</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelShaftGapHorizontalDynamicRangeEnd</Param>
+				<!--OPTIONAL: For dies with a diameter larger than <ModelShaftGapHorizontalDynamicRangeEnd> the gap amounts to <ModelShaftGapHorizontal> plus <ModelShaftGapHorizontalDynamicDifference> For dies inbetween the gap is <ModelShaftGapHorizontal> plus a proportion of <ModelShaftGapHorizontalDynamicDifference>-->
+				<Value>10.000</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantLabAnalogOffsetHorizontal</Param>
+				<!--similar to model shaft gap just for lab analogs-->
+				<Value>0.050</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantLabAnalogOffsetVertical</Param>
+				<!--typically left 0 may cause misocclusion-->
+				<Value>0.000</Value>
+				<MinValue>0.000</MinValue>
+				<MaxValue>0.000</MaxValue>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskGapWidth</Param>
+				<!--gap between model and gingiva mask-->
+				<Value>0.100</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskMinThickness</Param>
+				<!--gingiva mask min thickness. not applied for flat gingiva-->
+				<Value>1.000</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelGingivaMaskImplantSupportWidth</Param>
+				<!--support width around lab analogs in gingiva mask-->
+				<Value>1.000</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelMinimumThicknessAroundPins</Param>
+				<!--thickness around pins similar to wall thickness-->
+				<Value>1.000</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelWallMorphologicalClosureDiameter</Param>
+				<!--smoothing option for inner part of hollow models-->
+				<Value>0.000</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelWallBottomSill</Param>
+				<!--small sill for better stability of the model-->
+				<Value>0.000</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantSupportWidth</Param>
+				<!--support cylinder around lab analogs, set to 0 to deactivate-->
+				<Value>1.000</Value>
+			</ConstructionParameters>
+			<ConstructionParameters>
+				<Param>ModelImplantSupportGingivaMaskDepth</Param>
+				<!--support depth around lab analogs in gingiva mask-->
+				<Value>1.000</Value>
+			</ConstructionParameters>
+		</MaterialPreset>
+	</MaterialParameterPresets>
+</PrinterPreset>

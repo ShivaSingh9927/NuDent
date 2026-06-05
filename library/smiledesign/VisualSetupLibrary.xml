@@ -1,0 +1,1230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfVisualSetup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<VisualSetup Name="HideAll">
+	</VisualSetup>
+
+	<VisualSetup Name="SmileOnly">
+		<DrawMode>WholeTheeth</DrawMode>
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Targets>SmileOrRetractedOrFaceScan</Targets>
+			<Targets>Mouth</Targets>
+		</PartSetups>
+
+	</VisualSetup>
+
+	<VisualSetup Name="ImagesTab.Default">
+	
+		<ViewMatrixType>Default</ViewMatrixType>
+		<DrawMode>Off</DrawMode>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+		<AreCustomViewButtonsEnabled>true</AreCustomViewButtonsEnabled>
+		<SceneBoxScale>
+			<x>1.5</x>
+			<y>1.5</y>
+			<z>1.5</z>
+		</SceneBoxScale>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>Smile</Targets>
+			<Targets>Retracted</Targets>
+			<Targets>FaceScan</Targets>
+			<Targets>Mouth</Targets>
+			<Targets>MouthFaceScan</Targets>
+			<Targets>UpperJaw</Targets>
+		</PartSetups>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>0.5</Opacity>
+			<Targets>SituScan</Targets>
+			<Targets>Antagonist</Targets>
+		</PartSetups>
+
+	</VisualSetup>
+
+	<!--<VisualSetup Name="HelperTab">
+
+		<IsMouthShadowVisible>false</IsMouthShadowVisible>
+		<IsAnimationEnabled>false</IsAnimationEnabled>
+		<ViewMatrixType>Default</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>RetractedOrFaceScanOrSmile</Targets>
+			<Targets>HelperCurve</Targets>
+			<Targets>HelperPlane</Targets>
+			<Targets>ProportionGuide</Targets>
+		</PartSetups>
+
+	</VisualSetup>-->
+
+	<VisualSetup Name="PreviewColors">
+
+		<PartSetups>
+			<ColorEmissive>#000000</ColorEmissive>
+			<ColorAmbient>#A9A9A9</ColorAmbient>
+			<ColorDiffuse>Antagonist</ColorDiffuse>
+			<Targets>Antagonist</Targets>
+			<Targets>ProvisionalPontic</Targets>
+			<Targets>ProvisionalCrownTop</Targets>
+			<Targets>AnatomicCrown</Targets>
+			<Targets>AnatomicPontic</Targets>
+			<Targets>AnatomicInlay</Targets>
+			<Targets>AnatomicWaxup</Targets>
+
+			<Targets>LibraryModel</Targets>
+
+			<Targets>LibraryModelForOrthoPlan</Targets>			
+			<Targets>PonticModelForOrthoPlan</Targets>			
+
+			<Targets>AdaptedToothOnVirtualPreparationForCrown</Targets>			
+			<Targets>AdaptedToothOnVirtualPreparationForVeneer</Targets>			
+			<Targets>AdaptedToothOnVirtualPreparationForOrthoPlanCrown</Targets>			
+			<Targets>AdaptedToothOnVirtualPreparationForOrthoPlanVeneer</Targets>			
+
+			<Targets>OrthoPlannedTooth</Targets>
+			<Targets>OrthoSegmentedTooth</Targets>
+			<Targets>SegmentedTooth</Targets>
+			<Targets>ProstheticTooth</Targets>
+			<Targets>MergedBridge</Targets>
+		</PartSetups>
+
+	</VisualSetup>
+
+	<VisualSetup Name="Preview" BasedOn="PreviewColors">
+
+        <IsMouthShadowVisible>true</IsMouthShadowVisible>
+		<IsMouthShadingEnabled>true</IsMouthShadingEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>SmileOrFaceScanOrRetracted</Targets>
+            <Targets>RealisticPreview</Targets>
+			<Targets>Mouth</Targets>
+			<Targets>Retracted</Targets>
+			<Targets>LibraryModel</Targets>
+			<Targets>ProvisionalPontic</Targets>
+			<Targets>ProvisionalCrownTop</Targets>
+			<Targets>AnatomicCrown</Targets>
+			<Targets>AnatomicPontic</Targets>
+			<Targets>AnatomicInlay</Targets>
+			<Targets>AnatomicWaxup</Targets>
+
+			<Targets>LibraryModelForOrthoPlan</Targets>			
+			<Targets>PonticModelForOrthoPlan</Targets>			
+
+			<Targets>AdaptedToothOnVirtualPreparationForCrown</Targets>			
+			<Targets>AdaptedToothOnVirtualPreparationForVeneer</Targets>			
+			<Targets>AdaptedToothOnVirtualPreparationForOrthoPlanCrown</Targets>			
+			<Targets>AdaptedToothOnVirtualPreparationForOrthoPlanVeneer</Targets>			
+
+
+			<Targets>OrthoPlannedTooth</Targets>
+			<Targets>OrthoSegmentedTooth</Targets>
+			<Targets>SegmentedTooth</Targets>
+			<Targets>ProstheticTooth</Targets>
+			<Targets>ProvisionalCrownBottom</Targets>
+		</PartSetups>
+
+	</VisualSetup>
+
+	<VisualSetup Name="Preview.WholeTeeth" BasedOn="Preview">
+
+		<DrawMode>WholeTheeth</DrawMode>
+		<IsMouthShadowVisible>true</IsMouthShadowVisible>
+		<PartSetups>
+            <IsVisible>true</IsVisible>
+            <Opacity>1</Opacity>
+            <Targets>GingivaSegmented</Targets>
+            <Targets>VirtualGingivaDesignBase</Targets>
+            <Targets>VirtualGingivaDesignBaseForOrthoPlan</Targets>
+        </PartSetups>
+
+	</VisualSetup>
+
+	<VisualSetup Name="Preview.ClippedTeeth" BasedOn="Preview">
+
+		<DrawMode>ClippedTeeth</DrawMode>
+		<IsMouthShadowVisible>true</IsMouthShadowVisible>
+		<PartSetups>
+            <IsVisible>true</IsVisible>
+            <Opacity>1</Opacity>
+            <Targets>GingivaSegmented</Targets>
+            <Targets>VirtualGingivaDesignBase</Targets>
+            <Targets>VirtualGingivaDesignBaseForOrthoPlan</Targets>
+        </PartSetups>
+	</VisualSetup>
+
+	<VisualSetup Name="Preview.Outline" BasedOn="PreviewColors">
+
+		<DrawMode>Outline</DrawMode>
+		<IsMouthShadowVisible>false</IsMouthShadowVisible>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<ColorDiffuse>#ffffff</ColorDiffuse>
+			<ColorAmbient>#A9A9A9</ColorAmbient>
+			<ColorEmissive>#000000</ColorEmissive>
+			<Targets>LibraryModel</Targets>
+			<Targets>ProvisionalPontic</Targets>
+			<Targets>ProvisionalCrownTop</Targets>
+			<Targets>AnatomicCrown</Targets>
+			<Targets>AnatomicPontic</Targets>
+			<Targets>AnatomicInlay</Targets>
+			<Targets>AnatomicWaxup</Targets>
+
+			<Targets>LibraryModelForOrthoPlan</Targets>			
+			<Targets>PonticModelForOrthoPlan</Targets>			
+
+			<Targets>AdaptedToothOnVirtualPreparationForCrown</Targets>			
+			<Targets>AdaptedToothOnVirtualPreparationForVeneer</Targets>			
+			<Targets>AdaptedToothOnVirtualPreparationForOrthoPlanCrown</Targets>			
+			<Targets>AdaptedToothOnVirtualPreparationForOrthoPlanVeneer</Targets>			
+			
+			
+			<Targets>OrthoPlannedTooth</Targets>
+			<Targets>OrthoSegmentedTooth</Targets>
+			<Targets>SegmentedTooth</Targets>
+			<Targets>ProstheticTooth</Targets>
+			<Targets>ProvisionalCrownBottom</Targets>
+			<Outline>true</Outline>
+		</PartSetups>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>HelperCurve</Targets>
+			<Targets>HelperPlane</Targets>
+			<Targets>ProportionGuide</Targets>
+			<Targets>RetractedOrSmileOrFaceScan</Targets>
+		</PartSetups>
+
+	</VisualSetup>
+
+	<VisualSetup Name="Preview.OutlineWithSitu" BasedOn="Preview.Outline">
+
+		<DrawMode>ScanOutline</DrawMode>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<ColorDiffuse>#00fff0</ColorDiffuse>
+			<ColorAmbient>#A9A9A9</ColorAmbient>
+			<ColorEmissive>#000000</ColorEmissive>
+			<Targets>SituScan</Targets>
+			<Outline>true</Outline>
+		</PartSetups>
+
+	</VisualSetup>
+
+	<VisualSetup Name="Modeling" BasedOn="PreviewColors">
+
+		<IsMouthShadowVisible>false</IsMouthShadowVisible>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>RetractedOrFaceScanOrSmile</Targets>
+			<Targets>LibraryModel</Targets>
+			<Targets>ProvisionalPontic</Targets>
+			<Targets>ProvisionalCrownTop</Targets>
+			<Targets>AnatomicCrown</Targets>
+			<Targets>AnatomicPontic</Targets>
+			<Targets>AnatomicInlay</Targets>
+			<Targets>AnatomicWaxup</Targets>
+
+			<Targets>LibraryModelForOrthoPlan</Targets>			
+			<Targets>PonticModelForOrthoPlan</Targets>			
+
+			<Targets>AdaptedToothOnVirtualPreparationForCrown</Targets>			
+			<Targets>AdaptedToothOnVirtualPreparationForVeneer</Targets>			
+			<Targets>AdaptedToothOnVirtualPreparationForOrthoPlanCrown</Targets>			
+			<Targets>AdaptedToothOnVirtualPreparationForOrthoPlanVeneer </Targets>			
+
+			<Targets>OrthoPlannedTooth</Targets>
+			<Targets>OrthoSegmentedTooth</Targets>
+			<Targets>SegmentedTooth</Targets>
+			<Targets>ProstheticTooth</Targets>
+			<Targets>ProvisionalCrownBottom</Targets>
+			<Targets>Connector</Targets>
+		</PartSetups>
+
+		<FocusObjects>LibraryModel</FocusObjects>
+		<FocusObjects>ProvisionalPontic</FocusObjects>
+		<FocusObjects>ProvisionalCrownTop</FocusObjects>
+		<FocusObjects>AnatomicCrown</FocusObjects>
+		<FocusObjects>AnatomicPontic</FocusObjects>
+		<FocusObjects>AnatomicInlay</FocusObjects>
+		<FocusObjects>OrthoPlannedTooth</FocusObjects>
+		<FocusObjects>OrthoSegmentedTooth</FocusObjects>
+		<FocusObjects>SegmentedTooth</FocusObjects>
+
+		<FocusObjects>LibraryModelForOrthoPlan</FocusObjects>			
+		<FocusObjects>PonticModelForOrthoPlan</FocusObjects>			
+
+		<FocusObjects>AdaptedToothOnVirtualPreparationForCrown</FocusObjects>			
+		<FocusObjects>AdaptedToothOnVirtualPreparationForVeneer</FocusObjects>			
+		<FocusObjects>AdaptedToothOnVirtualPreparationForOrthoPlanCrown</FocusObjects>			
+		<FocusObjects>AdaptedToothOnVirtualPreparationForOrthoPlanVeneer </FocusObjects>			
+
+
+		<FocusObjects>ProstheticTooth</FocusObjects>
+		<FocusObjects>ProvisionalCrownBottom</FocusObjects>
+		<FocusObjects>Connector</FocusObjects>
+
+	</VisualSetup>
+
+	<VisualSetup Name="Modeling.WholeTeeth" BasedOn="Modeling">
+
+		<DrawMode>WholeTheeth</DrawMode>
+		<IsMouthShadowVisible>true</IsMouthShadowVisible>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>SmileOrRetractedOrFaceScan</Targets>
+			<Targets>VirtualGingivaDesignBase</Targets>
+		</PartSetups>
+		
+	</VisualSetup>
+
+	<VisualSetup Name="Modeling.ClippedTeeth" BasedOn="Modeling">
+
+		<DrawMode>ClippedTeeth</DrawMode>
+		<IsMouthShadowVisible>true</IsMouthShadowVisible>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>SmileOrRetractedOrFaceScan</Targets>
+		</PartSetups>
+
+	</VisualSetup>
+
+	<VisualSetup Name="Modeling.Outline" BasedOn="PreviewColors">
+
+		<DrawMode>Outline</DrawMode>
+		<IsMouthShadowVisible>false</IsMouthShadowVisible>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<ColorDiffuse>#ffffff</ColorDiffuse>
+			<ColorAmbient>#A9A9A9</ColorAmbient>
+			<ColorEmissive>#000000</ColorEmissive>
+			<Targets>LibraryModel</Targets>
+			<Targets>ProvisionalPontic</Targets>
+			<Targets>ProvisionalCrownTop</Targets>
+			<Targets>AnatomicCrown</Targets>
+			<Targets>AnatomicPontic</Targets>
+			<Targets>AnatomicInlay</Targets>
+			<Targets>AnatomicWaxup</Targets>
+
+			<Targets>LibraryModelForOrthoPlan</Targets>			
+			<Targets>PonticModelForOrthoPlan</Targets>			
+
+			<Targets>AdaptedToothOnVirtualPreparationForCrown</Targets>			
+			<Targets>AdaptedToothOnVirtualPreparationForVeneer</Targets>			
+			<Targets>AdaptedToothOnVirtualPreparationForOrthoPlanCrown</Targets>			
+			<Targets>AdaptedToothOnVirtualPreparationForOrthoPlanVeneer </Targets>			
+
+
+			<Targets>OrthoPlannedTooth</Targets>
+			<Targets>OrthoSegmentedTooth</Targets>
+			<Targets>SegmentedTooth</Targets>
+
+			<Targets>ProstheticTooth</Targets>
+			<Targets>ProvisionalCrownBottom</Targets>
+			<Outline>true</Outline>
+		</PartSetups>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>HelperCurve</Targets>
+			<Targets>HelperPlane</Targets>
+			<Targets>ProportionGuide</Targets>
+			<Targets>RetractedOrFaceScanOrSmile</Targets>
+		</PartSetups>
+
+	</VisualSetup>
+
+	<VisualSetup Name="Modeling.OutlineWithSitu" BasedOn="Modeling.Outline">
+
+		<DrawMode>ScanOutline</DrawMode>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<ColorDiffuse>#00fff0</ColorDiffuse>
+			<ColorAmbient>#A9A9A9</ColorAmbient>
+			<ColorEmissive>#000000</ColorEmissive>
+			<Targets>SituScan</Targets>
+			<Outline>true</Outline>
+		</PartSetups>
+
+	</VisualSetup>
+
+	<VisualSetup Name="SmileDesign.PointsRegistration.Begin.RetractedToSmile">
+
+		<DrawMode>Off</DrawMode>
+		<IsSmileImageInBackground>true</IsSmileImageInBackground>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+		<IsOrientationLocked>false</IsOrientationLocked>
+		<AreCustomViewButtonsEnabled>false</AreCustomViewButtonsEnabled>
+		<AreDefaultViewButtonsEnabled>false</AreDefaultViewButtonsEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>.5</Opacity>
+			<Targets>Retracted</Targets>
+		</PartSetups>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>Smile</Targets>
+			<Targets>Mouth</Targets>
+		</PartSetups>
+
+	</VisualSetup>
+
+	<VisualSetup Name="SmileDesign.PointsRegistration.Begin.SmileToRetracted">
+
+		<DrawMode>Off</DrawMode>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+		<IsOrientationLocked>false</IsOrientationLocked>
+		<AreCustomViewButtonsEnabled>false</AreCustomViewButtonsEnabled>
+		<AreDefaultViewButtonsEnabled>false</AreDefaultViewButtonsEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>.5</Opacity>
+			<Targets>Smile</Targets>
+			<Targets>Mouth</Targets>
+		</PartSetups>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>Retracted</Targets>
+		</PartSetups>
+
+	</VisualSetup>
+
+	<VisualSetup Name="SmileDesign.ApplyRegistration" BasedOn="ImagesTab.Default">
+	</VisualSetup>
+	
+	<VisualSetup Name="SmileDesign.ContinueRegistration.ManualAlignment">
+
+		<IsOrientationLocked>false</IsOrientationLocked>
+		<AreCustomViewButtonsEnabled>false</AreCustomViewButtonsEnabled>
+		<AreDefaultViewButtonsEnabled>false</AreDefaultViewButtonsEnabled>
+		<ViewMatrixType>Default</ViewMatrixType>
+		
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>SituScan</Targets>
+			<Targets>UnsegmentedJaw</Targets>
+		</PartSetups>
+		<PartSetups>
+			<IsVisible>false</IsVisible>
+			<Targets>Antagonist</Targets>
+		</PartSetups>
+	</VisualSetup>
+	
+	<VisualSetup Name="SmileDesign.ContinueRegistration.ManualAlignment.Outline" BasedOn="SmileDesign.ContinueRegistration.ManualAlignment">
+
+		<AreCustomViewButtonsEnabled>false</AreCustomViewButtonsEnabled>
+		<AreDefaultViewButtonsEnabled>false</AreDefaultViewButtonsEnabled>
+		
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Outline>true</Outline>
+			<Opacity>1</Opacity>
+			<Targets>SituScan</Targets>
+			<Targets>UnsegmentedJaw</Targets>
+		</PartSetups>
+	</VisualSetup>
+	
+	<VisualSetup Name="SmileDesign.Registration.ImageDrawLipCurve">
+		
+		<ViewMatrixType>Default</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+		<IsOrientationLocked>true</IsOrientationLocked>
+		<AreCustomViewButtonsEnabled>false</AreCustomViewButtonsEnabled>
+		<AreDefaultViewButtonsEnabled>false</AreDefaultViewButtonsEnabled>
+		
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>Smile</Targets>
+			<Targets>Mouth</Targets>
+			<Targets>LipCurve</Targets>
+		</PartSetups>
+		
+	</VisualSetup>
+
+	<VisualSetup Name="SmileDesign.CancelRegistration" BasedOn="ImagesTab.Default">
+	</VisualSetup>
+
+	<VisualSetup Name="SmileDesign.PointsRegistration.Begin">
+
+		<DrawMode>Off</DrawMode>
+		<IsOrientationLocked>false</IsOrientationLocked>
+		<AreCustomViewButtonsEnabled>false</AreCustomViewButtonsEnabled>
+		<AreDefaultViewButtonsEnabled>false</AreDefaultViewButtonsEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>UnsegmentedJaw</Targets>
+			<Targets>UnsegmentedTooth</Targets>
+		</PartSetups>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>.5</Opacity>
+			<Targets>SituScan</Targets>
+			<Targets>Antagonist</Targets>
+		</PartSetups>
+
+	</VisualSetup>
+
+	<VisualSetup Name="SmileDesignColorPreview" BasedOn="Preview.ClippedTeeth">
+	</VisualSetup>
+
+	<!-- ############################ 
+	     Report setups
+		 ############################ -->
+
+	<VisualSetup Name="Report.JawScanOnly">
+
+		<ViewMatrixType>Default</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+		<IsMouthShadowVisible>false</IsMouthShadowVisible>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>UpperJaw</Targets>
+			<Targets>SituScan</Targets>
+			<Targets>Antagonist</Targets>
+		</PartSetups>
+
+	</VisualSetup>
+
+	<VisualSetup Name="Report.JawScanWithModelSetup">
+
+		<ViewMatrixType>Default</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+		<IsMouthShadowVisible>false</IsMouthShadowVisible>
+		<DrawMode>Off</DrawMode>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>UpperJaw</Targets>
+			<Targets>Model</Targets>
+			<Targets>Antagonist</Targets>
+			<Targets>GingivaSegmented</Targets>
+            <Targets>VirtualGingivaDesignBase</Targets>
+            <Targets>VirtualGingivaDesignBaseForOrthoPlan</Targets>
+		</PartSetups>
+
+	</VisualSetup>
+
+	<VisualSetup Name="Report.UpperJawSetup">
+
+		<ViewMatrixType>DefaultTop</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+		<IsMouthShadowVisible>false</IsMouthShadowVisible>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>SituScan</Targets>
+			<Targets>UnsegmentedJaw</Targets>
+		</PartSetups>
+
+	</VisualSetup>
+
+	<VisualSetup Name="Report.UpperJawWithModelSetup">
+
+		<ViewMatrixType>DefaultTop</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+		<IsMouthShadowVisible>false</IsMouthShadowVisible>
+		<DrawMode>Off</DrawMode>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>UpperJaw</Targets>
+			<Targets>Model</Targets>
+			<Targets>GingivaSegmented</Targets>
+            <Targets>VirtualGingivaDesignBase</Targets>
+            <Targets>VirtualGingivaDesignBaseForOrthoPlan</Targets>
+		</PartSetups>
+
+	</VisualSetup>
+
+	<VisualSetup Name="Report.AnatagonistSetup">
+
+		<ViewMatrixType>DefaultBottom</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+		<IsMouthShadowVisible>false</IsMouthShadowVisible>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>Antagonist</Targets>
+		</PartSetups>
+
+	</VisualSetup>
+
+	<VisualSetup Name="Report.PreviewVirtualGingiva" BasedOn="Preview.WholeTeeth">
+
+		<ViewMatrixType>Default</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+		<IsMouthShadingEnabled>true</IsMouthShadingEnabled>
+		<IsPerspectiveImageViewerModeEnabled>true</IsPerspectiveImageViewerModeEnabled>
+
+	</VisualSetup>
+
+	<VisualSetup Name="Report.Preview" BasedOn="Preview.ClippedTeeth">
+
+		<ViewMatrixType>Default</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+		<IsMouthShadingEnabled>true</IsMouthShadingEnabled>
+		<IsPerspectiveImageViewerModeEnabled>true</IsPerspectiveImageViewerModeEnabled>
+
+	</VisualSetup>
+	
+	<VisualSetup Name="OrthoReport.OrthoOnlyPreview" BasedOn="PreviewColors">
+
+        <IsMouthShadowVisible>true</IsMouthShadowVisible>
+		<IsMouthShadingEnabled>true</IsMouthShadingEnabled>
+		<ViewMatrixType>Default</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+		<IsPerspectiveImageViewerModeEnabled>true</IsPerspectiveImageViewerModeEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>SmileOrFaceScanOrRetracted</Targets>
+			<Targets>Mouth</Targets>
+			<Targets>Retracted</Targets>		
+
+			<Targets>OrthoPlannedTooth</Targets>
+            <Targets>VirtualGingivaDesignBaseForOrthoPlan</Targets>
+		</PartSetups>
+		
+	</VisualSetup>
+
+	<VisualSetup Name="Report.SmileBeforeTreatmentSetup">
+
+		<ViewMatrixType>Default</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+		<IsMouthShadowVisible>false</IsMouthShadowVisible>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>SmileOrFaceScan</Targets>
+			<Targets>Retracted</Targets>
+			<Targets>Mouth</Targets>
+			<Targets>MouthFaceScan</Targets>
+		</PartSetups>
+
+	</VisualSetup>
+
+	<VisualSetup Name="Report.RetractedBeforeTreatmentSetup">
+
+		<ViewMatrixType>Default</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+		<IsMouthShadowVisible>false</IsMouthShadowVisible>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>Retracted</Targets>
+		</PartSetups>
+
+	</VisualSetup>
+	
+	<VisualSetup Name="Report.OverviewImage">
+
+		<ViewMatrixType>Front</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+		<IsMouthShadowVisible>false</IsMouthShadowVisible>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>OrthoSegmentedTooth</Targets>
+			<Targets>SegmentedTooth</Targets>
+			<Targets>VirtualGingivaDesignBase</Targets>
+			<Targets>GingivaSegmented</Targets>
+		</PartSetups>
+	</VisualSetup>
+	
+	<VisualSetup Name="Report.ToothCutViewOrthoVsRestorative">
+
+		<ViewMatrixType>Front</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+		<IsMouthShadowVisible>false</IsMouthShadowVisible>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>OrthoPlannedTooth</Targets>
+			<Targets>VirtualPreparationForVeneer</Targets>
+			<Targets>VirtualPreparationForOrthoPlanVeneer</Targets>
+		</PartSetups>
+	</VisualSetup>
+	
+	<VisualSetup Name="Report.ToothCutViewOrtho">
+
+	<ViewMatrixType>Front</ViewMatrixType>
+	<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+	<IsMouthShadowVisible>false</IsMouthShadowVisible>
+
+	<PartSetups>
+		<IsVisible>true</IsVisible>
+		<Opacity>1</Opacity>
+		<Targets>OrthoPlannedTooth</Targets>
+		<Targets>VirtualPreparationForOrthoPlanVeneer</Targets>
+	</PartSetups>
+</VisualSetup>
+
+	<VisualSetup Name="Report.ToothCutViewRestorative">
+
+	<ViewMatrixType>Front</ViewMatrixType>
+	<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+	<IsMouthShadowVisible>false</IsMouthShadowVisible>
+
+	<PartSetups>
+		<IsVisible>true</IsVisible>
+		<Opacity>1</Opacity>
+		<Targets>SegmentedTooth</Targets>
+		<Targets>OrthoSegmentedTooth</Targets>
+		<Targets>VirtualPreparationForVeneer</Targets>
+	</PartSetups>
+</VisualSetup>
+
+	<VisualSetup Name="Report.RetractedAfterTreatmentSetup" BasedOn="Report.RetractedBeforeTreatmentSetup">
+		<ViewMatrixType>Default</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+		<IsMouthShadowVisible>false</IsMouthShadowVisible>
+		<DrawMode>ClippedTeeth</DrawMode>
+		<IsMouthShadingEnabled>true</IsMouthShadingEnabled>
+		<IsPerspectiveImageViewerModeEnabled>true</IsPerspectiveImageViewerModeEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>Model</Targets>
+			<Targets>LibraryModel</Targets>
+			<Targets>ProvisionalPontic</Targets>
+			<Targets>ProvisionalCrownTop</Targets>
+			<Targets>AnatomicCrown</Targets>
+			<Targets>AnatomicPontic</Targets>
+			<Targets>AnatomicInlay</Targets>
+			<Targets>AnatomicWaxup</Targets>
+
+			<Targets>LibraryModelForOrthoPlan</Targets>
+			<Targets>PonticModelForOrthoPlan</Targets>
+
+			<Targets>AdaptedToothOnVirtualPreparationForCrown</Targets>
+			<Targets>AdaptedToothOnVirtualPreparationForVeneer</Targets>
+			<Targets>AdaptedToothOnVirtualPreparationForOrthoPlanCrown</Targets>
+			<Targets>AdaptedToothOnVirtualPreparationForOrthoPlanVeneer </Targets>
+
+
+			<Targets>OrthoPlannedTooth</Targets>
+			<Targets>OrthoSegmentedTooth</Targets>
+			<Targets>SegmentedTooth</Targets>
+			<Targets>ProstheticTooth</Targets>
+			<Targets>ProvisionalCrownBottom</Targets>
+		</PartSetups>
+	</VisualSetup>
+
+	<VisualSetup Name="Report.RetractedAfterTreatmentOutlineSetup">
+
+		<ViewMatrixType>Default</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+		<IsMouthShadowVisible>false</IsMouthShadowVisible>
+		<IsPerspectiveImageViewerModeEnabled>true</IsPerspectiveImageViewerModeEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>LibraryModel</Targets>
+			<Targets>ProvisionalPontic</Targets>
+			<Targets>ProvisionalCrownTop</Targets>
+			<Targets>AnatomicCrown</Targets>
+			<Targets>AnatomicPontic</Targets>
+			<Targets>AnatomicInlay</Targets>
+			<Targets>AnatomicWaxup</Targets>
+
+			<Targets>LibraryModelForOrthoPlan</Targets>
+			<Targets>PonticModelForOrthoPlan</Targets>
+
+			<Targets>AdaptedToothOnVirtualPreparationForCrown</Targets>
+			<Targets>AdaptedToothOnVirtualPreparationForVeneer</Targets>
+			<Targets>AdaptedToothOnVirtualPreparationForOrthoPlanCrown</Targets>
+			<Targets>AdaptedToothOnVirtualPreparationForOrthoPlanVeneer </Targets>
+
+			<Targets>ProstheticTooth</Targets>
+			<Targets>ProvisionalCrownBottom</Targets>
+			<Outline>true</Outline>
+		</PartSetups>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>RetractedOrSmileOrFaceScan</Targets>
+		</PartSetups>
+
+	</VisualSetup>
+	
+		<!-- ############################ 
+	     Ortho Report setups
+		 ############################ -->
+
+	<VisualSetup Name="OrthoReport.InitialSituation">
+
+		<ViewMatrixType>Default</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>SegmentedTooth</Targets>
+			<Targets>OrthoSegmentedTooth</Targets>
+			<Targets>VirtualGingivaDesignBase</Targets>
+			<Targets>GingivaSegmented</Targets>
+		</PartSetups>
+	</VisualSetup>
+	
+	<VisualSetup Name="OrthoReport.OrthoOnly">
+
+		<ViewMatrixType>Default</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>OrthoPlannedTooth</Targets>
+			<Targets>VirtualGingivaDesignBaseForOrthoPlan</Targets>
+		</PartSetups>
+	</VisualSetup>
+	
+	<VisualSetup Name="OrthoReport.BothOrthoResto">
+
+		<ViewMatrixType>Default</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>LibraryModel</Targets>		
+			<Targets>ProvisionalPontic</Targets>
+			<Targets>ProvisionalCrownTop</Targets>
+			<Targets>AnatomicCrown</Targets>
+			<Targets>AnatomicPontic</Targets>
+			<Targets>AnatomicInlay</Targets>
+			<Targets>AnatomicWaxup</Targets>	
+			<Targets>LibraryModelForOrthoPlan</Targets>			
+			<Targets>PonticModelForOrthoPlan</Targets>			
+
+			<Targets>OrthoPlannedTooth</Targets>
+			<Targets>VirtualGingivaDesignBaseForOrthoPlan</Targets>
+		</PartSetups>
+	</VisualSetup>
+	
+	<VisualSetup Name="OrthoReport.PreparedForVeneerOrtho">
+
+		<ViewMatrixType>Default</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>		
+
+			<Targets>VirtualPreparationReducedToothForOrthoPlanVeneer</Targets>		
+
+			<Targets>OrthoPlannedTooth</Targets>
+			<Targets>VirtualGingivaDesignBaseForOrthoPlan</Targets>
+		</PartSetups>
+	</VisualSetup>
+	
+	<VisualSetup Name="OrthoReport.PreparedForVeneer">
+
+		<ViewMatrixType>Default</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>		
+
+			<Targets>VirtualPreparationReducedToothForVeneer</Targets>		
+
+			<Targets>SegmentedTooth</Targets>
+			<Targets>OrthoSegmentedTooth</Targets>
+			<Targets>VirtualGingivaDesignBase</Targets>
+			<Targets>GingivaSegmented</Targets>
+		</PartSetups>
+	</VisualSetup>
+	
+	<VisualSetup Name="OrthoReport.PreparedForCrownOrtho">
+
+		<ViewMatrixType>Default</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>		
+
+			<Targets>VirtualPreparationReducedToothForOrthoPlanCrown</Targets>		
+
+			<Targets>OrthoPlannedTooth</Targets>
+			<Targets>VirtualGingivaDesignBaseForOrthoPlan</Targets>
+		</PartSetups>
+	</VisualSetup>
+	
+	<VisualSetup Name="OrthoReport.PreparedForCrown">
+
+		<ViewMatrixType>Default</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>		
+
+			<Targets>VirtualPreparationReducedToothForCrown</Targets>		
+
+			<Targets>SegmentedTooth</Targets>
+			<Targets>OrthoSegmentedTooth</Targets>
+			<Targets>VirtualGingivaDesignBase</Targets>
+			<Targets>GingivaSegmented</Targets>
+		</PartSetups>
+	</VisualSetup>
+	
+	<VisualSetup Name="OrthoReport.OnlyRestoVeneers">
+
+		<ViewMatrixType>Default</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>		
+	
+			<Targets>AdaptedToothOnVirtualPreparationForVeneer</Targets>						
+			<Targets>VirtualPreparationReducedToothForVeneer</Targets>
+			
+			<Targets>SegmentedTooth</Targets>
+			<Targets>OrthoSegmentedTooth</Targets>
+			<Targets>VirtualGingivaDesignBase</Targets>
+			<Targets>GingivaSegmented</Targets>
+		</PartSetups>
+	</VisualSetup>
+	
+	<VisualSetup Name="OrthoReport.OnlyRestoCrowns">
+
+		<ViewMatrixType>Default</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>		
+
+			<Targets>AdaptedToothOnVirtualPreparationForCrown</Targets>				
+			<Targets>VirtualPreparationReducedToothForCrown</Targets>
+
+			<Targets>SegmentedTooth</Targets>
+			<Targets>OrthoSegmentedTooth</Targets>			
+			<Targets>VirtualGingivaDesignBase</Targets>
+			<Targets>GingivaSegmented</Targets>
+		</PartSetups>
+	</VisualSetup>
+
+	<VisualSetup Name="OrthoReport.BothOrthoRestoVeneers">
+
+		<ViewMatrixType>Default</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>		
+		
+			<Targets>AdaptedToothOnVirtualPreparationForOrthoPlanVeneer</Targets>			
+			<Targets>VirtualPreparationReducedToothForOrthoPlanVeneer</Targets>
+
+			<Targets>OrthoPlannedTooth</Targets>
+			<Targets>VirtualGingivaDesignBaseForOrthoPlan</Targets>
+		</PartSetups>
+	</VisualSetup>
+	
+	
+	<VisualSetup Name="OrthoReport.BothOrthoRestoCrowns">
+
+		<ViewMatrixType>Default</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>		
+		
+			<Targets>AdaptedToothOnVirtualPreparationForOrthoPlanCrown</Targets>			
+			<Targets>VirtualPreparationReducedToothForOrthoPlanCrown</Targets>
+
+			<Targets>OrthoPlannedTooth</Targets>
+			<Targets>VirtualGingivaDesignBaseForOrthoPlan</Targets>
+		</PartSetups>
+	</VisualSetup>
+	
+	<VisualSetup Name="OrthoReport.OnlyRestorative">
+
+		<ViewMatrixType>Default</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>LibraryModel</Targets>
+			<Targets>ProvisionalPontic</Targets>
+			<Targets>ProvisionalCrownTop</Targets>
+			<Targets>AnatomicCrown</Targets>
+			<Targets>AnatomicPontic</Targets>
+			<Targets>AnatomicInlay</Targets>
+			<Targets>AnatomicWaxup</Targets>
+			
+			<Targets>SegmentedTooth</Targets>
+			<Targets>OrthoSegmentedTooth</Targets>
+			<Targets>VirtualGingivaDesignBase</Targets>
+			<Targets>GingivaSegmented</Targets>
+		</PartSetups>
+	</VisualSetup>
+	
+	<VisualSetup Name="OrthoReport.OcclusionsTopInitial">
+
+		<ViewMatrixType>Top</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>			
+			<Targets>SegmentedTooth</Targets>
+			<Targets>OrthoSegmentedTooth</Targets>
+			<Targets>SegmentedTooth</Targets>
+			<Targets>VirtualGingivaDesignBase</Targets>
+			<Targets>GingivaSegmented</Targets>
+		</PartSetups>
+	</VisualSetup>
+	
+	<VisualSetup Name="OrthoReport.OcclusionsBottomInitial">
+
+		<ViewMatrixType>DefaultBottom</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>			
+			<Targets>OrthoSegmentedTooth</Targets>
+			<Targets>SegmentedTooth</Targets>
+			<Targets>VirtualGingivaDesignBase</Targets>
+			<Targets>GingivaSegmented</Targets>
+		</PartSetups>
+	</VisualSetup>
+	
+	<VisualSetup Name="OrthoReport.OcclusionsTopRestorationsOnly">
+
+		<ViewMatrixType>Top</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>LibraryModel</Targets>
+			<Targets>ProvisionalPontic</Targets>
+			<Targets>ProvisionalCrownTop</Targets>
+			<Targets>AnatomicCrown</Targets>
+			<Targets>AnatomicPontic</Targets>
+			<Targets>AnatomicInlay</Targets>
+			<Targets>AnatomicWaxup</Targets>
+			
+			<Targets>OrthoSegmentedTooth</Targets>
+			<Targets>SegmentedTooth</Targets>
+			<Targets>VirtualGingivaDesignBase</Targets>
+			<Targets>GingivaSegmented</Targets>
+		</PartSetups>
+	</VisualSetup>
+	
+	<VisualSetup Name="OrthoReport.OcclusionsBottomRestorationsOnly">
+
+		<ViewMatrixType>DefaultBottom</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>LibraryModel</Targets>
+			<Targets>ProvisionalPontic</Targets>
+			<Targets>ProvisionalCrownTop</Targets>
+			<Targets>AnatomicCrown</Targets>
+			<Targets>AnatomicPontic</Targets>
+			<Targets>AnatomicInlay</Targets>
+			<Targets>AnatomicWaxup</Targets>
+			
+			<Targets>OrthoSegmentedTooth</Targets>
+			<Targets>SegmentedTooth</Targets>
+			<Targets>VirtualGingivaDesignBase</Targets>
+			<Targets>GingivaSegmented</Targets>
+		</PartSetups>
+	</VisualSetup>
+
+	<VisualSetup Name="OrthoReport.OcclusionsTopOrthoResto">
+
+		<ViewMatrixType>Top</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>LibraryModelForOrthoPlan</Targets>			
+			<Targets>PonticModelForOrthoPlan</Targets>	
+			<Targets>OrthoPlannedTooth</Targets>
+			<Targets>VirtualGingivaDesignBaseForOrthoPlan</Targets>
+		</PartSetups>
+	</VisualSetup>
+	
+	<VisualSetup Name="OrthoReport.OcclusionsBottomOrthoResto">
+
+		<ViewMatrixType>DefaultBottom</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>LibraryModelForOrthoPlan</Targets>			
+			<Targets>PonticModelForOrthoPlan</Targets>				
+			<Targets>OrthoPlannedTooth</Targets>
+			<Targets>VirtualGingivaDesignBaseForOrthoPlan</Targets>
+		</PartSetups>
+	</VisualSetup>
+	
+	<VisualSetup Name="OrthoReport.TMLHeatMapTopInitial">
+
+		<ViewMatrixType>Top</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>OrthoSegmentedTooth</Targets>
+			<Targets>SegmentedTooth</Targets>
+		</PartSetups>
+	</VisualSetup>
+	
+	<VisualSetup Name="OrthoReport.TMLHeatMapFrontInitial">
+
+		<ViewMatrixType>Front</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<Targets>OrthoSegmentedTooth</Targets>
+			<Targets>SegmentedTooth</Targets>
+		</PartSetups>
+	</VisualSetup>
+	
+	<VisualSetup Name="OrthoReport.TMLHeatMapTopOrthoResto">
+
+		<ViewMatrixType>Top</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>			
+			<Targets>OrthoPlannedTooth</Targets>
+	
+		</PartSetups>
+	</VisualSetup>
+	
+	<VisualSetup Name="OrthoReport.TMLHeatMapFrontOrthoResto">
+
+		<ViewMatrixType>Front</ViewMatrixType>
+		<IsZoomToSceneEnabled>true</IsZoomToSceneEnabled>
+
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>			
+			<Targets>OrthoPlannedTooth</Targets>
+		</PartSetups>
+	</VisualSetup>
+
+	<VisualSetup Name="DeinitFinal">
+		<DrawMode>Off</DrawMode>
+		<PartSetups>
+			<IsVisible>true</IsVisible>
+			<Opacity>1</Opacity>
+			<AmbienceSource>1</AmbienceSource>
+			<FresnelFactor>0.1</FresnelFactor>
+			<Targets>LibraryModel</Targets>
+			<Targets>ProvisionalPontic</Targets>
+			<Targets>ProvisionalCrownTop</Targets>
+			<Targets>AnatomicCrown</Targets>
+			<Targets>AnatomicPontic</Targets>
+			<Targets>AnatomicInlay</Targets>
+			<Targets>AnatomicWaxup</Targets>
+
+			<Targets>LibraryModelForOrthoPlan</Targets>			
+			<Targets>PonticModelForOrthoPlan</Targets>			
+
+			<Targets>AdaptedToothOnVirtualPreparationForCrown</Targets>			
+			<Targets>AdaptedToothOnVirtualPreparationForVeneer</Targets>			
+			<Targets>AdaptedToothOnVirtualPreparationForOrthoPlanCrown</Targets>			
+			<Targets>AdaptedToothOnVirtualPreparationForOrthoPlanVeneer</Targets>
+
+			<Targets>GingivaSegmented</Targets>
+			<Targets>VirtualGingivaDesignBase</Targets>
+			<Targets>VirtualGingivaDesignBaseForOrthoPlan</Targets>
+
+			<Targets>OrthoPlannedTooth</Targets>
+			<Targets>OrthoSegmentedTooth</Targets>
+			<Targets>SegmentedTooth</Targets>
+
+			<Targets>ProstheticTooth</Targets>
+			<Targets>MergedBridge</Targets>
+			<Targets>BiteSplintTop</Targets>
+			<Targets>SituScan</Targets>
+			<Targets>UnsegmentedJaw</Targets>
+		</PartSetups>
+				
+		<PartSetups>
+			<ColorEmissive>#000000</ColorEmissive>
+			<ColorAmbient>#A9A9A9</ColorAmbient>
+			<ColorDiffuse>Antagonist</ColorDiffuse>
+			<Targets>Antagonist</Targets>
+		</PartSetups>
+		
+		<PartSetups>
+			<IsVisible>false</IsVisible>
+			<Targets>Antagonist</Targets>
+			<Targets>Smile</Targets>
+			<Targets>Mouth</Targets>
+			<Targets>Retracted</Targets>
+		</PartSetups>
+		</VisualSetup>
+</ArrayOfVisualSetup>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<AttachmentLibrary>
+  <SupplierName>TruAbutment Inc.</SupplierName>
+  <AttachmentFile>
+    <Filename>All-on-T 1.0.sdfa</Filename>
+    <Signature>0c9dedc7ddb117d3ba80abd604b274fa74d884f4</Signature>
+    <SupplyName>TruAbutment DS CAD-CAM Attachments</SupplyName>
+    <SupplyDescription>TruAbutment_DS_CAD-CAM-english.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>All-on-T 2.0.sdfa</Filename>
+    <Signature>da628f0110e6926a3da358bdbbea529d32437832</Signature>
+    <SupplyName>TruAbutment DS CAD-CAM Attachments</SupplyName>
+    <SupplyDescription>TruAbutment_DS_CAD-CAM-english.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>All-on-T 3.0.sdfa</Filename>
+    <Signature>414bfc54530d676bd3cee435f55f64b320134072</Signature>
+    <SupplyName>TruAbutment DS CAD-CAM Attachments</SupplyName>
+    <SupplyDescription>TruAbutment_DS_CAD-CAM-english.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>T-LOC 1.0.sdfa</Filename>
+    <Signature>a96b113d3afa036e4983aceaf93485bee52598dd</Signature>
+    <SupplyName>TruAbutment DS CAD-CAM Attachments</SupplyName>
+    <SupplyDescription>TruAbutment_DS_CAD-CAM-english.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>T-LOC 2.0.sdfa</Filename>
+    <Signature>996603743190e306d0a2bfe443a85556a0b32b6d</Signature>
+    <SupplyName>TruAbutment DS CAD-CAM Attachments</SupplyName>
+    <SupplyDescription>TruAbutment_DS_CAD-CAM-english.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>T-LOC 3.0.sdfa</Filename>
+    <Signature>5fdb67ab041843cfe793cbda79835a93fc001bbf</Signature>
+    <SupplyName>TruAbutment DS CAD-CAM Attachments</SupplyName>
+    <SupplyDescription>TruAbutment_DS_CAD-CAM-english.Description</SupplyDescription>
+  </AttachmentFile>
+</AttachmentLibrary>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<BarProfileFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile xsi:type="BarProfilePlugin" FixLeft="true" FixRight="true" FixTop="true" FixBottom="true">
+    <DisplayName>NobilMetal Archway Macro</DisplayName>
+    <PluginName>BarProfile.NobilMetal_Archway_Macro#NobilMetalArchwayMacro</PluginName>
+    <Parameters>
+      <BarProfileParameter Name="Width" Visible="true" Configurable="true" Min="0.79" Max="4.75" Decimals="2" Value="1.75" />
+      <BarProfileParameter Name="Angle" Visible="true" Configurable="true" Min="0" Max="30" Decimals="2" Value="5.59" />
+      <BarProfileParameter Name="Side Chamfer" Visible="true" Configurable="true" Min="0.5" Max="3" Decimals="2" Value="0.5" />
+      <BarProfileParameter Name="Height" Visible="true" Configurable="true" Min="0" Max="8" Decimals="2" Value="3.5" />
+    </Parameters>
+  </Profile>
+</BarProfileFile>

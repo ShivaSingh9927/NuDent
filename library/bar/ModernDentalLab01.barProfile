@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<BarProfileFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile xsi:type="BarProfilePlugin" FixLeft="true" FixRight="true" FixTop="true" FixBottom="true">
+    <DisplayName>ModernDentalLab 1</DisplayName>
+    <PluginName>ModernDentalLab 1#ModernDentalLab01</PluginName>
+    <Parameters>
+      <BarProfileParameter Name="Top Width" Visible="true" Configurable="true" Min="1.24" Max="3" Decimals="2" Value="1.24" />
+      <BarProfileParameter Name="Height" Visible="true" Configurable="true" Min="0.4" Max="3" Decimals="2" Value="3" />
+      <BarProfileParameter Name="Bottom Width" Visible="true" Configurable="true" Min="1" Max="3" Decimals="2" Value="1.2" />
+      <BarProfileParameter Name="Radius" Visible="true" Configurable="true" Min="0.5" Max="3" Decimals="2" Value="0.5" />
+      <BarProfileParameter Name="Angle" Visible="true" Configurable="true" Min="2" Max="10" Decimals="10" Value="2" />
+      <BarProfileParameter Name="Bottom Height" Visible="true" Configurable="true" Min="0.5" Max="3" Decimals="2" Value="0.5" />
+    </Parameters>
+  </Profile>
+</BarProfileFile>

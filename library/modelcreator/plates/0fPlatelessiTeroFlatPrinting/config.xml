@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://exocad.com/model/type" DefaultModelType="iteroos">
+	<Supplier>exocad GmbH</Supplier>
+	<DisplayInformation>iTero™ articulator model (quick)</DisplayInformation>
+	<Parameter Id="modelheight" Min="38" Max="38" Default="38" Decimals="2" Unit="mm">ModelAlignmentProcessorControl.ModelHeight</Parameter>
+	<ModelType Class="Quick" Id="iterofa">
+		<DisplayInformation>Printing flat on build plate (full arch)</DisplayInformation>
+		<PreviewImageFileName>0hPlatelessiTeroFlatPrinting_iterofa.png</PreviewImageFileName>
+		<MinRequiredPrepPlateDist>4</MinRequiredPrepPlateDist>
+		<BottomPlaneUpperJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</BottomPlaneUpperJaw>
+		<BottomPlaneLowerJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</BottomPlaneLowerJaw>
+		<!-- Plate Parameters -->
+		<ConstructionParameter>
+			<Type>ModelWallThickness</Type>
+			<Value>2.5</Value>
+			<MinValue>2</MinValue>
+			<MaxValue>4</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Plate Parameters -->
+		<!-- Protect Lab Analog  -->
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetHorizontal</Type>
+			<Value>0.05</Value>
+			<MinValue>-0.2</MinValue>
+			<MaxValue>0.2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetVertical</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportGingivaMaskDepth</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportHeightOffset</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelRatio</Type>
+			<Value>50</Value>
+			<MinValue>50</MinValue>
+			<MaxValue>50</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelAngle</Type>
+			<Value>45</Value>
+			<MinValue>45</MinValue>
+			<MaxValue>45</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Protect Lab Analog  -->
+		<Attachment Ref="iTero_Articulator_FullArch_Long" Rel="Global" Jaw="Any"/>
+	</ModelType>
+	<ModelType Class="Quick" Id="iteroos">
+		<DisplayInformation>Printing flat on build plate (full arch with occlusal stop)</DisplayInformation>
+		<PreviewImageFileName>0hPlatelessiTeroFlatPrinting_iteroos.png</PreviewImageFileName>
+		<MinRequiredPrepPlateDist>4</MinRequiredPrepPlateDist>
+		<BottomPlaneUpperJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</BottomPlaneUpperJaw>
+		<BottomPlaneLowerJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</BottomPlaneLowerJaw>
+		<!-- Plate Parameters -->
+		<ConstructionParameter>
+			<Type>ModelWallThickness</Type>
+			<Value>2.5</Value>
+			<MinValue>2</MinValue>
+			<MaxValue>4</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Plate Parameters -->
+		<!-- Protect Lab Analog  -->
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetHorizontal</Type>
+			<Value>0.05</Value>
+			<MinValue>-0.2</MinValue>
+			<MaxValue>0.2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetVertical</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportGingivaMaskDepth</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportHeightOffset</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelRatio</Type>
+			<Value>50</Value>
+			<MinValue>50</MinValue>
+			<MaxValue>50</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelAngle</Type>
+			<Value>45</Value>
+			<MinValue>45</MinValue>
+			<MaxValue>45</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Protect Lab Analog  -->
+		<Attachment Ref="iTero_Articulator_FullArch_Long_with_Occlusal_Stop" Rel="Global" Jaw="Any"/>
+	</ModelType>
+	<ModelType Class="Quick" Id="iteroha">
+		<DisplayInformation>Printing flat on build plate (half arch)</DisplayInformation>
+		<PreviewImageFileName>0hPlatelessiTeroFlatPrinting_iteroha.png</PreviewImageFileName>
+		<MinRequiredPrepPlateDist>4</MinRequiredPrepPlateDist>
+		<BottomPlaneUpperJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</BottomPlaneUpperJaw>
+		<BottomPlaneLowerJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</BottomPlaneLowerJaw>
+		<!-- Plate Parameters -->
+		<ConstructionParameter>
+			<Type>ModelWallThickness</Type>
+			<Value>2.5</Value>
+			<MinValue>2</MinValue>
+			<MaxValue>4</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Plate Parameters -->
+		<!-- Protect Lab Analog  -->
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetHorizontal</Type>
+			<Value>0.05</Value>
+			<MinValue>-0.2</MinValue>
+			<MaxValue>0.2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetVertical</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportGingivaMaskDepth</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportHeightOffset</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelRatio</Type>
+			<Value>50</Value>
+			<MinValue>50</MinValue>
+			<MaxValue>50</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelAngle</Type>
+			<Value>45</Value>
+			<MinValue>45</MinValue>
+			<MaxValue>45</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Protect Lab Analog  -->
+		<Attachment Ref="iTero_Articulator_HalfArch_Quadrant" Rel="Global" Jaw="Any"/>
+	</ModelType>
+</LibraryEntry>

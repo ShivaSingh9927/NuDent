@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns="http://exocad.com/model/attachment">
+	<Supplier>exocad GmbH</Supplier>
+	<DisplayInformation>Lab Analog - Cutout to check seating</DisplayInformation>
+	<AttachmentPreviewFileName>preview.png</AttachmentPreviewFileName>
+	<SupplierLogoFileName>logo.png</SupplierLogoFileName>
+	<AttachmentDescription>
+	
+Capsule geometry for substraction from upper or lower jaw model, can be used for checking the fitting of lab analogs in models.
+
+- Scalable in X/Y/Z direction. 
+- Free positioning along model height in X/Y/Z, rotatable along Z.
+
+	</AttachmentDescription>	
+	<Placement Move="XY" Rotate="Z">
+		<Translation Axis="XY" Ref="_clickpoint"/>
+		<Constraint Type="NoTranslationZ"/>
+		<Constraint Type="OnPerimeter"/>
+	</Placement>
+	<ControlPoint Id="center" Type="ProjectPerimeter">
+		<Alignment RelativeToBottom="true"/>
+		<Location/>
+	</ControlPoint>
+	<Parameter Scope="Single" Default="2" Min="1" Max="8" Unit="mm" Decimals="1">Size</Parameter>
+	<Parameter Scope="Single" Default="8" Min="0" Max="20" Unit="mm" Decimals="1">Position</Parameter>
+	<Parameter Scope="Single" Default="10" Min="1" Max="50" Unit="mm" Decimals="1">Outer Length</Parameter>
+	<Parameter Scope="Single" Default="40" Min="1" Max="50" Unit="mm" Decimals="1">Inner Length</Parameter>
+	<Component IfJaw="Any" Method="Subtractive" Id="any_hole">
+		<MeshFile FileName="capsule_cutout.eoff" Retriangulate="false">
+			<Select Label="CUSP_1" >
+				<Scaling Axis="XZ">
+					<ParameterRef>Size</ParameterRef>
+				</Scaling>
+			</Select>
+			<Select Label="CUSP_2" >
+				<Scaling Axis="Y">
+					<ParameterRef>Inner Length</ParameterRef>
+				</Scaling>
+			</Select>
+			<Select Label="CUSP_3" >
+				<Scaling Axis="Y">
+					<ParameterRef>Outer Length</ParameterRef>
+				</Scaling>
+			</Select>
+			<Select>
+				<Translation Axis="Z">
+					<ParameterRef>Position</ParameterRef>
+				</Translation>
+			</Select>
+		</MeshFile>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#4B4374</mat:Color>
+			<mat:Opacity>0.5</mat:Opacity>
+		</mat:Material>
+		<Alignment Jaw="Any" RelativeToBottom="true"  AutoFlip="true"/>
+		<Orientation Axis="Y" AroundAxis="Z" Ref="center" />
+	</Component>
+	<IntersectionTestOverride Result="Always">
+		<ComponentRef>any_hole</ComponentRef>
+		<BaseRef>Any</BaseRef>
+	</IntersectionTestOverride>
+</LibraryEntry>

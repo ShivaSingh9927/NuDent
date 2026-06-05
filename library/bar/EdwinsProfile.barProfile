@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<BarProfileFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile xsi:type="BarProfilePlugin" FixLeft="true" FixRight="true" FixTop="true" FixBottom="true">
+    <DisplayName>Edwins Profile</DisplayName>
+    <PluginName>BarProfile.Edwins Profile#EdwinsProfile</PluginName>
+    <Parameters>
+      <BarProfileParameter Name="Radius bottom" Visible="true" Configurable="true" Min="0" Max="10" Decimals="2" Value="3.25" />
+      <BarProfileParameter Name="Height" Visible="true" Configurable="true" Min="1" Max="10" Decimals="2" Value="4" />
+      <BarProfileParameter Name="Width" Visible="true" Configurable="true" Min="0" Max="1.6" Decimals="2" Value="0.72" />
+      <BarProfileParameter Name="Chamfer angle" Visible="true" Configurable="true" Min="0" Max="90" Decimals="2" Value="30" />
+    </Parameters>
+  </Profile>
+</BarProfileFile>

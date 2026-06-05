@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<AttachmentLibrary>
+  <AllowScaling>0</AllowScaling>
+  <SupplierName>RHEIN 83 Srl</SupplierName>
+  <UserMessage>More info: http://www.rhein83.com/</UserMessage>
+  <AttachmentFile>
+    <Filename>OT Cap Micro Threaded Assembled.sdfa</Filename>
+    <Signature>8464f47987f4482c1e49d9f73eca598dd9d44d16</Signature>
+    <SupplyName>OT Cap Micro - Threaded Assembled</SupplyName>
+    <SupplyDescription>OT Cap Micro - Metal Housing.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Cap Normo Threaded Assembled.sdfa</Filename>
+    <Signature>9e6e54fc015423f07a7a7414da674b0ca451c678</Signature>
+    <SupplyName>OT Cap Normo - Threaded Assembled</SupplyName>
+    <SupplyDescription>OT Cap Normal - Metal Housing.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Equator Threaded Assembled.sdfa</Filename>
+    <Signature>adadf0a9c8349998c1338f7a452e57d26f1ab3db</Signature>
+    <SupplyName>OT Equator - Threaded Assembled</SupplyName>
+    <SupplyDescription>OT Equator - Metal Housing.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Cap Micro Spacer Threaded Assembled.sdfa</Filename>
+    <Signature>c6117712162224d974cdf52ab7e3179e9798edca</Signature>
+    <SupplyName>OT Cap Micro - Spacer Threaded Assembled</SupplyName>
+    <SupplyDescription>OT Cap Micro - Sleeve Spacer-Cap assembled.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Cap Normo Spacer Threaded Assembled.sdfa</Filename>
+    <Signature>1a860a4f8762a57e1ea9bc793b98e3ea7a3750c5</Signature>
+    <SupplyName>OT Cap Normo - Spacer Threaded Assembled</SupplyName>
+    <SupplyDescription>OT Cap Normal - Sleeve Spacer-Cap assembled.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Equator Spacer Assembled.sdfa</Filename>
+    <Signature>5c11c2bec7de7e3f178f8f8e2ec40c8a072c0073</Signature>
+    <SupplyName>OT Equator - Spacer Assembled</SupplyName>
+    <SupplyDescription>OT Equator - Sleeve Spacer-Cap assembled.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>OT Unilateral Housing Caps Assembled.sdfa</Filename>
+    <Signature>e53004893a4cd1a1224b39594676f13a7341e279</Signature>
+    <SupplyName>OT Unilateral - Housing Caps Assembled</SupplyName>
+    <SupplyDescription>OT Unilateral - Housing Caps Assembled.Description</SupplyDescription>
+  </AttachmentFile>
+</AttachmentLibrary>

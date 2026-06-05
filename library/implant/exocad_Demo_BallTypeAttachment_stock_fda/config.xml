@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with exoImplantEditor CAD [Engine build 8776] [<64-Bit>]  -->
+<ImplantLibraryEntry xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <RegistrationClickCenter>
+    <x>2.2520065307617188</x>
+    <y>0.053715705871582031</y>
+    <z>14.058024406433105</z>
+  </RegistrationClickCenter>
+  <AxisAsymmetric>
+    <x>1</x>
+    <y>0</y>
+    <z>0</z>
+  </AxisAsymmetric>
+  <MarkerFilename>50002_Scanbody.stl</MarkerFilename>
+  <DisplayInformation>exocad - Demo Ball Type Attachment FDA</DisplayInformation>
+  <Keyword>exocad_Demo_BallTypeAttachment_stock_fda</Keyword>
+  <SupportOrientation>-1</SupportOrientation>
+  <RegulatoryClearance IsDesignConstraint="true">FDA</RegulatoryClearance>
+  <LibraryType>StockAbutment</LibraryType>
+  <Supplier>exocad GmbH</Supplier>
+  <SupplierLink>https://exocad.com/</SupplierLink>
+  <SupplierVersion>Version 2022-05-17 RD</SupplierVersion>
+  <LegalInformation>This library is for demonstration only.</LegalInformation>
+  <WarrantyInformation>DISCLAIMER OF WARRANTY
+
+
+THIS DATA IS PROVIDED "AS IS" AND WITHOUT WARRANTIES AS TO PERFORMANCE, ACCURACY, OR MERCHANTABILITY. THE SELLER'S SALESPERSONS MAY HAVE MADE STATEMENTS ABOUT THIS DATA. ANY SUCH STATEMENTS DO NOT CONSTITUTE WARRANTIES AND SHALL NOT BE RELIED ON BY USER IN DECIDING WHETHER TO USE THIS DATA.
+
+THIS DATA IS PROVIDED WITHOUT ANY EXPRESSED OR IMPLIED WARRANTIES WHATSOEVER. BECAUSE OF THE DIVERSITY OF CONDITIONS AND HARDWARE UNDER WHICH THIS DATA MAY BE USED, NO WARRANTY OF FITNESS FOR A PARTICULAR PURPOSE IS OFFERED. THE USER IS ADVISED TO TEST THE DATA THOROUGHLY BEFORE RELYING ON IT. THE USER MUST ASSUME THE ENTIRE RISK OF USING THIS DATA AND ACCEPTS IT "WITH ALL ITS FAULTS". THE USER MUST ASSUME THE ENTIRE RISK OF USING THE PROGRAM.
+</WarrantyInformation>
+  <AxisOcclusal>
+    <x>0</x>
+    <y>0</y>
+    <z>1</z>
+  </AxisOcclusal>
+  <SupplierV4IconFilename>EXO_exocad.png</SupplierV4IconFilename>
+  <TypeConfig>
+    <ImplantTypeConfig>
+      <DisplayInformation> Ø 4.0 mm</DisplayInformation>
+      <Keyword>40mm</Keyword>
+      <ImplantConnection>
+        <ID>EXO_EX_P40</ID>
+      </ImplantConnection>
+      <ReferenceHeightOffset>0</ReferenceHeightOffset>
+      <ReferenceRotationOffset>0</ReferenceRotationOffset>
+      <RotationLockCount>12</RotationLockCount>
+      <SubtypeConfig>
+        <ImplantSubtypeConfig>
+          <MinimumThicknessFilename IsDesignConstraint="true">MinimumThickness_BallTypeLocatorStyle.sdfa</MinimumThicknessFilename>
+          <MinimumThicknessFileConstructionParam IsDesignConstraint="true">0.5</MinimumThicknessFileConstructionParam>
+          <DisplayInformation>Straight Snap-On</DisplayInformation>
+          <Keyword>StraightSnap-On</Keyword>
+          <HeightAbutmentLimit IsDesignConstraint="true">
+            <Min>0</Min>
+            <Max>10</Max>
+          </HeightAbutmentLimit>
+          <HeightAbutmentPostLimit IsDesignConstraint="true">
+            <Min>0</Min>
+            <Max>10</Max>
+          </HeightAbutmentPostLimit>
+          <GingivalMarginDiameterLimit IsDesignConstraint="true">
+            <Min>0</Min>
+            <Max>12</Max>
+          </GingivalMarginDiameterLimit>
+          <GingivalMarginHeightLimit IsDesignConstraint="true">
+            <Min>0</Min>
+            <Max>10</Max>
+          </GingivalMarginHeightLimit>
+          <AngulationAbutmentLimit IsDesignConstraint="true">
+            <Min>0</Min>
+            <Max>20</Max>
+          </AngulationAbutmentLimit>
+          <RegulatoryClearance IsDesignConstraint="true">FDA</RegulatoryClearance>
+          <StockAbutmentFileName>BallTypeLocatorStyle.sdfa</StockAbutmentFileName>
+          <StockAbutmentSupportFileName>BallTypeLocatorStyle_Cap_Support.sdfa</StockAbutmentSupportFileName>
+          <StockAbutmentCapFileName>BallTypeLocatorStyle_Cap.sdfa</StockAbutmentCapFileName>
+        </ImplantSubtypeConfig>
+        <ImplantSubtypeConfig>
+          <MinimumThicknessFilename IsDesignConstraint="true">Minimumthickness_BallTypeLocatorStyleAngulated.sdfa</MinimumThicknessFilename>
+          <MinimumThicknessFileConstructionParam IsDesignConstraint="true">0.5</MinimumThicknessFileConstructionParam>
+          <DisplayInformation>Angled Snap-On</DisplayInformation>
+          <Keyword>AngledSnap-On</Keyword>
+          <HeightAbutmentLimit IsDesignConstraint="true">
+            <Min>0</Min>
+            <Max>10</Max>
+          </HeightAbutmentLimit>
+          <HeightAbutmentPostLimit IsDesignConstraint="true">
+            <Min>0</Min>
+            <Max>10</Max>
+          </HeightAbutmentPostLimit>
+          <GingivalMarginDiameterLimit IsDesignConstraint="true">
+            <Min>0</Min>
+            <Max>12</Max>
+          </GingivalMarginDiameterLimit>
+          <GingivalMarginHeightLimit IsDesignConstraint="true">
+            <Min>0</Min>
+            <Max>10</Max>
+          </GingivalMarginHeightLimit>
+          <AngulationAbutmentLimit IsDesignConstraint="true">
+            <Min>0</Min>
+            <Max>20</Max>
+          </AngulationAbutmentLimit>
+          <StockAbutmentFileName>BallTypeLocatorStyleAngulated.sdfa</StockAbutmentFileName>
+          <StockAbutmentSupportFileName>BallTypeLocatorStyleAngulated_Cap_Support.sdfa</StockAbutmentSupportFileName>
+          <StockAbutmentCapFileName>BallTypeLocatorStyleAngulated_Cap.sdfa</StockAbutmentCapFileName>
+        </ImplantSubtypeConfig>
+      </SubtypeConfig>
+    </ImplantTypeConfig>
+  </TypeConfig>
+  <SignatureDate>2024-03-04T10:52:53.7755690Z</SignatureDate>
+  <InfoSignatureV3>cQJhTya7OPkE1QykXN8uMPlJ4bmq+WD888rE+pgMI0JYsaV/hZiWDWi4urtDc6fck6lvBPySqKlQX01Corb9m13puq7pZdgKMWvB7a3RqjFJTmXSLP9n49rFNiBi+iUdP8KATQ8OW35PzxaO/0P7YA5qCQ/xh32SGGQCki9zcwAyDKSf1SAr7ymCyF3QnUKDAuv+rDgWPbIdyMXAWDXxz9ug36em+r89Ln/+BICXuFCJIFufu4ALt357EQMG+vLpjd+KRwTxN4aBww/DOvMWzI+/yPaRWYNWkaVZMbHkpR1PWF2Mkj3e2MKEqFBsxwY9j2TKD6AE9Jieyr+wqp0aMQ==</InfoSignatureV3>
+  <InfoSignatureV4>Kj6wUL/wBwzEM+DJFsQMYuRMOgY7NCsW3aGh1XPCTlU6ls67FZDPuSjaeqJODH+B1HK2ApSQlz58tpXOFDHxp0sR/vcoW3kkvtCBW50381ocGCl7ingMohB0vbFAOwK3n+15kJtLVePkjZIWXTw7hHs2gYMnbDIGUufcQZ4TdfFnCGLl7d7lnYvaLGHZw+342lCjiblZcdaZ5xOCuLj1npPypWS/mqUcsVjvvTnvblS1d9Up2wl3Tw2o0WKI39wVDCsOK8YQb5FsXxaADaLeYmI8MZ34b17xl9oADB7UUSFpkG/XTOxkBbpzOa/l4g+0paJeFcxy1DyWKClT9t/apf9faGioPmFsHeQqVh6peIUT/XGnc3926FHBefajbOYE6C7DLMBtczfBJn8MuQ30mtRWftBQhCkw6tUqo6TcwAT35h1FcLFD5GpnRA/pGYSMoHIB9QUjkeSSgiMrJh17aMpg/844A2Fw0mkbLTLeNj2ve637Ij0tPW0m9vn4DdTaK/bwISAzVhOUtwA7iti0B0+6dHQhgcNvxbP5g3eKKXsXOC2/CdYXWmfwAhobwJfI/2d5s/1H/2qmQ5ITuVLVqTFIR5U5EcmcCTZqUDb3miL8Z6Q3qcqCXBVXbQdOK5IZZFuGlYa1QMsrGNMufvZiLQ/LplLpihxm2NaRaNbJpyM=</InfoSignatureV4>
+  <InfoSignatureV5>QVsDiS8aPFmz2aJyLqJLPl7iiceuYe/B8OVCDKuXUskVBQmS5hS4fD003khnT8900oiTtqyyzr65cIh7iD6PMf0q/Yt63eBxeAh1FOxe8yTYOne94I1MPpUQntIBYZ4p1FpnhkOTzTeScgIyQKvVhsKJjqD1seFSkGsbgvreKdq+IWbhkTyf7ZJcND99IAxaCmfc3Hnte6y6ys3XuiKo94HuckHm34J3jLbV50BBs6s1ZOxSRsY8y6c7T0DbXJq55FheUZgdHEUcNwkBHUOfG5vF+w9N5d5pJ113e7XzHnf6ihHZR6mbR1/PZAqjc4q8u/QVoXOWGgxkZX8d1CePEBKZBk+xneoWSkaN12quwCYGortzhgmvDbK8syBJS5Drrcq7R6iXAITr//BU6wGn7N5AYVIenh6OW44u/QfEsXGu8ApGTBsp49rA2qbez5nGtj0SwJ3pej5ymP/7db2kJY4YwAPv5iXyuYlUJAn4F5H7RknVxMoC8bYhpkGiPsb4W0q6ua5Q+7odEtm2x1vBBiBLIH8NBa1mAiJUu6md28kQU/Iv+oxanKxp2Zlp3J1690DKJ7oIebmmXCS0Zenb/WTFCK5LqrbLhXGWn4fub7uoNdThpte/rgpXaCmBRP1tBYSPwKyo61zorKi7mamB6QKKx2Zr6UOBR83F2v7JkgU=</InfoSignatureV5>
+  <FileSignatures>
+    <!--  NOTE! Signature is provided ONLY for specific mesh properties -->
+    <!--  NOT for accuracy or suitability to a particular task.         -->
+    <!--  A valid signature from the software vendor does NOT imply any -->
+    <!--  warranties or statements regarding the data's correctness!    -->
+    <FileSignature>
+      <Filename>50002_Scanbody.stl</Filename>
+      <Signature>+854/f7w21qgRW92zJblgOo0SBi4pS0le3zx8QbU7juMHw3xk074V87V+5kizo0nno2d791VT5UhvcutcSzdow==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>EXO_exocad.png</Filename>
+      <Signature>lL7Yxp6O4n0EVekJTDLd3t3QHBMnJ9UNBypl8qMKbouYj/9rd4PVQgCkuY05O8jHkkwllKhb9oNXmVi93hMm6g==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>MinimumThickness_BallTypeLocatorStyle.sdfa</Filename>
+      <Signature>govWXSBeP4XHgxWOOh+MCwJZdOJWYd6JQwp5LJqZmLVzONLNJY1Q+1/mZ2OahDA1wjNSxMCEW0R37NB4ytqZDQ==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>BallTypeLocatorStyle_Cap.sdfa</Filename>
+      <Signature>02DcsB7kt05xEug1WqwWvSU63QPApIY++zUwQpe3RPhFw0ZMO7+UA6xf4Sldya+qaBkoHjlGXUko+mTBShgO5g==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>BallTypeLocatorStyle.sdfa</Filename>
+      <Signature>uqrsrRnFL/Om5PKD6yYnPpLbTOFl31uVGIi2zuGPqUUv8TJN29A/Am5CMB5S+/gN9W5vQZr7TidYnYH47lvLhw==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>BallTypeLocatorStyle_Cap_Support.sdfa</Filename>
+      <Signature>e9qWJhvRW9UE9fLjv9K4LJZMBiB3tHD97j0OvphBFiwwOcKe/ESv5D7F/DdoEK2PNq888TDzgQdeuHYk3PCB0A==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>Minimumthickness_BallTypeLocatorStyleAngulated.sdfa</Filename>
+      <Signature>BKVduux4P1GUONUadrjFLvSOIRI5zaUbQsoeda5NNgKD+A3lFAI4MsGw+nGLGAkkLrPUqVn1jLtwtlvt3w7hcQ==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>BallTypeLocatorStyleAngulated_Cap.sdfa</Filename>
+      <Signature>eYbDL5f8R4dcz9T74sRnVSmE/yk8E0eNTn4wR+IvWD1I30jNFVVpH2J1JPThJyP5gRfmnYX5j2CHlDIEy99TiQ==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>BallTypeLocatorStyleAngulated.sdfa</Filename>
+      <Signature>ivSVxt0Q3rQEfCkyHuTO8xA4ThIWLmPl4uJB+OfV+O6O9RH5X5RggUrUsLjxpXc6tgOqotw7zu/Nk/WhBUL1dg==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>BallTypeLocatorStyleAngulated_Cap_Support.sdfa</Filename>
+      <Signature>+t2xNoRlYXFODuIkFA/N++y1ujed/2GF3LzeWznOAATxJGDMM+aSaAgEwOm1+P1P6Co25kuoCCe5rEYSA/Sl7g==</Signature>
+    </FileSignature>
+  </FileSignatures>
+</ImplantLibraryEntry>

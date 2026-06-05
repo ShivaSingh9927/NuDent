@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<AttachmentLibrary>
+  <AllowScaling>2</AllowScaling>
+  <SupplierName>exocad GmbH</SupplierName>
+  <UserMessage>http://www.exocad.com</UserMessage>
+  <AttachmentFile>
+    <Filename>donut_shape_1.sdfa</Filename>
+    <Signature>ad2a7dadb0615a154f3e9a9b657592ac500cdf58</Signature>
+    <DockPoint>
+      <x>3</x>
+      <y>0</y>
+      <z>0</z>
+    </DockPoint>
+    <SupplyName>exocad ring retention - donut shape 1</SupplyName>
+    <SupplyDescription>exocad.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>donut_shape_2.sdfa</Filename>
+    <Signature>a2466ff81e4945f38b3dfa4cb16c40c90bf8f033</Signature>
+    <DockPoint>
+      <x>6</x>
+      <y>0</y>
+      <z>0</z>
+    </DockPoint>
+    <SupplyName>exocad ring retention - donut shape 2</SupplyName>
+    <SupplyDescription>exocad.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>donut_shape_3.sdfa</Filename>
+    <Signature>ec5fb6adfeebc699dfd8abda05febc942c5f2b75</Signature>
+    <DockPoint>
+      <x>9</x>
+      <y>0</y>
+      <z>0</z>
+    </DockPoint>
+    <SupplyName>exocad ring retention - donut shape 3</SupplyName>
+    <SupplyDescription>exocad.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>donut_shape_4.sdfa</Filename>
+    <Signature>88048b5077606a66fde681014d06e08100a874db</Signature>
+    <DockPoint>
+      <x>12</x>
+      <y>0</y>
+      <z>0</z>
+    </DockPoint>
+    <SupplyName>exocad ring retention - donut shape 4</SupplyName>
+    <SupplyDescription>exocad.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>donut_shape_5.sdfa</Filename>
+    <Signature>bea5387007a5137fc3f105800edea04b46fc9c19</Signature>
+    <DockPoint>
+      <x>15</x>
+      <y>0</y>
+      <z>0</z>
+    </DockPoint>
+    <SupplyName>exocad ring retention - donut shape 5</SupplyName>
+    <SupplyDescription>exocad.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>donut_shape_6.sdfa</Filename>
+    <Signature>b0f6c6db2ec91c2aadde929a10d5e5f84d270081</Signature>
+    <DockPoint>
+      <x>18</x>
+      <y>0</y>
+      <z>0</z>
+    </DockPoint>
+    <SupplyName>exocad ring retention - donut shape 6</SupplyName>
+    <SupplyDescription>exocad.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>ring_shape_3.sdfa</Filename>
+    <Signature>6cf22a0b7d0d2b497064f70645f03f0f56892386</Signature>
+    <DockPoint>
+      <x>8</x>
+      <y>0</y>
+      <z>0</z>
+    </DockPoint>
+    <SupplyName>exocad ring retention - ring shape 3</SupplyName>
+    <SupplyDescription>exocad.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>ring_shape_4.sdfa</Filename>
+    <Signature>6b80c0625ea6629403c726fe371b3ab6fbc367d1</Signature>
+    <DockPoint>
+      <x>12</x>
+      <y>0</y>
+      <z>0</z>
+    </DockPoint>
+    <SupplyName>exocad ring retention - ring shape 4</SupplyName>
+    <SupplyDescription>exocad.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>ring_shape_5.sdfa</Filename>
+    <Signature>5306d9710b4cb889734b3d246948ede9c648df4e</Signature>
+    <DockPoint>
+      <x>16</x>
+      <y>0</y>
+      <z>0</z>
+    </DockPoint>
+    <SupplyName>exocad ring retention - ring shape 5</SupplyName>
+    <SupplyDescription>exocad.Description</SupplyDescription>
+  </AttachmentFile>
+</AttachmentLibrary>

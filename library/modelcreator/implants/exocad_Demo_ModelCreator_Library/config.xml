@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<ModelLabAnalogEntries>
+	<Supplier>exocad GmbH</Supplier>
+	<DisplayInformation>exocad Demo-Case ModelCreator Library</DisplayInformation>
+	<LabAnalogs>
+		<ModelLabAnalogEntry>
+			<SubtypeInfo>exoImplant Dummy Cylinder Lab Analog</SubtypeInfo>
+			<RotationalSymmetry>12</RotationalSymmetry>
+			<CompatibleImplants>
+				<string>exocad_Demo_Prosthetics : 40mm : *</string>
+				<string>exocad_Demo_Prosthetics_AbutmentCAD_fda : TiBase</string>
+				<string>exocad_Demo_Prosthetics_AbutmentCAD_fda : Direct-to-Implant</string>
+				<string>exocad_Demo_Prosthetics_AbutmentCAD_fda : Ti-Basewithangulatedscrewchannel</string>
+				<string>exocad_Demo_Stock_Abutment_stock_fda : 4mm</string>
+				<string>exocad_Demo_Stock_Abutment_stock_fda : 4mm15degrees</string>
+			</CompatibleImplants>
+			<ModelLabAnalogFile>exoImplant_40_dummy_cylinder.sdfa</ModelLabAnalogFile>
+			<RetentionMeshType>
+				<ModelLabAnalogRetentionFile>exoImplant_40_dummy_cylinder_MCshell.sdfa</ModelLabAnalogRetentionFile>
+			</RetentionMeshType>
+			<OffsetMethod>RadialOffset</OffsetMethod>
+			<OffsetMaximum>0.5</OffsetMaximum>
+			<OffsetMinimum>0</OffsetMinimum>
+			<OffsetProvided>0.05</OffsetProvided>
+		</ModelLabAnalogEntry>
+	</LabAnalogs>
+</ModelLabAnalogEntries>

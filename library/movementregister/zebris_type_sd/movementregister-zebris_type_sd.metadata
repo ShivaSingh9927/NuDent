@@ -1,0 +1,20 @@
+<MovementRegisterInfo>
+  <CoordinateSystem>bite_fork</CoordinateSystem>
+  <Plane>
+    <Point>
+    	<x>0</x>
+    	<y>0</y>
+    	<z>0</z>
+    </Point>
+    <Point>
+    	<x>25</x>
+    	<y>0</y>
+    	<z>30.5</z>
+    </Point>
+    <Point>
+    	<x>-25</x>
+    	<y>0</y>
+    	<z>30.5</z>
+    </Point>
+  </Plane>
+</MovementRegisterInfo>

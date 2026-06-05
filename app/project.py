@@ -22,7 +22,8 @@ import tempfile
 import zipfile
 
 import numpy as np
-import pyvista as pv
+
+from .mesh_io import read_mesh
 
 
 SCHEMA_VERSION = 1
@@ -49,7 +50,7 @@ def _bytes_to_mesh(data, suffix=".stl"):
     try:
         with open(tmp, "wb") as f:
             f.write(data)
-        return pv.read(tmp)
+        return read_mesh(tmp)
     finally:
         try: os.remove(tmp)
         except Exception: pass
@@ -70,6 +71,9 @@ def save_project(path, app):
     if state.jaw_mesh is not None:
         artifacts["jaw"] = "jaw.stl"
         payloads["jaw.stl"] = _mesh_to_bytes(state.jaw_mesh)
+    if state.opposing_jaw_mesh is not None:
+        artifacts["opposing"] = "opposing.stl"
+        payloads["opposing.stl"] = _mesh_to_bytes(state.opposing_jaw_mesh)
     if state.margin_points:
         artifacts["margin"] = "margin.npy"
         buf = io.BytesIO()
@@ -93,6 +97,7 @@ def save_project(path, app):
         "modified_at": now,
         "current_stage": app.current_stage_idx,
         "jaw_filename": os.path.basename(state.jaw_path) if state.jaw_path else None,
+        "opposing_filename": os.path.basename(state.opposing_jaw_path) if state.opposing_jaw_path else None,
         "margin_loop_closed": state.margin_loop_closed,
         "stages": stages_data,
         "artifacts": artifacts,
@@ -120,8 +125,13 @@ def load_project(path, app):
         # Hard reset before populating
         state.jaw_mesh = None
         state.jaw_path = None
+        state.opposing_jaw_mesh = None
+        state.opposing_jaw_path = None
         state.margin_points = []
         state.margin_loop_closed = False
+        state.cap_seed_point = None
+        state.cap_mesh = None
+        state.cap_zone_labels = None
         state.crown = None
         state.shell_outer = None
         state.shell_inner = None
@@ -131,6 +141,9 @@ def load_project(path, app):
         if "jaw" in artifacts:
             state.jaw_mesh = _bytes_to_mesh(z.read(artifacts["jaw"]))
             state.jaw_path = meta.get("jaw_filename") or "jaw.stl"
+        if "opposing" in artifacts:
+            state.opposing_jaw_mesh = _bytes_to_mesh(z.read(artifacts["opposing"]))
+            state.opposing_jaw_path = meta.get("opposing_filename") or "opposing.stl"
         if "margin" in artifacts:
             arr = np.load(io.BytesIO(z.read(artifacts["margin"])))
             state.margin_points = [np.array(p) for p in arr]

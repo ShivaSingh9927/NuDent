@@ -1,0 +1,17 @@
+﻿<?xml version="1.0"?>
+<AttachmentLibrary>
+  <SupplierName>Cendres+Métaux</SupplierName>
+  
+    <AttachmentFile>
+     <SupplyName>M-SG® Star 1
+M-SG® Star 2</SupplyName>
+     <SupplyDescription>Attachment.CM.M-SG-Star_1_Star_2.Description</SupplyDescription>
+     <Filename>M-SG-Star.sdfa</Filename>
+     <Signature>cf3fdf34788a83d64ca5977e68edf787375cba09</Signature>
+               <DockPoint>
+	<x>-2</x>
+	<y>0</y>
+	<z>0</z>
+     </DockPoint>
+  </AttachmentFile>
+</AttachmentLibrary>

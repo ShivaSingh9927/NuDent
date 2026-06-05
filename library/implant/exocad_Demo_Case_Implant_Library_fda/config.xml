@@ -1,0 +1,641 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with exoImplantEditor CAD [Engine build 8623] [<64-Bit>]  -->
+<ImplantLibraryEntry xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <RegistrationClickCenter>
+    <x>0</x>
+    <y>0</y>
+    <z>0</z>
+  </RegistrationClickCenter>
+  <AxisAsymmetric>
+    <x>1</x>
+    <y>0</y>
+    <z>0</z>
+  </AxisAsymmetric>
+  <DisplayInformation>exocad - Demo Case Implant Library</DisplayInformation>
+  <IsWithInterface>false</IsWithInterface>
+  <IsWithRotationLock>true</IsWithRotationLock>
+  <Keyword>exocad_Demo_Case_Implant_Library_fda</Keyword>
+  <SupportOrientation>-1</SupportOrientation>
+  <RegulatoryClearance IsDesignConstraint="true">FDA</RegulatoryClearance>
+  <Supplier>exocad GmbH</Supplier>
+  <SupplierLink>http://www.exocad.com</SupplierLink>
+  <SupplierVersion>Version 2021-12-07 AF</SupplierVersion>
+  <LegalInformation>This library is for usage with exocad Demo Sample cases only.</LegalInformation>
+  <WarrantyInformation>DISCLAIMER OF WARRANTY
+
+
+THIS DATA IS PROVIDED "AS IS" AND WITHOUT WARRANTIES AS TO PERFORMANCE, ACCURACY, OR MERCHANTABILITY. THE SELLER'S SALESPERSONS MAY HAVE MADE STATEMENTS ABOUT THIS DATA. ANY SUCH STATEMENTS DO NOT CONSTITUTE WARRANTIES AND SHALL NOT BE RELIED ON BY USER IN DECIDING WHETHER TO USE THIS DATA.
+
+THIS DATA IS PROVIDED WITHOUT ANY EXPRESSED OR IMPLIED WARRANTIES WHATSOEVER. BECAUSE OF THE DIVERSITY OF CONDITIONS AND HARDWARE UNDER WHICH THIS DATA MAY BE USED, NO WARRANTY OF FITNESS FOR A PARTICULAR PURPOSE IS OFFERED. THE USER IS ADVISED TO TEST THE DATA THOROUGHLY BEFORE RELYING ON IT. THE USER MUST ASSUME THE ENTIRE RISK OF USING THIS DATA AND ACCEPTS IT "WITH ALL ITS FAULTS". THE USER MUST ASSUME THE ENTIRE RISK OF USING THE PROGRAM.
+	</WarrantyInformation>
+  <AxisOcclusal>
+    <x>0</x>
+    <y>0</y>
+    <z>1</z>
+  </AxisOcclusal>
+  <SupplierV4IconFilename>EXO_exocad.png</SupplierV4IconFilename>
+  <TypeConfig>
+    <ImplantTypeConfig>
+      <RegistrationClickCenter>
+        <x>2.25</x>
+        <y>0</y>
+        <z>14</z>
+      </RegistrationClickCenter>
+      <AxisAsymmetric>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+      </AxisAsymmetric>
+      <MarkerFilename>50007_Scanbody.stl</MarkerFilename>
+      <SupportFilename>16002_Base.sdfa</SupportFilename>
+      <InterfaceFilename>16002.sdfa</InterfaceFilename>
+      <ScrewFilename>19028.sdfa</ScrewFilename>
+      <ImplantFilename>14002.sdfa</ImplantFilename>
+      <MinimumThicknessFilename IsDesignConstraint="true">16002_Base_min_thickness.sdfa</MinimumThicknessFilename>
+      <MinimumThicknessFileConstructionParam IsDesignConstraint="true">0.3</MinimumThicknessFileConstructionParam>
+      <DisplayInformation>Custom Abutment</DisplayInformation>
+      <IsWithInterface>true</IsWithInterface>
+      <Keyword>CustomAbutment</Keyword>
+      <AxisScrewChannelMaxUserAngle IsDesignConstraint="true">25</AxisScrewChannelMaxUserAngle>
+      <AxisScrewChannelMinUserAngle IsDesignConstraint="true">0</AxisScrewChannelMinUserAngle>
+      <HeightAbutmentLimit IsDesignConstraint="true">
+        <Min>0.5</Min>
+        <Max>12.8</Max>
+      </HeightAbutmentLimit>
+      <HeightAbutmentPostLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>10</Max>
+      </HeightAbutmentPostLimit>
+      <GingivalMarginDiameterLimit IsDesignConstraint="true">
+        <Min>3.46</Min>
+        <Max>11.8</Max>
+      </GingivalMarginDiameterLimit>
+      <GingivalMarginHeightLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>10</Max>
+      </GingivalMarginHeightLimit>
+      <AngulationAbutmentLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>30</Max>
+      </AngulationAbutmentLimit>
+      <ReferenceHeightOffset>0</ReferenceHeightOffset>
+      <ReferenceRotationOffset>30</ReferenceRotationOffset>
+      <RotationLockCount>6</RotationLockCount>
+    </ImplantTypeConfig>
+    <ImplantTypeConfig>
+      <RegistrationClickCenter>
+        <x>2.25</x>
+        <y>0</y>
+        <z>14</z>
+      </RegistrationClickCenter>
+      <AxisAsymmetric>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+      </AxisAsymmetric>
+      <MarkerFilename>50007_Scanbody.stl</MarkerFilename>
+      <SupportFilename>15007_CDIREC.sdfa</SupportFilename>
+      <ScrewFilename>19006.sdfa</ScrewFilename>
+      <ImplantFilename>14007.sdfa</ImplantFilename>
+      <MinimumThicknessFilename IsDesignConstraint="true">15007_CDIREC_min_thickness.sdfa</MinimumThicknessFilename>
+      <MinimumThicknessFileConstructionParam IsDesignConstraint="true">0.3</MinimumThicknessFileConstructionParam>
+      <DisplayInformation>Bar with Pre-Op</DisplayInformation>
+      <IsWithRotationLock>false</IsWithRotationLock>
+      <Keyword>BarwithPreOp</Keyword>
+      <AxisScrewChannelMaxUserAngle IsDesignConstraint="true">25</AxisScrewChannelMaxUserAngle>
+      <AxisScrewChannelMinUserAngle IsDesignConstraint="true">0</AxisScrewChannelMinUserAngle>
+      <HeightAbutmentLimit IsDesignConstraint="true">
+        <Min>0.5</Min>
+        <Max>12.8</Max>
+      </HeightAbutmentLimit>
+      <HeightAbutmentPostLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>10</Max>
+      </HeightAbutmentPostLimit>
+      <GingivalMarginDiameterLimit IsDesignConstraint="true">
+        <Min>3.46</Min>
+        <Max>11.8</Max>
+      </GingivalMarginDiameterLimit>
+      <GingivalMarginHeightLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>10</Max>
+      </GingivalMarginHeightLimit>
+      <AngulationAbutmentLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>30</Max>
+      </AngulationAbutmentLimit>
+      <ReferenceHeightOffset>0</ReferenceHeightOffset>
+      <ReferenceRotationOffset>0</ReferenceRotationOffset>
+      <RotationLockCount>0</RotationLockCount>
+    </ImplantTypeConfig>
+    <ImplantTypeConfig>
+      <RegistrationClickCenter>
+        <x>2.3</x>
+        <y>0</y>
+        <z>8.2</z>
+      </RegistrationClickCenter>
+      <AxisAsymmetric>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+      </AxisAsymmetric>
+      <MarkerFilename>Scanabutment_Knt_10G.stl</MarkerFilename>
+      <SupportFilename>BASE_SC_K10.Mi4.100.05_A.sdfa</SupportFilename>
+      <InterfaceFilename>PREF_SC_K10.Mi4.100.05_A.sdfa</InterfaceFilename>
+      <ScrewFilename>Screw_Knt_2.0.sdfa</ScrewFilename>
+      <ImplantFilename>ImplAnalog_Preform_Knt_RP.sdfa</ImplantFilename>
+      <MinimumThicknessFilename IsDesignConstraint="true">BASE_SC_K10.Mi4.100.05_A_min_thickness.sdfa</MinimumThicknessFilename>
+      <MinimumThicknessFileConstructionParam IsDesignConstraint="true">0.3</MinimumThicknessFileConstructionParam>
+      <DisplayInformation>Model Creator with Lab Analogs</DisplayInformation>
+      <Keyword>ModelCreatorwithLabAnalogs</Keyword>
+      <AxisScrewChannelMaxUserAngle IsDesignConstraint="true">25</AxisScrewChannelMaxUserAngle>
+      <AxisScrewChannelMinUserAngle IsDesignConstraint="true">0</AxisScrewChannelMinUserAngle>
+      <HeightAbutmentLimit IsDesignConstraint="true">
+        <Min>0.5</Min>
+        <Max>12.8</Max>
+      </HeightAbutmentLimit>
+      <HeightAbutmentPostLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>10</Max>
+      </HeightAbutmentPostLimit>
+      <GingivalMarginDiameterLimit IsDesignConstraint="true">
+        <Min>4.06</Min>
+        <Max>11.8</Max>
+      </GingivalMarginDiameterLimit>
+      <GingivalMarginHeightLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>10</Max>
+      </GingivalMarginHeightLimit>
+      <AngulationAbutmentLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>30</Max>
+      </AngulationAbutmentLimit>
+      <ReferenceHeightOffset>0</ReferenceHeightOffset>
+      <ReferenceRotationOffset>0</ReferenceRotationOffset>
+      <RotationLockCount>6</RotationLockCount>
+    </ImplantTypeConfig>
+    <ImplantTypeConfig>
+      <RegistrationClickCenter>
+        <x>2.25</x>
+        <y>0</y>
+        <z>14</z>
+      </RegistrationClickCenter>
+      <AxisAsymmetric>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+      </AxisAsymmetric>
+      <MarkerFilename>50007_Scanbody.stl</MarkerFilename>
+      <SupportFilename>exoDemo_DirectConnection.sdfa</SupportFilename>
+      <ScrewFilename>19028.sdfa</ScrewFilename>
+      <ImplantFilename>exoImplant_4x10.sdfa</ImplantFilename>
+      <MinimumThicknessFilename IsDesignConstraint="true">exoImplant_4_minThicknessFile.sdfa</MinimumThicknessFilename>
+      <MinimumThicknessFileConstructionParam IsDesignConstraint="true">0.3</MinimumThicknessFileConstructionParam>
+      <DisplayInformation>Screw-Retained Crown</DisplayInformation>
+      <Keyword>ScrewRetainedCrown</Keyword>
+      <AxisScrewChannelMaxUserAngle IsDesignConstraint="true">25</AxisScrewChannelMaxUserAngle>
+      <AxisScrewChannelMinUserAngle IsDesignConstraint="true">0</AxisScrewChannelMinUserAngle>
+      <HeightAbutmentLimit IsDesignConstraint="true">
+        <Min>0.5</Min>
+        <Max>12.8</Max>
+      </HeightAbutmentLimit>
+      <HeightAbutmentPostLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>10</Max>
+      </HeightAbutmentPostLimit>
+      <GingivalMarginDiameterLimit IsDesignConstraint="true">
+        <Min>4.06</Min>
+        <Max>11.8</Max>
+      </GingivalMarginDiameterLimit>
+      <GingivalMarginHeightLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>10</Max>
+      </GingivalMarginHeightLimit>
+      <AngulationAbutmentLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>30</Max>
+      </AngulationAbutmentLimit>
+      <ImplantConnection>
+        <ID>EXO_EX_P40</ID>
+      </ImplantConnection>
+      <ReferenceHeightOffset>0</ReferenceHeightOffset>
+      <ReferenceRotationOffset>30</ReferenceRotationOffset>
+      <RotationLockCount>12</RotationLockCount>
+    </ImplantTypeConfig>
+    <ImplantTypeConfig>
+      <RegistrationClickCenter>
+        <x>0</x>
+        <y>-2.3</y>
+        <z>7.8</z>
+      </RegistrationClickCenter>
+      <AxisAsymmetric>
+        <x>0</x>
+        <y>-1</y>
+        <z>0</z>
+      </AxisAsymmetric>
+      <MarkerFilename>ScanAbutment_Ent_00G.stl</MarkerFilename>
+      <SupportFilename>Base_Ent_00.sdfa</SupportFilename>
+      <InterfaceFilename>Interface_Ent_00.sdfa</InterfaceFilename>
+      <ScrewFilename>Screw_Ent_00.sdfa</ScrewFilename>
+      <ImplantFilename>Implant_Ent_00.sdfa</ImplantFilename>
+      <MinimumThicknessFilename IsDesignConstraint="true">Base_Ent_00_min_thickness.sdfa</MinimumThicknessFilename>
+      <MinimumThicknessFileConstructionParam IsDesignConstraint="true">0.3</MinimumThicknessFileConstructionParam>
+      <DisplayInformation>Screw-Retained Crown for ChairsideCAD</DisplayInformation>
+      <IsWithInterface>true</IsWithInterface>
+      <IsWithRotationLock>true</IsWithRotationLock>
+      <Keyword>ScrewRetainedCrownforChairsideCAD</Keyword>
+      <SupportOrientation>-1</SupportOrientation>
+      <AxisScrewChannelMaxUserAngle IsDesignConstraint="true">25</AxisScrewChannelMaxUserAngle>
+      <AxisScrewChannelMinUserAngle IsDesignConstraint="true">0</AxisScrewChannelMinUserAngle>
+      <HeightAbutmentLimit IsDesignConstraint="true">
+        <Min>0.5</Min>
+        <Max>12.8</Max>
+      </HeightAbutmentLimit>
+      <HeightAbutmentPostLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>10</Max>
+      </HeightAbutmentPostLimit>
+      <GingivalMarginDiameterLimit IsDesignConstraint="true">
+        <Min>3.46</Min>
+        <Max>11.8</Max>
+      </GingivalMarginDiameterLimit>
+      <GingivalMarginHeightLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>10</Max>
+      </GingivalMarginHeightLimit>
+      <AngulationAbutmentLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>30</Max>
+      </AngulationAbutmentLimit>
+      <ReferenceHeightOffset>0</ReferenceHeightOffset>
+      <ReferenceRotationOffset>60</ReferenceRotationOffset>
+      <RotationLockCount>3</RotationLockCount>
+    </ImplantTypeConfig>
+    <ImplantTypeConfig>
+      <RegistrationClickCenter>
+        <x>2.25</x>
+        <y>0</y>
+        <z>14</z>
+      </RegistrationClickCenter>
+      <AxisAsymmetric>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+      </AxisAsymmetric>
+      <MarkerFilename>50007_Scanbody.stl</MarkerFilename>
+      <SupportFilename>exoDemo_TiBase_Angulated_Support.sdfa</SupportFilename>
+      <InterfaceFilename>exoDemo_TiBase_angulated.sdfa</InterfaceFilename>
+      <ScrewFilename>exoDemo_TiBase_Screw.sdfa</ScrewFilename>
+      <ImplantFilename>exoImplant_4x10.sdfa</ImplantFilename>
+      <MinimumThicknessFilename IsDesignConstraint="true">exoDemo_TiBase_MinThickness.sdfa</MinimumThicknessFilename>
+      <MinimumThicknessFileConstructionParam IsDesignConstraint="true">0.3</MinimumThicknessFileConstructionParam>
+      <DisplayInformation>Switch Implant Connection</DisplayInformation>
+      <IsWithInterface>true</IsWithInterface>
+      <Keyword>SwitchImplantConnection</Keyword>
+      <ClosedSupportFilename>exoDemo_TiBase_Closed_Support.sdfa</ClosedSupportFilename>
+      <AxisScrewChannel>
+        <x>0</x>
+        <y>0.17364817766693033</y>
+        <z>0.98480775301220813</z>
+      </AxisScrewChannel>
+      <AxisScrewChannelMaxUserAngle IsDesignConstraint="true">35</AxisScrewChannelMaxUserAngle>
+      <AxisScrewChannelMinUserAngle IsDesignConstraint="true">0</AxisScrewChannelMinUserAngle>
+      <AngulatedScrewChannelBendPointHeight>3</AngulatedScrewChannelBendPointHeight>
+      <AngulatedScrewChannelDiameter>2.4</AngulatedScrewChannelDiameter>
+      <HeightAbutmentLimit IsDesignConstraint="true">
+        <Min>0.5</Min>
+        <Max>12.8</Max>
+      </HeightAbutmentLimit>
+      <HeightAbutmentPostLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>10</Max>
+      </HeightAbutmentPostLimit>
+      <GingivalMarginDiameterLimit IsDesignConstraint="true">
+        <Min>3.46</Min>
+        <Max>11.8</Max>
+      </GingivalMarginDiameterLimit>
+      <GingivalMarginHeightLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>10</Max>
+      </GingivalMarginHeightLimit>
+      <AngulationAbutmentLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>30</Max>
+      </AngulationAbutmentLimit>
+      <ImplantConnection>
+        <ID>EXO_EX_P40</ID>
+      </ImplantConnection>
+      <ReferenceHeightOffset>0</ReferenceHeightOffset>
+      <ReferenceRotationOffset>0</ReferenceRotationOffset>
+      <RotationLockCount>12</RotationLockCount>
+    </ImplantTypeConfig>
+    <ImplantTypeConfig>
+      <RegistrationClickCenter>
+        <x>1</x>
+        <y>0</y>
+        <z>9</z>
+      </RegistrationClickCenter>
+      <MarkerFilename>scanBody_geometry_planning.STL</MarkerFilename>
+      <SupportFilename>exoImplant_direct_con_4.sdfa</SupportFilename>
+      <ScrewFilename>exoImplant_screw.sdfa</ScrewFilename>
+      <ImplantFilename>exoImplant_40_dummy_cylinder.sdfa</ImplantFilename>
+      <MinimumThicknessFilename IsDesignConstraint="true">exoImplant_4_minThicknessFile.sdfa</MinimumThicknessFilename>
+      <MinimumThicknessFileConstructionParam IsDesignConstraint="true">0.3</MinimumThicknessFileConstructionParam>
+      <DisplayInformation>Immediate Load Direct to Implant</DisplayInformation>
+      <IsWithInterface>false</IsWithInterface>
+      <Keyword>ImmediateLoadDirecttoimplant</Keyword>
+      <HeightAbutmentLimit IsDesignConstraint="true">
+        <Min>0.5</Min>
+        <Max>12.8</Max>
+      </HeightAbutmentLimit>
+      <HeightAbutmentPostLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>10</Max>
+      </HeightAbutmentPostLimit>
+      <GingivalMarginDiameterLimit IsDesignConstraint="true">
+        <Min>4.06</Min>
+        <Max>11.8</Max>
+      </GingivalMarginDiameterLimit>
+      <GingivalMarginHeightLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>10</Max>
+      </GingivalMarginHeightLimit>
+      <AngulationAbutmentLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>30</Max>
+      </AngulationAbutmentLimit>
+      <ImplantConnection>
+        <ID>EXO_EX_P40</ID>
+      </ImplantConnection>
+      <ReferenceHeightOffset>0</ReferenceHeightOffset>
+      <ReferenceRotationOffset>0</ReferenceRotationOffset>
+      <RotationLockCount>12</RotationLockCount>
+      <MarkerCompleteFilename>scanBody_geometry_MarkerComplete.sdfa</MarkerCompleteFilename>
+    </ImplantTypeConfig>
+    <ImplantTypeConfig>
+      <RegistrationClickCenter>
+        <x>1</x>
+        <y>0</y>
+        <z>9</z>
+      </RegistrationClickCenter>
+      <MarkerFilename>scanBody_geometry_planning.STL</MarkerFilename>
+      <SupportFilename>exoDemo_TiBase_Angulated_Support.sdfa</SupportFilename>
+      <InterfaceFilename>exoDemo_TiBase_angulated.sdfa</InterfaceFilename>
+      <ScrewFilename>exoImplant_screw.sdfa</ScrewFilename>
+      <ImplantFilename>exoImplant_40_dummy_cylinder.sdfa</ImplantFilename>
+      <MinimumThicknessFilename IsDesignConstraint="true">exoDemo_TiBase_MinThickness.sdfa</MinimumThicknessFilename>
+      <MinimumThicknessFileConstructionParam IsDesignConstraint="true">0.3</MinimumThicknessFileConstructionParam>
+      <DisplayInformation>Immediate Load Ti-Base</DisplayInformation>
+      <IsWithInterface>true</IsWithInterface>
+      <Keyword>ImmediateLoadTiBase</Keyword>
+      <ClosedSupportFilename>exoDemo_TiBase_Closed_Support.sdfa</ClosedSupportFilename>
+      <AxisScrewChannel>
+        <x>0</x>
+        <y>0.17364817766693033</y>
+        <z>0.98480775301220813</z>
+      </AxisScrewChannel>
+      <AxisScrewChannelMaxUserAngle IsDesignConstraint="true">35</AxisScrewChannelMaxUserAngle>
+      <AxisScrewChannelMinUserAngle IsDesignConstraint="true">0</AxisScrewChannelMinUserAngle>
+      <AngulatedScrewChannelBendPointHeight>3</AngulatedScrewChannelBendPointHeight>
+      <AngulatedScrewChannelDiameter>2.4</AngulatedScrewChannelDiameter>
+      <HeightAbutmentLimit IsDesignConstraint="true">
+        <Min>0.5</Min>
+        <Max>12.8</Max>
+      </HeightAbutmentLimit>
+      <HeightAbutmentPostLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>10</Max>
+      </HeightAbutmentPostLimit>
+      <GingivalMarginDiameterLimit IsDesignConstraint="true">
+        <Min>3.46</Min>
+        <Max>11.8</Max>
+      </GingivalMarginDiameterLimit>
+      <GingivalMarginHeightLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>10</Max>
+      </GingivalMarginHeightLimit>
+      <AngulationAbutmentLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>30</Max>
+      </AngulationAbutmentLimit>
+      <ImplantConnection>
+        <ID>EXO_EX_P40</ID>
+      </ImplantConnection>
+      <ReferenceHeightOffset>0</ReferenceHeightOffset>
+      <ReferenceRotationOffset>0</ReferenceRotationOffset>
+      <RotationLockCount>12</RotationLockCount>
+      <MarkerCompleteFilename>scanBody_geometry_MarkerComplete.sdfa</MarkerCompleteFilename>
+    </ImplantTypeConfig>
+    <ImplantTypeConfig>
+      <RegistrationClickCenter>
+        <x>2.25</x>
+        <y>0</y>
+        <z>14</z>
+      </RegistrationClickCenter>
+      <AxisAsymmetric>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+      </AxisAsymmetric>
+      <MarkerFilename>50007_Scanbody.stl</MarkerFilename>
+      <InterfaceFilename>exoDemo_TiBase_angulated.sdfa</InterfaceFilename>
+      <ScrewFilename>exoDemo_TiBase_Screw.sdfa</ScrewFilename>
+      <ImplantFilename>exoImplant_4x10.sdfa</ImplantFilename>
+      <MinimumThicknessFilename IsDesignConstraint="true">exoDemo_TiBase_MinThickness.sdfa</MinimumThicknessFilename>
+      <MinimumThicknessFileConstructionParam IsDesignConstraint="true">0.3</MinimumThicknessFileConstructionParam>
+      <DisplayInformation>Ti-Base with custom angulated screw channel</DisplayInformation>
+      <IsWithInterface>true</IsWithInterface>
+      <Keyword>Ti-Basewithcustomangulatedscrewchannel</Keyword>
+      <ClosedSupportFilename>exoDemo_TiBase_Closed_Support.sdfa</ClosedSupportFilename>
+      <AxisScrewChannel>
+        <x>0</x>
+        <y>0.17364817766693033</y>
+        <z>0.98480775301220813</z>
+      </AxisScrewChannel>
+      <AxisScrewChannelMaxUserAngle IsDesignConstraint="true">35</AxisScrewChannelMaxUserAngle>
+      <AxisScrewChannelMinUserAngle IsDesignConstraint="true">0</AxisScrewChannelMinUserAngle>
+      <AngulatedScrewChannelBendPointHeight>3</AngulatedScrewChannelBendPointHeight>
+      <AngulatedScrewChannelDiameter>2.4</AngulatedScrewChannelDiameter>
+      <HeightAbutmentLimit IsDesignConstraint="true">
+        <Min>0.5</Min>
+        <Max>12.8</Max>
+      </HeightAbutmentLimit>
+      <HeightAbutmentPostLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>10</Max>
+      </HeightAbutmentPostLimit>
+      <GingivalMarginDiameterLimit IsDesignConstraint="true">
+        <Min>3.46</Min>
+        <Max>11.8</Max>
+      </GingivalMarginDiameterLimit>
+      <GingivalMarginHeightLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>10</Max>
+      </GingivalMarginHeightLimit>
+      <AngulationAbutmentLimit IsDesignConstraint="true">
+        <Min>0</Min>
+        <Max>30</Max>
+      </AngulationAbutmentLimit>
+      <ImplantConnection>
+        <ID>EXO_EX_P40</ID>
+      </ImplantConnection>
+      <ReferenceHeightOffset>0</ReferenceHeightOffset>
+      <ReferenceRotationOffset>0</ReferenceRotationOffset>
+      <RotationLockCount>12</RotationLockCount>
+    </ImplantTypeConfig>
+  </TypeConfig>
+  <SignatureDate>2023-12-06T18:00:16.6664077Z</SignatureDate>
+  <InfoSignatureV3>KnGZgobfdMu9+usBmJtyMnjPSirN6ubiYD1gY+HG3alLAmjpOlLbid/eQzbx2lLVcEta9Yrikr5vu0BeasbyvqDhqRFVgCDWpyvsuZAjd9nbdKw4FYVE6e2NBTCkz/ic/kC3cpA7wHDTGMAUcsmzBnm717o9m5fZlY2d6Ft9+MuDkynoT5jKA8l/EJM+sDjZpe8n4X0pXGfkWxyzEDgnqAkL3Omkwl1lYkj7OMtsiUHyW9Ux/Ilg2MNbAyzgNyjGk0r88FceqKE+77KhmzzaZTpUtpNJifcl9DyzwW1ZtNQM/pligs74xP+KIwiBM4Wo17ALzDlI3dKYcc2Wlw0wCA==</InfoSignatureV3>
+  <InfoSignatureV4>M8I+se9h7nBn+QNDg8IU/JP1MplI9Oe9OJ62zXizOG0YR8bzMR5gZwBvVDYKBldS3KEg6zl4oekFrpMF0zZNZ4hA/4pvUIsJxjIRvkpPeQHL6dvxUC8doejbzacKRND5MJETq2GW8KNZoi0FpeX1Iii8yHAZHy5rkWz6Sesgma3+k3CclnHkB1UBINlrdVf3FWMJIuMtzZ9TXyIY+xgxEfHGQ5tFAuSwTJeiOm6eZobci5qAu2RGfuir9BXySyXnDtd9RqxDafcSvEEkdiegLeNAuY9A43oLpCNfPTN53zvg9OHIQBDGvqnvalNv8dPcW36Yjh68I1XElhd5nOKjUYSaEjSCNTzehjqxkkS2DAzAUuxCmvO9PgYBbHb6J4Wl+3ca2Uy5WV+s73CuejDZS5LXnIsWJ7HYG2nzxXQHukmEHOPYrZrGb17HaEMIi85Ss84B2Yshu0BIHTgBFtcl3BcRvcY3L/5HmsTYJTiivaz79w9IzkkAgBS564H3OtyYmp6FN6g2Af9mppNJuBqDQR4GB5gUVt1HvUPNUAmzL83GweN5gPLet0nMCDhTbsjP8sSNyHkN4CI+ICCMIPknSDr8Shns9Izq9jqLePIcv9rkB2OG9K9jVepylCuwqWxcCkmz94nRTEXKPlm/oxF7G4gNsEwl+nSBb7RNrjENisw=</InfoSignatureV4>
+  <InfoSignatureV6>JB9bbld1BDGKE8YfCaL4NohoI60dn2jTZ7gyCuvEKoXRTWPAAGA0FKqOJSakIjhNinHR7ovJkr4SeqSNQNIpeb8Ewx2qylxXi7T/Vt+YTRlr9kVCKGtKpXjkfilsDhAj4dO1nAD+lJyXYIxpayDg7Z0Qr40a2JhYMdLbGeQjA9sSY2ejfwpPtUzTzM88pLgTKNCwDp4+AbfXwZ6ILSnpi8tXkppV6ywKjx4L6YLQiP/P9/rjAlor0f3NDHqdWgL+dpyzMd+kThftAJ2wwIPN7m65ZQ8U4WNeGqCkdb3QmjeNVRqPJqoiK7K6T7yAlwyjy9KAJo5MXgTusJjLNMgHzaBlV1EL6SZEMHQWQ0hU3/+wXj3tUbk+GU3DiTkHR8IZgYTQMXKQR56q+SvWAsAoTBFZxb6/qZa+XeTTGxFGAefBqnjyOPHiF21htoOUOeWqPDpx9f9WRnd4bkQfn9bjMqXBSkJO9nDAmpRfC+ROfwQH0t9oGi4bTpHtiHnPl8CJS8KzA4o1pdUyKTZZGrlODlmjBMKEznMMO0mJ4GpP47c7wi3iNd80sDbbMgv92HanpyPBjrI6al7N/gO+bdERZx4oIxXdxtglzmw4B1y1jly9agoswoP7OPZdZnrWSoPuaDaLka7Qw7AwaU+nCwGHnxLxiZAEgSsHiY5E0Yo+LN8=</InfoSignatureV6>
+  <FileSignatures>
+    <!--  NOTE! Signature is provided ONLY for specific mesh properties -->
+    <!--  NOT for accuracy or suitability to a particular task.         -->
+    <!--  A valid signature from the software vendor does NOT imply any -->
+    <!--  warranties or statements regarding the data's correctness!    -->
+    <FileSignature>
+      <Filename>EXO_exocad.png</Filename>
+      <Signature>lL7Yxp6O4n0EVekJTDLd3t3QHBMnJ9UNBypl8qMKbouYj/9rd4PVQgCkuY05O8jHkkwllKhb9oNXmVi93hMm6g==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>50007_Scanbody.stl</Filename>
+      <Signature>uyXYT5TZA+57D9IxfnPLPbAb5S8wzgOkTToXQXD5S+IHlsGeaUrlnUGH7iIw+KDdvGPrVcVr3ygXqaIvHz9kDg==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>16002_Base.sdfa</Filename>
+      <Signature>Dl2VJ9y2gq1QbgsiMOXb4sRWkRbvk1pocM4A0UMsEkJ2cYYSgRjoDb5ruoCiH9q5p8V7geeSklnsG/np5tlyYQ==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>16002.sdfa</Filename>
+      <Signature>tG1PNWgqpuFdEzayOUVg5GgV639/TlZ0xMaqI63rljb9ukYFAil0LUJRlDm44Yk+BcVeAKelt7DAsOFrxcFoLg==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>14002.sdfa</Filename>
+      <Signature>/UwxEB+feeAcp5/kt86mnboMzkfesEHyJrIl2EZ61UuaBGEiAI4o/7xJ1zQTDXxrxoQ+Q9jCeTjNMW5mTkHQdA==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>19028.sdfa</Filename>
+      <Signature>OtIb7we43WMD8JYOUmuZWTsvL+cbDl3bg4TJXaPe5Uy76XmZQjOB7CYPPjoEmgiI6/qzNQYbcpwgGtB6NXF+wQ==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>16002_Base_min_thickness.sdfa</Filename>
+      <Signature>BkSH9zkFScnLDiK3ovs5ZkMJPQrXEum0IaTEqw2qECgCTNPgJw0jSElR8PxoQiBiOr98bA13Gtr6UW4AD+SEKQ==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>15007_CDIREC.sdfa</Filename>
+      <Signature>AvQ7uJvY/+PShLUJEaa9/PuHK3CPfcLMHtDFGww7G+0uE1rca+yFcjIbNGQ67R9gFK+Qdmef9qHpLRJ5zVuZ8w==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>14007.sdfa</Filename>
+      <Signature>Mh1lYiM/TF5STyPY/J2g6+enzULZM/mhseQLriUMh2x8Um4c+5lpayJeQFB5BfpvJQejJgELwY9jEi6nnt/rvw==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>19006.sdfa</Filename>
+      <Signature>PoJEk8zU0ViOxNY//Vg2BEKmMdvZxHnXESgy3H2BBCuuu958qBu2+HahJ3UBBPExJSYGfVZk1/w6kTBjG7dAwg==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>15007_CDIREC_min_thickness.sdfa</Filename>
+      <Signature>FUy4Jgh9qlq9hIx9MW3RypdrkXetLXHW8zRb52wF31zzvxI2vPPwqIrW96OTAl073oAU+eZa//XKN48/k6vX7Q==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>Scanabutment_Knt_10G.stl</Filename>
+      <Signature>UDrKmn2G9IPMIMZAidMlbRFi/npbr7giDtAjVaUhmYdzYcl7KAqknTALvV1V0/nIBz+IJzKbquIUmWpFmYQQjg==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>BASE_SC_K10.Mi4.100.05_A.sdfa</Filename>
+      <Signature>I1jVm3US+W93NP9oq6uNe6ZVz03JBRt7m8/WkrOI+ekinWgdMT10QHeKe5pEuwrTXpWD5qT8LPImDe06vIYeyg==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>PREF_SC_K10.Mi4.100.05_A.sdfa</Filename>
+      <Signature>pabZd//tA1w/ZOfj5Uj8wRuWpdjsqeYR4bNtyKzQag1vsCvgJL9d6L9o2D7sazJJvWLlSAfh/nNiyDB4YxUimA==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>ImplAnalog_Preform_Knt_RP.sdfa</Filename>
+      <Signature>XMuMbx0dJ6IBRdZD6PKxmgaQFSv9mQRCQohQiJA8Tjst91yjFN8UBQu6fG067/7YOoAM+ykWVmxDwVTUMVOcPA==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>Screw_Knt_2.0.sdfa</Filename>
+      <Signature>V3c786piGJ+0mTRtgxZeDju6mUTtNN5Td8ae/BerLZ5hCNv7bIb9wt0vcLx+gLxvhKe/YXanV1W/nrJ8oLV1KQ==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>BASE_SC_K10.Mi4.100.05_A_min_thickness.sdfa</Filename>
+      <Signature>D23nlLScgPdFbyp8An+YmqsmiLv48Gx22KyRuFnYkeSvOE9LcERUzFNnzNaTM7bwUOrc9EK9ccBYSTmS04NKNg==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>exoDemo_DirectConnection.sdfa</Filename>
+      <Signature>6j3WMYlg9YKiIcVO37w5IXQE63EsRbiM9+53HH+e9GQU9l2ReR75IBKYwjMuUXCfa3Oqh7SWDkYV0CfaDVHHDQ==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>exoImplant_4x10.sdfa</Filename>
+      <Signature>/WfR3rHkFvxKvEMSfRS4JrC5YZiv3KeY5fU7V03BSQJuJM6a0vQwbwHyGOvcaMS8vCtYkgUBnOIqMyjc09jz4A==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>exoImplant_4_minThicknessFile.sdfa</Filename>
+      <Signature>iAfAszd1ilIvODOGG2r2IknXEKImN7rAZdATab4Ze9KybQ3OXUSRVrPcpNH6uczEaeu8NW1A5paHt2WGrLSqdQ==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>ScanAbutment_Ent_00G.stl</Filename>
+      <Signature>Dx9wvVbEqUZ/tn2mrKR8ZzEEdYrRoUmv2Vf4vzOte0hh3fhUEiNn36rdgCPWZ5gBn/27QCIjMpxvP/vBbPyskw==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>Base_Ent_00.sdfa</Filename>
+      <Signature>CX+cGuif/AM7wyBRpyqvMj3iZ72RETeVPDsGtZXPiHzV2stEmOFe8mp969VneEWbTKGaA6lzK03C8q9QgRPG5Q==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>Interface_Ent_00.sdfa</Filename>
+      <Signature>oKHxkWa7BLbZ5dwYoZoczy1hu2wKV4BBjoA1BZPSNtwwlL/mqRZ2HyRsDYVLmLXIs63bcdbmfwY3JkPo37M15g==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>Implant_Ent_00.sdfa</Filename>
+      <Signature>9WWPempEVWIg1fhj9ODqK+URxw+XGNcDEG1WB68IyEGlUjWflNc/Ntv51f2UxPlI4ZfoyERru1irOnCHLYXsBg==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>Screw_Ent_00.sdfa</Filename>
+      <Signature>YP2lrPNJyfmFFbUXe9l3hmdkHf9G286yqLpDHMTUh4W4YgrdvpES3lDOrszA2gek83iE2+pQ0Acg4RVeNSBIuw==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>Base_Ent_00_min_thickness.sdfa</Filename>
+      <Signature>lCdHQRBm7C/ckJTO5mq8KpkuCZoU08bGNTEgWwkSSVWwO3hOjJD18XUgI449vDLJsIPSIkOayYNVGyauUfXmNQ==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>exoDemo_TiBase_Angulated_Support.sdfa</Filename>
+      <Signature>7pcfZi7atgKtTd+3iOEgU+pD7Y3JD7a8EnUFPCt2nrAU5f16r89KU6Sj4vDrrVzBI65O0o6SZ3qqjE/caIsYLw==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>exoDemo_TiBase_angulated.sdfa</Filename>
+      <Signature>pWtY5U2fE7DudxIgE4kkx2PmPW5emZuJB2kjHxvPnMMFjvIPk8izOoj2G5fmPWrJpHzAi7LVUJ6lMc+rgFk0VA==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>exoDemo_TiBase_Screw.sdfa</Filename>
+      <Signature>IwyjHIv1QfB7hnnCDcFK82a/cHB1oODxp972zSXHTdkxP2WfM8Tb2adJBJcvqxehyYpu8RPU9h7AnPkbgKQopw==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>exoDemo_TiBase_MinThickness.sdfa</Filename>
+      <Signature>9JHOxASMed0Ir2qXJSu4XgIrcAfHA1zNZFdFxIKzrxcZl2ER9Xw2oS4KWqlYJepETpS5mNYMdMmVP81LJnbQlw==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>exoDemo_TiBase_Closed_Support.sdfa</Filename>
+      <Signature>f3o6kyD2X5XamqSxR/lS0lXmrasoZdhewCw5He1ShxPWNCinuMr5aAZQy9+CktYyfhn+t8G7QwsOwLAIOQGvaQ==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>scanBody_geometry_planning.STL</Filename>
+      <Signature>JdyW0+wkqS5ezWEN2kS/mXK8Uj04uZ0SpXfcq68qPwvYqa6KooFcscKwVY6CwbybUf6romBj0rXMUQX0TvGOWw==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>exoImplant_direct_con_4.sdfa</Filename>
+      <Signature>c0WqhQ4JGLbY7RjirRPSFlg5rbS+1zt/nnK/aqUMYq7QIns3FAGp61gcxU700s8cqEBv0jx9XHa2Hy3xGx1MJA==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>exoImplant_40_dummy_cylinder.sdfa</Filename>
+      <Signature>2WBJYb49un+ul8DREo4yb1DDLXCcLV4GxJwGMg9UdqSJfGpgSeeoQGbEZLA6GDECGfkOl4gn91upUAvqqNTBZA==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>exoImplant_screw.sdfa</Filename>
+      <Signature>IwyjHIv1QfB7hnnCDcFK82a/cHB1oODxp972zSXHTdkxP2WfM8Tb2adJBJcvqxehyYpu8RPU9h7AnPkbgKQopw==</Signature>
+    </FileSignature>
+    <FileSignature>
+      <Filename>scanBody_geometry_MarkerComplete.sdfa</Filename>
+      <Signature>46IVg7+xF4r9QrbzPjWYhj8z2U+0QVGhHxoNjQvWRm+idGICkQYCH3DM6pFGrjekzE4cGsvLiMQTxjz5A9TFqg==</Signature>
+    </FileSignature>
+  </FileSignatures>
+</ImplantLibraryEntry>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://exocad.com/model/type">
+	<Supplier>exocad GmbH - for Demonstration only</Supplier>
+	<DisplayInformation>Plate model</DisplayInformation>
+	<Parameter Id="modelheight" Min="36" Max="80" Default="40" Decimals="2" Unit="mm">ModelAlignmentProcessorControl.ModelHeight</Parameter>
+	<ModelType Class="Plated">
+		<DisplayInformation>Plate model</DisplayInformation>
+		<PreviewImageFileName>0aPlateDemo.png</PreviewImageFileName>
+		<MinRequiredPrepPlateDist>4</MinRequiredPrepPlateDist>
+		<BottomPlaneUpperJaw SizeX="100" SizeY="100" Visible="false">
+			<Translate>
+				<z>20</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</BottomPlaneUpperJaw>
+		<BottomPlaneLowerJaw SizeX="100" SizeY="100" Visible="false">
+			<Translate>
+				<z>20</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</BottomPlaneLowerJaw>
+		<OcclusalPlane SizeX="100" SizeY="100" Visible="false">
+			<Translate>
+				<x>34</x>
+				<y>-20</y>			
+				<z>20</z>
+			</Translate>
+		</OcclusalPlane>
+		<MeshResource PartType="ModelBasePlate" Jaw="Lower">
+			<FileName>baseplate.eoff</FileName>
+			<Translate>
+				<z>20</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</MeshResource>
+		<MeshResource PartType="ModelBasePlate" Jaw="Upper" Flip="Mirror">
+			<FileName>baseplate.eoff</FileName>
+			<Translate>
+				<z>20</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</MeshResource>
+		<MeshResource PartType="ModelBasePlatePins" Jaw="Lower">
+			<FileName>baseplate_pins.eoff</FileName>
+			<Translate>
+				<z>20</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</MeshResource>
+		<MeshResource PartType="ModelBasePlatePins" Jaw="Upper" Flip="Mirror">
+			<FileName>baseplate_pins.eoff</FileName>
+			<Translate>
+				<z>20</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</MeshResource>
+		<JawCurveUpperJaw>
+			<Point>
+				<x>7.009636</x>
+				<y>-49.442352</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>4.783587</x>
+				<y>-28.985065</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>34.682907</x>
+				<y>29.790054</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>64.582474</x>
+				<y>-28.985064</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>62.356377</x>
+				<y>-49.442352</y>
+				<z>0</z>
+			</Point>
+			<Translate>
+				<z>20</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</JawCurveUpperJaw>
+		<JawCurveLowerJaw>
+			<Point>
+				<x>7.009636</x>
+				<y>-49.442352</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>4.783587</x>
+				<y>-28.985065</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>34.682907</x>
+				<y>29.790054</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>64.582474</x>
+				<y>-28.985064</y>
+				<z>0</z>
+			</Point>
+			<Point>
+				<x>62.356377</x>
+				<y>-49.442352</y>
+				<z>0</z>
+			</Point>
+			<Translate>
+				<z>20</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</JawCurveLowerJaw>
+		<ConstructionParameter>
+			<Type>ModelCutWidth</Type>
+			<Value>0.51</Value>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelPlateClearance</Type>
+			<Value>0.12</Value>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelWallThickness</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>4</MaxValue>
+		</ConstructionParameter>
+		<!-- Protect Lab Analog  -->
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetHorizontal</Type>
+			<Value>0.05</Value>
+			<MinValue>-0.2</MinValue>
+			<MaxValue>0.2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetVertical</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportGingivaMaskDepth</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportHeightOffset</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelRatio</Type>
+			<Value>50</Value>
+			<MinValue>50</MinValue>
+			<MaxValue>50</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelAngle</Type>
+			<Value>45</Value>
+			<MinValue>45</MinValue>
+			<MaxValue>45</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Protect Lab Analog  -->
+	</ModelType>
+</LibraryEntry>

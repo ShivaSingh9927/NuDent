@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns="http://exocad.com/model/attachment">
+	<Supplier>Design by Die Modellmacher oHG</Supplier>
+	<DisplayInformation>Die Modellmacher - Articulator attachment</DisplayInformation>
+	<AttachmentPreviewFileName>preview.png</AttachmentPreviewFileName>
+	<SupplierLogoFileName>logo.png</SupplierLogoFileName>
+	<AttachmentDescription>
+	
+Articulator attachment for 3D printed model. 
+
+- Free positioning along model in X/Y
+- Rotatable along Z.
+
+	</AttachmentDescription>	
+	<Placement  Jaw="Upper" Move="XY" Rotate="Z" GroupAll="true">
+		<Translation Axis="XY" Ref="_clickpoint"/>
+		<Translation Axis="Y">
+			<Const>-15</Const>
+		</Translation>
+	</Placement>
+	<Component ForceJaw="Upper" Method="AdditiveOmittingCavities" Id="upper">
+		<MeshFile FileName="arch_top.sdfa" Retriangulate="false">
+			<Translation Axis="Z">
+				<ParameterRef Coefficient="0.5">@modelheight</ParameterRef>
+				<Const>0</Const>
+			</Translation>
+		</MeshFile>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#C0C0C0</mat:Color>
+		</mat:Material>
+		<Alignment Jaw="Upper" RelativeToBottom="true"/>
+	</Component>
+	<Component ForceJaw="Lower" Method="AdditiveOmittingCavities" Id="lower">
+		<MeshFile FileName="arch_bottom.sdfa" Retriangulate="false">
+			<Translation Axis="Z">
+				<ParameterRef Coefficient="0.5">@modelheight</ParameterRef>
+				<Const>0</Const>
+			</Translation>
+		</MeshFile>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#C0C0C0</mat:Color>
+		</mat:Material>
+		<Alignment Jaw="Lower" RelativeToBottom="true"/>
+	</Component>
+	<IntersectionTestOverride Result="Never">
+		<ComponentRef>upper</ComponentRef>
+		<ComponentRef>lower</ComponentRef>
+		<BaseRef>Any</BaseRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Require">
+		<ComponentRef>upper</ComponentRef>
+		<BaseRef>Upper</BaseRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Require">
+		<ComponentRef>lower</ComponentRef>
+		<BaseRef>Lower</BaseRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Deny">
+		<ComponentRef>lower</ComponentRef>
+		<BaseRef>Upper</BaseRef>
+	</IntersectionTestOverride>
+	<IntersectionTestOverride Result="Deny">
+		<ComponentRef>upper</ComponentRef>
+		<BaseRef>Lower</BaseRef>
+	</IntersectionTestOverride>		
+	<GroupAll>true</GroupAll>
+</LibraryEntry>

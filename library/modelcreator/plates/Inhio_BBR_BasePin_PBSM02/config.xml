@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://exocad.com/model/type">
+	<Supplier>Inhio B.B.R. srl.</Supplier>
+	<DisplayInformation>Inhio B.B.R. srl. - BasePin PBSM02 plate</DisplayInformation>
+	<Parameter Id="modelheight" Min="35" Max="80" Default="45" Decimals="2" Unit="mm">ModelAlignmentProcessorControl.ModelHeight</Parameter>
+	<ModelType Class="Plated" UseExactPinMesh="true">
+		<DisplayInformation>Inhio B.B.R. srl. - BasePin PBSM02 plate</DisplayInformation>
+		<PreviewImageFileName>Inhio_BBR_BasePin_PBSM02.png</PreviewImageFileName>
+		<CutRectangleWidth>30</CutRectangleWidth>
+		<MinRequiredPrepPlateDist>12</MinRequiredPrepPlateDist>
+		<BottomPlaneUpperJaw SizeX="100" SizeY="100" Visible="false">
+			<Translate>
+				<x>30.05</x>
+				<y>-25</y>
+				<z>12</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</BottomPlaneUpperJaw>
+		<BottomPlaneLowerJaw SizeX="100" SizeY="100" Visible="false">
+			<Translate>
+				<x>30.05</x>
+				<y>-25</y>
+				<z>12</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</BottomPlaneLowerJaw>
+		<OcclusalPlane SizeX="100" SizeY="100" Visible="false">
+			<Translate>
+				<x>30.05</x>
+				<y>-25</y>			
+				<z>14</z>
+			</Translate>
+		</OcclusalPlane>
+		<MeshResource PartType="ModelBasePlate" Jaw="Lower">
+			<FileName>plate_only.sdfa</FileName>
+			<Translate>
+				<x>30.05</x>
+				<y>-25</y>
+				<z>12</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</MeshResource>
+		<MeshResource PartType="ModelBasePlate" Jaw="Upper" Flip="Mirror" >
+			<FileName>plate_only.sdfa</FileName>
+			<Translate>
+				<x>30.05</x>
+				<y>-25</y>
+				<z>12</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</MeshResource>
+		<MeshResource PartType="ModelBasePlatePins" Jaw="Lower" >
+			<FileName>plate_pin.sdfa</FileName>
+			<Translate>
+				<x>30.05</x>
+				<y>-25</y>
+				<z>12</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</MeshResource>
+		<MeshResource PartType="ModelBasePlatePins" Jaw="Upper" Flip="Mirror" >
+			<FileName>plate_pin.sdfa</FileName>
+			<Translate>
+				<x>30.05</x>
+				<y>-25</y>
+				<z>12</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</MeshResource>
+		<JawCurveUpperJaw>
+			<Point>
+				<x>-27</x>
+				<y>-33</y>
+				<z>-1.7</z>
+			</Point>
+			<Point>
+				<x>-25</x>
+				<y>-5</y>
+				<z>-1.7</z>
+			</Point>
+			<Point>
+				<x>0</x>
+				<y>70</y>
+				<z>-1.7</z>
+			</Point>
+			<Point>
+				<x>25</x>
+				<y>-5</y>
+				<z>-1.7</z>
+			</Point>
+			<Point>
+				<x>27</x>
+				<y>-33</y>
+				<z>-1.7</z>
+			</Point>
+			<Translate>
+				<x>30.05</x>
+				<y>-25</y>
+				<z>12</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</JawCurveUpperJaw>
+		<JawCurveLowerJaw>
+			<Point>
+				<x>-27</x>
+				<y>-33</y>
+				<z>-1.7</z>
+			</Point>
+			<Point>
+				<x>-25</x>
+				<y>-5</y>
+				<z>-1.7</z>
+			</Point>
+			<Point>
+				<x>0</x>
+				<y>70</y>
+				<z>-1.7</z>
+			</Point>
+			<Point>
+				<x>25</x>
+				<y>-5</y>
+				<z>-1.7</z>
+			</Point>
+			<Point>
+				<x>27</x>
+				<y>-33</y>
+				<z>-1.7</z>
+			</Point>
+			<Translate>
+				<x>30.05</x>
+				<y>-25</y>
+				<z>12</z>
+			</Translate>
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</JawCurveLowerJaw>
+		<ConstructionParameter>
+			<Type>ModelCutWidth</Type>
+			<Value>0.2</Value>
+			<MinValue>0.15</MinValue>
+			<MaxValue>0.5</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelPlateClearance</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0.04</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelPedestalHeight</Type>
+			<Value>9</Value>
+			<MinValue>2</MinValue>
+			<MaxValue>15</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelMinimumThicknessAroundPins</Type>
+			<Value>0.8</Value>
+			<MinValue>0.2</MinValue>
+			<MaxValue>1</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelPreparationMarginExtrusion</Type>
+			<Value>0.3</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>1</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelWallThickness</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>		
+	</ModelType>
+</LibraryEntry>

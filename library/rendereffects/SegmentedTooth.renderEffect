@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RenderEffectSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" RenderEffectName="TSD">
+  <ColorParameter Name="base_color" Value="#FFF5E7CC" />
+  <ColorParameter Name="base_color_highlighted" Value="#FFFAF0E3" />
+  <DoubleParameter Name="ambience_source" Value="1" />
+  <DoubleParameter Name="fresnel_factor" Value="0.100000001490116" />
+  <IntParameter Name="bottom_as_backside" Value="0" />
+  <Vec4Parameter Name="tsd_blur_strength" x="0.0010000000474974513" y="0.004999999888241291" z="0.009999999776482582" w="0.009999999776482582" />
+  <Vec4Parameter Name="tsd_lambda" x="0.8999999761581421" y="0.800000011920929" z="0.699999988079071" w="0.699999988079071" />
+</RenderEffectSettings>

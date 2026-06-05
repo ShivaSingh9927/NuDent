@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<AttachmentLibrary>
+  <SupplierName>GeoMedi Inc.</SupplierName>
+  <AttachmentFile>
+    <Filename>mmu-48-1.0.sdfa</Filename>
+    <Signature>7bb8c0edb32b46487d40ebe9fa48c638e90e851d</Signature>
+	<SupplyName>GEOMEDI PREMIUM CAD/CAM PRODUCT</SupplyName>
+    <SupplyDescription>GeoMedi_MultiUnit_CAD-CAM-english.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>mmu-48-2.0.sdfa</Filename>
+    <Signature>d3688513b257f0d6c47435ea1237c0fe1146fcb2</Signature>
+	<SupplyName>GEOMEDI PREMIUM CAD/CAM PRODUCT</SupplyName>
+    <SupplyDescription>GeoMedi_MultiUnit_CAD-CAM-english.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>mmu-48-3.0.sdfa</Filename>
+    <Signature>811dc288267b06c56d6ed81cd9c9fcb062904e20</Signature>
+	<SupplyName>GEOMEDI PREMIUM CAD/CAM PRODUCT</SupplyName>
+    <SupplyDescription>GeoMedi_MultiUnit_CAD-CAM-english.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>mmu-55-1.0.sdfa</Filename>
+    <Signature>d26d8035a38d0ee60d45ae8c9940992dd0e10805</Signature>
+	 <SupplyName>GEOMEDI PREMIUM CAD/CAM PRODUCT</SupplyName>
+    <SupplyDescription>GeoMedi_MultiUnit_CAD-CAM-english.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>mmu-55-2.0.sdfa</Filename>
+    <Signature>5f335b0958011ada4bb74b8d978beb1eb0bc09dc</Signature>
+	<SupplyName>GEOMEDI PREMIUM CAD/CAM PRODUCT</SupplyName>
+    <SupplyDescription>GeoMedi_MultiUnit_CAD-CAM-english.Description</SupplyDescription>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>mmu-55-3.0.sdfa</Filename>
+    <Signature>74ed5836105a04aff51f5efb51f5691539daf956</Signature>
+	<SupplyName>GEOMEDI PREMIUM CAD/CAM PRODUCT</SupplyName>
+    <SupplyDescription>GeoMedi_MultiUnit_CAD-CAM-english.Description</SupplyDescription>
+  </AttachmentFile>
+</AttachmentLibrary>

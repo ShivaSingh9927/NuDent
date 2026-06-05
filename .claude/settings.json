@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(python -c \"import ast; ast.parse\\(open\\('app/stages/refine.py'\\).read\\(\\)\\); print\\('OK'\\)\")",
-      "Bash(python -c ' *)"
+      "Bash(python -c ' *)",
+      "Bash(timeout 5 python -c \"from app.main_window import MainWindow, _sibling_opposing_path; print\\('import ok'\\); print\\(_sibling_opposing_path\\('/home/shiva/Documents/NuDent/Anatomic_Crown/2023-10-01_99999-034/2023-10-01_99999-034-upperjaw.stl'\\)\\)\")",
+      "Bash(xxd)"
     ]
   }
 }

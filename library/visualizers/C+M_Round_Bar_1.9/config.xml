@@ -1,0 +1,19 @@
+﻿<?xml version="1.0"?>
+<AttachmentLibrary>
+  <SupplierName>Cendres+Métaux</SupplierName>
+  
+    <AttachmentFile>
+     <SupplyName>CM Round Bar</SupplyName>
+     <SupplyDescription>Visualizers.CM.Round_Bar.Description</SupplyDescription>
+     <Filename>050527_Matrize_E.sdfa</Filename>
+     <Signature>8dbfd209877ac6e0448f0d819d587ddf19c07ccc</Signature>
+  </AttachmentFile>
+  
+      <AttachmentFile>
+     <SupplyName>CM Round Bar</SupplyName>
+     <SupplyDescription>Visualizers.CM.Round_Bar.Description</SupplyDescription>
+     <Filename>05000679_Matrize_E_L50.sdfa</Filename>
+     <Signature>8fa6492b3b63c7cb0ac391eb2ff0278efb29992d</Signature>
+  </AttachmentFile>
+  
+</AttachmentLibrary>

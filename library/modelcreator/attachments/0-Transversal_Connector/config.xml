@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns="http://exocad.com/model/attachment">
+	<Supplier>exocad GmbH</Supplier>
+	<DisplayInformation>Transversal Connector</DisplayInformation>
+	<AttachmentPreviewFileName>preview.png</AttachmentPreviewFileName>
+	<SupplierLogoFileName>logo.png</SupplierLogoFileName>
+	<AttachmentDescription>
+	
+Geometry for addition to upper or lower jaw model. Can be used to stabilize models.
+ 
+- Adjustable Width in X direction (between 30-60mm).
+- Adjustable Size in Z direction.  
+- Free positioning in X/Y, rotatable along Z.
+
+</AttachmentDescription>	
+	<Placement  Move="XY" Rotate="Z" Jaw="Any">
+		<Translation Axis="XY" Ref="_clickpoint" DirRef="_clickpoint">
+			<Const>0.0</Const>
+		</Translation>
+	</Placement>
+	<Parameter Scope="All" Default="0" Min="0" Max="10" Unit="%" Decimals="1">Size</Parameter>
+	<Parameter Scope="Single" Default="0" Min="-15" Max="15" Unit="mm" Decimals="1">Width</Parameter>	
+	<Component IfJaw="Any" Method="AdditiveOmittingCavities"  >
+		<MeshFile FileName="traversal45.eoff" >
+			<Translation Axis="Z">
+				<Const>4.55</Const>
+			</Translation>		
+			<Select Label="CUSP_1" >
+				<Scaling Axis="Z">
+					<ParameterRef Coefficient="0.11111111">Size</ParameterRef>
+					<Const>1</Const>					
+				</Scaling>
+			</Select>
+			<Select Label="CUSP_2" >
+				<Scaling Axis="X">
+					<ParameterRef Coefficient="0.0222222">Width</ParameterRef>
+					<Const>1</Const>					
+				</Scaling>
+			</Select>			
+		</MeshFile>
+		<mat:Material xmlns:mat="http://exocad.com/config/color">
+			<mat:Color>#453B6A</mat:Color>
+		</mat:Material>
+		<Alignment Jaw="Any" RelativeToBottom="true" AutoFlip="true"/>
+	</Component>	
+</LibraryEntry>

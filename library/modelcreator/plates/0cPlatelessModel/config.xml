@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://exocad.com/model/type" DefaultModelType="cdies">
+	<Supplier>exocad GmbH</Supplier>
+	<DisplayInformation>Plateless model</DisplayInformation>
+	<Parameter Id="modelheight" Min="10" Max="80" Default="40" Decimals="2" Unit="mm">ModelAlignmentProcessorControl.ModelHeight</Parameter>
+	<Parameter Id="separation" Min="5" Max="30" Default="16" Decimals="0" Unit="mm">Drain hole interval</Parameter>
+	<ModelType Class="Plateless" Id="occplane">
+		<DisplayInformation>With occlusal plane</DisplayInformation>
+		<PreviewImageFileName>0bPlatelessModel_occplane.png</PreviewImageFileName>
+		<MinRequiredPrepPlateDist>4</MinRequiredPrepPlateDist>
+		<BottomPlaneUpperJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</BottomPlaneUpperJaw>
+		<BottomPlaneLowerJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</BottomPlaneLowerJaw>
+		<OcclusalPlane SizeX="100" SizeY="100" Visible="false"/>
+		<MeshResource PartType="GenericVisualization" Jaw="Any" Persistent="false" StippleTransparency="true">
+			<FileName>occlusion.sdfa</FileName>
+			<Material xmlns="http://exocad.com/config/color">
+				<Color>#FF8080</Color>
+			</Material>
+			<Translate>
+				<x>-30</x>
+				<y>18</y>
+				<z>-14</z>
+			</Translate>
+		</MeshResource>
+		<MeshResource PartType="GenericVisualization" Jaw="Any" Persistent="false">
+			<FileName>up.sdfa</FileName>
+			<Material xmlns="http://exocad.com/config/color">
+				<Color>#0000FF</Color>
+			</Material>
+			<Translate>
+				<x>-30</x>
+				<y>18</y>
+				<z>-14</z>
+			</Translate>
+		</MeshResource>
+		<!-- Plate Parameters -->
+		<ConstructionParameter>
+			<Type>ModelWallThickness</Type>
+			<Value>2.5</Value>
+			<MinValue>2</MinValue>
+			<MaxValue>4</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Plate Parameters -->
+		<!-- Protect Lab Analog  -->
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetHorizontal</Type>
+			<Value>0.05</Value>
+			<MinValue>-0.2</MinValue>
+			<MaxValue>0.2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetVertical</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportGingivaMaskDepth</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportHeightOffset</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelRatio</Type>
+			<Value>50</Value>
+			<MinValue>50</MinValue>
+			<MaxValue>50</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelAngle</Type>
+			<Value>45</Value>
+			<MinValue>45</MinValue>
+			<MaxValue>45</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Protect Lab Analog  -->
+	</ModelType>
+	<ModelType Class="Plateless" GingivaStyle="Flat" Id="gingma">
+		<DisplayInformation>With flat gingiva</DisplayInformation>
+		<PreviewImageFileName>0bPlatelessModel_gingma.png</PreviewImageFileName>
+		<MinRequiredPrepPlateDist>3</MinRequiredPrepPlateDist>
+		<BottomPlaneUpperJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</BottomPlaneUpperJaw>
+		<BottomPlaneLowerJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</BottomPlaneLowerJaw>
+		<!-- Plate Parameters -->
+		<ConstructionParameter>
+			<Type>ModelWallThickness</Type>
+			<Value>2.5</Value>
+			<MinValue>2</MinValue>
+			<MaxValue>4</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelShaftGapHorizontal</Type>
+			<Value>0.08</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelShaftGapVertical</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelPinHeight</Type>
+			<Value>1.5</Value>
+			<MinValue>0.5</MinValue>
+			<MaxValue>5</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Plate Parameters -->
+		<!-- Protect Lab Analog  -->
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetHorizontal</Type>
+			<Value>0.05</Value>
+			<MinValue>-0.2</MinValue>
+			<MaxValue>0.2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetVertical</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportGingivaMaskDepth</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportHeightOffset</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelRatio</Type>
+			<Value>50</Value>
+			<MinValue>50</MinValue>
+			<MaxValue>50</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelAngle</Type>
+			<Value>45</Value>
+			<MinValue>45</MinValue>
+			<MaxValue>45</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Protect Lab Analog  -->
+		<!-- Parameters for Gingiva Design -->
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskMinThickness</Type>
+			<Value>1</Value>
+			<MinValue>0.5</MinValue>
+			<MaxValue>2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskGapWidth</Type>
+			<Value>0.1</Value>
+			<MinValue>0.0</MinValue>
+			<MaxValue>0.2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskImplantTopOffset</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskRetentionBallDiameter</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskRetentionBallSeparation</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Parameters for Gingiva Design -->
+	</ModelType>
+	<ModelType Class="Plateless" Id="cdies">
+		<DisplayInformation>With cutout dies</DisplayInformation>
+		<PreviewImageFileName>0bPlatelessModel_cdies.png</PreviewImageFileName>
+		<MinRequiredPrepPlateDist>3</MinRequiredPrepPlateDist>
+		<BottomPlaneUpperJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</BottomPlaneUpperJaw>
+		<BottomPlaneLowerJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</BottomPlaneLowerJaw>
+		<!-- Plate Parameters -->
+		<ConstructionParameter>
+			<Type>ModelWallThickness</Type>
+			<Value>2.5</Value>
+			<MinValue>2</MinValue>
+			<MaxValue>4</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelShaftGapHorizontal</Type>
+			<Value>0.08</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelShaftGapVertical</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelPinHeight</Type>
+			<Value>1.5</Value>
+			<MinValue>0.5</MinValue>
+			<MaxValue>5</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Plate Parameters -->
+		<!-- Protect Lab Analog  -->
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetHorizontal</Type>
+			<Value>0.05</Value>
+			<MinValue>-0.2</MinValue>
+			<MaxValue>0.2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetVertical</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportGingivaMaskDepth</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportHeightOffset</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelRatio</Type>
+			<Value>50</Value>
+			<MinValue>50</MinValue>
+			<MaxValue>50</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelAngle</Type>
+			<Value>45</Value>
+			<MinValue>45</MinValue>
+			<MaxValue>45</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Protect Lab Analog  -->
+	</ModelType>
+	<ModelType Class="Plateless" Id="cutoutddh3D">
+		<DisplayInformation>With cutout dies and drain holes for 3D print</DisplayInformation>
+		<PreviewImageFileName>0bPlatelessModel_cutoutddh3D.png</PreviewImageFileName>
+		<MinRequiredPrepPlateDist>3</MinRequiredPrepPlateDist>
+		<BottomPlaneUpperJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</BottomPlaneUpperJaw>
+		<BottomPlaneLowerJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</BottomPlaneLowerJaw>
+		<!-- Plate Parameters -->
+		<ConstructionParameter>
+			<Type>ModelWallThickness</Type>
+			<Value>2.5</Value>
+			<MinValue>2</MinValue>
+			<MaxValue>4</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelShaftGapHorizontal</Type>
+			<Value>0.08</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelShaftGapVertical</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelPinHeight</Type>
+			<Value>1.5</Value>
+			<MinValue>0.5</MinValue>
+			<MaxValue>5</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Plate Parameters -->
+		<!-- Protect Lab Analog  -->
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetHorizontal</Type>
+			<Value>0.05</Value>
+			<MinValue>-0.2</MinValue>
+			<MaxValue>0.2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetVertical</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportGingivaMaskDepth</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportHeightOffset</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelRatio</Type>
+			<Value>50</Value>
+			<MinValue>50</MinValue>
+			<MaxValue>50</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelAngle</Type>
+			<Value>45</Value>
+			<MinValue>45</MinValue>
+			<MaxValue>45</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Protect Lab Analog  -->
+		<Attachment Ref="0-3D_Print_Drain_Holes" Rel="Perimeter" Jaw="Any" Separation="separation"/>
+		<Attachment Ref="0-3D_Print_Drain_Holes" Rel="Implant" Jaw="Any"/>
+		<Attachment Ref="0-3D_Print_Drain_Holes" Rel="Die" Jaw="Any"/>
+	</ModelType>
+	<ModelType Class="Plateless" Id="cdiesdyn">
+		<DisplayInformation>With cutout dies and dynamic shaft gap</DisplayInformation>
+		<MinRequiredPrepPlateDist>3</MinRequiredPrepPlateDist>
+		<PreviewImageFileName>0bPlatelessModel_cdiesdyn.png</PreviewImageFileName>
+		<BottomPlaneUpperJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</BottomPlaneUpperJaw>
+		<BottomPlaneLowerJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</BottomPlaneLowerJaw>
+		<!-- Plate Parameters -->
+		<ConstructionParameter>
+			<Type>ModelWallThickness</Type>
+			<Value>2.5</Value>
+			<MinValue>2</MinValue>
+			<MaxValue>4</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelShaftGapHorizontal</Type>
+			<Value>0.08</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelShaftGapVertical</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelPinHeight</Type>
+			<Value>1.5</Value>
+			<MinValue>0.5</MinValue>
+			<MaxValue>5</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelShaftGapHorizontalDynamicDifference</Type>
+			<Value>0.2</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>1</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelShaftGapHorizontalDynamicRangeStart</Type>
+			<Value>1</Value>
+			<MinValue>1</MinValue>
+			<MaxValue>1</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelShaftGapHorizontalDynamicRangeEnd</Type>
+			<Value>10</Value>
+			<MinValue>10</MinValue>
+			<MaxValue>10</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Plate Parameters -->
+		<!-- Protect Lab Analog  -->
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetHorizontal</Type>
+			<Value>0.05</Value>
+			<MinValue>-0.2</MinValue>
+			<MaxValue>0.2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetVertical</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportGingivaMaskDepth</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportHeightOffset</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelRatio</Type>
+			<Value>50</Value>
+			<MinValue>50</MinValue>
+			<MaxValue>50</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelAngle</Type>
+			<Value>45</Value>
+			<MinValue>45</MinValue>
+			<MaxValue>45</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Protect Lab Analog  -->
+	</ModelType>
+	<ModelType Class="Plateless" SeparableDies="false" Id="extradies">
+		<DisplayInformation>With extra dies</DisplayInformation>
+		<PreviewImageFileName>0bPlatelessModel_extradies.png</PreviewImageFileName>
+		<MinRequiredPrepPlateDist>8</MinRequiredPrepPlateDist>
+		<BottomPlaneUpperJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</BottomPlaneUpperJaw>
+		<BottomPlaneLowerJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</BottomPlaneLowerJaw>
+		<!-- Plate Parameters -->
+		<ConstructionParameter>
+			<Type>ModelWallThickness</Type>
+			<Value>2.5</Value>
+			<MinValue>2</MinValue>
+			<MaxValue>4</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelShaftGapHorizontal</Type>
+			<Value>0.1</Value>
+			<MinValue>0.1</MinValue>
+			<MaxValue>0.1</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelShaftGapVertical</Type>
+			<Value>0.1</Value>
+			<MinValue>0.1</MinValue>
+			<MaxValue>0.1</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelPinHeight</Type>
+			<!-- In this preset this value reduces the height of the extra die -->
+			<Value>1.5</Value>
+			<MinValue>0.5</MinValue>
+			<MaxValue>5</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelOmitDiePin</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelPreparationMarginExtrusion</Type>
+			<Value>0.2</Value>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelSeatingAreaWidth</Type>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelBottomPinGrooveDepth</Type>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelBottomPinGrooveWidth</Type>
+		</ConstructionParameter>
+		<!-- End of Plate Parameters -->
+		<!-- Protect Lab Analog  -->
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetHorizontal</Type>
+			<Value>0.05</Value>
+			<MinValue>-0.2</MinValue>
+			<MaxValue>0.2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetVertical</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportGingivaMaskDepth</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportHeightOffset</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelRatio</Type>
+			<Value>50</Value>
+			<MinValue>50</MinValue>
+			<MaxValue>50</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelAngle</Type>
+			<Value>45</Value>
+			<MinValue>45</MinValue>
+			<MaxValue>45</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Protect Lab Analog  -->
+	</ModelType>
+	<ModelType Class="Plateless" Id="labcheck">
+		<DisplayInformation>With lab analog seating check window</DisplayInformation>
+		<PreviewImageFileName>0bPlatelessModel_labcheck.png</PreviewImageFileName>
+		<MinRequiredPrepPlateDist>8</MinRequiredPrepPlateDist>
+		<BottomPlaneUpperJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</BottomPlaneUpperJaw>
+		<BottomPlaneLowerJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</BottomPlaneLowerJaw>
+		<!-- Plate Parameters -->
+		<ConstructionParameter>
+			<Type>ModelWallThickness</Type>
+			<Value>2.5</Value>
+			<MinValue>2</MinValue>
+			<MaxValue>4</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelShaftGapHorizontal</Type>
+			<Value>0.08</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelShaftGapVertical</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelPinHeight</Type>
+			<Value>1.5</Value>
+			<MinValue>0.5</MinValue>
+			<MaxValue>5</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Plate Parameters -->
+		<!-- Protect Lab Analog  -->
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetHorizontal</Type>
+			<Value>0.05</Value>
+			<MinValue>-0.2</MinValue>
+			<MaxValue>0.2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantLabAnalogOffsetVertical</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportGingivaMaskDepth</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportHeightOffset</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelRatio</Type>
+			<Value>50</Value>
+			<MinValue>50</MinValue>
+			<MaxValue>50</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelAngle</Type>
+			<Value>45</Value>
+			<MinValue>45</MinValue>
+			<MaxValue>45</MaxValue>
+		</ConstructionParameter>
+		<!-- End of Protect Lab Analog  -->
+		<Attachment Ref="0-Lab_Analog_Check_Window" Rel="Implant" Jaw="Any"/>
+	</ModelType>
+</LibraryEntry>

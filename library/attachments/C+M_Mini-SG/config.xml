@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<AttachmentLibrary>
+  <SupplierName>Cendres+Métaux</SupplierName>
+  <AttachmentFile>
+    <Filename>Mini-SG Male part.sdfa</Filename>
+    <Signature>eabdd3b64ac79fc5f07377a7b62aa6a20c6d2d13</Signature>
+    <DockPoint>
+      <x>-2</x>
+      <y>0</y>
+      <z>0</z>
+    </DockPoint>
+    <SupplyName>Mini-SG®</SupplyName>
+    <SupplyDescription>Attachment.CM.Mini-SG.Description</SupplyDescription>
+  </AttachmentFile>
+</AttachmentLibrary>

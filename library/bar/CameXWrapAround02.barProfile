@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<BarProfileFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile xsi:type="BarProfilePlugin" FixLeft="true" FixRight="true" FixTop="true" FixBottom="true">
+    <DisplayName>CameX Wrap-Around_02</DisplayName>
+    <PluginName>BarProfile.CameX_Wrap_Around_02#CameXWrapAround02</PluginName>
+    <Parameters>
+      <BarProfileParameter Name="Width" Visible="true" Configurable="true" Min="-1" Max="2" Decimals="2" Value="0" />
+      <BarProfileParameter Name="Height" Visible="true" Configurable="true" Min="0" Max="5" Decimals="2" Value="1" />
+    </Parameters>
+  </Profile>
+</BarProfileFile>

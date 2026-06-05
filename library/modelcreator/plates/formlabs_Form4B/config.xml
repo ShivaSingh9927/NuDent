@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LibraryEntry xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://exocad.com/model/type" DefaultModelType="hmwcd">
+	<Supplier>formlabs Inc. in cooperation with exocad GmbH</Supplier>
+	<DisplayInformation>formlabs Form 4B - Plateless model</DisplayInformation>
+	<Parameter Id="modelheight" Min="10" Max="80" Default="40" Decimals="2" Unit="mm">ModelAlignmentProcessorControl.ModelHeight</Parameter>
+	<Parameter Id="separation" Min="5" Max="30" Default="16" Decimals="0" Unit="mm">Drain hole interval</Parameter>	
+	<ModelType Class="Plateless" Id="hmwcd">
+		<DisplayInformation>with cutout dies</DisplayInformation>
+		<PreviewImageFileName>formlabs_Form4_hmwcd.png</PreviewImageFileName>		
+		<MinRequiredPrepPlateDist>3</MinRequiredPrepPlateDist>
+		<BottomPlaneUpperJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</BottomPlaneUpperJaw>
+		<BottomPlaneLowerJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</BottomPlaneLowerJaw>
+		<ConstructionParameter>
+			<Type>ModelWallThickness</Type>
+			<Value>3</Value>
+			<MinValue>3</MinValue>
+			<MaxValue>4</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelPinHeight</Type>
+			<Value>1</Value>
+			<MinValue>1</MinValue>
+			<MaxValue>2</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelBottomPinGrooveDepth</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelOmitDiePin</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>1</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelDieShaftTaperAngle</Type>
+			<Value>2</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>10</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelDieShaftTaperHeightLimit</Type>
+			<Value>20</Value>
+			<MinValue>1</MinValue>
+			<MaxValue>20</MaxValue>
+		</ConstructionParameter>		
+		<ConstructionParameter>
+			<Type>ModelPreparationMarginExtrusion</Type>
+			<Value>0.1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0.3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelConcavity</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelWallBottomSill</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelWallMorphologicalClosureDiameter</Type>
+			<Value>4</Value>
+			<MinValue>3</MinValue>
+			<MaxValue>8</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelGingivaMaskImplantSupportWidth</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportGingivaMaskDepth</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>3</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportHeightOffset</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelRatio</Type>
+			<Value>50</Value>
+			<MinValue>50</MinValue>
+			<MaxValue>50</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelImplantSupportBevelAngle</Type>
+			<Value>45</Value>
+			<MinValue>45</MinValue>
+			<MaxValue>45</MaxValue>
+		</ConstructionParameter>
+		<Attachment Ref="0-3D_Print_Drain_Holes" Rel="Perimeter" Jaw="Any" Separation="separation"/>
+		<Attachment Ref="0-3D_Print_Drain_Holes" Rel="Die" Jaw="Any"/>	
+	</ModelType>
+	<ModelType Class="Plateless" SeparableDies="false" Id="hmwed">
+		<DisplayInformation>with extra dies</DisplayInformation>
+		<PreviewImageFileName>formlabs_Form4_hmwed.png</PreviewImageFileName>		
+		<MinRequiredPrepPlateDist>8</MinRequiredPrepPlateDist>
+		<BottomPlaneUpperJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>0.5</z>
+			</Translate>
+		</BottomPlaneUpperJaw>
+		<BottomPlaneLowerJaw SizeX="100" SizeY="100">
+			<Translate ParameterRef="modelheight">
+				<z>-0.5</z>
+			</Translate>
+		</BottomPlaneLowerJaw>
+		<ConstructionParameter>
+			<Type>ModelWallThickness</Type>
+			<Value>3</Value>
+			<MinValue>3</MinValue>
+			<MaxValue>10</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelPinHeight</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelBottomPinGrooveDepth</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelOmitDiePin</Type>
+			<Value>1</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>1</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelConcavity</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelWallBottomSill</Type>
+			<Value>0</Value>
+			<MinValue>0</MinValue>
+			<MaxValue>0</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelWallMorphologicalClosureDiameter</Type>
+			<Value>4</Value>
+			<MinValue>3</MinValue>
+			<MaxValue>8</MaxValue>
+		</ConstructionParameter>
+		<ConstructionParameter>
+			<Type>ModelPreparationMarginExtrusion</Type>
+			<Value>0.1</Value>
+		</ConstructionParameter>
+		<Attachment Ref="0-3D_Print_Drain_Holes" Rel="Perimeter" Jaw="Any" Separation="separation"/>
+		<Attachment Ref="0-3D_Print_Drain_Holes" Rel="Die" Jaw="Any"/>		
+	</ModelType>	
+</LibraryEntry>

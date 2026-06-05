@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<AttachmentLibrary>
+  <UserMessage>Si-tec GmbH  http://www.si-tec.de/</UserMessage>
+  <AttachmentFile>
+    <Filename>HHK_PRIMAERTEIL.sdfa</Filename>
+    <Signature>24cd6d87cf09cbb095576c9d41934bcd496d55cb</Signature>
+  </AttachmentFile>
+  <AttachmentFile>
+    <Filename>SAFE-TEC_PRIMAERTEIL.sdfa</Filename>
+    <Signature>7ee82687d0bb4e894721f28398a51dc9fba9b08a</Signature>
+  </AttachmentFile>
+</AttachmentLibrary>
