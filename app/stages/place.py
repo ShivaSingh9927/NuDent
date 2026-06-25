@@ -283,22 +283,40 @@ class PlaceStage(Stage):
         # roughly upright every time, then fine-tunes with the rotation buttons.
         self._orient_long_axis_up(crown)
 
-        # Auto-normalize mesio-distal width to ~10mm. Uses the larger of the two
-        # horizontal extents (X or Y) — after rotation the mesiodistal direction
-        # is whichever in-plane axis happens to be longer.
+        # Size the tooth: if a fit_ring exists, scale to its longest in-plane
+        # span; otherwise normalise mesiodistal width to ~10 mm if it's wildly
+        # out of range.
+        fit_ring = self.app.state.fit_ring
+        has_fit_ring = fit_ring is not None and len(fit_ring) >= 3
         x_len = crown.bounds[1] - crown.bounds[0]
         y_len = crown.bounds[3] - crown.bounds[2]
         horiz = max(x_len, y_len)
-        if horiz > 0 and (horiz < 6.0 or horiz > 15.0):
+        if has_fit_ring:
+            anchor = np.asarray(fit_ring, dtype=float)
+            target_w = max(
+                float(anchor[:, 0].max() - anchor[:, 0].min()),
+                float(anchor[:, 1].max() - anchor[:, 1].min()),
+            )
+            if horiz > 0 and target_w > 0:
+                crown.points *= (target_w / horiz)
+        elif horiz > 0 and (horiz < 6.0 or horiz > 15.0):
             crown.points *= (10.0 / horiz)
 
-        # Bisect placement: align the library tooth's centroid with the margin
-        # centroid, so the margin plane cuts the tooth roughly in half. This is
-        # direction-agnostic — works for both upper and lower jaws regardless of
-        # whether the library's +Z is the cervical or occlusal end. User then
-        # uses the rotate/translate buttons (or mouse-drag) to finalise.
+        # Position: the 40%-from-top point of the tooth (i.e. roughly the
+        # cervical level on a typical library crown — most of the occlusal
+        # body sits above, the roots descend below) lands on the margin
+        # centroid. X/Y centred on the margin centroid in both cases.
         margin_centroid = np.array(self.app.state.margin_points).mean(axis=0)
-        crown.translate(margin_centroid - np.array(crown.center), inplace=True)
+        z_min = float(crown.bounds[4])
+        z_max = float(crown.bounds[5])
+        anchor_z = z_max - 0.4 * (z_max - z_min)
+        c = np.asarray(crown.center, dtype=float)
+        delta = np.array([
+            margin_centroid[0] - c[0],
+            margin_centroid[1] - c[1],
+            margin_centroid[2] - anchor_z,
+        ])
+        crown.translate(delta, inplace=True)
 
         self.app.state.crown = crown
         # A fresh preset is undeformed, so the base starts identical to it.

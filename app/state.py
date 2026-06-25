@@ -32,6 +32,11 @@ class AppState(QObject):
         self.border_angle_deg = 45.0
         self.border_vertical = 0.0
         self.border_below_margin = 0.0
+        # Closed 3D polyline traced by the top of the swept border profile
+        # (segment-4 endpoint). This is the curve Place anchors the library
+        # tooth to, and Fit deforms its bottom ring onto. Recomputed by
+        # CementGapStage whenever the border params or margin loop change.
+        self.fit_ring = None
         self.crown = None
         # Undeformed crown at the current pose. Place keeps this in lockstep with
         # `crown` through every rigid move; the Fit stage deforms FROM this and

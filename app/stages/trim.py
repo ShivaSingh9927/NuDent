@@ -231,31 +231,45 @@ class TrimStage(Stage):
             self.trimmed_actor = None
 
         centroid, axis = self._compute_axis()
-        margin_pts = np.asarray(self.app.state.margin_points)
-        if len(margin_pts) < 3:
-            QMessageBox.warning(self, "No margin", "Need a closed margin curve to trim.")
+        # The outer crown's bottom rim sits at the fit_ring (top of segment 4
+        # from stage 2). The inner crown's bottom rim sits at the margin —
+        # that's where the no-cement seating contact happens, so cutting the
+        # inner at the fit_ring would throw away the entire no-cement band.
+        # Fall back to the margin for the outer too if no fit_ring exists.
+        margin_pts = np.asarray(self.app.state.margin_points, dtype=float)
+        ring = self.app.state.fit_ring
+        if ring is not None and len(ring) >= 3:
+            outer_cut_pts = np.asarray(ring, dtype=float)
+            outer_cut_name = "fit ring"
+        else:
+            outer_cut_pts = margin_pts
+            outer_cut_name = "margin"
+        inner_cut_pts = margin_pts
+        if len(outer_cut_pts) < 3 or len(inner_cut_pts) < 3:
+            QMessageBox.warning(self, "No cut curve",
+                                "Need a closed margin (and ideally fit ring) to trim.")
             return
-        tree = cKDTree(margin_pts)
 
-        def clip_at_margin(mesh):
-            """Drop the part of `mesh` that sits below the 3D margin curve.
+        def clip_at(mesh, cut_pts):
+            """Drop the part of `mesh` that sits below `cut_pts`.
 
-            For each mesh vertex, the signed distance along the insertion axis
-            to its nearest margin point gives the cut field. clip_scalar
-            interpolates the cut along triangle edges where the field crosses
-            zero — so the cut edge follows the margin curve, not a plane.
-            """
+            Signed distance along the insertion axis to the nearest cut-curve
+            point gives the per-vertex cut field. clip_scalar interpolates the
+            cut along triangle edges where the field crosses zero — so the cut
+            edge follows the curve vertex-for-vertex (no flat plane)."""
+            tree = cKDTree(cut_pts)
             pts = np.asarray(mesh.points)
             _, nearest = tree.query(pts, k=1)
-            signed = (pts - margin_pts[nearest]) @ axis
+            signed = (pts - cut_pts[nearest]) @ axis
             tmp = mesh.copy()
-            tmp["_margin_signed"] = signed
-            # invert=True → keep where scalar > value (above the margin).
-            clipped = tmp.clip_scalar("_margin_signed", invert=True, value=0.0)
+            tmp["_cut_signed"] = signed
+            # invert=True → keep where scalar > value (above the cut curve).
+            clipped = tmp.clip_scalar("_cut_signed", invert=True, value=0.0)
             return clipped.extract_surface()
 
-        outer_trim = clip_at_margin(outer)
-        inner_trim = clip_at_margin(inner)
+        outer_trim = clip_at(outer, outer_cut_pts)
+        inner_trim = clip_at(inner, inner_cut_pts)
+        cut_name = outer_cut_name
 
         outer_dropped = outer.n_points - outer_trim.n_points
         inner_dropped = inner.n_points - inner_trim.n_points
@@ -274,15 +288,16 @@ class TrimStage(Stage):
 
         if outer_dropped == 0 and inner_dropped == 0:
             self.lbl_status.setText(
-                "Trim applied, but no crown geometry sat below the margin plane. "
-                "Lower the crown in Stage 2 (Place) so its bottom dips into the prep, then re-apply."
+                f"Trim applied, but no crown geometry sat below the {cut_name}. "
+                "Lower the crown in stage 3 (Place) so its bottom dips below, then re-apply."
             )
         else:
             self.lbl_status.setText(
                 f"Trim applied.\n"
-                f"Outer: removed {outer_dropped:,} verts below margin.\n"
-                f"Inner: removed {inner_dropped:,} verts below margin.\n"
-                f"Trim edges are open — Stage 5 will stitch them into a watertight crown."
+                f"Outer cut at the {cut_name}: removed {outer_dropped:,} verts below.\n"
+                f"Inner cut at the margin: removed {inner_dropped:,} verts below.\n"
+                f"Outer rim and inner rim sit at different heights — Stage 7 "
+                f"will stitch them into the crown's bottom-border band."
             )
         self.btn_revert.setEnabled(True)
         self.completion_changed.emit()

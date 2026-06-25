@@ -26,7 +26,7 @@ from PyQt5.QtWidgets import (
 from ..config import STAGES
 from ..ui import section_label
 from ..border_diagram import BorderProfileDiagram
-from ..border_geometry import compute_border_profile_2d, build_border_band
+from ..border_geometry import compute_border_profile_2d, build_border_band, build_fit_ring
 from .base import Stage
 
 
@@ -46,6 +46,7 @@ class CementGapStage(Stage):
         self._dim_prep_actor = None  # faint full-prep underneath for context
         self._margin_actor = None
         self._border_actor = None    # swept crown-border band
+        self._fit_ring_actor = None  # swept fit-ring curve (top of segment 4)
         self._border_sliders = {}    # key -> (slider, scale)
         self._suppress = False        # guards spin-box signal cycles during restore
 
@@ -170,7 +171,11 @@ class CementGapStage(Stage):
         self.app.set_status(self.description)
 
     def on_exit(self):
-        self._clear_actors()
+        # Keep the cap + border + fit-ring overlays alive on exit so the user
+        # can still see them as context while placing the crown in stage 3.
+        # When the user returns to this stage, _redraw() clears them first
+        # and rebuilds, so there is no actor duplication.
+        pass
 
     # ----- Cap selection + zone labelling -----
 
@@ -470,7 +475,7 @@ class CementGapStage(Stage):
 
     def _clear_actors(self):
         for a in (self._cap_actor, self._dim_prep_actor, self._margin_actor,
-                  self._border_actor):
+                  self._border_actor, self._fit_ring_actor):
             if a is not None:
                 try: self.app.plotter.remove_actor(a)
                 except Exception: pass
@@ -478,6 +483,7 @@ class CementGapStage(Stage):
         self._dim_prep_actor = None
         self._margin_actor = None
         self._border_actor = None
+        self._fit_ring_actor = None
 
     def _redraw(self):
         self._clear_actors()
@@ -591,13 +597,16 @@ class CementGapStage(Stage):
     def _build_border_actor(self):
         """Sweep the current border profile along the closed margin loop and
         (re)add it to the plotter. No-op until a closed margin loop exists."""
-        if self._border_actor is not None:
-            try: self.app.plotter.remove_actor(self._border_actor)
-            except Exception: pass
-            self._border_actor = None
+        for attr in ("_border_actor", "_fit_ring_actor"):
+            a = getattr(self, attr, None)
+            if a is not None:
+                try: self.app.plotter.remove_actor(a)
+                except Exception: pass
+                setattr(self, attr, None)
 
         st = self.app.state
         if not st.margin_loop_closed or len(st.margin_points) < 3:
+            st.fit_ring = None
             return
 
         profile = compute_border_profile_2d(
@@ -620,6 +629,20 @@ class CementGapStage(Stage):
             mesh, color="#2dd4bf", opacity=0.65, show_edges=False,
             pickable=False, reset_camera=False,
         )
+
+        # Sweep the top of the profile (segment-4 endpoint) into the fit ring.
+        # Store it on state so Place/Fit can read it; render as a green tube.
+        ring = build_fit_ring(margin, profile, closed=True)
+        st.fit_ring = ring
+        if ring is not None and len(ring) >= 2:
+            arr = np.vstack([ring, ring[0]])
+            n = len(arr)
+            poly = pv.PolyData(arr)
+            poly.lines = np.hstack([[n], np.arange(n)])
+            tube = poly.tube(radius=0.06)
+            self._fit_ring_actor = self.app.plotter.add_mesh(
+                tube, color="#16a34a", pickable=False, reset_camera=False,
+            )
 
     # ----- Persistence -----
 

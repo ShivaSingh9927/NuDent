@@ -218,13 +218,35 @@ class RefineStage(Stage):
         loops.sort(key=self._loop_perimeter, reverse=True)
         outer_loop, inner_loop = loops[0], loops[1]
 
+        # The raw clip_scalar rim loops zigzag. Cyclic-Laplacian-smooth each
+        # loop in place (same vertex count, same order), then push the
+        # smoothed positions back into the trimmed mesh so the rim of the
+        # crown itself becomes smooth. The band built from the same smoothed
+        # coords then shares vertices with the trimmed crown after clean(),
+        # so the merged solid is watertight.
+        outer_loop, trimmed = self._smooth_loop_in_place(
+            trimmed, outer_loop, passes=15)
+        inner_loop, trimmed = self._smooth_loop_in_place(
+            trimmed, inner_loop, passes=15)
+
         band = self._stitch_band(outer_loop, inner_loop)
         if band is None or band.n_cells == 0:
             QMessageBox.warning(self, "Stitching failed",
                                 "Could not build a triangulated band between the trim edges.")
             return
 
-        merged = trimmed.merge(band).clean()
+        # Tolerant clean so the band's rim verts weld to the (newly smoothed)
+        # trimmed-mesh rim verts despite any sub-micron float drift.
+        merged = trimmed.merge(band).clean(tolerance=1e-4)
+        # Round off the crisp creases where the stitch band meets the outer
+        # crown (at the fit-ring) and the inner shell (at the margin) — both
+        # joints are otherwise sharp by construction. Smooth only vertices
+        # within `band_smooth_dist` mm of either rim so the rest of the
+        # anatomy is left alone.
+        outer_rim = np.asarray(outer_loop)
+        inner_rim = np.asarray(inner_loop)
+        merged = self._smooth_band_edges(merged, outer_rim, inner_rim,
+                                         radius=0.6, iterations=8)
         # Make face winding consistent so STL export looks right
         try:
             merged = merged.compute_normals(
@@ -662,6 +684,103 @@ class RefineStage(Stage):
         for t in triangles:
             faces.extend([3, t[0], t[1], t[2]])
         return pv.PolyData(all_band_pts, np.asarray(faces, dtype=np.int_))
+
+    def _smooth_loop_in_place(self, mesh, loop, passes=12):
+        """Cyclic-Laplacian-smooth a closed rim loop AND push the smoothed
+        positions back into `mesh` at the corresponding vertex indices.
+
+        Vertex count and ordering are preserved so the smoothed loop can be
+        fed straight to the band stitcher and welded with `clean()` later.
+
+        Returns (smoothed_loop_as_list, mesh) — the mesh is the same object,
+        returned for call-site symmetry.
+        """
+        arr = np.asarray(loop, dtype=float)
+        n = len(arr)
+        if n < 4:
+            return loop, mesh
+
+        # Map each loop point to its vertex index in the merged trimmed mesh.
+        mesh_pts = np.asarray(mesh.points)
+        tree = cKDTree(mesh_pts)
+        _, idxs = tree.query(arr, k=1)
+        idxs = np.asarray(idxs, dtype=np.int64)
+
+        # Cyclic Laplacian: each point ← weighted avg of itself + ring neighbours.
+        smoothed = arr.copy()
+        for _ in range(int(passes)):
+            prev = np.roll(smoothed, 1, axis=0)
+            nxt = np.roll(smoothed, -1, axis=0)
+            smoothed = 0.5 * smoothed + 0.25 * prev + 0.25 * nxt
+
+        # Write smoothed coords back into the mesh at the same indices, so the
+        # crown's own rim is smooth and shares vertices with the band built
+        # from `smoothed` below.
+        new_pts = mesh_pts.copy()
+        new_pts[idxs] = smoothed
+        mesh.points = new_pts.astype(mesh.points.dtype)
+        return [smoothed[i] for i in range(n)], mesh
+
+    def _smooth_band_edges(self, mesh, outer_rim, inner_rim,
+                           radius=0.6, iterations=8):
+        """Laplacian-smooth only the vertices within `radius` mm of either
+        stitch rim. Outer rim verts (at the fit_ring) and inner rim verts (at
+        the margin) become the two crease lines after band stitching; this
+        averages each affected vertex toward its neighbours so those creases
+        round off without disturbing the occlusal anatomy or the seating face.
+        """
+        pts = np.asarray(mesh.points)
+        n = len(pts)
+        if n == 0:
+            return mesh
+
+        # Mark smoothable vertices: those near either rim.
+        rim = np.vstack([outer_rim, inner_rim]) if len(outer_rim) and len(inner_rim) \
+              else (outer_rim if len(outer_rim) else inner_rim)
+        if rim is None or len(rim) == 0:
+            return mesh
+        tree = cKDTree(rim)
+        d, _ = tree.query(pts, k=1)
+        movable = d < float(radius)
+        if not movable.any():
+            return mesh
+        # Falloff so verts right on the rim move most, outer fringe barely:
+        # smoothstep(1 - d/radius). Keeps the smoothed region blending into
+        # the untouched anatomy without a visible seam.
+        t = np.clip(1.0 - d / max(radius, 1e-9), 0.0, 1.0)
+        weight = t * t * (3.0 - 2.0 * t)
+
+        # Build vertex adjacency from triangle faces.
+        faces_arr = np.asarray(mesh.faces)
+        # PyVista face stream: [3, a, b, c, 3, a, b, c, ...]
+        tri = faces_arr.reshape(-1, 4)[:, 1:]
+        neighbours = [[] for _ in range(n)]
+        for a, b, c in tri:
+            a, b, c = int(a), int(b), int(c)
+            neighbours[a].extend((b, c))
+            neighbours[b].extend((a, c))
+            neighbours[c].extend((a, b))
+        # Dedup neighbour lists once.
+        neighbours = [np.unique(np.asarray(nl, dtype=np.int64)) if nl else None
+                      for nl in neighbours]
+
+        moved = pts.copy()
+        movable_idx = np.where(movable)[0]
+        for _ in range(int(iterations)):
+            new_pts = moved.copy()
+            for vi in movable_idx:
+                nl = neighbours[vi]
+                if nl is None or len(nl) == 0:
+                    continue
+                mean = moved[nl].mean(axis=0)
+                # Lerp toward the neighbour mean by the per-vertex weight.
+                w = float(weight[vi])
+                new_pts[vi] = moved[vi] * (1.0 - w) + mean * w
+            moved = new_pts
+
+        smoothed = mesh.copy()
+        smoothed.points = moved.astype(mesh.points.dtype)
+        return smoothed
 
     def _trim_stage(self):
         for s in self.app.stages:

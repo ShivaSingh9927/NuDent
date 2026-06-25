@@ -158,13 +158,20 @@ class FitStage(Stage):
         # if it somehow wasn't set (e.g. a restored project).
         if self.app.state.crown_base is None:
             self.app.state.crown_base = crown.copy()
-        if self._margin_ready():
-            # Conform immediately from the latest placement so the stage always
-            # shows the crown fitted at the current Place pose.
-            self._fit()
-        else:
+        # Show the carefully-placed crown as-is. Don't auto-fit on enter —
+        # auto-fitting (especially with pre-scale on) silently overrides the
+        # placement the user just spent time perfecting in stage 3. They click
+        # "Fit to Margin" when they're ready.
+        self._fitted = False
+        self.app.state.crown = self._base.copy()
+        self._redraw()
+        if not self._margin_ready():
             self.status.setText("Close the margin loop (step 1) before fitting.")
-            self._redraw()
+        else:
+            self.status.setText(
+                "Crown shown at the placement from stage 3. "
+                "Click 'Fit to Margin' to conform its rim onto the margin."
+            )
         self.app.set_status(self.description)
 
     @property
@@ -247,14 +254,21 @@ class FitStage(Stage):
             self.status.setText("Close the margin loop (step 1) before fitting.")
             return
 
-        margin = np.asarray(self.app.state.margin_points, dtype=float)
+        # Prefer the green fit_ring (top of the swept border profile from
+        # stage 2) — that's the curve the crown's outer rim should land on.
+        # Fall back to the raw margin if the user hasn't built segment 4 yet.
+        ring = self.app.state.fit_ring
+        if ring is not None and len(ring) >= 3:
+            target = np.asarray(ring, dtype=float)
+        else:
+            target = np.asarray(self.app.state.margin_points, dtype=float)
         jaw = (self.app.state.jaw_mesh.points
                if self.app.state.jaw_mesh is not None else None)
         blend_up = self.sld_blend.value() / 10.0
 
         res = fit_crown(
             np.asarray(self._base.points, dtype=float),
-            margin, jaw_points=jaw,
+            target, jaw_points=jaw,
             blend_up=blend_up, blend_down=1.0,
             prescale=self.chk_prescale.isChecked(),
         )
@@ -264,6 +278,25 @@ class FitStage(Stage):
 
         fitted = self._base.copy()
         fitted.points = res["points"].astype(self._base.points.dtype)
+        # Taubin smoothing — alternating ±Laplacian steps so the surface
+        # smooths without shrinking. Removes the step/ridge artefacts the
+        # radial fit leaves behind, while preserving the cusp anatomy and
+        # the rim landing on the fit_ring.
+        try:
+            smoothed = fitted.smooth_taubin(
+                n_iter=20, pass_band=0.1, normalize_coordinates=True,
+            )
+            if smoothed is not None and smoothed.n_points == fitted.n_points:
+                fitted = smoothed
+        except Exception:
+            # Older PyVista builds may not expose smooth_taubin; fall back
+            # to plain Laplacian with a low relaxation factor.
+            try:
+                fitted = fitted.smooth(n_iter=15, relaxation_factor=0.05,
+                                       feature_smoothing=False,
+                                       boundary_smoothing=True)
+            except Exception:
+                pass
         self.app.state.crown = fitted
         self._fitted = True
 
@@ -273,7 +306,7 @@ class FitStage(Stage):
             try:
                 d = os.environ.get("NUDENT_FIT_DEBUG_DIR", "/tmp/nudent_fit_debug")
                 os.makedirs(d, exist_ok=True)
-                np.save(f"{d}/margin.npy", margin)
+                np.save(f"{d}/margin.npy", target)
                 self._base.save(f"{d}/base.stl")
                 fitted.save(f"{d}/fitted.stl")
                 if self.app.state.jaw_mesh is not None:

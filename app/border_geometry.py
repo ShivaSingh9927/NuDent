@@ -87,6 +87,31 @@ def _local_outward(pts, i, n, closed, centroid):
     return outward
 
 
+def build_fit_ring(margin_curve_pts, profile_2d, closed: bool = True):
+    """Sweep the *top* of the border profile along the margin loop.
+
+    The top point of the 2D profile (segments 1→2→3→4) is the upper edge of
+    the crown's bottom flange — where the crown's outer surface meets its
+    bottom rim. Sweeping it around the margin produces the closed 3D curve
+    Place anchors the library tooth to and Fit deforms it onto.
+
+    Returns the swept 3D polyline as np.ndarray(n, 3), or None if the profile
+    has no above-margin geometry (single point).
+    """
+    pts = np.asarray(margin_curve_pts, dtype=float)
+    n = len(pts)
+    if n < 2 or len(profile_2d) < 2:
+        return None
+    top_x, top_y = profile_2d[-1]
+    world_z = np.array([0.0, 0.0, 1.0])
+    centroid = pts.mean(axis=0)
+    out = np.empty((n, 3), dtype=float)
+    for i in range(n):
+        outward = _local_outward(pts, i, n, closed, centroid)
+        out[i] = pts[i] + outward * top_x + world_z * top_y
+    return out
+
+
 def build_border_band(margin_curve_pts, profile_2d, closed: bool = False):
     """Sweep a 2D border profile along a 3D margin curve into a ribbon mesh.
 

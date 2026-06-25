@@ -220,6 +220,15 @@ class ShellStage(Stage):
             QMessageBox.warning(self, "No crown", "Place a crown preset first.")
             return
 
+        cap = self.app.state.cap_mesh
+        if cap is None:
+            QMessageBox.warning(
+                self, "No cap surface",
+                "The inner surface now comes from stage 2 (Cement). Go back "
+                "and click 'Recompute Cap' there before generating the shell."
+            )
+            return
+
         # Invalidate any downstream trim that was based on the old shell
         self.app.notify_shell_changed()
 
@@ -229,61 +238,20 @@ class ShellStage(Stage):
             self.inner_actor = None
 
         thickness_um = self.thickness_spin.value()
-        thickness_mm = thickness_um / 1000.0
-        cement_gap_um = self.gap_spin.value()
-        cement_gap_mm = cement_gap_um / 1000.0
-        margin_offset_mm = float(self.margin_offset_spin.value())
 
-        # Per-vertex outward normals on the placed crown
-        with_normals = crown.compute_normals(
-            point_normals=True, cell_normals=False,
-            auto_orient_normals=True, consistent_normals=True,
-            inplace=False,
-        )
-        normals = np.asarray(with_normals.point_normals)
+        # Inner surface = the prep cap from stage 2, offset outward by the
+        # cement-gap field. Per-vertex offset: `no_cement` inside the seating
+        # band, ramping smoothly (smoothstep) to `cement_gap` past the band
+        # edge. Orange zone = void for luting; blue zone = tight seat on prep.
+        inner = self._build_inner_from_cap(cap)
+        n_clamped = 0
+        n_warn = 0
 
-        # Per-vertex cement-gap ramp based on distance from the margin curve.
-        # Vertices within `margin_offset_mm` get 0 gap (seal at finish line);
-        # past that, the gap ramps linearly to its full value over RAMP_WIDTH_MM.
-        crown_pts = np.asarray(crown.points)
-        margin_pts = np.asarray(self.app.state.margin_points)
-        if cement_gap_mm > 0 and len(margin_pts) >= 2:
-            tree = cKDTree(margin_pts)
-            margin_dist, _ = tree.query(crown_pts, k=1)
-            t = (margin_dist - margin_offset_mm) / max(self.RAMP_WIDTH_MM, 1e-6)
-            ramp = np.clip(t, 0.0, 1.0)
-            extra = ramp * cement_gap_mm
-        else:
-            # No margin curve (shouldn't happen at this stage) or zero gap —
-            # fall back to a uniform shell.
-            extra = np.zeros(len(crown_pts), dtype=float)
-
-        offsets = (thickness_mm + extra)[:, None]  # broadcast per-vertex
-
-        inner = crown.copy()
-        inner.points = (crown_pts - normals * offsets).astype(crown.points.dtype)
-
-        # Non-penetration clamp: ensure every inner-shell vertex sits at least
-        # `extra(vertex)` away from the prep surface (so 0-clearance at the
-        # margin, full cement gap elsewhere). Inner vertices that ended up
-        # inside the prep — or closer than their target clearance — get pushed
-        # outward along the prep's signed-distance gradient.
-        n_clamped = self._clamp_to_prep(inner, extra)
-        # Reverse winding so inner-surface normals point into the cavity.
-        # `flip_faces` replaced the deprecated `flip_normals` in newer pyvista.
+        # Reverse winding so inner-surface normals point into the crown cavity.
         if hasattr(inner, 'flip_faces'):
             inner.flip_faces(inplace=True)
         else:
             inner.flip_normals()
-
-        # Coarse self-intersection check: each inner vertex's projection onto
-        # its outer normal should land at roughly its expected per-vertex
-        # offset. A much smaller projection means the offset overshot in a
-        # high-curvature region (the surface folded back on itself).
-        deltas = crown_pts - np.asarray(inner.points)
-        dots = np.einsum('ij,ij->i', deltas, normals)
-        expected = thickness_mm + extra
-        n_warn = int(np.sum(dots < expected * 0.5))
 
         self.app.state.shell_outer = crown
         self.app.state.shell_inner = inner
@@ -298,15 +266,14 @@ class ShellStage(Stage):
         )
         self.app.plotter.render()
 
+        st = self.app.state
         msg = (
             f"Shell generated · {thickness_um} μm wall · "
-            f"{cement_gap_um} μm cement gap (above {margin_offset_mm:.2f} mm)\n"
+            f"cement gap {st.cement_gap_thickness*1000:.0f} μm, "
+            f"no-cement {st.no_cement_thickness*1000:.0f} μm "
+            f"(band {st.no_cement_band_width:.2f} mm)\n"
             f"Inner surface: {inner.n_points:,} verts, {inner.n_cells:,} faces"
         )
-        if n_clamped:
-            msg += f"\n✓ {n_clamped} vertices clamped to clear the prep"
-        if n_warn:
-            msg += f"\n⚠ {n_warn} vertices may self-intersect (high curvature)"
         self.lbl_status.setText(msg)
 
         self.btn_show_inner.setEnabled(True)
@@ -317,6 +284,41 @@ class ShellStage(Stage):
         self.btn_show_outer.setText("Hide Outer Crown")
         self.completion_changed.emit()
         self.app.set_status(f"Shell generated with {thickness_um} μm wall thickness.")
+
+    def _build_inner_from_cap(self, cap):
+        """Lift the prep cap outward by the cement-gap field to produce the
+        crown's inner surface. Per-vertex offset = no_cement inside the seating
+        band, ramping smoothly to cement_gap past the band edge. Normals come
+        from the prep mesh (closed, reliable auto-orient) and are copied to
+        cap vertices via nearest-neighbour — copying mirrors the visualiser
+        in stage 2 so the geometry matches what the user previewed."""
+        st = self.app.state
+        gap = float(st.cement_gap_thickness)
+        no_cement = float(st.no_cement_thickness)
+        band = float(st.no_cement_band_width)
+        ramp = 0.5  # same RAMP_WIDTH_MM as CementGapStage
+
+        prep = st.prep_mesh
+        prep_n = prep.compute_normals(
+            point_normals=True, cell_normals=False,
+            auto_orient_normals=True, inplace=False,
+        )
+        prep_normals = np.asarray(prep_n["Normals"])
+        tree = cKDTree(np.asarray(prep.points))
+        _, near = tree.query(np.asarray(cap.points), k=1)
+        normals = prep_normals[np.asarray(near, dtype=int)]
+
+        margin = np.asarray(st.margin_points)
+        m_tree = cKDTree(margin)
+        d, _ = m_tree.query(np.asarray(cap.points), k=1)
+        t_raw = np.clip((d - band) / max(ramp, 1e-6), 0.0, 1.0)
+        t = t_raw * t_raw * (3.0 - 2.0 * t_raw)  # smoothstep
+        offset_amt = no_cement * (1.0 - t) + gap * t
+
+        inner = cap.copy()
+        inner.points = (np.asarray(cap.points) + normals * offset_amt[:, None]
+                        ).astype(cap.points.dtype)
+        return inner
 
     def _clamp_to_prep(self, inner, target_clearance):
         """Push inner-shell vertices outward so each one clears the prep by at
