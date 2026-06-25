@@ -24,7 +24,7 @@ from .place import PlaceStage
 
 class ShellStage(Stage):
     name = "Shell"
-    description = STAGES[3][1]
+    description = STAGES[4][1]
 
     # (Material name, default wall thickness in microns)
     MATERIALS = [

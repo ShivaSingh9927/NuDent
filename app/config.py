@@ -7,6 +7,7 @@ STAGES = [
     ("Margin", "Click on the prep tooth to mark margin points. Press F to close the loop."),
     ("Cement", "Define cement-gap and no-cement zones on the prep cap."),
     ("Place",  "Position a crown preset over the margin."),
+    ("Fit",    "Fit the crown outer surface onto the margin line."),
     ("Shell",  "Generate the inner surface from wall thickness."),
     ("Trim",   "Cut the crown bottom to match the margin."),
     ("Refine", "Sculpt, check collisions, and export."),

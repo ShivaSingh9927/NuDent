@@ -17,12 +17,16 @@ The actual offset is computed by ShellStage.
 import numpy as np
 import pyvista as pv
 from scipy.spatial import cKDTree
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (
     QVBoxLayout, QHBoxLayout, QPushButton, QLabel, QDoubleSpinBox, QMessageBox,
+    QSlider,
 )
 
 from ..config import STAGES
 from ..ui import section_label
+from ..border_diagram import BorderProfileDiagram
+from ..border_geometry import compute_border_profile_2d, build_border_band
 from .base import Stage
 
 
@@ -41,6 +45,8 @@ class CementGapStage(Stage):
         self._cap_actor = None
         self._dim_prep_actor = None  # faint full-prep underneath for context
         self._margin_actor = None
+        self._border_actor = None    # swept crown-border band
+        self._border_sliders = {}    # key -> (slider, scale)
         self._suppress = False        # guards spin-box signal cycles during restore
 
         layout = QVBoxLayout(self)
@@ -92,6 +98,36 @@ class CementGapStage(Stage):
         nc_row.addWidget(self.spin_no_cement)
         layout.addLayout(nc_row)
 
+        # --- CROWN BORDER (Crown Bottoms) ---
+        layout.addWidget(section_label("CROWN BORDER"))
+        border_hint = QLabel(
+            "Sweep an Exocad-style border profile along the margin loop. "
+            "Numbers match the diagram below."
+        )
+        border_hint.setStyleSheet("color: #6e6e73; font-size: 11px; padding: 4px 0;")
+        border_hint.setWordWrap(True)
+        layout.addWidget(border_hint)
+
+        # (key, label, min, max, default, scale, suffix). Slider values are
+        # ints; the real value = slider_value / scale.
+        for key, label, mn, mx, default, scale, suffix in [
+            ("horizontal",   "1. Horizontal",   0, 200, 20, 100, "mm"),
+            ("angled",       "2. Angled",       0, 200,  0, 100, "mm"),
+            ("angle_deg",    "3. Angle",        0,  90, 45,   1, "°"),
+            ("vertical",     "4. Vertical",     0, 200,  0, 100, "mm"),
+            ("below_margin", "5. Below margin", 0, 200,  0, 100, "mm"),
+        ]:
+            self._add_border_slider(layout, key, label, mn, mx, default, scale, suffix)
+
+        self.border_diagram = BorderProfileDiagram()
+        layout.addWidget(self.border_diagram)
+
+        legend = QLabel(
+            "1 Horizontal · 2 Angled · 3 Angle · 4 Vertical · 5 Below margin")
+        legend.setWordWrap(True)
+        legend.setStyleSheet("color: #86868b; font-size: 10px; padding: 2px 0;")
+        layout.addWidget(legend)
+
         # --- STATUS ---
         self.status = QLabel("Mark and close the margin loop first.")
         self.status.setStyleSheet("color: #6e6e73; font-size: 11px; padding: 4px 0;")
@@ -105,6 +141,10 @@ class CementGapStage(Stage):
         layout.addWidget(self.btn_recompute)
 
         layout.addStretch()
+
+        # Push the slider defaults into the diagram + app.state so everything
+        # is consistent before the first margin is drawn.
+        self._apply_border_params(redraw=False)
 
     # ----- Stage lifecycle -----
 
@@ -429,13 +469,15 @@ class CementGapStage(Stage):
     # ----- Visualization -----
 
     def _clear_actors(self):
-        for a in (self._cap_actor, self._dim_prep_actor, self._margin_actor):
+        for a in (self._cap_actor, self._dim_prep_actor, self._margin_actor,
+                  self._border_actor):
             if a is not None:
                 try: self.app.plotter.remove_actor(a)
                 except Exception: pass
         self._cap_actor = None
         self._dim_prep_actor = None
         self._margin_actor = None
+        self._border_actor = None
 
     def _redraw(self):
         self._clear_actors()
@@ -474,7 +516,110 @@ class CementGapStage(Stage):
             self._margin_actor = self.app.plotter.add_mesh(
                 tube, color="red", pickable=False, reset_camera=False,
             )
+        self._build_border_actor()
         self.app.plotter.render()
+
+    # ----- Crown border (Crown Bottoms) -----
+
+    def _fmt_border_val(self, raw, scale, suffix):
+        if suffix == "°":
+            return f"{int(raw)}{suffix}"
+        return f"{raw / scale:.2f}{suffix}"
+
+    def _add_border_slider(self, layout, key, label, mn, mx, default, scale, suffix):
+        row = QVBoxLayout()
+        row.setSpacing(2)
+
+        lr = QHBoxLayout()
+        lbl = QLabel(label)
+        lbl.setStyleSheet("color: #424245; font-size: 12px;")
+        val_lbl = QLabel(self._fmt_border_val(default, scale, suffix))
+        val_lbl.setStyleSheet("color: #1d1d1f; font-size: 12px; font-weight: 600;")
+        val_lbl.setAlignment(Qt.AlignRight)
+        lr.addWidget(lbl)
+        lr.addStretch()
+        lr.addWidget(val_lbl)
+        row.addLayout(lr)
+
+        slider = QSlider(Qt.Horizontal)
+        slider.setMinimum(mn)
+        slider.setMaximum(mx)
+        slider.setValue(default)
+        slider.valueChanged.connect(
+            lambda v, k=key, vl=val_lbl, s=scale, sx=suffix:
+                self._on_border_slider_move(k, v, vl, s, sx))
+        slider.sliderReleased.connect(lambda: self._apply_border_params(redraw=True))
+        row.addWidget(slider)
+
+        self._border_sliders[key] = (slider, scale)
+        layout.addLayout(row)
+
+    def _on_border_slider_move(self, key, raw, val_lbl, scale, suffix):
+        """On every tick: update the label and the live diagram (cheap). The
+        3D band is rebuilt only on slider release (see _apply_border_params)."""
+        val_lbl.setText(self._fmt_border_val(raw, scale, suffix))
+        diagram = getattr(self, "border_diagram", None)
+        if diagram is not None:
+            p = self._get_border_params()
+            diagram.set_params(**p)
+
+    def _get_border_params(self):
+        return {key: slider.value() / scale
+                for key, (slider, scale) in self._border_sliders.items()}
+
+    def _apply_border_params(self, redraw=True):
+        """Copy the slider values into app.state, sync the diagram, and
+        (optionally) rebuild the 3D band actor."""
+        if self._suppress:
+            return
+        p = self._get_border_params()
+        st = self.app.state
+        st.border_horizontal = p["horizontal"]
+        st.border_angled = p["angled"]
+        st.border_angle_deg = p["angle_deg"]
+        st.border_vertical = p["vertical"]
+        st.border_below_margin = p["below_margin"]
+
+        diagram = getattr(self, "border_diagram", None)
+        if diagram is not None:
+            diagram.set_params(**p)
+
+        if redraw:
+            self._build_border_actor()
+            self.app.plotter.render()
+
+    def _build_border_actor(self):
+        """Sweep the current border profile along the closed margin loop and
+        (re)add it to the plotter. No-op until a closed margin loop exists."""
+        if self._border_actor is not None:
+            try: self.app.plotter.remove_actor(self._border_actor)
+            except Exception: pass
+            self._border_actor = None
+
+        st = self.app.state
+        if not st.margin_loop_closed or len(st.margin_points) < 3:
+            return
+
+        profile = compute_border_profile_2d(
+            horizontal=st.border_horizontal,
+            angled=st.border_angled,
+            angle_deg=st.border_angle_deg,
+            vertical=st.border_vertical,
+            below_margin=st.border_below_margin,
+        )
+        margin = [np.asarray(p, dtype=float) for p in st.margin_points]
+        band = build_border_band(margin, profile, closed=True)
+        if not band["ok"]:
+            return
+
+        verts = np.asarray(band["verts"], dtype=float)
+        tri = np.asarray(band["faces"], dtype=np.int64)
+        faces = np.hstack([np.full((len(tri), 1), 3, dtype=np.int64), tri]).ravel()
+        mesh = pv.PolyData(verts, faces)
+        self._border_actor = self.app.plotter.add_mesh(
+            mesh, color="#2dd4bf", opacity=0.65, show_edges=False,
+            pickable=False, reset_camera=False,
+        )
 
     # ----- Persistence -----
 
@@ -483,6 +628,11 @@ class CementGapStage(Stage):
             "cement_gap_thickness": float(self.app.state.cement_gap_thickness),
             "no_cement_band_width": float(self.app.state.no_cement_band_width),
             "no_cement_thickness": float(self.app.state.no_cement_thickness),
+            "border_horizontal": float(self.app.state.border_horizontal),
+            "border_angled": float(self.app.state.border_angled),
+            "border_angle_deg": float(self.app.state.border_angle_deg),
+            "border_vertical": float(self.app.state.border_vertical),
+            "border_below_margin": float(self.app.state.border_below_margin),
         }
 
     def restore(self, data):
@@ -490,10 +640,27 @@ class CementGapStage(Stage):
         self.spin_gap.setValue(float(data.get("cement_gap_thickness", 0.08)))
         self.spin_band.setValue(float(data.get("no_cement_band_width", 1.0)))
         self.spin_no_cement.setValue(float(data.get("no_cement_thickness", 0.0)))
+
+        border_defaults = {
+            "border_horizontal": 0.2, "border_angled": 0.0,
+            "border_angle_deg": 45.0, "border_vertical": 0.0,
+            "border_below_margin": 0.0,
+        }
+        slider_keys = {
+            "horizontal": "border_horizontal", "angled": "border_angled",
+            "angle_deg": "border_angle_deg", "vertical": "border_vertical",
+            "below_margin": "border_below_margin",
+        }
+        for skey, dkey in slider_keys.items():
+            slider, scale = self._border_sliders[skey]
+            val = float(data.get(dkey, border_defaults[dkey]))
+            slider.setValue(int(round(val * scale)))
+
         self._suppress = False
         self.app.state.cement_gap_thickness = float(self.spin_gap.value())
         self.app.state.no_cement_band_width = float(self.spin_band.value())
         self.app.state.no_cement_thickness = float(self.spin_no_cement.value())
+        self._apply_border_params(redraw=False)
         # Cap mesh isn't persisted — it's derived from prep + margin. Recompute
         # on next on_enter().
         self.app.state.cap_mesh = None

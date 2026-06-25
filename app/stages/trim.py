@@ -27,7 +27,7 @@ from .shell import ShellStage
 
 class TrimStage(Stage):
     name = "Trim"
-    description = STAGES[4][1]
+    description = STAGES[5][1]
 
     def __init__(self, app):
         super().__init__(app)

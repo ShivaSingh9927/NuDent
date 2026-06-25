@@ -19,7 +19,7 @@ from .project import save_project, load_project, PROJECT_EXT, PROJECT_FILTER
 from .settings import record_recent, forget, get_recent, get_last_project
 from .segmentation import isolate_tooth
 from .stages import (
-    MarginStage, CementGapStage, PlaceStage, ShellStage, TrimStage, RefineStage,
+    MarginStage, CementGapStage, PlaceStage, FitStage, ShellStage, TrimStage, RefineStage,
 )
 
 
@@ -180,6 +180,11 @@ class MainWindow(QMainWindow):
         place.completion_changed.connect(self._on_completion_changed)
         self.stages.append(place)
         self.left_panel.addWidget(place)
+
+        fit = FitStage(self)
+        fit.completion_changed.connect(self._on_completion_changed)
+        self.stages.append(fit)
+        self.left_panel.addWidget(fit)
 
         shell = ShellStage(self)
         shell.completion_changed.connect(self._on_completion_changed)

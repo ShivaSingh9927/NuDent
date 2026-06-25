@@ -176,6 +176,18 @@ class PlaceStage(Stage):
     def on_enter(self):
         if self.app.state.crown is None and self.available_teeth:
             self.load_tooth(self.current_index)
+        else:
+            # Re-sync our actor to the current crown — another stage (e.g. Fit)
+            # may have replaced state.crown with a new (deformed) mesh, and our
+            # actor may be hidden or still pointing at the old geometry.
+            if self.crown_actor is not None:
+                try: self.app.plotter.remove_actor(self.crown_actor)
+                except Exception: pass
+                self.crown_actor = None
+            if self.app.state.crown is not None:
+                self.crown_actor = self.app.plotter.add_mesh(
+                    self.app.state.crown, color="gold", reset_camera=False)
+                self.app.plotter.render()
         self.app.set_status(self.description)
 
     def on_exit(self):
@@ -289,6 +301,8 @@ class PlaceStage(Stage):
         crown.translate(margin_centroid - np.array(crown.center), inplace=True)
 
         self.app.state.crown = crown
+        # A fresh preset is undeformed, so the base starts identical to it.
+        self.app.state.crown_base = crown.copy()
         self.crown_actor = self.app.plotter.add_mesh(crown, color="gold")
         self.app.plotter.render()
 
@@ -373,41 +387,48 @@ class PlaceStage(Stage):
     def translate(self, x, y, z):
         if self.app.state.crown is None: return
         d = self.move_step
-        self.app.state.crown.translate([x*d, y*d, z*d], inplace=True)
+        vec = [x*d, y*d, z*d]
+        self.app.state.crown.translate(vec, inplace=True)
+        if self.app.state.crown_base is not None:
+            self.app.state.crown_base.translate(vec, inplace=True)
         self.app.notify_crown_changed()
         self.app.plotter.render()
 
     def rotate(self, axis, sign):
         if self.app.state.crown is None: return
         a = self.rotate_step * sign
+        # Use the SAME world pivot for crown and base so they stay aligned even
+        # if the displayed crown has been deformed (its center may differ).
         c = self.app.state.crown.center
-        if axis == 'x':
-            self.app.state.crown.rotate_x(a, point=c, inplace=True)
-        elif axis == 'y':
-            self.app.state.crown.rotate_y(a, point=c, inplace=True)
-        else:
-            self.app.state.crown.rotate_z(a, point=c, inplace=True)
+        for m in (self.app.state.crown, self.app.state.crown_base):
+            if m is None: continue
+            if axis == 'x':   m.rotate_x(a, point=c, inplace=True)
+            elif axis == 'y': m.rotate_y(a, point=c, inplace=True)
+            else:             m.rotate_z(a, point=c, inplace=True)
         self.app.notify_crown_changed()
         self.app.plotter.render()
 
     def scale(self, factor):
         if self.app.state.crown is None: return
         c = np.array(self.app.state.crown.center)
-        self.app.state.crown.translate(-c, inplace=True)
-        self.app.state.crown.points *= factor
-        self.app.state.crown.translate(c, inplace=True)
+        for m in (self.app.state.crown, self.app.state.crown_base):
+            if m is None: continue
+            m.translate(-c, inplace=True)
+            m.points *= factor
+            m.translate(c, inplace=True)
         self.app.notify_crown_changed()
         self.app.plotter.render()
 
     def mirror(self):
         if self.app.state.crown is None: return
-        crown = self.app.state.crown
-        cx = crown.center[0]
-        crown.points[:, 0] = 2 * cx - crown.points[:, 0]
-        if hasattr(crown, 'flip_faces'):
-            crown.flip_faces(inplace=True)
-        else:
-            crown.flip_normals()
+        cx = self.app.state.crown.center[0]
+        for crown in (self.app.state.crown, self.app.state.crown_base):
+            if crown is None: continue
+            crown.points[:, 0] = 2 * cx - crown.points[:, 0]
+            if hasattr(crown, 'flip_faces'):
+                crown.flip_faces(inplace=True)
+            else:
+                crown.flip_normals()
         self.app.notify_crown_changed()
         self.app.plotter.render()
 
@@ -417,6 +438,20 @@ class PlaceStage(Stage):
         if self.btn_edit.isChecked():
             self.exit_edit_mode()
         self.load_tooth(self.current_index)
+
+    def refresh_crown_actor(self):
+        """Rebuild this stage's crown actor from the current app.state.crown.
+        Another stage (Fit) may have replaced state.crown with a deformed mesh;
+        downstream stages (Shell/Trim) use this actor as the visible outer crown,
+        so it must point at the latest geometry."""
+        if self.crown_actor is not None:
+            try: self.app.plotter.remove_actor(self.crown_actor)
+            except Exception: pass
+            self.crown_actor = None
+        if self.app.state.crown is not None:
+            self.crown_actor = self.app.plotter.add_mesh(
+                self.app.state.crown, color="gold", reset_camera=False)
+            self.app.plotter.render()
 
     def set_outer_opacity(self, opacity):
         """Used by ShellStage to ghost the outer crown so the inner is visible."""
@@ -477,6 +512,13 @@ class PlaceStage(Stage):
         pts = self.app.state.crown.points
         H = np.hstack([pts, np.ones((pts.shape[0], 1))])
         self.app.state.crown.points = ((H @ M.T)[:, :3]).astype(pts.dtype)
+        # Apply the same rigid transform to the undeformed base so Fit deforms
+        # from the latest mouse-placed pose.
+        base = self.app.state.crown_base
+        if base is not None:
+            bp = base.points
+            Hb = np.hstack([bp, np.ones((bp.shape[0], 1))])
+            base.points = ((Hb @ M.T)[:, :3]).astype(bp.dtype)
         self.crown_actor.SetPosition(0.0, 0.0, 0.0)
         self.crown_actor.SetOrientation(0.0, 0.0, 0.0)
         self.crown_actor.SetScale(1.0, 1.0, 1.0)

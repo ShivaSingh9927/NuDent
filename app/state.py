@@ -25,7 +25,19 @@ class AppState(QObject):
         self.cement_gap_thickness = 0.08   # mm — orange zone lift
         self.no_cement_thickness = 0.0     # mm — blue zone lift (0 = crown seats hard against prep)
         self.no_cement_band_width = 1.0    # mm from margin
+        # Crown-border ("Crown Bottoms") profile, swept along the margin loop.
+        # All mm except border_angle_deg (degrees). 0 = segment skipped.
+        self.border_horizontal = 0.2
+        self.border_angled = 0.0
+        self.border_angle_deg = 45.0
+        self.border_vertical = 0.0
+        self.border_below_margin = 0.0
         self.crown = None
+        # Undeformed crown at the current pose. Place keeps this in lockstep with
+        # `crown` through every rigid move; the Fit stage deforms FROM this and
+        # writes the conformed result into `crown`, so re-fitting never compounds
+        # and always reflects the latest placement.
+        self.crown_base = None
         self.shell_outer = None
         self.shell_inner = None
         self.trimmed_crown = None

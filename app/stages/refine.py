@@ -22,7 +22,7 @@ from .trim import TrimStage
 
 class RefineStage(Stage):
     name = "Refine"
-    description = STAGES[5][1]
+    description = STAGES[6][1]
 
     def __init__(self, app):
         super().__init__(app)
