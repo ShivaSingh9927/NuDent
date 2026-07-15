@@ -6,7 +6,24 @@
       "Bash(python -c \"import ast; ast.parse\\(open\\('app/stages/shell.py'\\).read\\(\\)\\); print\\('OK'\\)\")",
       "Bash(python -c \"import ast; ast.parse\\(open\\('app/stages/shell.py'\\).read\\(\\)\\); ast.parse\\(open\\('app/stages/trim.py'\\).read\\(\\)\\); print\\('OK'\\)\")",
       "Bash(python -c \"import ast; ast.parse\\(open\\('app/main_window.py'\\).read\\(\\)\\); print\\('OK'\\)\")",
-      "Bash(python -c \"import ast; ast.parse\\(open\\('app/stages/trim.py'\\).read\\(\\)\\); print\\('OK'\\)\")"
+      "Bash(python -c \"import ast; ast.parse\\(open\\('app/stages/trim.py'\\).read\\(\\)\\); print\\('OK'\\)\")",
+      "Bash(python3 -c \"import mediapipe; print\\('mp', mediapipe.__version__\\)\")",
+      "Bash(python3 -c \"import cv2; print\\('cv2', cv2.__version__\\)\")",
+      "Bash(python3 -c \"import numpy; print\\('np', numpy.__version__\\)\")",
+      "Bash(python3 -c ' *)",
+      "Bash(/home/shiva/Documents/NuDent/nudent2/bin/python -c \"import PyQt5, numpy, pyvista; print\\('np', numpy.__version__\\)\")",
+      "Bash(/home/shiva/Documents/NuDent/nudent2/bin/pip install *)",
+      "Bash(/home/shiva/Documents/NuDent/nudent2/bin/python -c \"import cv2, mediapipe, numpy; print\\('cv2', cv2.__version__, 'mp', mediapipe.__version__, 'np', numpy.__version__\\)\")",
+      "Bash(/home/shiva/Documents/NuDent/nudent2/bin/python -c ' *)",
+      "Bash(mkdir -p /home/shiva/Documents/NuDent/app/models)",
+      "Bash(curl -sSL -o face_landmarker.task https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task)",
+      "Bash(/home/shiva/Documents/NuDent/nudent2/bin/python -c \"import ast; ast.parse\\(open\\('/home/shiva/Documents/NuDent/app/nusmile.py'\\).read\\(\\)\\); print\\('ok'\\)\")",
+      "Bash(nvidia-smi)",
+      "Bash(lspci)",
+      "Bash(lscpu)",
+      "Bash(/home/shiva/Documents/NuDent/nudent2/bin/python -c \"import ast; ast.parse\\(open\\('/home/shiva/Documents/NuDent/app/nusmile.py'\\).read\\(\\)\\); ast.parse\\(open\\('/home/shiva/Documents/NuDent/app/nusmile_enhance.py'\\).read\\(\\)\\); print\\('ok'\\)\")",
+      "Bash(/home/shiva/Documents/NuDent/nudent2/bin/python -c \"import ast; ast.parse\\(open\\('/home/shiva/Documents/NuDent/app/nusmile_enhance.py'\\).read\\(\\)\\); print\\('ok'\\)\")",
+      "Bash(/home/shiva/Documents/NuDent/nudent2/bin/python -c \"import ast; ast.parse\\(open\\('/home/shiva/Documents/NuDent/app/stages/margin.py'\\).read\\(\\)\\); print\\('ok'\\)\")"
     ]
   }
 }

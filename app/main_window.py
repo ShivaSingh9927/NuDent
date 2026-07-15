@@ -672,6 +672,13 @@ class MainWindow(QMainWindow):
         self.act_slice.triggered.connect(self._toggle_slice)
         view_menu.addAction(self.act_slice)
 
+        # --- Nu Smile ---
+        smile_menu = mb.addMenu("Nu &Smile")
+        act_smile = QAction("Smile &Preview…", self)
+        act_smile.setShortcut(QKeySequence("Ctrl+Shift+M"))
+        act_smile.triggered.connect(self._open_nusmile)
+        smile_menu.addAction(act_smile)
+
         # --- Help ---
         help_menu = mb.addMenu("&Help")
         act_about = QAction("&About NuDent CAD", self)
@@ -865,6 +872,16 @@ class MainWindow(QMainWindow):
             if isinstance(s, RefineStage):
                 s.export_stl()
                 return
+
+    def _open_nusmile(self):
+        try:
+            from .nusmile import NuSmileDialog
+        except Exception as e:
+            QMessageBox.critical(self, "Nu Smile",
+                                 f"Nu Smile requires mediapipe + opencv.\n\n{e}")
+            return
+        dlg = NuSmileDialog(self)
+        dlg.exec_()
 
     def _show_about(self):
         QMessageBox.about(self, "About NuDent CAD",

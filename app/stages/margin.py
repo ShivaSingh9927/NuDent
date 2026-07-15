@@ -14,11 +14,77 @@ import pyvista as pv
 from scipy.spatial import cKDTree
 from scipy.sparse import csr_matrix
 from scipy.sparse.csgraph import dijkstra
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QThread, pyqtSignal
 from PyQt5.QtWidgets import (
     QVBoxLayout, QPushButton, QLabel, QFileDialog, QListWidget,
-    QApplication, QMessageBox,
+    QApplication, QMessageBox, QProgressDialog,
 )
+
+
+class _AIMarginWorker(QThread):
+    """Runs the heavy margin_snake pipeline off the UI thread so the main
+    window stays animated (no OS "not responding" prompt)."""
+    progress = pyqtSignal(str)
+    done = pyqtSignal(object, object)   # (ordered_pts, new_cache_or_None)
+    failed = pyqtSignal(str)
+
+    def __init__(self, tm, primary_seed, seeds, cache):
+        super().__init__()
+        self._tm = tm
+        self._primary = primary_seed
+        self._seeds = seeds
+        self._cache = cache
+
+    def run(self):
+        try:
+            import numpy as np
+            from scipy.spatial import cKDTree
+            from margin_snake import (
+                crop_to_component, crop_to_sphere, estimate_tooth_axis,
+                compute_margin_score, find_anchor, margin_component,
+            )
+
+            new_cache = None
+            if self._cache is None:
+                self.progress.emit("Cropping mesh around seed…")
+                sub = crop_to_component(self._tm, self._primary)
+                if sub is None or len(sub.vertices) < 200:
+                    for r in (9.0, 15.0, 25.0, 40.0):
+                        candidate = crop_to_sphere(self._tm, self._primary, r)
+                        if candidate is not None and len(candidate.vertices) >= 200:
+                            sub = candidate
+                            break
+                if sub is None or len(sub.vertices) < 200:
+                    raise RuntimeError(
+                        "Crop too small around the seed click — try clicking "
+                        "closer to the center of the prep tooth."
+                    )
+                self.progress.emit("Estimating tooth axis…")
+                axis, _ = estimate_tooth_axis(sub, self._primary)
+                self.progress.emit("Scoring curvature…")
+                score = compute_margin_score(sub, radius=0.4)
+                self.progress.emit("Finding anchor path…")
+                _, roll_path = find_anchor(sub, self._primary, axis,
+                                           score=score, score_threshold=0.5)
+                new_cache = (sub, score, axis, np.asarray(roll_path, dtype=int))
+            else:
+                new_cache = None
+            sub, score, axis, roll_path = (
+                new_cache if new_cache is not None else self._cache
+            )
+
+            self.progress.emit("Tracing margin loop…")
+            tree = cKDTree(np.asarray(sub.vertices))
+            _, seed_idx = tree.query(np.asarray(self._seeds), k=1)
+            path = list(roll_path) + [int(i) for i in np.atleast_1d(seed_idx)]
+
+            margin_idx = margin_component(sub, score, path,
+                                          score_threshold=0.5,
+                                          walk_threshold=0.25,
+                                          attach_radius=1.0)
+            self.done.emit((sub, margin_idx, axis), new_cache)
+        except Exception as e:
+            self.failed.emit(str(e))
 
 from ..config import STAGES
 from ..ui import section_label
@@ -688,27 +754,25 @@ class MarginStage(Stage):
     def _run_ai_detection(self, seeds):
         """Run the margin_snake pipeline using one or more seed clicks.
 
-        Live mode: invoked on every seed click. The first seed pays the full
-        cost (crop, axis, curvature score, rolling-ball anchor) — those are
-        cached. Every subsequent seed only re-runs the cheap BFS + ordering
-        + smoothing, so the loop updates almost instantly as the user clicks.
-        The single undo snapshot is pushed before the *first* run so Ctrl+Z
-        reverts the entire AI session atomically."""
+        Heavy CPU work is off-loaded to _AIMarginWorker so the UI thread
+        stays animated (no OS "not responding" prompt). Post-processing
+        (loop ordering, state commit, redraw) happens back on the UI thread
+        in _on_ai_margin_done.
+        """
         if not isinstance(seeds, (list, tuple)) or len(seeds) == 0:
             return
         seeds = [np.asarray(s, dtype=float) for s in seeds]
         primary_seed = seeds[0]
         is_first_run = self._ai_cache is None
-        # Lazy import: pulls in trimesh + margin_snake only when AI is used.
+
+        # Lazy import (main-thread side) to give a clean error if the module
+        # is unavailable, without pulling trimesh into every session.
         import sys, os as _os
         repo_root = _os.path.abspath(_os.path.join(_os.path.dirname(__file__), "..", ".."))
         if repo_root not in sys.path:
             sys.path.insert(0, repo_root)
         try:
-            from margin_snake import (
-                crop_to_component, crop_to_sphere, estimate_tooth_axis,
-                compute_margin_score, find_anchor, margin_component,
-            )
+            import margin_snake  # noqa: F401
         except Exception as e:
             QMessageBox.warning(self, "AI margin detection",
                                 f"Could not load margin_snake module: {e}")
@@ -717,86 +781,74 @@ class MarginStage(Stage):
             self.btn_ai.setText("AI Margin Detection")
             return
 
-        # Snapshot the pre-click state on every seed so Ctrl+Z can step
-        # backward seed-by-seed (the snapshot captures the loop *before*
-        # this seed's contribution).
+        # Snapshot the pre-click state so Ctrl+Z can undo this seed's effect.
         snapshot = (
             [c.copy() for c in self._user_clicks],
             [p.copy() for p in self.app.state.margin_points],
             bool(self.app.state.margin_loop_closed),
         )
 
-        QApplication.setOverrideCursor(Qt.WaitCursor)
-        self.app.set_status(
-            "AI margin detection running..." if is_first_run
-            else f"Updating margin with {len(seeds)} seeds..."
+        # On the very first seed, isolate the prep and lock in the cap-side
+        # seed point — these need main-thread state mutation.
+        if is_first_run and self.app.state.prep_mesh is None:
+            self._try_isolate_prep(primary_seed)
+            if self.app.state.prep_mesh is not None:
+                self._enter_focus_view()
+        if is_first_run:
+            self.app.state.cap_seed_point = (
+                np.asarray(primary_seed, dtype=float).copy()
+            )
+
+        # Build the trimesh input once (only on first run — subsequent runs
+        # reuse the cached crop that lives in self._ai_cache).
+        if is_first_run:
+            pv_mesh = self.app.state.prep_mesh or self.app.state.jaw_mesh
+            tm = self._pv_to_trimesh(pv_mesh)
+        else:
+            tm = None
+
+        # Stash the pending snapshot + seeds so the completion handler can
+        # commit them once the worker finishes.
+        self._ai_pending = {"snapshot": snapshot, "seeds": seeds,
+                            "is_first_run": is_first_run}
+
+        # Busy dialog so the OS never sees an unresponsive window.
+        self._ai_progress = QProgressDialog(
+            "AI margin detection running…", None, 0, 0, self,
         )
-        QApplication.processEvents()
+        self._ai_progress.setWindowTitle("Nu Dent — AI Margin Detection")
+        self._ai_progress.setWindowModality(Qt.WindowModal)
+        self._ai_progress.setCancelButton(None)
+        self._ai_progress.setMinimumDuration(0)
+        self._ai_progress.show()
+
+        self._ai_worker = _AIMarginWorker(tm, primary_seed, seeds, self._ai_cache)
+        self._ai_worker.progress.connect(self._on_ai_margin_progress)
+        self._ai_worker.done.connect(self._on_ai_margin_done)
+        self._ai_worker.failed.connect(self._on_ai_margin_failed)
+        self._ai_worker.start()
+
+    def _on_ai_margin_progress(self, msg):
+        self.app.set_status(msg)
+        if getattr(self, "_ai_progress", None) is not None:
+            self._ai_progress.setLabelText(msg)
+
+    def _on_ai_margin_done(self, payload, new_cache):
+        if getattr(self, "_ai_progress", None) is not None:
+            self._ai_progress.close()
+            self._ai_progress = None
         try:
-            # AI flow had been skipping prep isolation — that meant
-            # state.prep_mesh stayed None, breaking later stages (e.g. Cement)
-            # that depend on having the isolated prep. Mirror the manual click
-            # flow: isolate on the very first seed, then enter focus view.
-            if is_first_run and self.app.state.prep_mesh is None:
-                self._try_isolate_prep(primary_seed)
-                if self.app.state.prep_mesh is not None:
-                    self._enter_focus_view()
-            if is_first_run:
-                # The first AI seed is the cusp click — a guaranteed cap-side
-                # point. Always refresh so a fresh AI session overwrites any
-                # stale seed left over from a prior margin attempt.
-                self.app.state.cap_seed_point = np.asarray(primary_seed, dtype=float).copy()
-            if is_first_run:
-                # Prefer the isolated prep mesh when available; otherwise run over the full jaw.
-                pv_mesh = self.app.state.prep_mesh or self.app.state.jaw_mesh
-                tm = self._pv_to_trimesh(pv_mesh)
-
-                # Try connected-component crop first (best on segmented dental
-                # scans). If it lands on a tiny stray fragment or there's only
-                # one giant component, fall back to a sphere crop and grow the
-                # radius until we have enough geometry to compute curvature.
-                sub = crop_to_component(tm, primary_seed)
-                if sub is None or len(sub.vertices) < 200:
-                    for r in (9.0, 15.0, 25.0, 40.0):
-                        candidate = crop_to_sphere(tm, primary_seed, r)
-                        if candidate is not None and len(candidate.vertices) >= 200:
-                            sub = candidate
-                            break
-                if sub is None or len(sub.vertices) < 200:
-                    raise RuntimeError(
-                        "Crop too small around the seed click — try clicking "
-                        "closer to the center of the prep tooth."
-                    )
-
-                axis, _ = estimate_tooth_axis(sub, primary_seed)
-                score = compute_margin_score(sub, radius=0.4)
-                _, roll_path = find_anchor(sub, primary_seed, axis, score=score,
-                                           score_threshold=0.5)
-                self._ai_cache = (sub, score, axis, np.asarray(roll_path, dtype=int))
-            sub, score, axis, roll_path = self._ai_cache
-
-            # Snap every user seed onto the cropped mesh and append to the
-            # path that seeds the ridge-component BFS. Extra seeds force
-            # strong-ridge vertices within `attach_radius` of them into the
-            # loop, bridging weak-curvature stretches.
-            tree = cKDTree(np.asarray(sub.vertices))
-            _, seed_idx = tree.query(np.asarray(seeds), k=1)
-            path = list(roll_path) + [int(i) for i in np.atleast_1d(seed_idx)]
-
-            margin_idx = margin_component(sub, score, path,
-                                          score_threshold=0.5,
-                                          walk_threshold=0.25,
-                                          attach_radius=1.0)
+            sub, margin_idx, axis = payload
+            if new_cache is not None:
+                self._ai_cache = new_cache
             ordered = self._order_ridge_loop(sub, margin_idx, axis)
             if len(ordered) < 6:
                 raise RuntimeError(
                     f"Detected ridge too small ({len(ordered)} points). "
                     "Try clicking closer to the prep's center."
                 )
-
-            # Commit: store as the dense margin curve, mark loop closed, keep
-            # _user_clicks empty (the AI loop has no per-click sources).
-            self._undo_snapshots.append(snapshot)
+            pending = self._ai_pending
+            self._undo_snapshots.append(pending["snapshot"])
             self._user_clicks = []
             self.app.state.margin_points = [np.asarray(p) for p in ordered]
             self.app.state.margin_loop_closed = True
@@ -804,22 +856,26 @@ class MarginStage(Stage):
             self._redraw_visualization()
             self._update_buttons()
             self.completion_changed.emit()
+            n_seeds = len(pending["seeds"])
             self.app.set_status(
                 f"AI margin detection: {len(ordered)} points "
-                f"from {len(seeds)} seed{'s' if len(seeds) != 1 else ''}. "
+                f"from {n_seeds} seed{'s' if n_seeds != 1 else ''}. "
                 "Press Ctrl+Z to undo."
             )
         except Exception as e:
-            QMessageBox.warning(self, "AI margin detection failed", str(e))
-            self.app.set_status(self.description)
-            # Hard reset on failure so the user can start over cleanly.
-            self._ai_mode = False
-            self._ai_cache = None
-            self._clear_ai_seeds()
-            self.btn_ai.setChecked(False)
-            self.btn_ai.setText("AI Margin Detection")
-        finally:
-            QApplication.restoreOverrideCursor()
+            self._on_ai_margin_failed(str(e))
+
+    def _on_ai_margin_failed(self, msg):
+        if getattr(self, "_ai_progress", None) is not None:
+            self._ai_progress.close()
+            self._ai_progress = None
+        QMessageBox.warning(self, "AI margin detection failed", msg)
+        self.app.set_status(self.description)
+        self._ai_mode = False
+        self._ai_cache = None
+        self._clear_ai_seeds()
+        self.btn_ai.setChecked(False)
+        self.btn_ai.setText("AI Margin Detection")
 
     def _ensure_mesh_data(self):
         """One-time per-mesh computation: curvature, KDTree, weighted adjacency.
