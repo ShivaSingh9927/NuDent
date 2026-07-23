@@ -12,8 +12,8 @@ import numpy as np
 import vtk
 from scipy.spatial import cKDTree
 from PyQt5.QtWidgets import (
-    QVBoxLayout, QPushButton, QLabel, QMessageBox, QComboBox, QSpinBox,
-    QDoubleSpinBox,
+    QVBoxLayout, QPushButton, QLabel, QMessageBox, QComboBox,
+    QSpinBox, QDoubleSpinBox,
 )
 
 from ..config import STAGES
@@ -80,6 +80,23 @@ class ShellStage(Stage):
         self.gap_spin.setValue(40)
         layout.addWidget(self.gap_spin)
 
+        # --- MIN WALL THICKNESS ---
+        layout.addWidget(section_label("MIN WALL THICKNESS (mm)"))
+        min_hint = QLabel(
+            "Guaranteed floor for the zirconia wall. Wherever the inner surface "
+            "gets closer than this to the outer, the outer is bulged out locally."
+        )
+        min_hint.setStyleSheet("color: #6e6e73; font-size: 11px; padding: 2px 0;")
+        min_hint.setWordWrap(True)
+        layout.addWidget(min_hint)
+        self.min_thickness_spin = QDoubleSpinBox()
+        self.min_thickness_spin.setRange(0.0, 2.0)
+        self.min_thickness_spin.setSingleStep(0.05)
+        self.min_thickness_spin.setDecimals(2)
+        self.min_thickness_spin.setValue(0.5)
+        self.min_thickness_spin.setSuffix(" mm")
+        layout.addWidget(self.min_thickness_spin)
+
         # --- MARGIN OFFSET ---
         layout.addWidget(section_label("DISTANCE TO MARGIN (mm)"))
         margin_hint = QLabel(
@@ -96,6 +113,7 @@ class ShellStage(Stage):
         self.margin_offset_spin.setValue(1.0)
         self.margin_offset_spin.setSuffix(" mm")
         layout.addWidget(self.margin_offset_spin)
+
 
         # --- GENERATE ---
         self.btn_generate = QPushButton("Generate Shell")
@@ -253,6 +271,19 @@ class ShellStage(Stage):
         else:
             inner.flip_normals()
 
+        # Enforce minimum wall thickness by bulging the OUTER crown outward
+        # wherever the inner surface would otherwise poke through (or come
+        # closer than the min). Inner stays glued to the prep for seating fit.
+        min_thk = float(self.min_thickness_spin.value())
+        n_bulged = 0
+        if min_thk > 0.0:
+            n_bulged = self._bulge_outer_for_thickness(crown, inner, min_thk)
+            if n_bulged > 0:
+                # The placed outer actor shares crown.points — mark it dirty
+                # so the viewport picks up the new geometry.
+                try: crown.GetPoints().Modified()
+                except Exception: pass
+
         self.app.state.shell_outer = crown
         self.app.state.shell_inner = inner
 
@@ -274,6 +305,9 @@ class ShellStage(Stage):
             f"(band {st.no_cement_band_width:.2f} mm)\n"
             f"Inner surface: {inner.n_points:,} verts, {inner.n_cells:,} faces"
         )
+        if min_thk > 0.0:
+            msg += (f"\nMin wall {min_thk:.2f} mm enforced — "
+                    f"{n_bulged:,} outer verts bulged out.")
         self.lbl_status.setText(msg)
 
         self.btn_show_inner.setEnabled(True)
@@ -319,6 +353,107 @@ class ShellStage(Stage):
         inner.points = (np.asarray(cap.points) + normals * offset_amt[:, None]
                         ).astype(cap.points.dtype)
         return inner
+
+
+    def _bulge_outer_for_thickness(self, outer, inner, min_thickness):
+        """Push OUTER-crown vertices outward along their own normals wherever
+        the local distance to the inner shell is less than `min_thickness`.
+        Inner stays untouched (glued to the prep for seating fit). Ends with a
+        localised Laplacian smooth so the bulge blends into the anatomy.
+
+        Returns the number of vertices that were moved.
+        """
+        impl = vtk.vtkImplicitPolyDataDistance()
+        impl.SetInput(inner)
+
+        outer_n = outer.compute_normals(
+            point_normals=True, cell_normals=False,
+            auto_orient_normals=True, inplace=False,
+        )
+        normals = np.asarray(outer_n["Normals"], dtype=np.float64)
+        pts = np.asarray(outer.points, dtype=np.float64).copy()
+
+        moved_mask = np.zeros(len(pts), dtype=bool)
+        for _ in range(3):  # a few passes to catch curvature-induced residual
+            any_moved = False
+            for i in range(len(pts)):
+                d = float(impl.EvaluateFunction(
+                    [float(pts[i, 0]), float(pts[i, 1]), float(pts[i, 2])]
+                ))
+                # We only care about magnitude — inner and outer are on
+                # opposite sides of the wall, so `d` may be signed either way
+                # for the surface pair; the wall thickness is |d|.
+                dabs = abs(d)
+                if dabs >= min_thickness:
+                    continue
+                push = min_thickness - dabs
+                pts[i] += normals[i] * push
+                moved_mask[i] = True
+                any_moved = True
+            if not any_moved:
+                break
+
+        if moved_mask.any():
+            pts = self._smooth_local_region(outer, pts, moved_mask,
+                                            iterations=6, expand_rings=2)
+
+        outer.points = pts.astype(outer.points.dtype)
+        return int(moved_mask.sum())
+
+    def _smooth_local_region(self, mesh, pts, seed_mask,
+                             iterations=6, expand_rings=2):
+        """Laplacian-smooth vertices in `seed_mask` (and their neighbour rings
+        out to `expand_rings`) toward their neighbourhood mean. Untouched
+        vertices are held fixed so the smoothing blends the bulge into the
+        surrounding anatomy without disturbing the rest of the crown."""
+        n = len(pts)
+        faces_arr = np.asarray(mesh.faces)
+        tri = faces_arr.reshape(-1, 4)[:, 1:]
+        neighbours = [[] for _ in range(n)]
+        for a, b, c in tri:
+            a, b, c = int(a), int(b), int(c)
+            neighbours[a].extend((b, c))
+            neighbours[b].extend((a, c))
+            neighbours[c].extend((a, b))
+        neighbours = [np.unique(np.asarray(nl, dtype=np.int64)) if nl else np.empty(0, dtype=np.int64)
+                      for nl in neighbours]
+
+        # Expand seed by N rings so the smooth blend reaches into unmoved
+        # anatomy for a gentle taper.
+        active = seed_mask.copy()
+        for _ in range(int(expand_rings)):
+            grow = active.copy()
+            idxs = np.where(active)[0]
+            for vi in idxs:
+                grow[neighbours[vi]] = True
+            active = grow
+
+        # Weight: 1.0 on seed vertices, tapering to 0 at the outer ring.
+        weight = np.zeros(n, dtype=np.float64)
+        weight[seed_mask] = 1.0
+        ring = seed_mask.copy()
+        for r in range(int(expand_rings)):
+            next_ring = np.zeros_like(ring)
+            idxs = np.where(ring)[0]
+            for vi in idxs:
+                next_ring[neighbours[vi]] = True
+            next_ring &= ~ring
+            weight[next_ring] = (expand_rings - r) / float(expand_rings + 1)
+            ring |= next_ring
+
+        active_idx = np.where(active)[0]
+        moved = pts.copy()
+        for _ in range(int(iterations)):
+            new_pts = moved.copy()
+            for vi in active_idx:
+                nl = neighbours[vi]
+                if len(nl) == 0:
+                    continue
+                mean = moved[nl].mean(axis=0)
+                w = float(weight[vi])
+                new_pts[vi] = moved[vi] * (1.0 - w * 0.5) + mean * (w * 0.5)
+            moved = new_pts
+        return moved
 
     def _clamp_to_prep(self, inner, target_clearance):
         """Push inner-shell vertices outward so each one clears the prep by at
@@ -400,6 +535,7 @@ class ShellStage(Stage):
             "thickness_um": int(self.thickness_spin.value()),
             "cement_gap_um": int(self.gap_spin.value()),
             "margin_offset_mm": float(self.margin_offset_spin.value()),
+            "min_wall_mm": float(self.min_thickness_spin.value()),
         }
 
     def restore(self, data):
@@ -409,6 +545,7 @@ class ShellStage(Stage):
         self._suppress = False
         self.gap_spin.setValue(int(data.get("cement_gap_um", 40)))
         self.margin_offset_spin.setValue(float(data.get("margin_offset_mm", 1.0)))
+        self.min_thickness_spin.setValue(float(data.get("min_wall_mm", 0.5)))
 
         if self.inner_actor is not None:
             try: self.app.plotter.remove_actor(self.inner_actor)

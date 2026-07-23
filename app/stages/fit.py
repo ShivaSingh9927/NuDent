@@ -29,10 +29,11 @@ from PyQt5.QtWidgets import (
 from ..config import STAGES
 from ..ui import section_label
 from ..crown_fit import fit_crown
+from ..crown_deformer import CrownDeformerMixin
 from .base import Stage
 
 
-class FitStage(Stage):
+class FitStage(Stage, CrownDeformerMixin):
     name = "Fit"
     description = STAGES[3][1]
 
@@ -128,6 +129,9 @@ class FitStage(Stage):
             row.addWidget(btn_pos)
             layout.addLayout(row)
 
+        # Per-axis outer expansion + 2-click directional deformer.
+        self.build_deformer_ui(layout)
+
         # --- STATUS ---
         self.status = QLabel("")
         self.status.setStyleSheet("color: #6e6e73; font-size: 11px; padding: 4px 0;")
@@ -158,12 +162,16 @@ class FitStage(Stage):
         # if it somehow wasn't set (e.g. a restored project).
         if self.app.state.crown_base is None:
             self.app.state.crown_base = crown.copy()
-        # Show the carefully-placed crown as-is. Don't auto-fit on enter —
-        # auto-fitting (especially with pre-scale on) silently overrides the
-        # placement the user just spent time perfecting in stage 3. They click
-        # "Fit to Margin" when they're ready.
+        # Preserve state.crown if it already differs from crown_base (user
+        # deformed / auto-fitted it earlier and we don't want to wipe that
+        # on re-entering Fit). Otherwise fall back to showing the raw base.
         self._fitted = False
-        self.app.state.crown = self._base.copy()
+        base_pts = np.asarray(self._base.points, dtype=float)
+        cur_pts = np.asarray(self.app.state.crown.points, dtype=float)
+        same_shape = (base_pts.shape == cur_pts.shape)
+        deformed = same_shape and not np.allclose(cur_pts, base_pts, atol=1e-6)
+        if not deformed:
+            self.app.state.crown = self._base.copy()
         self._redraw()
         if not self._margin_ready():
             self.status.setText("Close the margin loop (step 1) before fitting.")
@@ -179,6 +187,7 @@ class FitStage(Stage):
         return self.app.state.crown_base
 
     def on_exit(self):
+        self.teardown_deformer()
         self._clear_actor()
         # Hand the fitted crown to Place's actor so downstream stages (Shell,
         # Trim) display the deformed crown, not Place's original undeformed mesh.

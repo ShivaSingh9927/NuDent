@@ -199,13 +199,8 @@ class CementGapStage(Stage):
         # set of mesh vertices reachable from a known cap-side point without
         # crossing the fence. No axis math, no "above" guess.
         cap_seed = self.app.state.cap_seed_point
-        if cap_seed is None:
-            QMessageBox.warning(
-                self, "No cap seed",
-                "No cap-side seed point recorded. Re-mark the margin so the "
-                "first click is captured as the cap-side reference."
-            )
-            return
+        # If no seed was saved (older projects), let the flood auto-pick the
+        # smaller of the two fenced components — that is the cap.
         cap_vmask = self._cap_by_fence_flood(prep, margin, cap_seed)
         if cap_vmask is None or not cap_vmask.any():
             QMessageBox.warning(self, "Cap empty",
@@ -295,17 +290,27 @@ class CementGapStage(Stage):
             for w in adj[v]:
                 fence[w] = True
 
-        # Snap the cap-side seed; nudge inward if it landed on the fence.
-        _, seed_vid = tree.query(np.asarray(cap_seed), k=1)
-        seed_vid = int(seed_vid)
-        if fence[seed_vid]:
-            _, near = tree.query(np.asarray(cap_seed), k=128)
-            for i in np.atleast_1d(near):
-                if not fence[int(i)]:
-                    seed_vid = int(i)
-                    break
-            else:
+        # Determine the seed vertex. If the caller supplied a cap-side hint,
+        # snap it to the nearest non-fence vertex; otherwise auto-pick a seed
+        # inside the smaller of the two fenced components (that's the cap).
+        if cap_seed is not None:
+            _, seed_vid = tree.query(np.asarray(cap_seed), k=1)
+            seed_vid = int(seed_vid)
+            if fence[seed_vid]:
+                _, near = tree.query(np.asarray(cap_seed), k=128)
+                for i in np.atleast_1d(near):
+                    if not fence[int(i)]:
+                        seed_vid = int(i)
+                        break
+                else:
+                    return None
+        else:
+            seed_vid = self._pick_smaller_component_seed(fence, adj, n)
+            if seed_vid is None:
                 return None
+            # Persist the recovered seed so subsequent recomputes are stable
+            # and the project can be saved with the seed populated.
+            self.app.state.cap_seed_point = np.asarray(pts[seed_vid], dtype=float)
 
         # 4. Plain BFS from cap seed, blocked by fence vertices.
         visited = np.zeros(n, dtype=bool)
@@ -338,6 +343,38 @@ class CementGapStage(Stage):
         for s in snap_set:
             visited[int(s)] = True
         return visited
+
+    def _pick_smaller_component_seed(self, fence, adj, n):
+        """After fencing the prep along the margin, the non-fence vertices
+        split into ≥2 connected components. The cap is the smaller one (one
+        tooth crown vs the rest of the jaw), so return any vertex from the
+        smallest non-empty component. Used as an auto-recovery when no
+        cap-side seed was saved in the project file.
+        """
+        visited = fence.copy()
+        components = []  # list of (size, first_vertex)
+        for start in range(n):
+            if visited[start]:
+                continue
+            first = start
+            size = 0
+            frontier = [start]
+            visited[start] = True
+            while frontier:
+                nxt = []
+                for u in frontier:
+                    size += 1
+                    for v in adj[u]:
+                        if visited[v]:
+                            continue
+                        visited[v] = True
+                        nxt.append(v)
+                frontier = nxt
+            components.append((size, first))
+        if not components:
+            return None
+        components.sort(key=lambda p: p[0])
+        return int(components[0][1])
 
     def _keep_margin_component(self, cap_mesh, margin_pts):
         """Run connectivity on the post-cut cap and keep only the component
@@ -659,6 +696,9 @@ class CementGapStage(Stage):
         }
 
     def restore(self, data):
+        # Wipe any lingering actors from the previous case so the fresh case
+        # doesn't inherit a floating border / fit-ring / cap.
+        self._clear_actors()
         self._suppress = True
         self.spin_gap.setValue(float(data.get("cement_gap_thickness", 0.08)))
         self.spin_band.setValue(float(data.get("no_cement_band_width", 1.0)))

@@ -99,6 +99,8 @@ def save_project(path, app):
         "jaw_filename": os.path.basename(state.jaw_path) if state.jaw_path else None,
         "opposing_filename": os.path.basename(state.opposing_jaw_path) if state.opposing_jaw_path else None,
         "margin_loop_closed": state.margin_loop_closed,
+        "cap_seed_point": (state.cap_seed_point.tolist()
+                           if state.cap_seed_point is not None else None),
         "stages": stages_data,
         "artifacts": artifacts,
     }
@@ -148,6 +150,12 @@ def load_project(path, app):
             arr = np.load(io.BytesIO(z.read(artifacts["margin"])))
             state.margin_points = [np.array(p) for p in arr]
             state.margin_loop_closed = bool(meta.get("margin_loop_closed", False))
+            # Restore the cap-side seed if the save includes it. Older saves
+            # don't — CementGapStage._recompute falls back to auto-picking the
+            # smaller fenced component in that case.
+            seed = meta.get("cap_seed_point")
+            if seed is not None:
+                state.cap_seed_point = np.asarray(seed, dtype=float)
         if "crown" in artifacts:
             state.crown = _bytes_to_mesh(z.read(artifacts["crown"]))
             state.shell_outer = state.crown  # outer surface IS the placed crown

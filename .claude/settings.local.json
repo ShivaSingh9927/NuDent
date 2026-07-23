@@ -23,7 +23,13 @@
       "Bash(lscpu)",
       "Bash(/home/shiva/Documents/NuDent/nudent2/bin/python -c \"import ast; ast.parse\\(open\\('/home/shiva/Documents/NuDent/app/nusmile.py'\\).read\\(\\)\\); ast.parse\\(open\\('/home/shiva/Documents/NuDent/app/nusmile_enhance.py'\\).read\\(\\)\\); print\\('ok'\\)\")",
       "Bash(/home/shiva/Documents/NuDent/nudent2/bin/python -c \"import ast; ast.parse\\(open\\('/home/shiva/Documents/NuDent/app/nusmile_enhance.py'\\).read\\(\\)\\); print\\('ok'\\)\")",
-      "Bash(/home/shiva/Documents/NuDent/nudent2/bin/python -c \"import ast; ast.parse\\(open\\('/home/shiva/Documents/NuDent/app/stages/margin.py'\\).read\\(\\)\\); print\\('ok'\\)\")"
+      "Bash(/home/shiva/Documents/NuDent/nudent2/bin/python -c \"import ast; ast.parse\\(open\\('/home/shiva/Documents/NuDent/app/stages/margin.py'\\).read\\(\\)\\); print\\('ok'\\)\")",
+      "Bash(/home/shiva/Documents/NuDent/nudent2/bin/python -c \"import ast; ast.parse\\(open\\('/home/shiva/Documents/NuDent/app/stages/refine.py'\\).read\\(\\)\\); print\\('ok'\\)\")",
+      "Bash(/home/shiva/Documents/NuDent/nudent2/bin/python -c \"import ast; ast.parse\\(open\\('/home/shiva/Documents/NuDent/app/stages/shell.py'\\).read\\(\\)\\); print\\('ok'\\)\")",
+      "Bash(/home/shiva/Documents/NuDent/nudent2/bin/python -c \"import ast; ast.parse\\(open\\('/home/shiva/Documents/NuDent/app/project.py'\\).read\\(\\)\\); print\\('ok'\\)\")",
+      "Bash(/home/shiva/Documents/NuDent/nudent2/bin/python -c \"import ast; ast.parse\\(open\\('/home/shiva/Documents/NuDent/app/stages/shell.py'\\).read\\(\\)\\); ast.parse\\(open\\('/home/shiva/Documents/NuDent/app/stages/fit.py'\\).read\\(\\)\\); ast.parse\\(open\\('/home/shiva/Documents/NuDent/app/crown_deformer.py'\\).read\\(\\)\\); print\\('ok'\\)\")",
+      "Bash(/home/shiva/Documents/NuDent/nudent2/bin/python -c \"import ast; ast.parse\\(open\\('/home/shiva/Documents/NuDent/app/crown_deformer.py'\\).read\\(\\)\\); print\\('ok'\\)\")",
+      "Bash(/home/shiva/Documents/NuDent/nudent2/bin/python -c \"import ast; ast.parse\\(open\\('/home/shiva/Documents/NuDent/app/stages/fit.py'\\).read\\(\\)\\); ast.parse\\(open\\('/home/shiva/Documents/NuDent/app/crown_deformer.py'\\).read\\(\\)\\); print\\('ok'\\)\")"
     ]
   }
 }

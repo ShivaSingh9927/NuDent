@@ -11,7 +11,7 @@ import vtk
 from scipy.spatial import cKDTree
 from PyQt5.QtWidgets import (
     QVBoxLayout, QHBoxLayout, QPushButton, QLabel, QFileDialog, QMessageBox,
-    QDoubleSpinBox,
+    QDoubleSpinBox, QComboBox,
 )
 
 from ..config import STAGES
@@ -27,6 +27,11 @@ class RefineStage(Stage):
     def __init__(self, app):
         super().__init__(app)
         self.final_actor = None
+
+        # Heatmap state — visualises clearance / collision vs neighbouring meshes.
+        self._heatmap_actor = None
+        self._heatmap_bar_name = "heatmap_bar"
+        self._heatmap_on = False
 
         # Sculpt-brush state. Lazily populated when the user enables sculpting.
         self._sculpt_enabled = False
@@ -134,6 +139,47 @@ class RefineStage(Stage):
         undo_row.addWidget(self.btn_redo_sculpt)
         layout.addLayout(undo_row)
 
+        # --- HEATMAP ---
+        layout.addWidget(section_label("HEATMAP"))
+        heat_hint = QLabel(
+            "Colours the crown by distance to a target mesh. "
+            "Red = penetration / too close, blue = clear."
+        )
+        heat_hint.setStyleSheet("color: #6e6e73; font-size: 11px; padding: 2px 0;")
+        heat_hint.setWordWrap(True)
+        layout.addWidget(heat_hint)
+
+        mode_row = QHBoxLayout()
+        mode_row.addWidget(QLabel("Mode"))
+        self.cmb_heatmap_mode = QComboBox()
+        self.cmb_heatmap_mode.addItem("Collision (opposing + adjacent)", "collision")
+        self.cmb_heatmap_mode.addItem("Occlusal clearance (opposing)", "occlusion")
+        self.cmb_heatmap_mode.addItem("Prep fit (internal)", "fit")
+        self.cmb_heatmap_mode.currentIndexChanged.connect(self._on_heatmap_mode_change)
+        mode_row.addWidget(self.cmb_heatmap_mode, 1)
+        layout.addLayout(mode_row)
+
+        range_row = QHBoxLayout()
+        range_row.addWidget(QLabel("Range ±"))
+        self.spin_heatmap_range = QDoubleSpinBox()
+        self.spin_heatmap_range.setRange(0.05, 5.0)
+        self.spin_heatmap_range.setSingleStep(0.05)
+        self.spin_heatmap_range.setDecimals(2)
+        self.spin_heatmap_range.setSuffix(" mm")
+        self.spin_heatmap_range.setValue(0.5)
+        self.spin_heatmap_range.valueChanged.connect(self._on_heatmap_range_change)
+        range_row.addWidget(self.spin_heatmap_range)
+        layout.addLayout(range_row)
+
+        self.btn_heatmap = QPushButton("Show Heatmap")
+        self.btn_heatmap.setCheckable(True)
+        self.btn_heatmap.setStyleSheet(
+            "QPushButton:checked { background-color: #d46a00; color: white; border-color: #d46a00; }"
+        )
+        self.btn_heatmap.setEnabled(False)
+        self.btn_heatmap.clicked.connect(self._toggle_heatmap)
+        layout.addWidget(self.btn_heatmap)
+
         # --- EXPORT ---
         layout.addWidget(section_label("EXPORT"))
         self.btn_export_stl = QPushButton("Export STL...")
@@ -166,6 +212,8 @@ class RefineStage(Stage):
         # Tear down sculpting before leaving so its observers / cursor don't leak.
         if self._sculpt_enabled:
             self._disable_sculpt()
+        if self._heatmap_on:
+            self._hide_heatmap()
         # Restore the trim view if we're leaving Refine without it being final
         trim = self._trim_stage()
         if trim is not None and trim.trimmed_actor is not None:
@@ -229,11 +277,17 @@ class RefineStage(Stage):
         inner_loop, trimmed = self._smooth_loop_in_place(
             trimmed, inner_loop, passes=15)
 
-        band = self._stitch_band(outer_loop, inner_loop)
-        if band is None or band.n_cells == 0:
-            QMessageBox.warning(self, "Stitching failed",
-                                "Could not build a triangulated band between the trim edges.")
-            return
+        # Prefer the DESIGNED crown border (swept profile from stage 2) as the
+        # bottom surface — that's the geometry the user shaped explicitly.
+        # Fall back to the greedy triangulated band if no border was designed.
+        band = self._designed_border_band(outer_loop, inner_loop)
+        used_designed_border = band is not None and band.n_cells > 0
+        if not used_designed_border:
+            band = self._stitch_band(outer_loop, inner_loop)
+            if band is None or band.n_cells == 0:
+                QMessageBox.warning(self, "Stitching failed",
+                                    "Could not build a triangulated band between the trim edges.")
+                return
 
         # Tolerant clean so the band's rim verts weld to the (newly smoothed)
         # trimmed-mesh rim verts despite any sub-micron float drift.
@@ -274,9 +328,10 @@ class RefineStage(Stage):
         try: vol = float(merged.volume)
         except Exception: vol = None
 
+        band_source = "designed crown border" if used_designed_border else "auto-stitch"
         msg = (
             f"Crown: {merged.n_points:,} verts, {merged.n_cells:,} faces.\n"
-            f"Band added: {band.n_cells:,} triangles."
+            f"Band added: {band.n_cells:,} triangles ({band_source})."
         )
         if n_open == 0:
             msg += "\n✓ Watertight — ready for export."
@@ -320,11 +375,14 @@ class RefineStage(Stage):
         self.btn_pushpull.setEnabled(enabled)
         self.spin_radius.setEnabled(enabled)
         self.spin_strength.setEnabled(enabled)
+        self.btn_heatmap.setEnabled(enabled)
         if not enabled:
             self.btn_sculpt.setChecked(False)
             self.btn_sculpt.setText("Enable Sculpting")
             self.btn_undo_sculpt.setEnabled(False)
             self.btn_redo_sculpt.setEnabled(False)
+            if self._heatmap_on:
+                self._hide_heatmap()
 
     def _toggle_sculpt(self):
         if self.btn_sculpt.isChecked():
@@ -449,6 +507,8 @@ class RefineStage(Stage):
             obj.SetAbortFlag(True)
             # KDTree is stale now that points moved — drop it; next stroke rebuilds.
             self._kdtree = None
+            # Recolour the heatmap so it reflects the deformed geometry.
+            self._refresh_heatmap_if_on()
 
     def _rebuild_kdtree(self):
         mesh = self.app.state.final_crown
@@ -516,6 +576,7 @@ class RefineStage(Stage):
         self.btn_redo_sculpt.setEnabled(True)
         self._kdtree = None  # invalidate — points moved
         self._mark_dirty()
+        self._refresh_heatmap_if_on()
         self.app.plotter.render()
 
     def _redo_sculpt(self):
@@ -553,6 +614,198 @@ class RefineStage(Stage):
             self.app._mark_dirty()
         except Exception:
             pass
+
+    # --- Heatmap ---
+
+    def _on_heatmap_mode_change(self, _idx):
+        if self._heatmap_on:
+            self._show_heatmap()
+
+    def _on_heatmap_range_change(self, _v):
+        if self._heatmap_on:
+            self._show_heatmap()
+
+    def _toggle_heatmap(self):
+        if self.btn_heatmap.isChecked():
+            self._show_heatmap()
+        else:
+            self._hide_heatmap()
+
+    def _current_target_mesh(self):
+        """Build the target mesh for the selected heatmap mode. Returns
+        (mesh_or_None, signed_flag). `signed_flag` = True → negative distance
+        means the crown vertex is INSIDE the target (a real penetration)."""
+        st = self.app.state
+        mode = self.cmb_heatmap_mode.currentData()
+        if mode == "occlusion":
+            return st.opposing_jaw_mesh, False
+        if mode == "fit":
+            # Prefer the isolated prep mesh; fall back to the full jaw.
+            return (st.prep_mesh if st.prep_mesh is not None else st.jaw_mesh), True
+
+        # Collision: opposing jaw + jaw_mesh (excluding the prep tooth region
+        # around the crown, otherwise the crown always "penetrates" its own
+        # prep). Merge whatever is available into one PolyData.
+        parts = []
+        if st.opposing_jaw_mesh is not None:
+            parts.append(st.opposing_jaw_mesh)
+        # Adjacent teeth = full jaw_mesh minus a spherical bubble around the
+        # crown centroid, so the prep tooth doesn't paint itself red.
+        if st.jaw_mesh is not None and st.final_crown is not None:
+            crown_c = np.asarray(st.final_crown.center)
+            bbox = np.asarray(st.final_crown.bounds).reshape(3, 2)
+            crown_r = float(np.linalg.norm(bbox[:, 1] - bbox[:, 0]) * 0.5)
+            jaw_pts = np.asarray(st.jaw_mesh.points)
+            keep_mask = np.linalg.norm(jaw_pts - crown_c, axis=1) > (crown_r + 0.5)
+            # Extract cells whose ALL vertices are outside the crown bubble.
+            try:
+                sel = st.jaw_mesh.extract_points(
+                    np.where(keep_mask)[0], adjacent_cells=False,
+                ).extract_surface()
+                if sel is not None and sel.n_cells > 0:
+                    parts.append(sel)
+            except Exception:
+                pass
+        if not parts:
+            return None, True
+        merged = parts[0]
+        for p in parts[1:]:
+            try:
+                merged = merged.merge(p)
+            except Exception:
+                pass
+        return merged, True
+
+    def _show_heatmap(self):
+        crown = self.app.state.final_crown
+        if crown is None:
+            return
+        target, signed = self._current_target_mesh()
+        if target is None or target.n_points == 0:
+            QMessageBox.information(
+                self, "No target mesh",
+                "The selected heatmap target isn't loaded in this case.",
+            )
+            self.btn_heatmap.setChecked(False)
+            return
+
+        try:
+            # Attach the distance field to the crown itself (inplace) so the
+            # heatmap actor shares its point array with the sculpt brush.
+            crown.compute_implicit_distance(target, inplace=True)
+        except Exception as e:
+            QMessageBox.critical(self, "Heatmap failed", str(e))
+            self.btn_heatmap.setChecked(False)
+            return
+
+        d = np.asarray(crown["implicit_distance"], dtype=float)
+        rng = float(self.spin_heatmap_range.value())
+        title = "Signed dist (mm)" if signed else "Clearance (mm)"
+
+        # Build a per-vertex RGB colour ramp:
+        #   d = -rng  → deep red    (heavy penetration)
+        #   d =  0    → yellow      (contact)
+        #   d = +rng  → gold        (comfortable clearance)
+        # Attaching colours directly (instead of two overlapping actors with
+        # scalars + opacity) removes z-fighting entirely and lets us keep the
+        # gold "base" look in low-interest regions without a second layer.
+        rgb = self._heatmap_colors(d, rng)
+        crown["heatmap_rgb"] = rgb
+
+        # Replace the gold actor with a single scalars-coloured actor on the
+        # same PolyData. Since it's the same points array the sculpt brush
+        # deforms, the heatmap stays glued to the crown while you sculpt.
+        if self._heatmap_actor is not None:
+            try: self.app.plotter.remove_actor(self._heatmap_actor)
+            except Exception: pass
+            self._heatmap_actor = None
+        try:
+            self.app.plotter.remove_scalar_bar(self._heatmap_bar_name)
+        except Exception:
+            pass
+        if self.final_actor is not None:
+            self.final_actor.SetVisibility(False)
+
+        self._heatmap_actor = self.app.plotter.add_mesh(
+            crown, scalars="heatmap_rgb", rgb=True,
+            show_edges=False, reset_camera=False, pickable=True,
+        )
+        self._heatmap_on = True
+        self.btn_heatmap.setText("Hide Heatmap")
+        n_pen = int(np.sum(d < 0)) if signed else int(np.sum(np.abs(d) < 0.1))
+        self.app.set_status(
+            f"Heatmap: {n_pen:,} crown verts flagged (range ±{rng:.2f} mm)."
+        )
+        self.app.plotter.render()
+
+    def _heatmap_colors(self, d, rng):
+        """Vertex RGB ramp from deep red (penetration) → yellow (contact) →
+        gold (clearance ≥ rng). Uint8, shape (N, 3)."""
+        d = np.asarray(d, dtype=np.float32)
+        rng = max(float(rng), 1e-6)
+
+        # Normalise into two halves so the colour ramp is smooth on both sides
+        # of zero regardless of asymmetric distance distribution.
+        t_neg = np.clip(-d / rng, 0.0, 1.0)   # 0 at contact, 1 at deep pen
+        t_pos = np.clip(d / rng, 0.0, 1.0)    # 0 at contact, 1 at rng clear
+
+        # Anchor colours (RGB 0..1)
+        C_YELLOW = np.array([1.00, 0.95, 0.30])   # contact
+        C_RED    = np.array([0.60, 0.00, 0.00])   # deep penetration
+        C_GOLD   = np.array([0.83, 0.68, 0.21])   # clear (base crown look)
+
+        rgb = np.empty((d.shape[0], 3), dtype=np.float32)
+        neg_mask = d < 0
+        pos_mask = ~neg_mask
+
+        # Smoothstep for a soft midband
+        def ss(t): return t * t * (3.0 - 2.0 * t)
+
+        wn = ss(t_neg[neg_mask])[:, None]
+        rgb[neg_mask] = C_YELLOW * (1.0 - wn) + C_RED * wn
+
+        wp = ss(t_pos[pos_mask])[:, None]
+        rgb[pos_mask] = C_YELLOW * (1.0 - wp) + C_GOLD * wp
+
+        return (np.clip(rgb, 0.0, 1.0) * 255.0).astype(np.uint8)
+
+    def _refresh_heatmap_if_on(self):
+        """Called at the end of a sculpt stroke so the colours re-sync with
+        the deformed crown geometry."""
+        if not self._heatmap_on:
+            return
+        crown = self.app.state.final_crown
+        target, _ = self._current_target_mesh()
+        if crown is None or target is None:
+            return
+        try:
+            crown.compute_implicit_distance(target, inplace=True)
+        except Exception:
+            return
+        d = np.asarray(crown["implicit_distance"], dtype=float)
+        rng = float(self.spin_heatmap_range.value())
+        crown["heatmap_rgb"] = self._heatmap_colors(d, rng)
+        try:
+            crown.GetPointData().Modified()
+        except Exception:
+            pass
+        self.app.plotter.render()
+
+    def _hide_heatmap(self):
+        if self._heatmap_actor is not None:
+            try: self.app.plotter.remove_actor(self._heatmap_actor)
+            except Exception: pass
+            self._heatmap_actor = None
+        try:
+            self.app.plotter.remove_scalar_bar(self._heatmap_bar_name)
+        except Exception:
+            pass
+        if self.final_actor is not None:
+            self.final_actor.SetVisibility(True)
+        self._heatmap_on = False
+        self.btn_heatmap.setChecked(False)
+        self.btn_heatmap.setText("Show Heatmap")
+        self.app.plotter.render()
 
     # --- Export ---
 
@@ -617,6 +870,105 @@ class RefineStage(Stage):
     def _loop_perimeter(self, loop):
         n = len(loop)
         return float(sum(np.linalg.norm(loop[(i + 1) % n] - loop[i]) for i in range(n)))
+
+    def _designed_border_band(self, outer_loop, inner_loop):
+        """Build the crown-bottom band from the DESIGNED border profile in
+        state (horizontal + angled + vertical + below_margin), instead of
+        the greedy shortest-diagonal stitcher.
+
+        The bottom rim of the band is snapped to `inner_loop` (welds cleanly
+        to the trimmed inner shell) and the top rim is snapped to `outer_loop`
+        (welds cleanly to the trimmed outer crown). Intermediate rings follow
+        the shape of the border profile in the local (outward, +z) frame.
+        Returns a PolyData or None if no border was designed.
+        """
+        from ..border_geometry import compute_border_profile_2d
+        st = self.app.state
+        profile = compute_border_profile_2d(
+            horizontal=st.border_horizontal,
+            angled=st.border_angled,
+            angle_deg=st.border_angle_deg,
+            vertical=st.border_vertical,
+            below_margin=st.border_below_margin,
+        )
+        m = len(profile)
+        if m < 2:
+            return None  # user didn't design any border geometry
+
+        inner = np.asarray(inner_loop, dtype=float)
+        outer = np.asarray(outer_loop, dtype=float)
+        n = len(inner)
+        if n < 3 or len(outer) < 3:
+            return None
+
+        # For each inner vertex, find the closest outer vertex — that's the
+        # "corresponding" outer point directly above. Using nearest-neighbour
+        # in 3D handles arbitrary loop lengths and orderings.
+        outer_tree = cKDTree(outer)
+        _, oi = outer_tree.query(inner, k=1)
+        outer_matched = outer[np.asarray(oi, dtype=int)]
+
+        # Profile-space normalisation: parametrise each profile point by its
+        # arc-length fraction so we can lerp between inner (t=0) and outer
+        # (t=1) endpoints while still following the profile's shape in the
+        # local outward + z plane.
+        prof = np.asarray(profile, dtype=float)  # (m, 2) : x=outward, y=vertical
+        pdx = prof[-1, 0] - prof[0, 0]
+        pdy = prof[-1, 1] - prof[0, 1]
+        p_span = float(np.hypot(pdx, pdy)) or 1e-9
+        cum = np.zeros(m)
+        for i in range(1, m):
+            cum[i] = cum[i - 1] + float(np.hypot(prof[i, 0] - prof[i - 1, 0],
+                                                 prof[i, 1] - prof[i - 1, 1]))
+        t_along = cum / max(cum[-1], 1e-9)         # 0 → 1
+        # Sideways ("bulge") offset in the outward direction at each profile
+        # point relative to the straight inner→outer line, in profile-x mm.
+        bulge_x = prof[:, 0] - (prof[0, 0] + t_along * pdx)
+        bulge_y = prof[:, 1] - (prof[0, 1] + t_along * pdy)
+
+        world_z = np.array([0.0, 0.0, 1.0])
+
+        # Build (n × m) vertex grid: bottom row = inner, top row = outer,
+        # intermediate rows = straight-line interpolation + local profile bulge.
+        verts = np.empty((n, m, 3), dtype=float)
+        for i in range(n):
+            base = inner[i]
+            tip = outer_matched[i]
+            straight_dir = tip - base
+            # Local outward direction in the horizontal plane (project out z).
+            outward = straight_dir.copy(); outward[2] = 0.0
+            onorm = float(np.linalg.norm(outward))
+            if onorm > 1e-9:
+                outward /= onorm
+            else:
+                # Fallback: radial-outward from the loop centroid.
+                radial = base - inner.mean(axis=0); radial[2] = 0.0
+                rnorm = float(np.linalg.norm(radial))
+                outward = radial / rnorm if rnorm > 1e-9 else np.array([1.0, 0.0, 0.0])
+            for j in range(m):
+                if j == 0:
+                    verts[i, j] = base
+                elif j == m - 1:
+                    verts[i, j] = tip
+                else:
+                    verts[i, j] = (base + t_along[j] * straight_dir
+                                   + outward * bulge_x[j]
+                                   + world_z * bulge_y[j])
+
+        # Build triangle faces (two per quad).
+        faces = []
+        for i in range(n):
+            i_next = (i + 1) % n
+            for j in range(m - 1):
+                a = i * m + j
+                b = i * m + (j + 1)
+                c = i_next * m + j
+                d = i_next * m + (j + 1)
+                faces.append([3, a, b, c])
+                faces.append([3, b, d, c])
+        faces_flat = np.asarray(faces, dtype=np.int64).ravel()
+
+        return pv.PolyData(verts.reshape(-1, 3), faces_flat)
 
     def _stitch_band(self, outer, inner):
         """Triangulate the annular band between two closed loops on (approximately) the same plane.
