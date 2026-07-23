@@ -11,7 +11,7 @@ import vtk
 from scipy.spatial import cKDTree
 from PyQt5.QtWidgets import (
     QVBoxLayout, QHBoxLayout, QPushButton, QLabel, QFileDialog, QMessageBox,
-    QDoubleSpinBox, QComboBox,
+    QDoubleSpinBox, QSpinBox, QComboBox,
 )
 
 from ..config import STAGES
@@ -180,6 +180,55 @@ class RefineStage(Stage):
         self.btn_heatmap.clicked.connect(self._toggle_heatmap)
         layout.addWidget(self.btn_heatmap)
 
+        # --- OCCLUSAL RELIEF ---
+        layout.addWidget(section_label("OCCLUSAL RELIEF"))
+        relief_hint = QLabel(
+            "Push crown vertices that touch or penetrate the opposing arch "
+            "inward until they clear it by the target amount."
+        )
+        relief_hint.setStyleSheet("color: #6e6e73; font-size: 11px; padding: 2px 0;")
+        relief_hint.setWordWrap(True)
+        layout.addWidget(relief_hint)
+
+        relief_row = QHBoxLayout()
+        relief_row.addWidget(QLabel("Target clearance"))
+        self.spin_relief_target = QDoubleSpinBox()
+        self.spin_relief_target.setRange(0.00, 1.00)
+        self.spin_relief_target.setSingleStep(0.01)
+        self.spin_relief_target.setDecimals(2)
+        self.spin_relief_target.setSuffix(" mm")
+        self.spin_relief_target.setValue(0.05)
+        relief_row.addWidget(self.spin_relief_target)
+        layout.addLayout(relief_row)
+
+        self.btn_relieve = QPushButton("Relieve Occlusion")
+        self.btn_relieve.setEnabled(False)
+        self.btn_relieve.clicked.connect(self._relieve_occlusion)
+        layout.addWidget(self.btn_relieve)
+
+        # --- SMOOTH ---
+        layout.addWidget(section_label("SMOOTH"))
+        smooth_hint = QLabel(
+            "Softens the crown surface. Higher iterations = smoother but "
+            "risks losing fine anatomy."
+        )
+        smooth_hint.setStyleSheet("color: #6e6e73; font-size: 11px; padding: 2px 0;")
+        smooth_hint.setWordWrap(True)
+        layout.addWidget(smooth_hint)
+
+        smooth_row = QHBoxLayout()
+        smooth_row.addWidget(QLabel("Iterations"))
+        self.spin_smooth_iter = QSpinBox()
+        self.spin_smooth_iter.setRange(1, 100)
+        self.spin_smooth_iter.setValue(10)
+        smooth_row.addWidget(self.spin_smooth_iter)
+        layout.addLayout(smooth_row)
+
+        self.btn_smooth = QPushButton("Smooth Crown")
+        self.btn_smooth.setEnabled(False)
+        self.btn_smooth.clicked.connect(self._smooth_crown)
+        layout.addWidget(self.btn_smooth)
+
         # --- EXPORT ---
         layout.addWidget(section_label("EXPORT"))
         self.btn_export_stl = QPushButton("Export STL...")
@@ -230,6 +279,8 @@ class RefineStage(Stage):
         self.app.state.final_crown = None
         self.lbl_stats.setText("Not yet solidified.")
         self.btn_export_stl.setEnabled(False)
+        self.btn_relieve.setEnabled(False)
+        self.btn_smooth.setEnabled(False)
         self._set_sculpt_controls_enabled(False)
         self._undo_stack.clear()
         self._redo_stack.clear()
@@ -342,6 +393,8 @@ class RefineStage(Stage):
         self.lbl_stats.setText(msg)
 
         self.btn_export_stl.setEnabled(True)
+        self.btn_relieve.setEnabled(True)
+        self.btn_smooth.setEnabled(True)
         self._set_sculpt_controls_enabled(True)
         self._undo_stack.clear()
         self._redo_stack.clear()
@@ -791,6 +844,210 @@ class RefineStage(Stage):
             pass
         self.app.plotter.render()
 
+    def _smooth_crown(self):
+        """Laplacian-smooth the whole final crown for `iterations` passes.
+        Pure numpy (no VTK filter), so no segfault risk. Uses a Taubin-like
+        alternating shrink/inflate pair so the mesh doesn't collapse."""
+        crown = self.app.state.final_crown
+        if crown is None:
+            return
+        n_iter = int(self.spin_smooth_iter.value())
+        if n_iter <= 0:
+            return
+
+        pts = np.asarray(crown.points, dtype=np.float64).copy()
+        n = len(pts)
+
+        # Build vertex adjacency once.
+        faces_arr = np.asarray(crown.faces)
+        tri = faces_arr.reshape(-1, 4)[:, 1:]
+        neighbours = [[] for _ in range(n)]
+        for a, b, c in tri:
+            a, b, c = int(a), int(b), int(c)
+            neighbours[a].extend((b, c))
+            neighbours[b].extend((a, c))
+            neighbours[c].extend((a, b))
+        neighbours = [np.unique(np.asarray(nl, dtype=np.int64)) if nl
+                      else np.empty(0, dtype=np.int64) for nl in neighbours]
+
+        # Taubin: alternate a positive Laplacian step and a slightly larger
+        # negative step to keep volume roughly constant while smoothing.
+        LAMBDA = 0.5
+        MU = -0.53
+        moved = pts
+        for it in range(n_iter):
+            factor = LAMBDA if it % 2 == 0 else MU
+            new_pts = moved.copy()
+            for vi in range(n):
+                nl = neighbours[vi]
+                if len(nl) == 0:
+                    continue
+                mean = moved[nl].mean(axis=0)
+                new_pts[vi] = moved[vi] + factor * (mean - moved[vi])
+            moved = new_pts
+
+        crown.points = moved.astype(crown.points.dtype)
+        try: crown.GetPoints().Modified()
+        except Exception: pass
+        self._refresh_heatmap_if_on()
+        try: self.app._mark_dirty()
+        except Exception: pass
+        self.app.plotter.render()
+        self.app.set_status(f"Smoothed crown ({n_iter} iterations).")
+
+    def _relieve_occlusion(self):
+        """Push crown verts that are too close to the opposing arch INWARD
+        along the crown's own surface normal, in small capped steps.
+
+        Rationale: on an open opposing scan (jaw mesh isn't watertight),
+        vtkImplicitPolyDataDistance's signed distance and closest-point
+        direction are unreliable — a big shift = (target - d) can jump
+        several mm and carve craters. Pushing along the crown's OWN inward
+        normal by a tiny per-pass step (STEP_CAP) always shrinks the crown
+        locally and never overshoots, regardless of opposing topology.
+        """
+        crown = self.app.state.final_crown
+        opposing = self.app.state.opposing_jaw_mesh
+        if crown is None:
+            QMessageBox.warning(self, "No crown", "Solidify the crown first.")
+            return
+        if opposing is None or opposing.n_points == 0:
+            QMessageBox.warning(
+                self, "No opposing arch",
+                "The opposing arch STL isn't loaded — nothing to relieve against.",
+            )
+            return
+
+        target = float(self.spin_relief_target.value())
+        impl = vtk.vtkImplicitPolyDataDistance()
+        impl.SetInput(opposing)
+
+        pts = np.asarray(crown.points, dtype=np.float64).copy()
+        n = len(pts)
+
+        # Crown outward normals — computed once. Small per-pass steps mean
+        # slightly stale normals don't matter.
+        try:
+            normals_mesh = crown.compute_normals(
+                point_normals=True, cell_normals=False,
+                auto_orient_normals=True, non_manifold_traversal=False,
+                inplace=False,
+            )
+            normals = np.asarray(normals_mesh["Normals"], dtype=np.float64)
+        except Exception:
+            centroid = pts.mean(axis=0)
+            v = pts - centroid
+            l = np.linalg.norm(v, axis=1, keepdims=True)
+            normals = v / np.maximum(l, 1e-9)
+
+        MAX_PASSES = 20
+        STEP_CAP = 0.10   # mm per pass — small enough to avoid craters
+
+        total_moved = np.zeros(n, dtype=bool)
+        max_pen_initial = 0.0
+        for pass_i in range(MAX_PASSES):
+            moved_this_pass = 0
+            worst = 0.0
+            for i in range(n):
+                d = float(impl.EvaluateFunction(
+                    [float(pts[i, 0]), float(pts[i, 1]), float(pts[i, 2])]
+                ))
+                # Use unsigned distance for the target test (opposing may be
+                # open). Treat d < 0 as "definitely penetrating" and always
+                # push then; treat 0 <= d < target as "too close".
+                if d < 0:
+                    d_gap = 0.0        # already touching → need full target
+                    violating = True
+                elif d < target:
+                    d_gap = d
+                    violating = True
+                else:
+                    d_gap = d
+                    violating = False
+                if d < 0 and abs(d) > worst:
+                    worst = abs(d)
+                if not violating:
+                    continue
+                shift = min(STEP_CAP, target - d_gap)
+                if shift <= 0:
+                    continue
+                pts[i] -= normals[i] * shift
+                total_moved[i] = True
+                moved_this_pass += 1
+            if pass_i == 0:
+                max_pen_initial = worst
+            if moved_this_pass == 0:
+                break
+
+        # Feather the dent into surrounding anatomy.
+        if total_moved.any():
+            pts = self._smooth_moved_region(crown, pts, total_moved,
+                                            iterations=6, expand_rings=2)
+
+        crown.points = pts.astype(crown.points.dtype)
+        try: crown.GetPoints().Modified()
+        except Exception: pass
+        self._refresh_heatmap_if_on()
+        try: self.app._mark_dirty()
+        except Exception: pass
+        self.app.plotter.render()
+
+        n_moved = int(total_moved.sum())
+        self.app.set_status(
+            f"Relieved occlusion: {n_moved:,} verts pushed inward · "
+            f"initial max penetration {max_pen_initial*1000:.0f} μm."
+        )
+
+    def _smooth_moved_region(self, mesh, pts, seed_mask,
+                             iterations=6, expand_rings=2):
+        """Laplacian-smooth vertices in `seed_mask` (plus `expand_rings` of
+        neighbours) toward their neighbourhood mean, with a smoothstep taper
+        so the smoothed region blends into the surrounding untouched anatomy.
+        """
+        n = len(pts)
+        faces_arr = np.asarray(mesh.faces)
+        tri = faces_arr.reshape(-1, 4)[:, 1:]
+        neighbours = [[] for _ in range(n)]
+        for a, b, c in tri:
+            a, b, c = int(a), int(b), int(c)
+            neighbours[a].extend((b, c))
+            neighbours[b].extend((a, c))
+            neighbours[c].extend((a, b))
+        neighbours = [np.unique(np.asarray(nl, dtype=np.int64)) if nl
+                      else np.empty(0, dtype=np.int64) for nl in neighbours]
+
+        active = seed_mask.copy()
+        for _ in range(int(expand_rings)):
+            idxs = np.where(active)[0]
+            for vi in idxs:
+                active[neighbours[vi]] = True
+
+        weight = np.zeros(n, dtype=np.float64)
+        weight[seed_mask] = 1.0
+        ring = seed_mask.copy()
+        for r in range(int(expand_rings)):
+            next_ring = np.zeros_like(ring)
+            idxs = np.where(ring)[0]
+            for vi in idxs:
+                next_ring[neighbours[vi]] = True
+            next_ring &= ~ring
+            weight[next_ring] = (expand_rings - r) / float(expand_rings + 1)
+            ring |= next_ring
+
+        active_idx = np.where(active)[0]
+        moved = pts.copy()
+        for _ in range(int(iterations)):
+            new_pts = moved.copy()
+            for vi in active_idx:
+                nl = neighbours[vi]
+                if len(nl) == 0:
+                    continue
+                mean = moved[nl].mean(axis=0)
+                w = float(weight[vi]) * 0.5
+                new_pts[vi] = moved[vi] * (1.0 - w) + mean * w
+            moved = new_pts
+        return moved
+
     def _hide_heatmap(self):
         if self._heatmap_actor is not None:
             try: self.app.plotter.remove_actor(self._heatmap_actor)
@@ -1175,3 +1432,5 @@ class RefineStage(Stage):
             msg += f"\nVolume: {vol:.1f} mm³"
         self.lbl_stats.setText(msg)
         self.btn_export_stl.setEnabled(True)
+        self.btn_relieve.setEnabled(True)
+        self.btn_smooth.setEnabled(True)
